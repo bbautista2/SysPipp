@@ -69,8 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
+    <Content Include="src\build\css\custom-purple.css" />
     <Content Include="src\build\css\custom.css" />
+    <Content Include="src\build\css\custom-purple.min.css" />
     <Content Include="src\build\css\custom.min.css" />
     <Content Include="src\build\images\back_disabled.png" />
     <Content Include="src\build\images\back_enabled.png" />
@@ -79,6 +82,7 @@
     <Content Include="src\build\images\forward_enabled.png" />
     <Content Include="src\build\images\forward_enabled_hover.png" />
     <Content Include="src\build\images\loading.gif" />
+    <Content Include="src\build\images\logo.png" />
     <Content Include="src\build\js\custom.js" />
     <Content Include="src\build\js\custom.min.js" />
     <Content Include="src\js\custom.js" />
@@ -4343,6 +4347,13 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.cs">
       <DependentUpon>Inicio.Master</DependentUpon>
