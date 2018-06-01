@@ -297,7 +297,7 @@
 
     <script src="<%=ResolveUrl("~/src/vendors/jquery/dist/jquery.min.js") %>"></script>
     <!-- Bootstrap -->
-    <script src="<%=ResolveUrl("~/vendors/bootstrap/dist/js/bootstrap.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/bootstrap/dist/js/bootstrap.min.js") %>"></script>
     <!-- FastClick -->
     <script src="<%=ResolveUrl("~/src/vendors/fastclick/lib/fastclick.js") %>"></script>
     <!-- NProgress -->
@@ -329,8 +329,11 @@
     <script src="<%=ResolveUrl("~/src/vendors/jqvmap/dist/maps/jquery.vmap.world.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js") %>"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="<%=ResolveUrl("~/vendors/moment/min/moment.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/moment/min/moment.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
+    <!-- validator -->
+    <script src="<%=ResolveUrl("~/src/vendors/validator/validator.js") %>"></script>
+
 
     <!-- Custom Theme Scripts -->
     <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
