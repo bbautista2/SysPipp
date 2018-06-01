@@ -197,6 +197,7 @@ project.lock.json
 # VS 2015+
 *.vc.vc.opendb
 *.vc.db
+*.config
 
 # Rider
 .idea/
