@@ -70,6 +70,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Privado\Inicio.aspx" />
+    <Content Include="Privado\Mascota\Guardar.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
     <Content Include="src\build\css\custom-purple.css" />
     <Content Include="src\build\css\custom.css" />
@@ -4354,6 +4355,13 @@
     </Compile>
     <Compile Include="Privado\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Mascota\Guardar.aspx.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Mascota\Guardar.aspx.designer.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.cs">
       <DependentUpon>Inicio.Master</DependentUpon>
