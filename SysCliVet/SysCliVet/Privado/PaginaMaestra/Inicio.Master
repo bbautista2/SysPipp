@@ -12,23 +12,22 @@
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="../src/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=ResolveUrl("~/src/vendors/bootstrap/dist/css/bootstrap.min.css") %>"  rel="stylesheet" />    
     <!-- Font Awesome -->
-    <link href="../src/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<%=ResolveUrl("~/src/vendors/font-awesome/css/font-awesome.min.css") %>"  rel="stylesheet" /> 
     <!-- NProgress -->
-    <link href="../src/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="<%=ResolveUrl("~/src/vendors/nprogress/nprogress.css") %>"  rel="stylesheet" />    
     <!-- iCheck -->
-    <link href="../src/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	
-    <!-- bootstrap-progressbar -->
-    <link href="../src/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="../src/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link href="../src/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="<%=ResolveUrl("~/src/vendors/iCheck/skins/flat/green.css") %>"  rel="stylesheet" /> 
 
+    <!-- bootstrap-progressbar -->
+    <link href="<%=ResolveUrl("~/src/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") %>"  rel="stylesheet" />
+    <!-- JQVMap -->
+    <link href="<%=ResolveUrl("~/src/vendors/jqvmap/dist/jqvmap.min.css") %>"  rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.css") %>"  rel="stylesheet" /> 
     <!-- Custom Theme Style -->
-    <link href="../src/build/css/custom-purple.min.css" rel="stylesheet">
+      <link href="<%=ResolveUrl("~/src/build/css/custom-purple.min.css") %>"  rel="stylesheet" />    
   </head>
 
   <body class="nav-md">
@@ -295,45 +294,46 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../src/vendors/jquery/dist/jquery.min.js"></script>
+
+    <script src="<%=ResolveUrl("~/src/vendors/jquery/dist/jquery.min.js") %>"></script>
     <!-- Bootstrap -->
-    <script src="../src/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<%=ResolveUrl("~/vendors/bootstrap/dist/js/bootstrap.min.js") %>"></script>
     <!-- FastClick -->
-    <script src="../src/vendors/fastclick/lib/fastclick.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/fastclick/lib/fastclick.js") %>"></script>
     <!-- NProgress -->
-    <script src="../src/vendors/nprogress/nprogress.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/nprogress/nprogress.js") %>"></script>
     <!-- Chart.js -->
-    <script src="../src/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/Chart.js/dist/Chart.min.js") %>"></script>
     <!-- gauge.js -->
-    <script src="../src/vendors/gauge.js/dist/gauge.min.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/gauge.js/dist/gauge.min.js") %>"></script>
     <!-- bootstrap-progressbar -->
-    <script src="../src/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js") %>"></script>
     <!-- iCheck -->
-    <script src="../src/vendors/iCheck/icheck.min.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/iCheck/icheck.min.js") %>"></script>
     <!-- Skycons -->
-    <script src="../src/vendors/skycons/skycons.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/skycons/skycons.js") %>"></script>
     <!-- Flot -->
-    <script src="../src/vendors/Flot/jquery.flot.js"></script>
-    <script src="../src/vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="../src/vendors/Flot/jquery.flot.time.js"></script>
-    <script src="../src/vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="../src/vendors/Flot/jquery.flot.resize.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.pie.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.time.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.stack.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.resize.js") %>"></script>
     <!-- Flot plugins -->
-    <script src="../src/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="../src/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="../src/vendors/flot.curvedlines/curvedLines.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/flot.orderbars/js/jquery.flot.orderBars.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/flot-spline/js/jquery.flot.spline.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/flot.curvedlines/curvedLines.js") %>"></script>
     <!-- DateJS -->
-    <script src="../src/vendors/DateJS/build/date.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/DateJS/build/date.js") %>"></script>
     <!-- JQVMap -->
-    <script src="../src/vendors/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="../src/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="../src/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/jqvmap/dist/jquery.vmap.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/jqvmap/dist/maps/jquery.vmap.world.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js") %>"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="<%=ResolveUrl("~/vendors/moment/min/moment.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../src/build/js/custom.min.js"></script>
+    <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
 	
   </body>
 </html>
