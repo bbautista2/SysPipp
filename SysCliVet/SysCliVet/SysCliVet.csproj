@@ -71,6 +71,7 @@
     <None Include="packages.config" />
     <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
+    <Content Include="Privado\Propietario\Guardar.aspx" />
     <Content Include="src\build\css\custom-purple.css" />
     <Content Include="src\build\css\custom.css" />
     <Content Include="src\build\css\custom-purple.min.css" />
@@ -4342,7 +4343,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -4361,6 +4364,13 @@
     </Compile>
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.designer.cs">
       <DependentUpon>Inicio.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Propietario\Guardar.aspx.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Propietario\Guardar.aspx.designer.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
