@@ -21,18 +21,18 @@
                     <div class="x_content">
                         <br>
 
-                        <form class="form-horizontal form-label-left" novalidate>
+                        <div class="form-horizontal form-label-left">
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">
                                     Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtNombre" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="txtNombre" required="required" type="text">
+                                    <input id="txtNombre" class="form-control col-md-7 col-xs-12" name="txtNombre" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo">
                                     Tipo<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="raza">
                                     Raza <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sexo">
                                     Sexo <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -79,39 +79,39 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">
                                     Color <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="txtColor" name="txtTelefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtPropietario">
                                     Propietario <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="txtPropietario" name="txtTelefono" required="required" data-validate-length-range="8,20" placeholder="DNI" class="form-control col-md-7 col-xs-12">
+                                    <input id="txtPropietario" name="txtPropietario" required="required" maxlength="8" placeholder="DNI" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="notas">
                                     Notas 
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea id="txtNotas" name="txtNotas" class="form-control col-md-7 col-xs-12"></textarea>
                                 </div>
                             </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">
+                            <div class="item form-group" style="margin-top:15px;">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">
                                     Foto 
                                 </label>
-                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                    <img id="ImageMain" runat="server" style="margin-top: 12px; margin-left: 8px; max-width: 100px" onerror="this.src='../../src/images/image_not_found.jpg'" />
-                                    <div class="fileUpload btn btn-primary" style="margin-left: 18px;">
+                                <div class="col-md-9 col-sm-9 col-lg-9">                                    
+                                    <div class="fileUpload btn btn-primary">
                                         <span>Upload File</span>
-                                        <input type="file" class="upload" id="FuPMain" accept="image/*" onchange="uploadsliderimage('FuPMain')" />
+                                        <input type="file" class="upload" id="FuPMain" accept="image/*" onchange="FN_SubirImagen('FuPMain')" />
                                     </div>
+                                    <img id="ImageMain" runat="server" style="margin-left: 8px; max-width: 100px" onerror="this.src='../../src/imagenes/default.png'" />
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -121,7 +121,7 @@
                                     <button id="send" type="submit" class="btn btn-success">Guardar</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
 
                     </div>
                 </div>
@@ -133,13 +133,12 @@
 </asp:Content>
 
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ScripPlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script type="text/javascript">
         $(function () {
-            FN_Inicio();
         });
 
-        function uploadsliderimage(input) {
+        function FN_SubirImagen(input) {
             var archivos = document.getElementById(input);//Damos el valor del input tipo file
             var archivo = archivos.files;
             var data = new FormData();
@@ -159,14 +158,14 @@
                     processData: false, //Debe estar en false para que JQuery no procese los datos a enviar
                     cache: false //Para que el formulario no guarde cache
                 }).done(function (msg) {
-                    var img = $.parseJSON(msg).name;
+                    var img = $.parseJSON(msg).nombre;
                     console.log(img);
                     var s = img.split("/");
                     var str = s[s.length - 1];
                     $("input[id$=hfMain]").val(str);
                     $("input[id$=hfImageSrc]").val(img);
-                    $("input[id$=ImageMain]").attr("src", img);
-                    });
+                    $("img[id$=ImageMain]").attr("src", img);
+                });
             }
         }
 

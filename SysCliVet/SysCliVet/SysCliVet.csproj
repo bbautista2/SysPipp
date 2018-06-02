@@ -68,6 +68,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FileUpload.ashx" />
     <None Include="packages.config" />
     <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\Mascota\Guardar.aspx" />
@@ -89,8 +90,10 @@
     <Content Include="src\build\images\logo.png" />
     <Content Include="src\build\js\custom.js" />
     <Content Include="src\build\js\custom.min.js" />
+    <Content Include="src\imagenes\default.png" />
     <Content Include="src\js\custom.js" />
     <Content Include="src\js\helpers\smartresize.js" />
+    <Content Include="src\css\style.css" />
     <Content Include="src\vendors\animate.css\animate.css" />
     <Content Include="src\vendors\animate.css\animate.min.css" />
     <Content Include="src\vendors\animate.css\gulpfile.js" />
@@ -4351,6 +4354,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileUpload.ashx.cs">
+      <DependentUpon>FileUpload.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4397,12 +4403,22 @@
     <Compile Include="Publico\Acceso.aspx.designer.cs">
       <DependentUpon>Acceso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="src\app_code\Config.cs" />
+    <Compile Include="src\app_code\Sesion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{18e644f0-2970-4b68-bf44-a49887f8aa64}</Project>
+      <Name>CapaEntidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaLibreria\CapaLibreria.csproj">
+      <Project>{234d1d5a-49cc-4742-bb40-f0dd13de7385}</Project>
+      <Name>CapaLibreria</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
       <Project>{5ac2977b-53ac-4f5a-afd2-6293bf0500f0}</Project>
       <Name>CapaNegocio</Name>
