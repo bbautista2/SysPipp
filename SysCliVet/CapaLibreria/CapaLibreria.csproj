@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18E644F0-2970-4B68-BF44-A49887F8AA64}</ProjectGuid>
+    <ProjectGuid>{234D1D5A-49CC-4742-BB40-F0DD13DE7385}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CapaEntidad</RootNamespace>
-    <AssemblyName>CapaEntidad</AssemblyName>
+    <RootNamespace>CapaLibreria</RootNamespace>
+    <AssemblyName>CapaLibreria</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,16 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsMascota.cs" />
-    <Compile Include="clsPropietario.cs" />
-    <Compile Include="clsUsuario.cs" />
+    <Compile Include="Base\clsBase.cs" />
+    <Compile Include="General\clsExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CapaLibreria\CapaLibreria.csproj">
-      <Project>{234d1d5a-49cc-4742-bb40-f0dd13de7385}</Project>
-      <Name>CapaLibreria</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
