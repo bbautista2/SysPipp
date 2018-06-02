@@ -24,7 +24,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Lista de Propietarios </h2>
+                    <h2>Listado de Propietarios </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -46,7 +46,7 @@
                    					
      <div class="form-group">
                         <div class="col-md-12 left">
-                          <button id="send" type="submit" class="btn btn-success">Nuevo</button>
+                          <button id="send" type="submit" class="btn btn-success"><i class="fa fa-plus-square"></i> Añadir</button>
                         </div>
                       </div>
            <br />
@@ -68,8 +68,8 @@
                       <tbody>
                         <tr>
                           <td>                            
-                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>  </a>
-                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i>  </a>
+                            <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar" ><i class="fa fa-pencil"></i>  </a>
+                            <a href="#" class="btn btn-default btn-xs"  data-toggle="tooltip" data-placement="top" data-original-title="Eliminar" ><i class="fa fa-trash-o"></i>  </a>
                           </td>
                           <td>Nixon</td>
                           <td>System Architect</td>

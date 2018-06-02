@@ -79,8 +79,8 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button type="submit" class="btn btn-default">Cancelar</button>
-                          <button id="send" type="submit" class="btn btn-success">Guardar</button>
+                          <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Regresar</button>
+                          <button id="send" type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
                         </div>
                       </div>
                     </form>
