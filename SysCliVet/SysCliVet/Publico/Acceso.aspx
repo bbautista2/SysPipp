@@ -22,42 +22,56 @@
     <!-- Custom Theme Style -->
     <link href="<%=ResolveUrl("~/src/build/css/custom-purple.min.css") %>" rel="stylesheet">  
    
+   <style type="text/css">
+       .Login_link {
+       text-decoration: none !important;
+       color:#ffffff;       
+       }
+
+        .Login_link:hover {
+       text-decoration: none !important;
+       color:#808080;       
+       }
+   </style>
+
   </head>
 
-  <body class="login">
+  <body class="login" style="">
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
+
       <div class="login_wrapper">
         <div class="animate form login_form">
+        <div  style="text-align:center;">
+        <img src="src/img/logo.jpg" height="180" />
+        </div>
           <section class="login_content">
             <form>
-              <h1>Login Form</h1>
+              <h1 style="color:#ffffff;letter-spacing:0">Iniciar Sesion</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Usuario" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="Contraseña" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="<%=ResolveUrl("~/Privado/Inicio.aspx") %>">Log in</a>
-                <a class="reset_pass" href="#">Lost your password?</a>
+                <a class="btn btn-default submit" href="<%=ResolveUrl("~/Privado/Inicio.aspx") %>">Ingresar</a>                
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
+                <p class="change_link">
+                  <a href="#signup" class="to_register Login_link"> Olvidaste tu Contraseña! </a>
                 </p>
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>Â©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                 
                 </div>
               </div>
             </form>
@@ -65,35 +79,33 @@
         </div>
 
         <div id="register" class="animate form registration_form">
+        <div id="col-md-12" style="text-align:center;">
+        <img src="src/img/logo.jpg" height="180" />
+        </div>
           <section class="login_content">
             <form>
-              <h1>Create Account</h1>
+              <h2 style="color:#ffffff">Recuperar Contraseña</h2>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Usuario" required="" />
               </div>
+         
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <a class="btn btn-default submit" href="index.html">Enviar</a>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
+                <p class="change_link" style="color:#fff">Eres usuario?
+                  <a href="#signin" class="to_register Login_link"  > Ingresa </a>
                 </p>
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> </h1>
-                  <p>Â©2018 All Rights Reserved.</p>
+                  <h1><i class="fa fa-paw" style="color:#ffffff"></i> </h1>
+                 
                 </div>
               </div>
             </form>

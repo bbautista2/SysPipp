@@ -290,6 +290,11 @@
     <script src="<%=ResolveUrl("~/src/vendors/pdfmake/build/pdfmake.min.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/pdfmake/build/vfs_fonts.js") %>"></script>
 
+      <!-- morris.js -->
+    <script src="<%=ResolveUrl("~/src/vendors/raphael/raphael.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/morris.js/morris.min.js") %>"></script>
+
+
     <!-- Custom Theme Scripts -->
     <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
 	
