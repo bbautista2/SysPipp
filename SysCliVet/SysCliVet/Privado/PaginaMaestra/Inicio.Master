@@ -71,7 +71,8 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> Atención <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<%=ResolveUrl("~/Privado/Propietario/Guardar.aspx") %>">Propietario</a></li>                      
+                      <li><a href="<%=ResolveUrl("~/Privado/Propietario/Guardar.aspx") %>">Propietario</a></li>     
+                        <li><a href="<%=ResolveUrl("~/Privado/Mascota/Guardar.aspx") %>">Mascota</a></li> 
                     </ul>
                   </li>                 
                   

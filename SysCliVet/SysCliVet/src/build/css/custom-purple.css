@@ -15,6 +15,30 @@ html , body{
  height:100%;
  }
 
+
+.btn-delete:hover {
+    color: #fff;
+    background-color: #31112e;
+    border-color: #31112e;
+}
+.btn-edit:hover {
+    color: #fff;
+    background-color: #904b8f;
+    border-color: #904b8f;
+}
+
+.btn-edit {
+    color: #fff;
+    background-color: #7b607a;
+    border-color: #846b80;
+}
+
+.btn-delete {
+    color: #fff;
+    background-color: #5f315e;
+    border-color: #562e54;
+}
+
 .daterangepicker .ranges li {
     color: #73879C
 }
