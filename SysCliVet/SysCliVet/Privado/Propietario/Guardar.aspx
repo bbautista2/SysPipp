@@ -46,7 +46,7 @@
                   <div class="x_content">
                     <br>
                    
-                         <form class="form-horizontal form-label-left" novalidate>                     
+                         <div class="form-horizontal form-label-left">                     
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
@@ -83,7 +83,7 @@
                           <button id="send" type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
                         </div>
                       </div>
-                    </form>
+                    </div>
 
                   </div>
                 </div>
