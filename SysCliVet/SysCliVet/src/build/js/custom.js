@@ -211,8 +211,8 @@ $(document).ready(function() {
     if ($("input.flat")[0]) {
         $(document).ready(function () {
             $('input.flat').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass: 'iradio_flat-green'
+                checkboxClass: 'icheckbox_flat-pink',
+                radioClass: 'iradio_flat-pink'
             });
         });
     }
@@ -2559,7 +2559,7 @@ if (typeof NProgress != 'undefined') {
 				});
 				$datatable.on('draw.dt', function() {
 				  $('checkbox input').iCheck({
-					checkboxClass: 'icheckbox_flat-green'
+					checkboxClass: 'icheckbox_flat-pink'
 				  });
 				});
 
