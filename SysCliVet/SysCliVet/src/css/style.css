@@ -15,3 +15,8 @@
     overflow: hidden;
     vertical-align: baseline;
 }
+
+.stepContainer p {
+    margin-bottom: 0;
+    padding-top: 8px;
+}
