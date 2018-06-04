@@ -12,7 +12,7 @@ namespace CapaLibreria.Base
         public Int32 Id { get; set; }
         public String Nombre { get; set; }
         public String Descripcion { get; set; }
-        public Int32 Estado { get; set; }
+        public Int16 Estado { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaActualizacion { get; set; }
         public Int32 CreadoPor { get; set; }
