@@ -170,9 +170,7 @@
 
 					$(".antosubmit").on("click", function() {
 					  var title = $("#autocomplete-custom-append").val();
-					  if (end) {
-						ended = end;
-					  }
+					 
 
 					  categoryClass = $("#event_type").val();
 
@@ -180,7 +178,7 @@
 						calendar.fullCalendar('renderEvent', {
 							title: title,
 							start: started,
-							end: end,
+							end: ended,
 							allDay: allDay
 						  },
 						  true // make the event "stick"

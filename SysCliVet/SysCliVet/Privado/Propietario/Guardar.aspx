@@ -85,8 +85,7 @@
                                 </div>
                       </div>  
                             <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono <span class="required">*</span>
-                                    Notas 
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono <span class="required">*</span>                                    
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="tel" id="txtTelefono" name="txtTelefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
@@ -112,8 +111,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
   <script type="text/javascript">
-        $(function () {
-            $('#txtFechaNacimiento').datepicker();
-         
+      $(function () {
+          $('#txtFechaNacimiento').datetimepicker({
+                 format: 'DD/MM/YYYY'
+           });
+      });
     </script>
 </asp:Content>
