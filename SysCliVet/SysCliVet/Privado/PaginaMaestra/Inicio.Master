@@ -86,7 +86,7 @@
                                     <li><a><i class="fa fa-edit"></i>Atención <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="<%=ResolveUrl("~/Privado/Propietario/Guardar.aspx") %>">Propietario</a></li>
-                                            <li><a href="<%=ResolveUrl("~/Privado/Mascota/Guardar.aspx") %>">Mascota</a></li>
+                                            <li><a href="<%=ResolveUrl("~/Privado/Paciente/Guardar.aspx") %>">Paciente</a></li>
                                         </ul>
                                     </li>
                                        <li><a><i class="fa fa-calendar"></i>Citas <span class="fa fa-chevron-down"></span></a>
@@ -303,6 +303,8 @@
     <script src="<%=ResolveUrl("~/src/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/datatables.net-scroller/js/dataTables.scroller.min.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/jszip/dist/jszip.min.js") %>"></script>
+    <!-- jQuery Smart Wizard -->
+    <script src="<%=ResolveUrl("~/src/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
     <!-- bootstrap-datetimepicker -->    
     <script src="<%=ResolveUrl("~/src/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js") %>"></script>
@@ -314,7 +316,6 @@
    
     <script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/locale/es.js") %>"></script>
-   
     <!-- Custom Theme Scripts -->
     <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
 </html>

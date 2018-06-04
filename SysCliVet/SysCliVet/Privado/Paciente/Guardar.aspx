@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.Mascota.Guardar" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.Paciente.Guardar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Mascota</h3>
+                <h3>Paciente</h3>
             </div>
         </div>
 
@@ -24,7 +24,7 @@
                         <div class="form-horizontal form-label-left">
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtNombre">
                                     Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -32,31 +32,35 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo">
-                                    Tipo<span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Fecha Nac. <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" id="ddlTipo">
-                                        <option>Choose option</option>
-                                        <option>Tipo 1</option>
-                                        <option>Tipo 2</option>
-                                        <option>Tipo 3</option>
-                                        <option>Tipo 4</option>
-                                    </select>
+                                    <input id="txtFechaNac" class="form-control col-md-7 col-xs-12" name="txtFechaNac" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="raza">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Raza <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" id="ddlRaza">
-                                        <option>Choose option</option>
-                                        <option>Raza 1</option>
-                                        <option>Raza 2</option>
-                                        <option>Raza 3</option>
-                                        <option>Raza 4</option>
-                                    </select>
+                                    <input id="txtRaza" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">
+                                    Color <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Especie <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="txtEspecie" name="txtEspecie" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -79,11 +83,35 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">
-                                    Color <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Intac <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtIntac" name="txtIntac" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Cast <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="txtCast" name="txtCast" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Peso <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="txtPeso" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Marca distintiva <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="txtMarcaDist" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -92,14 +120,6 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="txtPropietario" name="txtPropietario" required="required" maxlength="8" placeholder="DNI" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="notas">
-                                    Notas 
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea id="txtNotas" name="txtNotas" class="form-control col-md-7 col-xs-12"></textarea>
                                 </div>
                             </div>
                             <div class="item form-group" style="margin-top:15px;">
