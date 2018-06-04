@@ -40,9 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsMascota.cs" />
+    <Compile Include="clsAnalisis.cs" />
+    <Compile Include="clsCarnetVacunacion.cs" />
+    <Compile Include="clsCita.cs" />
+    <Compile Include="clsFichaClinica.cs" />
+    <Compile Include="clsHistorialFotografico.cs" />
+    <Compile Include="clsPaciente.cs" />
     <Compile Include="clsPropietario.cs" />
+    <Compile Include="clsRecordatorio.cs" />
+    <Compile Include="clsTipoCita.cs" />
+    <Compile Include="clsTratamiento.cs" />
     <Compile Include="clsUsuario.cs" />
+    <Compile Include="clsHistoriaClinica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

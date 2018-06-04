@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SysCliVet.Privado.Citas {
+namespace SysCliVet.Privado.Recordatorios {
     
     
     public partial class Ver {

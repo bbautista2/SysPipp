@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SysCliVet.Privado.Citas
+namespace SysCliVet.Privado.Recordatorios
 {
     public partial class Ver : System.Web.UI.Page
     {

@@ -62,20 +62,32 @@
                           <input type="email" id="txtEmail" name="txtEmail" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>  
+                       <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Fecha de Nacimiento <span class="required">*</span>
+                        </label>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                       <div class='input-group date' id='txtFechaNacimiento'>
+                            <input type='text' id="txtFechaNac" class="form-control" required="required" />
+                            <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        </div>
+                      </div>  
+                       <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtDireccion">Direccion <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="email" id="txtDireccion" name="txtDireccion" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>  
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="tel" id="txtTelefono" name="txtTelefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
                         </div>
-                      </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Notas 
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="txtNotas" name="txtNotas" class="form-control col-md-7 col-xs-12"></textarea>
-                        </div>
-                      </div>
+                      </div>   
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
@@ -91,4 +103,13 @@
             </div>
            </div>
             
+</asp:Content>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
+  <script type="text/javascript">
+        $(function () {
+            $('#txtFechaNacimiento').datepicker();
+         
+    </script>
 </asp:Content>
