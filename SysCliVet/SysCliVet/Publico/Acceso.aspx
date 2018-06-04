@@ -48,16 +48,17 @@
         <img src="src/img/logo.jpg" height="180" />
         </div>
           <section class="login_content">
-            <form>
+            <form novalidate>
               <h1 style="color:#ffffff;letter-spacing:0">Iniciar Sesion</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Usuario" required="" />
+                  <asp:TextBox ID="txtUsuario" class="form-control" runat="server" Placeholder="Usuario"></asp:TextBox> 
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Contraseña" required="" />
+                  <asp:TextBox ID="txtPassword" class="form-control" runat="server" TextMode="Password" Placeholder="Constraseña" required=""></asp:TextBox> 
               </div>
               <div>
-                <a class="btn btn-default submit" href="<%=ResolveUrl("~/Privado/Inicio.aspx") %>">Ingresar</a>                
+                <a class="btn btn-default" href="<%=ResolveUrl("~/Privado/Inicio.aspx") %>">Ingresar</a>                
+                  <asp:LinkButton ID="btnLogin" Text="Ingresar" class="btn btn-primary" runat="server" onclick="btnLogin_Click"></asp:LinkButton>
               </div>
 
               <div class="clearfix"></div>
@@ -74,6 +75,7 @@
                  
                 </div>
               </div>
+                <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
             </form>
           </section>
         </div>

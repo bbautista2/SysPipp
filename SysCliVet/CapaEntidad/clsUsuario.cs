@@ -4,7 +4,7 @@ using CapaLibreria.Base;
 namespace CapaEntidad
 {
     [Serializable]
-    public class clsUsuario : clsBase
+    public class clsUsuario : clsBaseEntidad
     {
         public String PrimerNombre { get; set; }
         public String SegundoNombre { get; set; }
