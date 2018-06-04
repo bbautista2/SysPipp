@@ -73,9 +73,9 @@
     <Content Include="Privado\Citas\Ver.aspx" />
     <Content Include="Privado\HistorialClinico\Guardar.aspx" />
     <Content Include="Privado\Inicio.aspx" />
-    <Content Include="Privado\Mascota\Guardar.aspx" />
     <Content Include="Privado\Mascota\Listar.aspx" />
     <Content Include="Privado\Mascota\Ver.aspx" />
+    <Content Include="Privado\Paciente\Guardar.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
     <Content Include="Privado\Propietario\Guardar.aspx" />
     <Content Include="Privado\Propietario\Listar.aspx" />
@@ -4458,13 +4458,6 @@
     <Compile Include="Privado\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Privado\Mascota\Guardar.aspx.cs">
-      <DependentUpon>Guardar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Privado\Mascota\Guardar.aspx.designer.cs">
-      <DependentUpon>Guardar.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Privado\Mascota\Listar.aspx.cs">
       <DependentUpon>Listar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4478,6 +4471,12 @@
     </Compile>
     <Compile Include="Privado\Mascota\Ver.aspx.designer.cs">
       <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Paciente\Guardar.aspx.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Paciente\Guardar.aspx.designer.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.cs">
       <DependentUpon>Inicio.Master</DependentUpon>

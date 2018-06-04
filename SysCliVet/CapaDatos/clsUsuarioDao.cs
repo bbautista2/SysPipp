@@ -1,6 +1,7 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
 using CapaLibreria.Conexion;
+using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,6 +31,12 @@ namespace CapaDatos
         public clsUsuario SetEntidad(SqlDataReader dr)
         {
             clsUsuario Usuario = new clsUsuario();
+            Usuario.Id = dr.ObtenerValorColumna<Int32>("ID");
+            Usuario.Nombres = dr.ObtenerValorColumna<String>("Nombres");
+            Usuario.Apellidos = dr.ObtenerValorColumna<String>("Apellidos");
+            Usuario.Usuario = dr.ObtenerValorColumna<String>("Usuario");
+            Usuario.Email = dr.ObtenerValorColumna<String>("Email");
+            Usuario.Estado = dr.ObtenerValorColumna<Int16>("Estado");
             return Usuario;
         }
         #endregion
@@ -54,7 +61,7 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Usuario = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "User not found"));
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {

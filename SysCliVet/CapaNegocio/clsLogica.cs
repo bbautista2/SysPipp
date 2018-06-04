@@ -42,7 +42,8 @@ namespace CapaNegocio
                     }
                     else
                         baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Usuario y/o contraseña inválidos"));
-                }
+                }else
+                    baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Ingresa tu Usuario y contraseña"));
 
             }
             catch (Exception ex)

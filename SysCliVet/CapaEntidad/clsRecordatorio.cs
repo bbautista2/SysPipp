@@ -3,7 +3,7 @@ using System;
 
 namespace CapaEntidad
 {
-    public class clsRecordatorio:clsBase
+    public class clsRecordatorio:clsBaseEntidad
     {
         clsUsuario _Usuario;
         public clsUsuario Usuario

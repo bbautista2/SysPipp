@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SysCliVet.Privado.Recordatorios
+namespace SysCliVet.Privado.FichaClinica
 {
-    public partial class Ver : System.Web.UI.Page
+    public partial class Guardar : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

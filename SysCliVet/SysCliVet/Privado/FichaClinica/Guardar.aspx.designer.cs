@@ -7,9 +7,9 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SysCliVet.Privado.Recordatorios {
+namespace SysCliVet.Privado.FichaClinica {
     
     
-    public partial class Ver {
+    public partial class Guardar {
     }
 }
