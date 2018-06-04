@@ -6,15 +6,18 @@ namespace CapaEntidad
     [Serializable]
     public class clsUsuario : clsBase
     {
-        public String PrimerNombre { get; set; }
-        public String SegundoNombre { get; set; }
+        public String Nombres { get; set; }
+        public String Apellidos { get; set; }
         public String NombreCompleto
         {
             get
             {
-                return PrimerNombre + " " + SegundoNombre;
+                return Nombres + " " + Apellidos;
             }
         }
+        public String Usuario { get; set; }
+        public String Contrasena { get; set; }
+        public DateTime UltimoAcceso { get; set; }
         public String Email { get; set; }
 
     }

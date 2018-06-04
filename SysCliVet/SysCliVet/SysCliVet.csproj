@@ -71,12 +71,15 @@
     <Content Include="FileUpload.ashx" />
     <None Include="packages.config" />
     <Content Include="Privado\FichaClinica\Guardar.aspx" />
-    <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\Paciente\Guardar.aspx" />
+    <Content Include="Privado\Citas\Ver.aspx" />
+    <Content Include="Privado\HistorialClinico\Guardar.aspx" />
+    <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
     <Content Include="Privado\Propietario\Guardar.aspx" />
     <Content Include="Privado\Propietario\Listar.aspx" />
     <Content Include="Publico\Acceso.aspx" />
+    <Content Include="Publico\src\img\logo.jpg" />
     <Content Include="src\build\css\custom-purple.css" />
     <Content Include="src\build\css\custom.css" />
     <Content Include="src\build\css\custom-purple.min.css" />
@@ -1929,6 +1932,78 @@
     <Content Include="src\vendors\fullcalendar\dist\lang\vi.js" />
     <Content Include="src\vendors\fullcalendar\dist\lang\zh-cn.js" />
     <Content Include="src\vendors\fullcalendar\dist\lang\zh-tw.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\af.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ar-dz.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ar-kw.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ar-ly.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ar-ma.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ar-sa.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ar-tn.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ar.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\bg.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\bs.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ca.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\cs.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\da.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\de-at.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\de-ch.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\de.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\el.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\en-au.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\en-ca.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\en-gb.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\en-ie.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\en-nz.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\es-do.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\es-us.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\es.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\et.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\eu.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\fa.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\fi.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\fr-ca.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\fr-ch.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\fr.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\gl.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\he.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\hi.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\hr.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\hu.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\id.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\is.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\it.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ja.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ka.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\kk.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ko.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\lb.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\lt.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\lv.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\mk.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ms-my.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ms.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\nb.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\nl-be.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\nl.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\nn.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\pl.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\pt-br.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\pt.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ro.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\ru.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\sk.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\sl.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\sq.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\sr-cyrl.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\sr.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\sv.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\th.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\tr.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\uk.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\vi.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\zh-cn.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\zh-tw.js" />
+    <Content Include="src\vendors\fullcalendar\dist\locale\_reset.js" />
     <Content Include="src\vendors\fullcalendar\LICENSE.txt" />
     <Content Include="src\vendors\gauge.js\assets\arrow.gif" />
     <Content Include="src\vendors\gauge.js\assets\bg.png" />
@@ -4366,6 +4441,20 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Privado\FichaClinica\Guardar.aspx.designer.cs">
+	<DependentUpon>Guardar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Citas\Ver.aspx.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Citas\Ver.aspx.designer.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\HistorialClinico\Guardar.aspx.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\HistorialClinico\Guardar.aspx.designer.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\Inicio.aspx.cs">
@@ -4381,6 +4470,20 @@
     </Compile>
     <Compile Include="Privado\Paciente\Guardar.aspx.designer.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Mascota\Listar.aspx.cs">
+      <DependentUpon>Listar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Mascota\Listar.aspx.designer.cs">
+      <DependentUpon>Listar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Mascota\Ver.aspx.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Mascota\Ver.aspx.designer.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.cs">
       <DependentUpon>Inicio.Master</DependentUpon>

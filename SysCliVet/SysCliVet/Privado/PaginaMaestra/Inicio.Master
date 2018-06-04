@@ -19,7 +19,7 @@
     <!-- NProgress -->
     <link href="<%=ResolveUrl("~/src/vendors/nprogress/nprogress.css") %>" rel="stylesheet" />
     <!-- iCheck -->
-    <link href="<%=ResolveUrl("~/src/vendors/iCheck/skins/flat/green.css") %>" rel="stylesheet" />
+    <link href="<%=ResolveUrl("~/src/vendors/iCheck/skins/flat/pink.css") %>" rel="stylesheet" />
 
     <!-- bootstrap-progressbar -->
     <link href="<%=ResolveUrl("~/src/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") %>" rel="stylesheet" />
@@ -40,6 +40,21 @@
         
     <!-- jQuery -->
     <script src="<%=ResolveUrl("~/src/vendors/jquery/dist/jquery.min.js") %>"></script>
+      <!-- morris.js -->
+    <script src="<%=ResolveUrl("~/src/vendors/raphael/raphael.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/morris.js/morris.min.js") %>"></script>
+
+    <!-- bootstrap-datetimepicker -->
+    <link href="<%=ResolveUrl("~/src/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css") %>" rel="stylesheet">
+
+      <!-- FullCalendar -->
+    <link href="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.min.css") %>" rel="stylesheet">
+    <link href="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.print.css") %>" rel="stylesheet" media="print">
+    
+    <!-- jQuery autocomplete -->
+    <script src="<%=ResolveUrl("~/src/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js") %>"></script>
+    
+
 </head>
 
 <body class="nav-sm">
@@ -74,7 +89,16 @@
                                             <li><a href="<%=ResolveUrl("~/Privado/Paciente/Guardar.aspx") %>">Paciente</a></li>
                                         </ul>
                                     </li>
-
+                                       <li><a><i class="fa fa-calendar"></i>Citas <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="<%=ResolveUrl("~/Privado/Citas/Ver.aspx") %>">Ver</a></li>                                          
+                                        </ul>
+                                    </li>
+                                      <li><a><i class="fa fa-clock-o"></i>Recordatorios <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="<%=ResolveUrl("~/Privado/Recordatorios/Ver.aspx") %>">Ver</a></li>                                          
+                                        </ul>
+                                    </li>
                                     <li><a><i class="fa fa-sitemap"></i>Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="#level1_1">Level One</a>
@@ -279,9 +303,19 @@
     <script src="<%=ResolveUrl("~/src/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/datatables.net-scroller/js/dataTables.scroller.min.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/jszip/dist/jszip.min.js") %>"></script>
-    
     <!-- jQuery Smart Wizard -->
     <script src="<%=ResolveUrl("~/src/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js") %>"></script>
+    
+    <!-- jQuery Tags Input -->
+    <script src="<%=ResolveUrl("~/src/vendors/jquery.tagsinput/src/jquery.tagsinput.js") %>"></script>
+
+    <script src="<%=ResolveUrl("~/src/vendors/moment/min/moment.min.js") %>"></script>
+   
+    <script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/locale/es.js") %>"></script>
     <!-- Custom Theme Scripts -->
     <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
 </html>
