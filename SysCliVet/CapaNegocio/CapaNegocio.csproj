@@ -52,6 +52,10 @@
       <Project>{18e644f0-2970-4b68-bf44-a49887f8aa64}</Project>
       <Name>CapaEntidad</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CapaLibreria\CapaLibreria.csproj">
+      <Project>{234d1d5a-49cc-4742-bb40-f0dd13de7385}</Project>
+      <Name>CapaLibreria</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

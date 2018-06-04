@@ -41,7 +41,7 @@ namespace CapaDatos
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("SP_XA_LOADBYEMAILANDPASSWORD_USER_V3", clsConexion.GetConexion())
+                cmd = new SqlCommand("Usuario_ValidarAcceso", clsConexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };

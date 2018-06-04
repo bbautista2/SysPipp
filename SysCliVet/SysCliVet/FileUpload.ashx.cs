@@ -52,7 +52,7 @@ namespace SysCliVet
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 context.Response.Write(
                                 "{\"nombre\":\"\" " +
