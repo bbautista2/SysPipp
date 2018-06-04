@@ -3,7 +3,7 @@ using System;
 
 namespace CapaEntidad
 {
-    public class clsHistorialFotografico:clsBase
+    public class clsHistorialFotografico:clsBaseEntidad
     {
         clsHistoriaClinica _HistoriaClinica;
         public clsHistoriaClinica HistoriaClinica

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\clsBase.cs" />
+    <Compile Include="Base\clsBaseEntidad.cs" />
+    <Compile Include="Conexion\clsConexion.cs" />
+    <Compile Include="General\clsEncriptacion.cs" />
+    <Compile Include="General\clsEnum.cs" />
     <Compile Include="General\clsExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

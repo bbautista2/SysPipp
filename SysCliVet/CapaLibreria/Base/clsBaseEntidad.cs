@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace CapaLibreria.Base
 {
     [Serializable]
-    public class clsBase
+    public class clsBaseEntidad
     {
         #region "Atributos"
 
@@ -25,7 +25,7 @@ namespace CapaLibreria.Base
 
         #region "Constructores"
 
-        public clsBase()
+        public clsBaseEntidad()
         {
             Errores = new List<ListaError>();
         }

@@ -13,7 +13,7 @@ namespace SysCliVet.src.app_code
         }
         private static T RedirectUsuario<T>()
         {
-            HttpContext.Current.Response.Redirect("~/common/login.aspx?back_url=" + HttpContext.Current.Server.UrlEncode(HttpContext.Current.Request.Url.AbsoluteUri));
+            HttpContext.Current.Response.Redirect("~/Publico/Acceso.aspx?back_url=" + HttpContext.Current.Server.UrlEncode(HttpContext.Current.Request.Url.AbsoluteUri));
             return default(T);
         }
     }
