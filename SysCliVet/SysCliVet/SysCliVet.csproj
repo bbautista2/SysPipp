@@ -71,6 +71,7 @@
     <Content Include="FileUpload.ashx" />
     <None Include="packages.config" />
     <Content Include="Privado\Citas\Ver.aspx" />
+    <Content Include="Privado\FichaClinica\Guardar.aspx" />
     <Content Include="Privado\HistorialClinico\Guardar.aspx" />
     <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\Mascota\Listar.aspx" />
@@ -4445,6 +4446,13 @@
     <Compile Include="Privado\Citas\Ver.aspx.designer.cs">
       <DependentUpon>Ver.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Privado\FichaClinica\Guardar.aspx.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\FichaClinica\Guardar.aspx.designer.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Privado\HistorialClinico\Guardar.aspx.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4503,6 +4511,7 @@
     </Compile>
     <Compile Include="Privado\Recordatorios\Ver.aspx.cs">
       <DependentUpon>Ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Privado\Recordatorios\Ver.aspx.designer.cs">
       <DependentUpon>Ver.aspx</DependentUpon>
