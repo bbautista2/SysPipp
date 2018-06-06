@@ -12,7 +12,7 @@ namespace SysCliVet.Privado.PaginaMaestra
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Sesion.SsUsuario.Apellidos = "prueba";
+            lblNombreUsuario.Text = lblNombreUsuario2.Text = Sesion.SsUsuario.NombreCompleto;
         }
     }
 }

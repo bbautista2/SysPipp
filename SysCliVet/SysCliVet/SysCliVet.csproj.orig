@@ -4474,7 +4474,10 @@
     </Compile>
     <Compile Include="Privado\Paciente\Guardar.aspx.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
+<<<<<<< HEAD
       <SubType>ASPXCodeBehind</SubType>
+=======
+>>>>>>> cf428dc16e8affd28ac4c108b86d5f892cfe68b7
     </Compile>
     <Compile Include="Privado\Paciente\Guardar.aspx.designer.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>

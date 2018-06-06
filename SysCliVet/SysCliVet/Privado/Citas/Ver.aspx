@@ -69,7 +69,7 @@
             <div id="testmodal" style="padding: 5px 20px;">
               <div id="antoform" class="form-horizontal calender" role="form">
                  <div class="form-group">
-                  <label class="col-sm-3 control-label">Paciente</label>
+                  <label class="col-sm-3 control-label">Paciente</label>                     
                   <div class="col-sm-9">
                    <input type="text" name="autocomplete-custom-append" id="autocomplete-custom-append" class="form-control col-md-10"/>
                   </div>
@@ -80,6 +80,13 @@
                     <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
                   </div>
                 </div>
+                   <div class="form-group">
+                  <label class="col-sm-3 control-label">Descripcion</label>
+                  <div class="col-sm-9">
+                      <select class="js-data-example-ajax"></select>
+                  </div>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -141,6 +148,38 @@
         $(function () {
             init_autocomplete1();
             init_calendar1();
+         $(".js-data-example-ajax").select2({
+  ajax: {
+    url: "http://localhost:50288/Publico/json.html",
+    dataType: 'json',
+    delay: 250,
+    data: function (params) {
+      return {
+        q: params.term, // search term
+        page: params.page
+      };
+    },
+    processResults: function (data, params) {
+      // parse the results into the format expected by Select2
+      // since we are using custom formatting functions we do not need to
+      // alter the remote JSON data, except to indicate that infinite
+      // scrolling can be used
+      params.page = params.page || 1;
+
+      return {
+        results: data.items,
+        pagination: {
+          more: (params.page * 30) < data.total_count
+        }
+      };
+    },
+    cache: true
+  },
+  placeholder: 'Search for a repository',
+  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+  minimumInputLength: 1,
+ 
+});
         });
 
            function  init_calendar1() {
@@ -159,7 +198,8 @@
 					left: 'prev,next today',
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay,listMonth'
-				  },
+                   },
+                   defaultView:'agendaDay',
 				  selectable: true,
 				  selectHelper: true,
 				  select: function(start, end, allDay) {
@@ -259,6 +299,35 @@
 			});
 			
         };
+
+        
+function formatRepo (repo) {
+  if (repo.loading) {
+    return repo.text;
+  }
+
+  var markup = "<div class='select2-result-repository clearfix'>" +
+    "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
+    "<div class='select2-result-repository__meta'>" +
+      "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+
+  if (repo.description) {
+    markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
+  }
+
+  markup += "<div class='select2-result-repository__statistics'>" +
+    "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>" +
+    "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+    "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+  "</div>" +
+  "</div></div>";
+
+  return markup;
+}
+
+function formatRepoSelection (repo) {
+  return repo.full_name || repo.text;
+}
 
     </script>
 </asp:Content>
