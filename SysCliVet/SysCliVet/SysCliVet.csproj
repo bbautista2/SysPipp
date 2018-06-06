@@ -97,6 +97,7 @@
     <Content Include="src\build\images\logo.png" />
     <Content Include="src\build\js\custom.js" />
     <Content Include="src\build\js\custom.min.js" />
+    <Content Include="src\build\js\general.js" />
     <Content Include="src\imagenes\default.png" />
     <Content Include="src\js\custom.js" />
     <Content Include="src\js\helpers\smartresize.js" />
@@ -2076,6 +2077,7 @@
     <Content Include="src\vendors\google-code-prettify\styles\index.html" />
     <Content Include="src\vendors\google-code-prettify\styles\sons-of-obsidian.css" />
     <Content Include="src\vendors\google-code-prettify\styles\sunburst.css" />
+    <Content Include="src\vendors\handlebars\handlebars-v4.0.11.js" />
     <Content Include="src\vendors\iCheck\icheck.js" />
     <Content Include="src\vendors\iCheck\icheck.min.js" />
     <Content Include="src\vendors\iCheck\skins\all.css" />

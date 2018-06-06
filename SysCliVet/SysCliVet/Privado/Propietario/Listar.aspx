@@ -55,47 +55,16 @@
                       <thead>
                         <tr>
                           <th>Acciones</th>
-                          <th>Last name</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
-                          <th>Extn.</th>
-                          <th>E-mail</th>
+                          <th>Nombre</th>
+                          <th>Email</th>
+                          <th>Teléfono</th>
+                          <th>Fecha Nacimiento</th>
+                          <th>Estado</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>                            
-                            <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar" ><i class="fa fa-pencil"></i>  </a>
-                            <a href="#" class="btn btn-default btn-xs"  data-toggle="tooltip" data-placement="top" data-original-title="Eliminar" ><i class="fa fa-trash-o"></i>  </a>
-                          </td>
-                          <td>Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
-                          <td>5421</td>
-                          <td>t.nixon@datatables.net</td>
-                        </tr>
-                        <tr>
-                          <td>                       
-                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>  </a>
-                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i>  </a>
-                          </td>
-                          <td>Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td>$170,750</td>
-                          <td>8422</td>
-                          <td>g.winters@datatables.net</td>
-                        </tr>
-                     
-               
+                      <tbody id="tbodyPropietario">
+                      
+                                   
                       </tbody>
                     </table>
 					
@@ -105,4 +74,48 @@
                   </div>
         </div>
                   </div>
+</asp:Content>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">  
+      <script type="text/javascript">
+      $(function () {
+          fn_iniciar();
+
+          });
+
+          function fn_iniciar(){
+              Fn_ListarPropetarios();
+          }
+
+          function Fn_ListarPropetarios () {
+           
+            var object = {};
+              object.items = {};
+            var items = fn_CargarPlantilla("table-propietario", object);
+              $("#tbodyPropietario").append(items);
+
+              $("#datatable-responsive").DataTable();
+          }
+
+    </script>
+
+            
+
+     <script type="text/x-handlebars-template" id="table-propietario">
+        {{# each items}}                   
+                        <tr>
+                          <td>                            
+                            <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar" ><i class="fa fa-pencil"></i>  </a>
+                            <a href="#" class="btn btn-default btn-xs"  data-toggle="tooltip" data-placement="top" data-original-title="Eliminar" ><i class="fa fa-trash-o"></i>  </a>
+                          </td>
+                          <td>{{Nombre}}</td>
+                          <td>{{Email}}</td>
+                          <td>{{Telefono}}</td>
+                          <td>{{FechaNacimiento}}</td>
+                          <td>{{Estado}}</td>
+                        </tr>               
+            
+        {{/each}}
+    </script>     
 </asp:Content>

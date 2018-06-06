@@ -232,8 +232,8 @@
         </div>
     </form>
 </body>
-    
-    
+    <!-- handlebars -->
+    <script src="<%=ResolveUrl("~/src/vendors/handlebars/handlebars-v4.0.11.js") %>"></script>
     <!-- Bootstrap -->
     <script src="<%=ResolveUrl("~/src/vendors/bootstrap/dist/js/bootstrap.min.js") %>"></script>
     <!-- FastClick -->
@@ -301,4 +301,5 @@
     <script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/locale/es.js") %>"></script>
     <!-- Custom Theme Scripts -->
     <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/build/js/general.js") %>"></script>
 </html>
