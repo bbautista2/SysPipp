@@ -79,6 +79,7 @@
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
     <Content Include="Privado\Propietario\Guardar.aspx" />
     <Content Include="Privado\Propietario\Listar.aspx" />
+    <Content Include="Privado\Recordatorios\Ver.aspx" />
     <Content Include="Publico\Acceso.aspx" />
     <Content Include="Publico\src\img\logo.jpg" />
     <Content Include="src\build\css\custom-purple.css" />
@@ -4499,6 +4500,12 @@
     </Compile>
     <Compile Include="Privado\Propietario\Listar.aspx.designer.cs">
       <DependentUpon>Listar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Recordatorios\Ver.aspx.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Recordatorios\Ver.aspx.designer.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Publico\Acceso.aspx.cs">
