@@ -24,3 +24,7 @@ function fn_CargarPlantilla(plantillaID, objetoJson) {
 	var html = tmpl(objetoJson);
 	return html;
 }
+
+function fn_AbrirLink(val) {
+	window.open(val, '_blank');
+}
