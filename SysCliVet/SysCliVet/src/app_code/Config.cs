@@ -8,5 +8,6 @@ namespace SysCliVet.src.app_code
         public static String MascotaRutaFisica { get { return WebConfigurationManager.AppSettings["mrFisica"]; } }
         public static String UrlPaginaPorDefecto { get { return WebConfigurationManager.AppSettings["UrlPaginaPorDefecto"]; } }
         public static String PacienteRutaFisica { get { return WebConfigurationManager.AppSettings["prFisica"]; } }
+        public static String NombreCookie { get { return WebConfigurationManager.AppSettings["cNombre"]; } }
     }
 }
