@@ -11,7 +11,7 @@
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Buscar ...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Buscar</button>
+                      <button class="btn btn-default" type="button"  >Buscar</button>
                     </span>
                   </div>
                 </div>
@@ -46,12 +46,12 @@
                    					
      <div class="form-group">
                         <div class="col-md-12 left">
-                          <button id="send" type="submit" class="btn btn-success"><i class="fa fa-plus-square"></i> Añadir</button>
+                          <a id="send" href="Guardar.aspx"  class="btn btn-success"><i class="fa fa-plus-square"></i> Añadir</a>
                         </div>
                       </div>
            <br />
            <br />
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-responsive2" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>Acciones</th>
@@ -78,6 +78,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">  
+     <asp:HiddenField ID="hfListadoPropietarios" Value="[]" runat="server" />
       <script type="text/javascript">
       $(function () {
           fn_iniciar();
@@ -88,25 +89,21 @@
               Fn_ListarPropetarios();
           }
 
-          function Fn_ListarPropetarios () {
-           
+          function Fn_ListarPropetarios() {       
             var object = {};
-              object.items = {};
+            object.items = ($("input[type=hidden][id$=hfListadoPropietarios]").val() != "" && $("input[type=hidden][id$=hfListadoPropietarios]").val() != undefined) ? $.parseJSON($("input[type=hidden][id$=hfListadoPropietarios]").val()) : "[]" ;
             var items = fn_CargarPlantilla("table-propietario", object);
-              $("#tbodyPropietario").append(items);
-
-              $("#datatable-responsive").DataTable();
+              $("[id$=tbodyPropietario]").append(items);
+              $("[id$=datatable-responsive2]").DataTable();
           }
 
-    </script>
-
-            
+    </script>            
 
      <script type="text/x-handlebars-template" id="table-propietario">
         {{# each items}}                   
                         <tr>
                           <td>                            
-                            <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar" ><i class="fa fa-pencil"></i>  </a>
+                            <a onclick="fn_AbrirLink('Guardar.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar" ><i class="fa fa-pencil"></i>  </a>
                             <a href="#" class="btn btn-default btn-xs"  data-toggle="tooltip" data-placement="top" data-original-title="Eliminar" ><i class="fa fa-trash-o"></i>  </a>
                           </td>
                           <td>{{Nombre}}</td>
