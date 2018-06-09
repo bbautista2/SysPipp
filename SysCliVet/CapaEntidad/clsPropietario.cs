@@ -14,6 +14,7 @@ namespace CapaEntidad
         public String Direccion { get; set; }
         public String Telefono { get; set; }
         public String Email { get; set; }
+        public Int32 Dni { get; set; }
 
         public String NombreCompleto
         {

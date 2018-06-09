@@ -47,6 +47,7 @@
     <Compile Include="General\clsEncriptacion.cs" />
     <Compile Include="General\clsEnum.cs" />
     <Compile Include="General\clsExtension.cs" />
+    <Compile Include="General\clsUtilidades.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class clsCarnetVacunacion:clsBaseEntidad
+    public class clsVacuna : clsBaseEntidad
     {
         clsFichaClinica _FichaClinica;
         public clsFichaClinica FichaClinica
@@ -19,6 +19,7 @@ namespace CapaEntidad
             }
             set => _FichaClinica = value;
         }
+
         public DateTime Fecha { get; set; }
         public DateTime FechaVacunacion { get; set; }
     }
