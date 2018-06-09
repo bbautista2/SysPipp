@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.Propietario.Guardar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <div class="">
         <div class="page-title">
@@ -47,7 +48,7 @@
                     <div class="x_content">
                         <br>
 
-                        <div class="form-horizontal form-label-left">
+                        <div id="frmPropietario" class="form-horizontal form-label-left">
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
@@ -95,8 +96,9 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <a  type="submit" class="btn btn-default" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
-                                     
-                                    <button type="submit" id="send" runat="server" onserverclick="GuardarPropietario" class="btn btn-success"><i class="fa fa-floppy-o"></i>Guardar</button>
+                                    
+                               <asp:Button ID="btnGuardar" runat="server" 
+                                Text ="Guardar"  OnClick="btnGuardar_Click" CssClass="btn btn-success" />
                                 </div>
                             </div>
                         </div>
@@ -117,31 +119,8 @@
       $(function () {
           Fn_Inicio();
           // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-        .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
-
-      $('.multi.required').on('keyup blur', 'input', function() {
-        validator.checkField.apply($(this).siblings().last()[0]);
-      });
-
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-		});
+      
 	  
-	  };
       });
 
       function Fn_Inicio() {          
@@ -150,7 +129,7 @@
           });
       }
 
-
+      
 
     </script>
 </asp:Content>

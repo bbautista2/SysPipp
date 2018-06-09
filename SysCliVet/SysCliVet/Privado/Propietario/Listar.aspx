@@ -97,6 +97,8 @@
               $("[id$=datatable-responsive2]").DataTable();
           }
 
+
+
     </script>            
 
      <script type="text/x-handlebars-template" id="table-propietario">

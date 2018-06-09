@@ -30,24 +30,7 @@ namespace SysCliVet.Privado.Propietario
         }
 
 
-        protected void GuardarPropietario(object sender, EventArgs e)
-        {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
-            Boolean resultado = false;
-            clsPropietario objPropietario = new clsPropietario();
-            objPropietario.Id = vsId;
-            objPropietario.Nombre = txtNombre.Value;
-            objPropietario.Email = txtEmail.Value;
-            objPropietario.Direccion = txtDireccion.Value;
-            objPropietario.Telefono = txtTelefono.Value;
-            objPropietario.FechaNacimiento = Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture);
 
-            try
-            {
-                resultado = clsLogica.Instance.Propietario_Guardar(ref baseEntidad,objPropietario);
-                if (resultado) { ObtenerInformacion(); }
-            } catch (Exception ex) { }
-        }
 
         private void ObtenerInformacion()
         {
@@ -90,5 +73,27 @@ namespace SysCliVet.Privado.Propietario
             Response.Redirect("Listar.aspx");
         }
 
+   
+
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            Boolean resultado = false;
+            clsPropietario objPropietario = new clsPropietario();
+            objPropietario.Id = vsId;
+            objPropietario.Nombre = txtNombre.Value;
+            objPropietario.Email = txtEmail.Value;
+            objPropietario.Direccion = txtDireccion.Value;
+            objPropietario.Telefono = txtTelefono.Value;
+            objPropietario.FechaNacimiento = Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture);
+
+            try
+            {
+                resultado = clsLogica.Instance.Propietario_Guardar(ref baseEntidad, objPropietario);
+                if (resultado) { ObtenerInformacion(); }
+            }
+            catch (Exception ex) { }
+        }
     }
 }
