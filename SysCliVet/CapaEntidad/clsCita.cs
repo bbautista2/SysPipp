@@ -9,15 +9,15 @@ namespace CapaEntidad
 {
    public class clsCita:clsBaseEntidad
     {
-        clsPaciente _Paciente;
-        public clsPaciente Paciente
+        clsMascota _Mascota;
+        public clsMascota Mascota
         {
             get
             {
-                _Paciente = _Paciente ?? new clsPaciente();
-                return _Paciente;
+                _Mascota = _Mascota ?? new clsMascota();
+                return _Mascota;
             }
-            set => _Paciente = value;
+            set => _Mascota = value;
         }
         public DateTime Fecha { get; set; }
         public String Hora { get; set; }

@@ -37,7 +37,7 @@ namespace SysCliVet.Privado.FichaClinica
                     FechaNacimiento = Convert.ToDateTime(txtFechaNacPro.Value, CultureInfo.InvariantCulture),
                     Dni = Convert.ToInt32(txtDni.Value)
                 };
-                clsPaciente objPaciente = new clsPaciente
+                clsMascota objPaciente = new clsMascota
                 {
                     Id = Convert.ToInt32(hfIdPropietario.Value),
                     Nombre = txtNombrePro.Value,

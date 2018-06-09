@@ -82,6 +82,7 @@ namespace SysCliVet.Privado.Propietario
             Boolean resultado = false;
             clsPropietario objPropietario = new clsPropietario();
             objPropietario.Id = vsId;
+            objPropietario.Dni = Convert.ToInt32(txtDireccion.Value);
             objPropietario.Nombre = txtNombre.Value;
             objPropietario.Email = txtEmail.Value;
             objPropietario.Direccion = txtDireccion.Value;

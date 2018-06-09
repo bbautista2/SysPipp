@@ -20,15 +20,15 @@ namespace CapaEntidad
             set => _Propietario = value;
         }
 
-        clsPaciente _Paciente;
-        public clsPaciente Paciente
+        clsMascota _Mascota;
+        public clsMascota Mascota
         {
             get
             {
-                _Paciente = _Paciente ?? new clsPaciente();
-                return _Paciente;
+                _Mascota = _Mascota ?? new clsMascota();
+                return _Mascota;
             }
-            set => _Paciente = value;
+            set => _Mascota = value;
         }
 
         public tListaVacunas ListaVacunas { get; set; }

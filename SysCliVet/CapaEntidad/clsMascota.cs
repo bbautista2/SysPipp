@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-   public class clsPaciente : clsBaseEntidad
+   public class clsMascota : clsBaseEntidad
     {
         clsPropietario _Propietario;
         public clsPropietario Propietario

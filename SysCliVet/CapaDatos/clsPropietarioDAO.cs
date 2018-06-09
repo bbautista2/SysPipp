@@ -83,6 +83,7 @@ namespace CapaDatos
                 };
                 cmd.Parameters.AddWithValue("@ID", objPropietario.Id);
                 cmd.Parameters.AddWithValue("@Nombre", objPropietario.Nombre);
+                cmd.Parameters.AddWithValue("@Dni", objPropietario.Dni);
                 cmd.Parameters.AddWithValue("@Apellidos", objPropietario.Apellidos);
                 cmd.Parameters.AddWithValue("@FechaNacimiento", objPropietario.FechaNacimiento);
                 cmd.Parameters.AddWithValue("@Direccion", objPropietario.Direccion);

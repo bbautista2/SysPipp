@@ -4,6 +4,7 @@ using CapaNegocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -34,7 +35,7 @@ namespace SysCliVet.Privado.Propietario
                     {
                         Id = clsEncriptacion.Encriptar(item["ID"].ToString()),
                         Nombre = item["Nombre"] + " " + item["Apellidos"],
-                        FechaNacimiento = item["FechaNacimiento"],
+                        FechaNacimiento = DateTime.ParseExact(item["FechaNacimiento"].ToString(), "d", CultureInfo.InvariantCulture).ToString("yyyy/MM/dd"),
                         Direccion = item["Direccion"],
                         Telefono = item["Telefono"],
                         Email = item["Email"],
