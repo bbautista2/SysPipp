@@ -9,6 +9,17 @@ namespace CapaEntidad
 {
    public class clsFichaClinica : clsBaseEntidad
     {
+        clsPropietario _Propietario;
+        public clsPropietario Propietario
+        {
+            get
+            {
+                _Propietario = _Propietario ?? new clsPropietario();
+                return _Propietario;
+            }
+            set => _Propietario = value;
+        }
+
         clsPaciente _Paciente;
         public clsPaciente Paciente
         {
@@ -20,10 +31,15 @@ namespace CapaEntidad
             set => _Paciente = value;
         }
 
-        public String MedioAmbiente { get; set; }
-        public String TipoDieta { get; set; }
+        public tListaVacunas ListaVacunas { get; set; }
+
+        public DateTime FechaVacunacion { get; set; }
+        public String InformacionMedica { get; set; }
+        public Int16 MedioAmbiente { get; set; }
+        public Int16 TipoDieta { get; set; }
         public String Motivo { get; set; }
         public String Observaciones { get; set; }
+
 
     }
 }

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="EstilosPlaceHolder" runat="server">
     <style>
-        .modal{
+        .modal {
             top: 30% !important;
         }
     </style>
@@ -45,7 +45,7 @@
                                 </label>
                                 <div class="col-md-5 col-sm-6 col-xs-12">
                                     <div class='input-group'>
-                                        <input type='text' id='txtFechaFicha' class="form-control" required="required" />
+                                        <input type='text' id='txtFechaFicha' class="form-control" required="required" runat="server" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -60,11 +60,19 @@
                                 </div>
                             </div>
                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    DNI <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="txtDni" runat="server" class="form-control col-md-7 col-xs-12" required="required" type="text" maxlength="8">
+                                </div>
+                            </div>
+                            <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtNombrePro">
                                     Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtNombrePro" class="form-control col-md-7 col-xs-12" name="txtNombrePro" required="required" type="text">
+                                    <input id="txtNombrePro" runat="server" class="form-control col-md-7 col-xs-12" name="txtNombrePro" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -73,7 +81,7 @@
                                 </label>
                                 <div class="col-md-5 col-sm-6 col-xs-12">
                                     <div class='input-group'>
-                                        <input type='text' id='txtFechaNacPro' class="form-control" required="required" />
+                                        <input type='text' id='txtFechaNacPro' runat="server" class="form-control" required="required" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -85,7 +93,7 @@
                                     Dirección <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtDireccion" class="form-control col-md-7 col-xs-12" name="txtDireccion" required="required" type="text">
+                                    <input id="txtDireccion" runat="server" class="form-control col-md-7 col-xs-12" name="txtDireccion" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -93,7 +101,7 @@
                                     Teléfono <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="txtTelefono" name="txtTelefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                    <input type="tel" id="txtTelefono" runat="server" name="txtTelefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -101,7 +109,7 @@
                                     Email <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="txtEmail" name="txtEmail" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="email" id="txtEmail" runat="server" name="txtEmail" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -116,7 +124,7 @@
                                     Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtNombrePac" class="form-control col-md-7 col-xs-12" name="txtNombrePac" required="required" type="text">
+                                    <input id="txtNombrePac" runat="server" class="form-control col-md-7 col-xs-12" name="txtNombrePac" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -124,7 +132,7 @@
                                     Fecha Nac. <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtFechaNacPac" class="form-control col-md-7 col-xs-12" name="txtFechaNacPac" required="required" type="text">
+                                    <input id="txtFechaNacPac" runat="server" class="form-control col-md-7 col-xs-12" name="txtFechaNacPac" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -132,7 +140,7 @@
                                     Raza <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtRaza" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
+                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -140,7 +148,7 @@
                                     Color <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -148,7 +156,7 @@
                                     Especie <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtEspecie" name="txtEspecie" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtEspecie" name="txtEspecie" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -158,14 +166,12 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male">
-                                            &nbsp; Male &nbsp;
-                           
+                                            <input type="radio" name="gender" id="rbMacho" runat="server">
+                                            &nbsp; Macho &nbsp;                           
                                         </label>
                                         <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female">
-                                            Female
-                           
+                                            <input type="radio" name="gender" id="rbHembra" runat="server">
+                                            Hembra                           
                                         </label>
                                     </div>
                                 </div>
@@ -175,7 +181,10 @@
                                     Intac <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtIntac" name="txtIntac" required="required" class="form-control col-md-7 col-xs-12">
+                                    Sí
+                                            <input type="radio" runat="server" class="flat" name="rbIntac" id="rbIntacSi" />
+                                    No
+                                            <input type="radio" runat="server" class="flat" name="rbIntac" id="rbIntacNo" />
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -183,7 +192,10 @@
                                     Cast <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtCast" name="txtCast" required="required" class="form-control col-md-7 col-xs-12">
+                                    Sí
+                                            <input type="radio" runat="server" class="flat" name="rbCast" id="rbCastSi" />
+                                    No
+                                            <input type="radio" runat="server" class="flat" name="rbCast" id="rbCastNo" />
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -191,7 +203,7 @@
                                     Peso <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtPeso" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtPeso" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -199,7 +211,7 @@
                                     Marca distintiva <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtMarcaDist" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtMarcaDist" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -207,7 +219,7 @@
                                     Información Médica Relevante <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea id="txtInfMedica" required="required" name="txtInfMedica" class="form-control col-md-7 col-xs-12"></textarea>
+                                    <textarea id="txtInfMedica" runat="server" required="required" name="txtInfMedica" class="form-control col-md-7 col-xs-12"></textarea>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -216,9 +228,9 @@
                                 </label>
                                 <p class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom: 0; padding-top: 8px;">
                                     Vive Solo
-                                            <input type="radio" class="flat" name="chkMedioAmbiente" id="medioAmb1" value="1" checked="" required />
+                                            <input type="radio" runat="server" class="flat" name="chkMedioAmbiente" id="rbViveSolo" />
                                     Otros Animales                       
-                                            <input type="radio" class="flat" name="chkMedioAmbiente" id="medioAmb2" value="2" />
+                                            <input type="radio" runat="server" class="flat" name="chkMedioAmbiente" id="rbOtrosAnimales" />
                                 </p>
                             </div>
                             <div class="item form-group">
@@ -227,11 +239,11 @@
                                 </label>
                                 <p class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 8px;">
                                     Comida Casera
-                                            <input type="radio" class="flat" name="chkTipoDieta" id="tipoDieta1" value="1" checked="" required />
+                                            <input type="radio" runat="server" class="flat" name="rbTipoDieta" id="rbComidaCasera" />
                                     Concentrado                       
-                                            <input type="radio" class="flat" name="chkTipoDieta" id="tipoDieta2" value="2" />
+                                            <input type="radio" runat="server" class="flat" name="rbTipoDieta" id="rbConcentrado" />
                                     Mixto                       
-                                            <input type="radio" class="flat" name="chkTipoDieta" id="tipoDieta3" value="3" />
+                                            <input type="radio" runat="server" class="flat" name="rbTipoDieta" id="rbMixto" />
                                 </p>
                             </div>
                             <div class="item form-group">
@@ -239,7 +251,7 @@
                                     Motivo de la consulta <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea id="txtMotivoCons" required="required" name="txtMotivoCons" class="form-control col-md-7 col-xs-12"></textarea>
+                                    <textarea id="txtMotivoCons" runat="server" required="required" name="txtMotivoCons" class="form-control col-md-7 col-xs-12"></textarea>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -281,15 +293,15 @@
                                     Observaciones 
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea id="txtObservacion" name="txtObservacion" class="form-control col-md-7 col-xs-12"></textarea>
+                                    <textarea id="txtObservacion" runat="server" name="txtObservacion" class="form-control col-md-7 col-xs-12"></textarea>
                                 </div>
                             </div>
                             <div class="ln_solid">
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i>Regresar</button>
-                                    <button id="send" type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>Guardar</button>
+                                    <a type="submit" class="btn btn-default" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
+                                    <button type="submit" id="btnGuardarFicha" runat="server" onserverclick="GuardarFicha" class="btn btn-success"><i class="fa fa-floppy-o"></i>Guardar</button>
                                 </div>
                             </div>
                         </div>
@@ -319,6 +331,9 @@
             </div>
         </div>
     </div>
+    <asp:HiddenField ID="hfIdPropietario" Value="0" runat="server" />
+    <asp:HiddenField ID="hfIdPaciente" Value="0" runat="server" />
+    <asp:HiddenField ID="hfVacunas" runat="server" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
@@ -510,6 +525,23 @@
                     $(".bs-example-modal-sm").modal("hide");
                 });
             });
+
+            function GuardarVacunas() {
+                var obj = { Id: "", Descripcion: "", Fecha: "" };
+                var lista = [];
+                var index = tablaVacuna.rows().data();
+                var leng = tablaVacuna.rows().length;
+                if (leng > 0) {
+                    for (var i = 0; i < index.length; i++) {
+                        var tempRow = $("#tbVacunas tbody tr:eq(" + i + ")");
+                        obj.Id = tempRow.find("td:eq(0)").text() || "0";
+                        obj.Fecha = tempRow.find("td:eq(1)").text();
+                        obj.Descripcion = tempRow.find("td:eq(2)").text();
+                        lista[i] = $.extend(true, {}, obj);
+                    }
+                }
+                $("input[id$=hfVacunas]").val(JSON.stringify(lista));
+            }
 
         })
 

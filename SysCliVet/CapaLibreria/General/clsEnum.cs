@@ -17,4 +17,23 @@ namespace CapaLibreria.General
         Active = 1
     }
 
+    public enum EnumGeneroMascota
+    {
+        Macho = 1,
+        Hembra = 2
+    }
+
+    public enum EnumMedioAmbiente
+    {
+        ViveSolo = 1,
+        OtrosAnimales = 2
+    }
+
+    public enum EnumTipoDieta
+    {
+        ComidaCasera = 1,
+        Concentrado = 2,
+        Mixto = 3
+    }
+
 }
