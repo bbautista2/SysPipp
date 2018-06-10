@@ -40,6 +40,15 @@ namespace SysCliVet.Privado.FichaClinica {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombrePro;
         
         /// <summary>
+        /// Control txtApellidos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtApellidos;
+        
+        /// <summary>
         /// Control txtFechaNacPro.
         /// </summary>
         /// <remarks>

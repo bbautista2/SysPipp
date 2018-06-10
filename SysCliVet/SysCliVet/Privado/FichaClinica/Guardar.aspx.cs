@@ -31,16 +31,18 @@ namespace SysCliVet.Privado.FichaClinica
                 {
                     Id = Convert.ToInt32(hfIdPropietario.Value),
                     Nombre = txtNombrePro.Value,
+                    Apellidos = txtApellidos.Value,
                     Email = txtEmail.Value,
                     Direccion = txtDireccion.Value,
                     Telefono = txtTelefono.Value,
                     FechaNacimiento = Convert.ToDateTime(txtFechaNacPro.Value, CultureInfo.InvariantCulture),
-                    Dni = Convert.ToInt32(txtDni.Value)
+                    Dni = Convert.ToInt32(txtDni.Value),
+                    Estado = 1
                 };
-                clsMascota objPaciente = new clsMascota
+                clsMascota objMascota = new clsMascota
                 {
                     Id = Convert.ToInt32(hfIdPropietario.Value),
-                    Nombre = txtNombrePro.Value,
+                    Nombre = txtNombrePac.Value,
                     FechaNacimiento = Convert.ToDateTime(txtFechaNacPac.Value, CultureInfo.InvariantCulture),
                     Raza = txtRaza.Value,
                     Color = txtDireccion.Value,
@@ -49,7 +51,8 @@ namespace SysCliVet.Privado.FichaClinica
                     Intac = rbIntacSi.Checked ? true : false,
                     Cast = rbCastSi.Checked ? true : false,
                     Peso = txtPeso.Value,
-                    MarcaDistintiva = txtMarcaDist.Value,                    
+                    MarcaDistintiva = txtMarcaDist.Value,             
+                    Estado = 1
                 };
 
                 JavaScriptSerializer sr = new JavaScriptSerializer();
@@ -73,13 +76,14 @@ namespace SysCliVet.Privado.FichaClinica
                 clsFichaClinica objFichaClinica = new clsFichaClinica
                 {
                     Propietario = objPropietario,
-                    //Paciente = objPaciente,
+                    Mascota = objMascota,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
                     TipoDieta = rbComidaCasera.Checked ? (Int16)EnumTipoDieta.ComidaCasera : rbConcentrado.Checked ? (Int16)EnumTipoDieta.Concentrado : (Int16)EnumTipoDieta.Mixto,
                     Motivo = txtMotivoCons.Value,
                     Observaciones = txtObservacion.Value,
-                    ListaVacunas = ListaVacunas
+                    ListaVacunas = ListaVacunas,
+                    Estado = 1
                 };
 
                 resultado = clsLogica.Instance.FichaClinica_Guardar(ref baseEntidad, objFichaClinica);

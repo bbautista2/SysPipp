@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsAnalisis.cs" />
+    <Compile Include="clsMascota.cs" />
     <Compile Include="clsTipoTabla.cs" />
     <Compile Include="clsVacuna.cs" />
     <Compile Include="clsCita.cs" />
