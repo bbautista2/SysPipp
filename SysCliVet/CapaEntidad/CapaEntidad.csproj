@@ -47,7 +47,6 @@
     <Compile Include="clsCita.cs" />
     <Compile Include="clsFichaClinica.cs" />
     <Compile Include="clsHistorialFotografico.cs" />
-    <Compile Include="clsMascota.cs" />
     <Compile Include="clsPropietario.cs" />
     <Compile Include="clsRecordatorio.cs" />
     <Compile Include="clsTipoCita.cs" />
