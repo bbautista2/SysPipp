@@ -81,6 +81,9 @@ namespace CapaDatos
                 {
                     CommandType = CommandType.StoredProcedure
                 };
+                SqlParameter outputParametro = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
+                outputParametro.Direction = ParameterDirection.Output;
+
                 cmd.Parameters.AddWithValue("@ID", objPropietario.Id);
                 cmd.Parameters.AddWithValue("@Nombre", objPropietario.Nombre);
                 cmd.Parameters.AddWithValue("@Dni", objPropietario.Dni);

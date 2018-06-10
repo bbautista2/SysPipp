@@ -56,6 +56,51 @@ namespace CapaNegocio
         }
         #endregion
 
+        #region Mascota
+        public clsMascota Mascota_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            clsMascota objMascota = new clsMascota();
+            try
+            {
+                objMascota = clsMascotaDAO.Instance.porID(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return objMascota;
+        }
+
+        public Boolean Mascota_Guardar(ref clsBaseEntidad baseEntidad, clsMascota objMascota)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsMascotaDAO.Instance.Guardar(ref baseEntidad, objMascota);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
+        public DataTable Mascota_Listar(ref clsBaseEntidad baseEntidad)
+        {
+            DataTable dt = null;
+            try
+            {
+                dt = clsMascotaDAO.Instance.Listar(ref baseEntidad);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return dt;
+        }
+
+        #endregion
+
         #region Propietario
         public clsPropietario Propietario_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
         {

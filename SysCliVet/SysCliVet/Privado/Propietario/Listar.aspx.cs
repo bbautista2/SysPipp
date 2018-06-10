@@ -35,10 +35,11 @@ namespace SysCliVet.Privado.Propietario
                     {
                         Id = clsEncriptacion.Encriptar(item["ID"].ToString()),
                         Nombre = item["Nombre"] + " " + item["Apellidos"],
-                        FechaNacimiento = DateTime.ParseExact(item["FechaNacimiento"].ToString(), "d", CultureInfo.InvariantCulture).ToString("yyyy/MM/dd"),
+                        FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                         Direccion = item["Direccion"],
                         Telefono = item["Telefono"],
                         Email = item["Email"],
+                        Estado=item["Estado"]
                     };
                     lst.Add(Propietario);
                 }

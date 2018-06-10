@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SysCliVet.Privado.Paciente
+namespace SysCliVet.Privado.Mascota
 {
     public partial class Guardar : Page
     {

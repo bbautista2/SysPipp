@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SysCliVet.Privado.Paciente {
+namespace SysCliVet.Privado.Mascota {
     
     
     public partial class Guardar {

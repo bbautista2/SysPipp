@@ -39,14 +39,14 @@ namespace CapaDatos
                 };
                 if (objFichaClinica.ListaVacunas.Count > 0)
                     cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_VACUNAS", Value = objFichaClinica.ListaVacunas, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_VACUNAS" });
-                cmd.Parameters.AddWithValue("@ID", objPropietario.Id);
-                cmd.Parameters.AddWithValue("@Nombre", objPropietario.Nombre);
-                cmd.Parameters.AddWithValue("@Apellidos", objPropietario.Apellidos);
-                cmd.Parameters.AddWithValue("@FechaNacimiento", objPropietario.FechaNacimiento);
-                cmd.Parameters.AddWithValue("@Direccion", objPropietario.Direccion);
-                cmd.Parameters.AddWithValue("@Telefono", objPropietario.Telefono);
-                cmd.Parameters.AddWithValue("@Email", objPropietario.Email);
-                cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);
+                //cmd.Parameters.AddWithValue("@ID", objPropietario.Id);
+                //cmd.Parameters.AddWithValue("@Nombre", objPropietario.Nombre);
+                //cmd.Parameters.AddWithValue("@Apellidos", objPropietario.Apellidos);
+                //cmd.Parameters.AddWithValue("@FechaNacimiento", objPropietario.FechaNacimiento);
+                //cmd.Parameters.AddWithValue("@Direccion", objPropietario.Direccion);
+                //cmd.Parameters.AddWithValue("@Telefono", objPropietario.Telefono);
+                //cmd.Parameters.AddWithValue("@Email", objPropietario.Email);
+                //cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);
                 cmd.ExecuteReader();
                 Resultado = true;
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Web;
 
 namespace CapaLibreria.General
@@ -69,6 +70,10 @@ namespace CapaLibreria.General
                 return valorPorDefecto;
             }
 
+        }
+
+        public static String ToStringDate(this DateTime fecha) {
+            return fecha.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
     }

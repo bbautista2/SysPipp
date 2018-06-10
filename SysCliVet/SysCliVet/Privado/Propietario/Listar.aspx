@@ -112,7 +112,11 @@
                           <td>{{Email}}</td>
                           <td>{{Telefono}}</td>
                           <td>{{FechaNacimiento}}</td>
-                          <td>{{Estado}}</td>
+                          {{#if Estado}}
+                            <td><button type="button" class="btn btn-success btn-xs">Activo</button></td>
+                          {{else}}
+                           <td><button type="button" class="btn btn-danger btn-xs">Inactivo</button></td>
+                          {{/if}}
                         </tr>               
             
         {{/each}}

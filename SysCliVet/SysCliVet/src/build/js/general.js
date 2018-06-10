@@ -28,3 +28,15 @@ function fn_CargarPlantilla(plantillaID, objetoJson) {
 function fn_AbrirLink(val) {
 	window.open(val, '_blank');
 }
+
+
+
+function Fn_Mensaje(title, text, type) {
+
+	new PNotify({
+		title: title,
+		text: text,
+		type: type,
+		styling: 'bootstrap3'
+	});
+}

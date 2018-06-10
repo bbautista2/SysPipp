@@ -73,7 +73,7 @@ namespace SysCliVet.Privado.FichaClinica
                 clsFichaClinica objFichaClinica = new clsFichaClinica
                 {
                     Propietario = objPropietario,
-                    Paciente = objPaciente,
+                    //Paciente = objPaciente,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
                     TipoDieta = rbComidaCasera.Checked ? (Int16)EnumTipoDieta.ComidaCasera : rbConcentrado.Checked ? (Int16)EnumTipoDieta.Concentrado : (Int16)EnumTipoDieta.Mixto,

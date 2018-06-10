@@ -129,7 +129,9 @@
     <script type="text/javascript">
         $(function () {
             Fn_Inicio();
-
+            
+           
+       
             $("[id$=btnGuardar]").click(function (x) {
                 var submit = true;
 
@@ -144,6 +146,8 @@
 
 
         });
+
+         
 
         function Fn_Inicio() {
             $('#txtFechaNacimiento').datetimepicker({

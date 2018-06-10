@@ -73,8 +73,11 @@ namespace SysCliVet.Privado.Propietario
             Response.Redirect("Listar.aspx");
         }
 
-   
 
+        public void Message(String title,String text,String tipo)
+        {
+            ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>Fn_Mensaje('" + title + "', '"+text+"','"+tipo+"');</script>", false);
+        }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -82,7 +85,7 @@ namespace SysCliVet.Privado.Propietario
             Boolean resultado = false;
             clsPropietario objPropietario = new clsPropietario();
             objPropietario.Id = vsId;
-            objPropietario.Dni = Convert.ToInt32(txtDireccion.Value);
+            objPropietario.Dni = Convert.ToInt32(txtDni.Value);
             objPropietario.Nombre = txtNombre.Value;
             objPropietario.Email = txtEmail.Value;
             objPropietario.Direccion = txtDireccion.Value;
@@ -94,7 +97,9 @@ namespace SysCliVet.Privado.Propietario
                 resultado = clsLogica.Instance.Propietario_Guardar(ref baseEntidad, objPropietario);
                 if (resultado) { ObtenerInformacion(); }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                
+            }
         }
     }
 }
