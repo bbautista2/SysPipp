@@ -135,6 +135,32 @@ namespace CapaDatos
             return dt;
         }
 
+        public DataTable ObtenerPorDni(ref clsBaseEntidad baseEntidad, String dni, Int16 tipoBusqueda)
+        {
+            DataTable dt = null;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Propietario_ObtenerPorDni", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Dni", dni);
+                cmd.Parameters.AddWithValue("@Tipo", tipoBusqueda);
+                dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return dt;
+        }
 
         #endregion
     }

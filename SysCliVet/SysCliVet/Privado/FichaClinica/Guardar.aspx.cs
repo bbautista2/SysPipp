@@ -4,10 +4,12 @@ using CapaLibreria.General;
 using CapaNegocio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -92,5 +94,47 @@ namespace SysCliVet.Privado.FichaClinica
             }
             catch (Exception ex) { }
         }
+
+        [WebMethod]
+        public static List<clsPropietario> ListaPropietariosPorDni(String dni)
+        {
+            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            List<clsPropietario> lista = new List<clsPropietario>();
+            dni = dni == "undefined" ? "" : dni;
+            try
+            {
+                Int16 tipo;
+                var longitud = dni != "" ? dni.Length : 0;
+                if (longitud == 8)
+                    tipo = (Int16)EnumTipoBusqueda.Exacta;
+                else
+                    tipo = (Int16)EnumTipoBusqueda.Inexacta;
+
+                DataTable dtPropietarios = clsLogica.Instance.Propietario_ObtenerPorDni(ref baseEntidad, dni, tipo);
+
+                if (dtPropietarios != null && dtPropietarios.Rows.Count > 0)
+                {
+                    foreach (DataRow item in dtPropietarios.Rows)
+                    {
+                        lista.Add(new clsPropietario
+                        {
+                            Dni = Convert.ToInt32(item["Dni"]),
+                            Nombre = item["Nombre"].ToString(),
+                            Apellidos = item["Apellidos"].ToString(),
+                            FechaNacimiento = DateTime.ParseExact(item["FechaNacimiento"].ToString(), "d", CultureInfo.InvariantCulture),
+                            Direccion = item["Direccion"].ToString(),
+                            Telefono = item["Telefono"].ToString(),
+                            Email = item["Email"].ToString()
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return lista;
+        }
+
     }
 }

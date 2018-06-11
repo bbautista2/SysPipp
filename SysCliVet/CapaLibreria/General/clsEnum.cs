@@ -36,4 +36,10 @@ namespace CapaLibreria.General
         Mixto = 3
     }
 
+    public enum EnumTipoBusqueda
+    {
+        Inexacta = 0,
+        Exacta = 1
+    }
+
 }
