@@ -21,7 +21,7 @@ namespace SysCliVet.Privado.FichaClinica
 
         }
 
-        protected void GuardarFicha(object sender, EventArgs e)
+        protected void btnGuardarFicha_Click(object sender, EventArgs e)
         {
             try
             {
@@ -42,8 +42,8 @@ namespace SysCliVet.Privado.FichaClinica
                 clsMascota objMascota = new clsMascota
                 {
                     Id = Convert.ToInt32(hfIdPropietario.Value),
-                    Nombre = txtNombrePac.Value,
-                    FechaNacimiento = Convert.ToDateTime(txtFechaNacPac.Value, CultureInfo.InvariantCulture),
+                    Nombre = txtNombreMas.Value,
+                    FechaNacimiento = Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
                     Raza = txtRaza.Value,
                     Color = txtDireccion.Value,
                     Especie = txtEspecie.Value,
@@ -51,7 +51,7 @@ namespace SysCliVet.Privado.FichaClinica
                     Intac = rbIntacSi.Checked ? true : false,
                     Cast = rbCastSi.Checked ? true : false,
                     Peso = txtPeso.Value,
-                    MarcaDistintiva = txtMarcaDist.Value,             
+                    MarcaDistintiva = txtMarcaDist.Value,
                     Estado = 1
                 };
 
@@ -66,7 +66,7 @@ namespace SysCliVet.Privado.FichaClinica
                         ListaVacunas.Add(new tVacuna
                         {
                             Id = item.Id,
-                            Fecha = DateTime.ParseExact(item.Fecha.ToString(), "d", CultureInfo.InvariantCulture),
+                            Fecha = Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
                             Descripcion = item.Descripcion,
                             Estado = 1
                         });
@@ -76,6 +76,7 @@ namespace SysCliVet.Privado.FichaClinica
                 clsFichaClinica objFichaClinica = new clsFichaClinica
                 {
                     Propietario = objPropietario,
+                    Fecha = Convert.ToDateTime(txtFechaFicha.Value, CultureInfo.InvariantCulture),
                     Mascota = objMascota,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
@@ -91,6 +92,5 @@ namespace SysCliVet.Privado.FichaClinica
             }
             catch (Exception ex) { }
         }
-
     }
 }
