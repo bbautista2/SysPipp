@@ -40,6 +40,7 @@ namespace CapaDatos
                     cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_VACUNAS", Value = objFichaClinica.ListaVacunas, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_VACUNAS" });
                 //Datos Ficha Clínica
                 cmd.Parameters.AddWithValue("@ID", objFichaClinica.Id);
+                cmd.Parameters.AddWithValue("@Fecha", objFichaClinica.Fecha);
                 cmd.Parameters.AddWithValue("@InformacionMedica", objFichaClinica.InformacionMedica);
                 cmd.Parameters.AddWithValue("@MedioAmbiente", objFichaClinica.MedioAmbiente);
                 cmd.Parameters.AddWithValue("@TipoDieta", objFichaClinica.TipoDieta);

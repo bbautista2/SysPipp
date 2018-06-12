@@ -142,6 +142,20 @@ namespace CapaNegocio
             return dt;
         }
 
+        public DataTable Propietario_ObtenerPorDni(ref clsBaseEntidad baseEntidad, String dni, Int16 tipoBusqueda)
+        {
+            DataTable dt = null;
+            try
+            {
+                dt = clsPropietarioDAO.Instance.ObtenerPorDni(ref baseEntidad, dni, tipoBusqueda);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return dt;
+        }
+
         #endregion
 
         #region Ficha Clinica

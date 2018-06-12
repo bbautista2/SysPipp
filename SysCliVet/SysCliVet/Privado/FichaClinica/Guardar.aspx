@@ -128,11 +128,11 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtNombrePac">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtNombreMas">
                                     Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtNombrePac" runat="server" class="form-control col-md-7 col-xs-12" name="txtNombrePac" required="required" type="text">
+                                    <input id="txtNombreMas" runat="server" class="form-control col-md-7 col-xs-12" name="txtNombreMas" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -140,7 +140,7 @@
                                     Fecha Nac. <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtFechaNacPac" runat="server" class="form-control col-md-7 col-xs-12" name="txtFechaNacPac" required="required" type="text">
+                                    <input id="txtFechaNacMas" runat="server" class="form-control col-md-7 col-xs-12" name="txtFechaNacMas" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -309,7 +309,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <a type="submit" class="btn btn-default" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
-                                    <button type="submit" id="btnGuardarFicha" runat="server" onserverclick="GuardarFicha" class="btn btn-success"><i class="fa fa-floppy-o"></i>Guardar</button>
+                                    <asp:Button runat="server" ID="btnGuardarFicha" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardarFicha_Click" />
                                 </div>
                             </div>
                         </div>
@@ -340,7 +340,7 @@
         </div>
     </div>
     <asp:HiddenField ID="hfIdPropietario" Value="0" runat="server" />
-    <asp:HiddenField ID="hfIdPaciente" Value="0" runat="server" />
+    <asp:HiddenField ID="hfIdMascota" Value="0" runat="server" />
     <asp:HiddenField ID="hfVacunas" runat="server" />
 </asp:Content>
 
@@ -349,7 +349,7 @@
         $(function () {
             var tablaVacuna;
             $('[id$=txtFechaFicha]').datetimepicker();
-            $('[id$=txtFechaNacPro], [id$=txtFechaNacPac]').daterangepicker({
+            $('[id$=txtFechaNacPro], [id$=txtFechaNacMas]').daterangepicker({
                 singleDatePicker: true,
                 singleClasses: "picker_3"
             }, function (start, end, label) {
@@ -534,7 +534,7 @@
                 });
             });
 
-            function GuardarVacunas() {
+            function FN_GuardarVacunas() {
                 var obj = { Id: "", Descripcion: "", Fecha: "" };
                 var lista = [];
                 var index = tablaVacuna.rows().data();
@@ -550,6 +550,19 @@
                 }
                 $("input[id$=hfVacunas]").val(JSON.stringify(lista));
             }
+
+            $("[id$=btnGuardarFicha]").click(function (e) {
+                var issucces = true;
+
+                if (validator.checkAll($('#FormPrincipal'))) {
+                    FN_GuardarVacunas();
+                } else {
+                    issucces = false;
+                }
+
+                return issucces;
+                
+            });
 
         })
 

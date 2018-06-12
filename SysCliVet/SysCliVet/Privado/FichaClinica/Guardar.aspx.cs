@@ -4,10 +4,12 @@ using CapaLibreria.General;
 using CapaNegocio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -21,7 +23,7 @@ namespace SysCliVet.Privado.FichaClinica
 
         }
 
-        protected void GuardarFicha(object sender, EventArgs e)
+        protected void btnGuardarFicha_Click(object sender, EventArgs e)
         {
             try
             {
@@ -42,8 +44,8 @@ namespace SysCliVet.Privado.FichaClinica
                 clsMascota objMascota = new clsMascota
                 {
                     Id = Convert.ToInt32(hfIdPropietario.Value),
-                    Nombre = txtNombrePac.Value,
-                    FechaNacimiento = Convert.ToDateTime(txtFechaNacPac.Value, CultureInfo.InvariantCulture),
+                    Nombre = txtNombreMas.Value,
+                    FechaNacimiento = Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
                     Raza = txtRaza.Value,
                     Color = txtDireccion.Value,
                     Especie = txtEspecie.Value,
@@ -51,7 +53,7 @@ namespace SysCliVet.Privado.FichaClinica
                     Intac = rbIntacSi.Checked ? true : false,
                     Cast = rbCastSi.Checked ? true : false,
                     Peso = txtPeso.Value,
-                    MarcaDistintiva = txtMarcaDist.Value,             
+                    MarcaDistintiva = txtMarcaDist.Value,
                     Estado = 1
                 };
 
@@ -66,7 +68,7 @@ namespace SysCliVet.Privado.FichaClinica
                         ListaVacunas.Add(new tVacuna
                         {
                             Id = item.Id,
-                            Fecha = DateTime.ParseExact(item.Fecha.ToString(), "d", CultureInfo.InvariantCulture),
+                            Fecha = Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
                             Descripcion = item.Descripcion,
                             Estado = 1
                         });
@@ -76,6 +78,7 @@ namespace SysCliVet.Privado.FichaClinica
                 clsFichaClinica objFichaClinica = new clsFichaClinica
                 {
                     Propietario = objPropietario,
+                    Fecha = Convert.ToDateTime(txtFechaFicha.Value, CultureInfo.InvariantCulture),
                     Mascota = objMascota,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
@@ -90,6 +93,47 @@ namespace SysCliVet.Privado.FichaClinica
 
             }
             catch (Exception ex) { }
+        }
+
+        [WebMethod]
+        public static List<clsPropietario> ListaPropietariosPorDni(String dni)
+        {
+            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            List<clsPropietario> lista = new List<clsPropietario>();
+            dni = dni == "undefined" ? "" : dni;
+            try
+            {
+                Int16 tipo;
+                var longitud = dni != "" ? dni.Length : 0;
+                if (longitud == 8)
+                    tipo = (Int16)EnumTipoBusqueda.Exacta;
+                else
+                    tipo = (Int16)EnumTipoBusqueda.Inexacta;
+
+                DataTable dtPropietarios = clsLogica.Instance.Propietario_ObtenerPorDni(ref baseEntidad, dni, tipo);
+
+                if (dtPropietarios != null && dtPropietarios.Rows.Count > 0)
+                {
+                    foreach (DataRow item in dtPropietarios.Rows)
+                    {
+                        lista.Add(new clsPropietario
+                        {
+                            Dni = Convert.ToInt32(item["Dni"]),
+                            Nombre = item["Nombre"].ToString(),
+                            Apellidos = item["Apellidos"].ToString(),
+                            FechaNacimiento = DateTime.ParseExact(item["FechaNacimiento"].ToString(), "d", CultureInfo.InvariantCulture),
+                            Direccion = item["Direccion"].ToString(),
+                            Telefono = item["Telefono"].ToString(),
+                            Email = item["Email"].ToString()
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return lista;
         }
 
     }

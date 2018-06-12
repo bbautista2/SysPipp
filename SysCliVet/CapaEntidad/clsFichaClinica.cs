@@ -33,7 +33,7 @@ namespace CapaEntidad
 
         public tListaVacunas ListaVacunas { get; set; }
 
-        public DateTime FechaVacunacion { get; set; }
+        public DateTime Fecha { get; set; }
         public String InformacionMedica { get; set; }
         public Int16 MedioAmbiente { get; set; }
         public Int16 TipoDieta { get; set; }
