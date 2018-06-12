@@ -40,7 +40,7 @@ namespace SysCliVet
                             uploadFile.SaveAs(resourcePath);
                             context.Response.ContentType = "text/plain";
                             context.Response.Write(
-                                "{\"nombre\":\"" + Config.PacienteRutaFisica + "imagenes/" + nombreImagen +
+                                "{\"nombre\":\"" + Config.MascotaRutaVirtual + "imagenes/" + nombreImagen +
                                 "\",\"Type\":\"" + uploadFile.ContentType +
                                 "\",\"tag\":\"" + "?q=" + DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") +
                                 "\",\"localFolder\":\"" + "/Recursos/paciente/imagenes/" + uploadFile.FileName + "\"}"
