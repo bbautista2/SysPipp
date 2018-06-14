@@ -28,7 +28,7 @@
                                     Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtNombre" class="form-control col-md-7 col-xs-12" name="txtNombre" required="required" type="text">
+                                    <input id="txtNombre" runat="server" class="form-control col-md-7 col-xs-12" name="txtNombre" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -36,7 +36,7 @@
                                     Fecha Nac. <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtFechaNac" class="form-control col-md-7 col-xs-12" name="txtFechaNac" required="required" type="text">
+                                    <input id="txtFechaNac" runat="server" class="form-control col-md-7 col-xs-12" name="txtFechaNac" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -44,7 +44,7 @@
                                     Raza <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtRaza" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
+                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -52,7 +52,7 @@
                                     Color <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat ="server"  id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -60,7 +60,7 @@
                                     Especie <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtEspecie" name="txtEspecie" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtEspecie" name="txtEspecie" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -70,13 +70,13 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male">
-                                            &nbsp; Male &nbsp;
+                                            <input type="radio" runat="server" name="txtGenero"  id="txtGenero1" value="1">
+                                            &nbsp; Macho &nbsp;
                            
                                         </label>
                                         <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female">
-                                            Female
+                                            <input type="radio" runat="server" name="txtGenero" id="txtGenero2"   value="2">
+                                            Hembra
                            
                                         </label>
                                     </div>
@@ -87,7 +87,7 @@
                                     Intac <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtIntac" name="txtIntac" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtIntac" runat="server" name="txtIntac" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -95,7 +95,7 @@
                                     Cast <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtCast" name="txtCast" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtCast" runat="server"  name="txtCast" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -103,7 +103,7 @@
                                     Peso <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtPeso" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtPeso" runat="server" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -111,7 +111,7 @@
                                     Marca distintiva <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtMarcaDist" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtMarcaDist" runat="server" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -119,7 +119,7 @@
                                     Propietario <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtPropietario" name="txtPropietario" required="required" maxlength="8" placeholder="DNI" class="form-control col-md-7 col-xs-12">
+                                    <input id="txtPropietario" runat="server" name="txtPropietario" required="required" maxlength="8" placeholder="DNI" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group" style="margin-top:15px;">
@@ -138,7 +138,8 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <button type="submit" class="btn btn-default">Regresar</button>
-                                    <button id="send" type="submit" class="btn btn-success">Guardar</button>
+                                    <asp:Button ID="btnGuardar" runat="server"
+                                        Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-success" />
                                 </div>
                             </div>
                         </div>
@@ -156,6 +157,19 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script type="text/javascript">
         $(function () {
+
+          $("[id$=btnGuardar]").click(function (x) {
+                var submit = true;
+
+                // evaluate the form using generic validaing
+                if (!validator.checkAll($('#FormPrincipal'))) {
+                    submit = false;
+                }
+
+                if (!submit) { x.preventDefault(); }
+
+            });
+
         });
 
 
