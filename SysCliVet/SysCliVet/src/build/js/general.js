@@ -17,8 +17,7 @@ function fn_CargarPlantilla(plantillaID, objetoJson) {
 	Handlebars.registerHelper('escape', function (text) {
 		return Handlebars.escapeExpression(fn_strEscapeSingleQuotes($('<div />').html(text).text()));
 	});
-
-
+	
 	var stemplate = $("#" + plantillaID).html();
 	var tmpl = Handlebars.compile(stemplate);
 	var html = tmpl(objetoJson);
@@ -29,14 +28,24 @@ function fn_AbrirLink(val) {
 	window.open(val, '_blank');
 }
 
-
-
 function Fn_Mensaje(title, text, type) {
-
 	new PNotify({
 		title: title,
 		text: text,
 		type: type,
 		styling: 'bootstrap3'
+	});
+}
+
+function FN_LlamarMetodo(url, data, success, error) {
+	$.ajax({
+		type: "POST",
+		url: url,
+		data: data,
+		headers: { 'XSS-Custom-Header': 'Async' },
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		success: success,
+		error: error
 	});
 }

@@ -45,7 +45,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
         <div  style="text-align:center;">
-        <img src="src/img/logo.jpg" height="180" />
+        <img src="../Publico/src/img/logo.jpg" height="180" />
         </div>
           <section class="login_content">
             <form runat="server" novalidate>

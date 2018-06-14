@@ -96,10 +96,10 @@ namespace SysCliVet.Privado.FichaClinica
         }
 
         [WebMethod]
-        public static List<clsPropietario> ListaPropietariosPorDni(String dni)
+        public static List<Object> ListaPropietariosPorDni(String dni)
         {
             clsBaseEntidad baseEntidad = new clsBaseEntidad();
-            List<clsPropietario> lista = new List<clsPropietario>();
+            List<Object> lista = new List<Object>();
             dni = dni == "undefined" ? "" : dni;
             try
             {
@@ -116,12 +116,13 @@ namespace SysCliVet.Privado.FichaClinica
                 {
                     foreach (DataRow item in dtPropietarios.Rows)
                     {
-                        lista.Add(new clsPropietario
+                        lista.Add(new
                         {
-                            Dni = Convert.ToInt32(item["Dni"]),
+                            Id = item["Id"].ToString(),
+                            Dni = item["Dni"].ToString(),
                             Nombre = item["Nombre"].ToString(),
                             Apellidos = item["Apellidos"].ToString(),
-                            FechaNacimiento = DateTime.ParseExact(item["FechaNacimiento"].ToString(), "d", CultureInfo.InvariantCulture),
+                            FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                             Direccion = item["Direccion"].ToString(),
                             Telefono = item["Telefono"].ToString(),
                             Email = item["Email"].ToString()

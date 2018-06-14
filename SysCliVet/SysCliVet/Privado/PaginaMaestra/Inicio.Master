@@ -52,7 +52,7 @@
     <link href="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.print.css") %>" rel="stylesheet" media="print">
     
     <!-- jQuery autocomplete -->
-    <script src="<%=ResolveUrl("~/src/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js") %>"></script>
+    <script src="<%=ResolveUrl("~/src/vendors/devbridge-autocomplete/dist/jquery.autocomplete.js") %>"></script>
 
     
     <!-- PNotify -->
