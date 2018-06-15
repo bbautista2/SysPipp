@@ -116,7 +116,7 @@
                                     Teléfono <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="txtTelefono" runat="server" name="txtTelefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                    <input type="tel" id="txtTelefono" runat="server" name="txtTelefono" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -195,7 +195,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Intac <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 8px;">
                                     Sí
                                             <input type="radio" runat="server" class="flat" name="rbIntac" id="rbIntacSi" />
                                     No
@@ -206,7 +206,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Cast <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 8px;">
                                     Sí
                                             <input type="radio" runat="server" class="flat" name="rbCast" id="rbCastSi" />
                                     No
@@ -605,7 +605,7 @@
 
             function FN_LimpiarDatosPropietario() {
                 $("input[id$=hfIdPropietario]").val("0");
-				$("input[id$=txtNombrePro], input[id$=txtApellidos], input[id$=txtFechaNacPro], input[id$=txtDireccion], input[id$=txtTelefono], input[id$=txtEmail]").val("");				
+                $("input[id$=txtNombrePro], input[id$=txtApellidos], input[id$=txtFechaNacPro], input[id$=txtDireccion], input[id$=txtTelefono], input[id$=txtEmail]").val("");
             }
 
         })
