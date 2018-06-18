@@ -42,4 +42,18 @@ namespace CapaLibreria.General
         Exacta = 1
     }
 
+    public enum EnumApetito
+    {
+        Bueno = 1,
+        Malo = 2,
+        Normal = 3
+    }
+
+    public enum EnumCC
+    {
+        Normal = 1,
+        Obeso = 2,
+        Caquesico = 3
+    }
+
 }

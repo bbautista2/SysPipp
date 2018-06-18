@@ -174,6 +174,21 @@ namespace CapaNegocio
         }
         #endregion
 
+        #region Historia Clinica
+        public Boolean HistoriaClinica_Guardar(ref clsBaseEntidad baseEntidad, clsHistoriaClinica objHistoriaClinica)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsHistoriaClinicaDAO.Instance.Guardar(ref baseEntidad, objHistoriaClinica);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+        #endregion
 
     }
 }

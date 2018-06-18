@@ -355,7 +355,9 @@
     <script type="text/javascript">
         $(function () {
             var tablaVacuna;
-            $('[id$=txtFechaFicha]').datetimepicker();
+            $('[id$=txtFechaFicha]').datetimepicker({
+                format: 'DD/MM/YYYY hh:mm A'
+            });
             $('[id$=txtFechaNacPro], [id$=txtFechaNacMas]').datetimepicker({
                 format: 'DD/MM/YYYY'
             });
@@ -394,7 +396,13 @@
             }
 
             function FN_AgregarDataPicker() {
+                //$('.fechaVacuna').datetimepicker({
+                //    format: 'DD/MM/YYYY',
+                //});
                 $('.fechaVacuna').daterangepicker({
+                    locale: {
+                            format: 'DD/MM/YYYY'
+                            },
                     singleDatePicker: true,
                     singleClasses: "picker_3"
                 }, function (start, end, label) {
