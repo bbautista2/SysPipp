@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsFichaClinicaDAO.cs" />
+    <Compile Include="clsHistoriaClinicaDAO.cs" />
     <Compile Include="clsMascotaDAO.cs" />
     <Compile Include="clsPropietarioDAO.cs" />
     <Compile Include="clsUsuarioDao.cs" />

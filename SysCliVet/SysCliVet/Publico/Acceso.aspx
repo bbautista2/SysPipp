@@ -45,7 +45,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
         <div  style="text-align:center;">
-        <img src="src/img/logo.jpg" height="180" />
+        <img src="../Publico/src/img/logo.jpg" height="180" />
         </div>
           <section class="login_content">
             <form runat="server" novalidate>
@@ -57,7 +57,7 @@
                   <asp:TextBox ID="txtPassword" class="form-control" runat="server" TextMode="Password" Placeholder="Constraseña" required=""></asp:TextBox> 
               </div>
               <div>
-                  <asp:LinkButton ID="btnLogin" Text="Ingresar" class="btn btn-primary" runat="server" onclick="btnLogin_Click"></asp:LinkButton>
+                  <asp:LinkButton ID="btnLogin" Text="Ingresar" class="btn btn-default" runat="server" onclick="btnLogin_Click"></asp:LinkButton>
               </div>
 
               <div class="clearfix"></div>

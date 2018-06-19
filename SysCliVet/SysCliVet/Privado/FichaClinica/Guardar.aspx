@@ -5,6 +5,10 @@
         .modal {
             top: 30% !important;
         }
+
+        .fechaVacuna {
+            min-width: 100px !important;
+        }
     </style>
 </asp:Content>
 
@@ -63,8 +67,11 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     DNI <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="input-group col-md-6 col-sm-6 col-xs-12" style="padding-right: 5px!important; padding-left: 10px!important; float: left!important">
                                     <input id="txtDni" runat="server" class="form-control col-md-7 col-xs-12" required="required" type="text" maxlength="8">
+                                    <span class="input-group-btn">
+                                        <button id="btnBuscarPropietario" type="button" class="btn btn-primary" style="height: 34px;"><i class="fa fa-search"></i></button>
+                                    </span>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -109,7 +116,7 @@
                                     Teléfono <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="txtTelefono" runat="server" name="txtTelefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                    <input type="tel" id="txtTelefono" runat="server" name="txtTelefono" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -188,7 +195,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Intac <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 8px;">
                                     Sí
                                             <input type="radio" runat="server" class="flat" name="rbIntac" id="rbIntacSi" />
                                     No
@@ -199,7 +206,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Cast <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 8px;">
                                     Sí
                                             <input type="radio" runat="server" class="flat" name="rbCast" id="rbCastSi" />
                                     No
@@ -340,20 +347,19 @@
         </div>
     </div>
     <asp:HiddenField ID="hfIdPropietario" Value="0" runat="server" />
-    <asp:HiddenField ID="hfIdMascota" Value="0" runat="server" />
     <asp:HiddenField ID="hfVacunas" runat="server" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
+    <script src="<%=ResolveUrl("~/Privado/FichaClinica/js/autocomplete.js") %>"></script>
     <script type="text/javascript">
         $(function () {
             var tablaVacuna;
-            $('[id$=txtFechaFicha]').datetimepicker();
-            $('[id$=txtFechaNacPro], [id$=txtFechaNacMas]').daterangepicker({
-                singleDatePicker: true,
-                singleClasses: "picker_3"
-            }, function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
+            $('[id$=txtFechaFicha]').datetimepicker({
+                format: 'DD/MM/YYYY hh:mm A'
+            });
+            $('[id$=txtFechaNacPro], [id$=txtFechaNacMas]').datetimepicker({
+                format: 'DD/MM/YYYY'
             });
             tablaVacuna = $("#tbVacunas").DataTable({ searching: false, lengthChange: false, info: false });
 
@@ -390,7 +396,13 @@
             }
 
             function FN_AgregarDataPicker() {
+                //$('.fechaVacuna').datetimepicker({
+                //    format: 'DD/MM/YYYY',
+                //});
                 $('.fechaVacuna').daterangepicker({
+                    locale: {
+                            format: 'DD/MM/YYYY'
+                            },
                     singleDatePicker: true,
                     singleClasses: "picker_3"
                 }, function (start, end, label) {
@@ -411,7 +423,7 @@
                         FN_SetAccionesEditar($row);
                     } else {
                         if (i == 1)
-                            $this.html('<input type="text" class="form-control has-feedback-left fechaVacuna" value="' + data[i] + '"/>');
+                            $this.html('<input type="text" class="form-control fechaVacuna" value="' + data[i] + '"/>');
                         else
                             $this.html('<input type="text" class="form-control input-block" value="' + data[i] + '"/>');
                     }
@@ -561,8 +573,48 @@
                 }
 
                 return issucces;
-                
+
             });
+
+            $("[id$=btnBuscarPropietario]").on('click', function (e) {
+                FN_BuscarPropietario();
+            });
+
+            function FN_BuscarPropietario() {
+                $(".autocomplete-suggestions").remove();
+                FN_LimpiarDatosPropietario();
+                var Dni = $("[id$=txtDni]").val();
+
+                success = function (response) {
+                    var lista = response.d;
+                    if (lista != null && lista.length > 0) {
+                        var listaPropietarios = $.map(lista, function (value, key) {
+                            return {
+                                value: value,
+                                data: key
+                            };
+                        });
+
+                        // initialize autocomplete with custom appendTo
+                        $('[id$=txtDni]').autocomplete({
+                            lookup: listaPropietarios
+                        });
+                        setTimeout(function () { $("[id$=txtDni]").trigger('keyup'); }, 1000);
+                    }
+                }
+
+                error = function (xhr, ajaxOptions, thrownError) {
+                    console.log("colocar mensaje de error");
+                };
+
+                FN_LlamarMetodo("Guardar.aspx/ListaPropietariosPorDni", '{dni: "' + Dni + '" }', success, error);
+
+            };
+
+            function FN_LimpiarDatosPropietario() {
+                $("input[id$=hfIdPropietario]").val("0");
+                $("input[id$=txtNombrePro], input[id$=txtApellidos], input[id$=txtFechaNacPro], input[id$=txtDireccion], input[id$=txtTelefono], input[id$=txtEmail]").val("");
+            }
 
         })
 

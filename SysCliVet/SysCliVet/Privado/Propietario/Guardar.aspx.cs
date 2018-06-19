@@ -29,9 +29,6 @@ namespace SysCliVet.Privado.Propietario
             }
         }
 
-
-
-
         private void ObtenerInformacion()
         {
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))

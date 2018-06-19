@@ -37,15 +37,15 @@ namespace SysCliVet.Privado.FichaClinica
                     Email = txtEmail.Value,
                     Direccion = txtDireccion.Value,
                     Telefono = txtTelefono.Value,
-                    FechaNacimiento = Convert.ToDateTime(txtFechaNacPro.Value, CultureInfo.InvariantCulture),
+                    FechaNacimiento = DateTime.ParseExact(txtFechaNacPro.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),//Convert.ToDateTime(txtFechaNacPro.Value, CultureInfo.InvariantCulture),
                     Dni = Convert.ToInt32(txtDni.Value),
                     Estado = 1
                 };
                 clsMascota objMascota = new clsMascota
                 {
-                    Id = Convert.ToInt32(hfIdPropietario.Value),
+                    Id = 0,
                     Nombre = txtNombreMas.Value,
-                    FechaNacimiento = Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
+                    FechaNacimiento = DateTime.ParseExact(txtFechaNacMas.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),//Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
                     Raza = txtRaza.Value,
                     Color = txtDireccion.Value,
                     Especie = txtEspecie.Value,
@@ -68,7 +68,7 @@ namespace SysCliVet.Privado.FichaClinica
                         ListaVacunas.Add(new tVacuna
                         {
                             Id = item.Id,
-                            Fecha = Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
+                            Fecha = DateTime.ParseExact(item.Fecha.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),//Convert.ToDateTime(item.Fecha, CultureInfo.InvariantCulture),
                             Descripcion = item.Descripcion,
                             Estado = 1
                         });
@@ -78,7 +78,7 @@ namespace SysCliVet.Privado.FichaClinica
                 clsFichaClinica objFichaClinica = new clsFichaClinica
                 {
                     Propietario = objPropietario,
-                    Fecha = Convert.ToDateTime(txtFechaFicha.Value, CultureInfo.InvariantCulture),
+                    Fecha = Convert.ToDateTime(txtFechaFicha.Value),
                     Mascota = objMascota,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
@@ -90,16 +90,19 @@ namespace SysCliVet.Privado.FichaClinica
                 };
 
                 resultado = clsLogica.Instance.FichaClinica_Guardar(ref baseEntidad, objFichaClinica);
-
+                if(resultado) Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf="+clsEncriptacion.Encriptar(objFichaClinica.Id.ToString()));
+                else ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando la Ficha Clínica\"" + ");</script>", false);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando la Ficha Clínica\"" + ");</script>", false);
+            }
         }
 
         [WebMethod]
-        public static List<clsPropietario> ListaPropietariosPorDni(String dni)
+        public static List<Object> ListaPropietariosPorDni(String dni)
         {
             clsBaseEntidad baseEntidad = new clsBaseEntidad();
-            List<clsPropietario> lista = new List<clsPropietario>();
+            List<Object> lista = new List<Object>();
             dni = dni == "undefined" ? "" : dni;
             try
             {
@@ -116,12 +119,13 @@ namespace SysCliVet.Privado.FichaClinica
                 {
                     foreach (DataRow item in dtPropietarios.Rows)
                     {
-                        lista.Add(new clsPropietario
+                        lista.Add(new
                         {
-                            Dni = Convert.ToInt32(item["Dni"]),
+                            Id = item["Id"].ToString(),
+                            Dni = item["Dni"].ToString(),
                             Nombre = item["Nombre"].ToString(),
                             Apellidos = item["Apellidos"].ToString(),
-                            FechaNacimiento = DateTime.ParseExact(item["FechaNacimiento"].ToString(), "d", CultureInfo.InvariantCulture),
+                            FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                             Direccion = item["Direccion"].ToString(),
                             Telefono = item["Telefono"].ToString(),
                             Email = item["Email"].ToString()

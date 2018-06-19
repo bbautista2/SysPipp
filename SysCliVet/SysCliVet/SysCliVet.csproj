@@ -75,6 +75,7 @@
     <None Include="packages.config" />
     <Content Include="Privado\Citas\Ver.aspx" />
     <Content Include="Privado\FichaClinica\Guardar.aspx" />
+    <Content Include="Privado\FichaClinica\js\autocomplete.js" />
     <Content Include="Privado\HistorialClinico\Guardar.aspx" />
     <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\Mascota\Listar.aspx" />

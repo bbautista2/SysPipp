@@ -40,4 +40,36 @@ namespace CapaEntidad
         }
     }
 
+    [Serializable]
+    public class tAnalisis
+    {
+        public Int32 Id { get; set; }
+        public Int32 HistoriaClinicaId { get; set; }
+        public Int16 TipoAnalisisId { get; set; }
+        public Int16 Estado { get; set; }
+    }
+
+    [Serializable]
+    public class tListaAnalisis : List<tAnalisis>, IEnumerable<SqlDataRecord>
+    {
+        IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
+        {
+            SqlDataRecord ret = new SqlDataRecord(
+                new SqlMetaData("Id", SqlDbType.Int),
+                new SqlMetaData("HistoriaClinicaID", SqlDbType.Int),
+                new SqlMetaData("TipoAnalisisId", SqlDbType.SmallInt),
+                new SqlMetaData("Estado", SqlDbType.SmallInt)
+
+                );
+            foreach (tAnalisis data in this)
+            {
+                ret.SetInt32(0, data.Id);
+                ret.SetInt32(1, data.HistoriaClinicaId);
+                ret.SetInt16(2, data.TipoAnalisisId);
+                ret.SetInt16(3, data.Estado);
+                yield return ret;
+            }
+        }
+    }
+
 }

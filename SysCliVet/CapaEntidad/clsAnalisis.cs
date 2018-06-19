@@ -20,6 +20,7 @@ namespace CapaEntidad
             set => _HistoriaClinica = value;
         }
         public String Resultado { get; set; }
+        public Int16 TipoId { get; set; }
 
     }
 }

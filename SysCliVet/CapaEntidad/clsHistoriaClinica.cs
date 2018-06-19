@@ -19,18 +19,21 @@ namespace CapaEntidad
             }
             set => _FichaClinica = value;
         }
+
+        public tListaAnalisis ListaAnalisis { get; set; }
+
         public DateTime Fecha;
         public Int32 Temperatura;
         public Boolean Agitacion;
         public Boolean Depresion;
-        public String Apetito;
-        public String CondicionCuerpo;
-        public Decimal PesoActual;
+        public Int16 Apetito;
+        public Int16 CondicionCuerpo;
+        public String PesoActual;
         public String PerdidaPeso;
         public String Sintomas;
         public String Descarte;
         public String PresuntivoDefinitivo;
-        public String Observaciones;
+        public String Resultados;
 
     }
 }

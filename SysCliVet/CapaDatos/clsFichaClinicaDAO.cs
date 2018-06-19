@@ -39,6 +39,8 @@ namespace CapaDatos
                 if (objFichaClinica.ListaVacunas.Count > 0)
                     cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_VACUNAS", Value = objFichaClinica.ListaVacunas, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_VACUNAS" });
                 //Datos Ficha Clínica
+                SqlParameter outputId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
+                outputId.Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@ID", objFichaClinica.Id);
                 cmd.Parameters.AddWithValue("@Fecha", objFichaClinica.Fecha);
                 cmd.Parameters.AddWithValue("@InformacionMedica", objFichaClinica.InformacionMedica);
@@ -72,6 +74,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@MasEstado", objFichaClinica.Mascota.Estado);
                 
                 cmd.ExecuteReader();
+                objFichaClinica.Id = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
                 Resultado = true;
             }
             catch (Exception ex)
