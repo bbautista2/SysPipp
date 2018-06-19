@@ -38,6 +38,8 @@ namespace CapaDatos
                 };
                 if (objFichaClinica.ListaVacunas.Count > 0)
                     cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_VACUNAS", Value = objFichaClinica.ListaVacunas, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_VACUNAS" });
+                if (objFichaClinica.ListaDesparasitaciones.Count > 0)
+                    cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_DESPARASITACIONES", Value = objFichaClinica.ListaDesparasitaciones, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_DESPARASITACIONES" });
                 //Datos Ficha Clínica
                 SqlParameter outputId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
                 outputId.Direction = ParameterDirection.Output;

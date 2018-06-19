@@ -303,6 +303,42 @@
                                 </div>
                             </div>
                             <br />
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                </label>
+                                <div class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    <h4 class="text-left">Desparasitaciones</h4>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <table class="table table-striped table-bordered nowrap" id="tbDesparasitaciones">
+                                        <thead>
+                                            <tr>
+                                                <th style="display: none">Id</th>
+                                                <th>Fecha</th>
+                                                <th>Descripción</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <button id="addDesp" class="btn btn-primary">Agregar Desparasitación</button>
+                                </div>
+                            </div>
+                            <br />
+
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">
                                     Observaciones 
@@ -348,13 +384,14 @@
     </div>
     <asp:HiddenField ID="hfIdPropietario" Value="0" runat="server" />
     <asp:HiddenField ID="hfVacunas" runat="server" />
+    <asp:HiddenField ID="hfDesparasitaciones" runat="server" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script src="<%=ResolveUrl("~/Privado/FichaClinica/js/autocomplete.js") %>"></script>
     <script type="text/javascript">
         $(function () {
-            var tablaVacuna;
+            var nombreTabla, tablaVacuna, tablaDesparasitacion;
             $('[id$=txtFechaFicha]').datetimepicker({
                 format: 'DD/MM/YYYY hh:mm A'
             });
@@ -362,9 +399,17 @@
                 format: 'DD/MM/YYYY'
             });
             tablaVacuna = $("#tbVacunas").DataTable({ searching: false, lengthChange: false, info: false });
+            tablaDesparasitacion = $("#tbDesparasitaciones").DataTable({ searching: false, lengthChange: false, info: false });
 
             $("[id$=addVacuna]").on('click', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
+                FN_AgregarFila();
+            });
+
+            $("[id$=addDesp]").on('click', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
                 FN_AgregarFila();
             });
 
@@ -372,9 +417,12 @@
                 var acciones,
                     data,
                     $row,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
 
-                $("#addVacuna").attr({ 'disabled': 'disabled' });
+                if (nombreTabla == "tbVacuna")
+                    $("#addVacuna").attr({ 'disabled': 'disabled' });
+                else
+                    $("#addDesp").attr({ 'disabled': 'disabled' });
 
                 acciones = [
                     '<a href="#" class="btn btn-default btn-xs hidden on-editing save-row"><i class="fa fa-save"></i></a>',
@@ -399,20 +447,31 @@
                 //$('.fechaVacuna').datetimepicker({
                 //    format: 'DD/MM/YYYY',
                 //});
-                $('.fechaVacuna').daterangepicker({
+                if (nombreTabla == "tbVacuna") {
+                    $('.fechaVacuna').daterangepicker({
+                        locale: {
+                            format: 'DD/MM/YYYY'
+                        },
+                        singleDatePicker: true,
+                        singleClasses: "picker_3"
+                    }, function (start, end, label) {
+                    });
+                } else {
+                    $('.fechaDesp').daterangepicker({
                     locale: {
                             format: 'DD/MM/YYYY'
                             },
                     singleDatePicker: true,
                     singleClasses: "picker_3"
-                }, function (start, end, label) {
-                    //console.log(start.toISOString(), end.toISOString(), label);
-                });
+                    }, function (start, end, label) {
+                    });
+                }
+                
             }
 
             function FN_EditarFila($row) {
                 var data,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
 
                 data = tabla.row($row.get(0)).data();
 
@@ -422,8 +481,12 @@
                     if ($this.hasClass('acciones')) {
                         FN_SetAccionesEditar($row);
                     } else {
-                        if (i == 1)
-                            $this.html('<input type="text" class="form-control fechaVacuna" value="' + data[i] + '"/>');
+                        if (i == 1) {
+                            if (nombreTabla == "tbVacuna")
+                                $this.html('<input type="text" class="form-control fechaVacuna" value="' + data[i] + '"/>');
+                            else
+                                $this.html('<input type="text" class="form-control fechaDesp" value="' + data[i] + '"/>');
+                        }                            
                         else
                             $this.html('<input type="text" class="form-control input-block" value="' + data[i] + '"/>');
                     }
@@ -444,7 +507,7 @@
                 var $acciones,
                     i,
                     data,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
 
                 if ($row.hasClass('adding')) {
                     FN_EliminarFila($row);
@@ -463,16 +526,19 @@
             }
 
             function FN_EliminarFila($row) {
-                var tabla = tablaVacuna;
+                var tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
                 if ($row.hasClass('adding')) {
-                    $("#addVacuna").removeAttr('disabled');
+                    if (nombreTabla == "tbVacuna")
+                        $("#addVacuna").removeAttr('disabled');
+                    else
+                        $("#addDesp").removeAttr('disabled');
                 }
                 tabla.row($row.get(0)).remove().draw();
             }
 
             function FN_GuardarFila($row) {
                 var $acciones,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
                 values = [];
                 var returnval = true;
                 var tdid;
@@ -517,26 +583,61 @@
                 }
                 tabla.draw();
                 if ($row.hasClass('adding')) {
-                    $("#addVacuna").removeAttr('disabled');
+                    if (nombreTabla == "tbVacuna")
+                        $("#addVacuna").removeAttr('disabled');
+                    else
+                        $("#addDesp").removeAttr('disabled');
                     $row.removeClass('adding');
                 }
             }
 
             $("#tbVacunas").on('click', 'a.cancel-row', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
                 FN_CancelarFila($(this).closest('tr'));
             });
             $("#tbVacunas").on('click', 'a.edit-row', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
                 FN_EditarFila($(this).closest('tr'));
                 FN_AgregarDataPicker();
             });
             $("#tbVacunas").on('click', 'a.save-row', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
                 FN_GuardarFila($(this).closest('tr'));
             });
             $("#tbVacunas").on('click', 'a.remove-row', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
+                $(".bs-example-modal-sm").modal("show");
+                var $row = $(this).closest('tr');
+                $('#Confirmar').on('click', function (e) {
+                    e.preventDefault();
+                    FN_EliminarFila($row);
+                    $(".bs-example-modal-sm").modal("hide");
+                });
+            });
+
+            $("#tbDesparasitaciones").on('click', 'a.cancel-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                FN_CancelarFila($(this).closest('tr'));
+            });
+            $("#tbDesparasitaciones").on('click', 'a.edit-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                FN_EditarFila($(this).closest('tr'));
+                FN_AgregarDataPicker();
+            });
+            $("#tbDesparasitaciones").on('click', 'a.save-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                FN_GuardarFila($(this).closest('tr'));
+            });
+            $("#tbDesparasitaciones").on('click', 'a.remove-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
                 $(".bs-example-modal-sm").modal("show");
                 var $row = $(this).closest('tr');
                 $('#Confirmar').on('click', function (e) {
@@ -556,11 +657,28 @@
                         var tempRow = $("#tbVacunas tbody tr:eq(" + i + ")");
                         obj.Id = tempRow.find("td:eq(0)").text() || "0";
                         obj.Fecha = tempRow.find("td:eq(1)").text();
-                        obj.Descripcion = tempRow.find("td:eq(2)").text();
+                        obj.Nombre = tempRow.find("td:eq(2)").text();
                         lista[i] = $.extend(true, {}, obj);
                     }
                 }
                 $("input[id$=hfVacunas]").val(JSON.stringify(lista));
+            }
+
+            function FN_GuardarDesparasitaciones() {
+                var obj = { Id: "", Descripcion: "", Fecha: "" };
+                var lista = [];
+                var index = tablaDesparasitacion.rows().data();
+                var leng = tablaDesparasitacion.rows().length;
+                if (leng > 0) {
+                    for (var i = 0; i < index.length; i++) {
+                        var tempRow = $("#tbDesparasitaciones tbody tr:eq(" + i + ")");
+                        obj.Id = tempRow.find("td:eq(0)").text() || "0";
+                        obj.Fecha = tempRow.find("td:eq(1)").text();
+                        obj.Nombre = tempRow.find("td:eq(2)").text();
+                        lista[i] = $.extend(true, {}, obj);
+                    }
+                }
+                $("input[id$=hfDesparasitaciones]").val(JSON.stringify(lista));
             }
 
             $("[id$=btnGuardarFicha]").click(function (e) {
@@ -568,6 +686,7 @@
 
                 if (validator.checkAll($('#FormPrincipal'))) {
                     FN_GuardarVacunas();
+                    FN_GuardarDesparasitaciones();
                 } else {
                     issucces = false;
                 }

@@ -57,10 +57,10 @@ namespace SysCliVet.Privado.FichaClinica
                     Estado = 1
                 };
 
-                JavaScriptSerializer sr = new JavaScriptSerializer();
+                JavaScriptSerializer srVacunas = new JavaScriptSerializer();
                 List<clsVacuna> lstVacunas = new List<clsVacuna>();
                 tListaVacunas ListaVacunas = new tListaVacunas();
-                lstVacunas = sr.Deserialize<List<clsVacuna>>(hfVacunas.Value);
+                lstVacunas = srVacunas.Deserialize<List<clsVacuna>>(hfVacunas.Value);
                 if (lstVacunas != null)
                 {
                     foreach (clsVacuna item in lstVacunas)
@@ -69,7 +69,27 @@ namespace SysCliVet.Privado.FichaClinica
                         {
                             Id = item.Id,
                             Fecha = DateTime.ParseExact(item.Fecha.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),//Convert.ToDateTime(item.Fecha, CultureInfo.InvariantCulture),
-                            Descripcion = item.Descripcion,
+                            Nombre = item.Nombre,
+                            Descripcion = String.Empty,
+                            Estado = 1
+                        });
+                    }
+                }
+
+                JavaScriptSerializer srDesp = new JavaScriptSerializer();
+                List<clsDesparasitacion> lstDesp = new List<clsDesparasitacion>();
+                tListaDesparasitacion ListaDesp = new tListaDesparasitacion();
+                lstDesp = srDesp.Deserialize<List<clsDesparasitacion>>(hfDesparasitaciones.Value);
+                if (lstDesp != null)
+                {
+                    foreach (clsDesparasitacion item in lstDesp)
+                    {
+                        ListaDesp.Add(new tDesparasitacion
+                        {
+                            Id = item.Id,
+                            Fecha = DateTime.ParseExact(item.Fecha.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            Nombre = item.Nombre,
+                            Descripcion = String.Empty,
                             Estado = 1
                         });
                     }
@@ -78,7 +98,7 @@ namespace SysCliVet.Privado.FichaClinica
                 clsFichaClinica objFichaClinica = new clsFichaClinica
                 {
                     Propietario = objPropietario,
-                    Fecha = Convert.ToDateTime(txtFechaFicha.Value),
+                    Fecha = DateTime.ParseExact(txtFechaFicha.Value, "dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture),
                     Mascota = objMascota,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
@@ -86,11 +106,16 @@ namespace SysCliVet.Privado.FichaClinica
                     Motivo = txtMotivoCons.Value,
                     Observaciones = txtObservacion.Value,
                     ListaVacunas = ListaVacunas,
+                    ListaDesparasitaciones = ListaDesp,
                     Estado = 1
                 };
 
                 resultado = clsLogica.Instance.FichaClinica_Guardar(ref baseEntidad, objFichaClinica);
-                if(resultado) Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf="+clsEncriptacion.Encriptar(objFichaClinica.Id.ToString()));
+                if (resultado)
+                {
+                    String id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.Id.ToString()));
+                    Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf=" + id);
+                }
                 else ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando la Ficha Clínica\"" + ");</script>", false);
             }
             catch (Exception ex) {
