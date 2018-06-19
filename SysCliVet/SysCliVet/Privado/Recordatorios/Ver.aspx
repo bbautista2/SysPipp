@@ -163,7 +163,7 @@
 				  selectable: true,
 				  selectHelper: true,
 				  select: function(start, end, allDay) {
-					$('#fc_create').click();
+				  $('#fc_create').click();
 
 					started = start;
 					ended = end;
