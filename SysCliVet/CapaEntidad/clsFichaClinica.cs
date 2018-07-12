@@ -33,6 +33,17 @@ namespace CapaEntidad
 
         public tListaVacunas ListaVacunas { get; set; }
 
+        List<clsVacuna> lstVacunas;
+        public List<clsVacuna> LstVacunas
+        {
+            get
+            {
+                lstVacunas = lstVacunas ?? new List<clsVacuna>();
+                return lstVacunas;
+            }
+            set => lstVacunas = value;
+        }
+
         public DateTime Fecha { get; set; }
         public String InformacionMedica { get; set; }
         public Int16 MedioAmbiente { get; set; }

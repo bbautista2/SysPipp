@@ -1,6 +1,7 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
 using CapaLibreria.Conexion;
+using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +26,60 @@ namespace CapaDatos
             }
         }
         #endregion
+
+        public clsFichaClinica GetByMascotaID(ref clsBaseEntidad baseEntidad, Int32 MascotaID)
+        {
+            SqlCommand cmd = null;
+            clsFichaClinica objFichaClinica = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("FichaClinica_GetByID", clsConexion.GetConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MascotaID", MascotaID);
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    objFichaClinica = new clsFichaClinica();
+                    while (dr.Read())
+                    {
+                        objFichaClinica.Descripcion = dr.ObtenerValorColumna<String>("Descripcion");
+                        objFichaClinica.Fecha = dr.ObtenerValorColumna<DateTime>("Fecha");
+                        objFichaClinica.InformacionMedica = dr.ObtenerValorColumna<String>("InformacionMedica");
+                        objFichaClinica.MedioAmbiente = dr.ObtenerValorColumna<Int16>("MedioAmbiente");
+                        objFichaClinica.Motivo = dr.ObtenerValorColumna<String>("Motivo");
+                        objFichaClinica.Observaciones = dr.ObtenerValorColumna<String>("Observaciones");
+                        objFichaClinica.TipoDieta = dr.ObtenerValorColumna<Int16>("TipoDieta");
+                    }
+                   
+                    if (dr.NextResult())
+                    {
+                        objFichaClinica.LstVacunas = new List<clsVacuna>();
+                        while (dr.Read())
+                        {
+                            objFichaClinica.LstVacunas.Add(
+                                new clsVacuna
+                                {
+                                    Id =  dr.ObtenerValorColumna< Int32>("Id"),
+                                    FechaVacunacion = dr.ObtenerValorColumna<DateTime>("FechaVacunacion"),
+                                    Descripcion = dr.ObtenerValorColumna<String>("Descripcion")
+                                                                       
+                                });
+                        }
+                    }
+            
+                }
+            }
+            catch (Exception ex)
+            {
+                objFichaClinica = null;
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return objFichaClinica;
+        }
 
         public Boolean Guardar(ref clsBaseEntidad baseEntidad, clsFichaClinica objFichaClinica)
         {
