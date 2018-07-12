@@ -48,6 +48,7 @@ namespace CapaDatos
                         objFichaClinica.InformacionMedica = dr.ObtenerValorColumna<String>("InformacionMedica");
                         objFichaClinica.MedioAmbiente = dr.ObtenerValorColumna<Int16>("MedioAmbiente");
                         objFichaClinica.Motivo = dr.ObtenerValorColumna<String>("Motivo");
+                        objFichaClinica.NumeroFicha= dr.ObtenerValorColumna<Int32>("NumeroFicha");
                         objFichaClinica.Observaciones = dr.ObtenerValorColumna<String>("Observaciones");
                         objFichaClinica.TipoDieta = dr.ObtenerValorColumna<Int16>("TipoDieta");
                     }
@@ -106,7 +107,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Motivo", objFichaClinica.Motivo);
                 cmd.Parameters.AddWithValue("@Observaciones", objFichaClinica.Observaciones);
                 cmd.Parameters.AddWithValue("@Estado", objFichaClinica.Estado);
-                cmd.Parameters.AddWithValue("@NroFicha", objFichaClinica.NroFicha);
+                cmd.Parameters.AddWithValue("@NumeroFicha", objFichaClinica.NumeroFicha);
                 //Datos Propietario
                 cmd.Parameters.AddWithValue("@ProiId", objFichaClinica.Propietario.Id);
                 cmd.Parameters.AddWithValue("@ProiDni", objFichaClinica.Propietario.Dni);
@@ -133,7 +134,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@MasEstado", objFichaClinica.Mascota.Estado);
                 
                 cmd.ExecuteReader();
-                objFichaClinica.NroFicha = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
+                objFichaClinica.NumeroFicha = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
                 Resultado = true;
             }
             catch (Exception ex)
