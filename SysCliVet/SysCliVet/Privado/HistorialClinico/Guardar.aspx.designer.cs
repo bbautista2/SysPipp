@@ -157,6 +157,24 @@ namespace SysCliVet.Privado.HistorialClinico {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPresunDefin;
         
         /// <summary>
+        /// Control txtFechaTrat.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaTrat;
+        
+        /// <summary>
+        /// Control txtObservacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtObservacion;
+        
+        /// <summary>
         /// Control btnGuardarHistoria.
         /// </summary>
         /// <remarks>
