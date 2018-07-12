@@ -92,7 +92,8 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Direccion", objPropietario.Direccion);
                 cmd.Parameters.AddWithValue("@Telefono", objPropietario.Telefono);
                 cmd.Parameters.AddWithValue("@Email", objPropietario.Email);
-                cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);               
+                cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);
+                cmd.Parameters.AddWithValue("@Celular", objPropietario.Celular);
                 cmd.ExecuteReader();
                 Resultado = true;
             }

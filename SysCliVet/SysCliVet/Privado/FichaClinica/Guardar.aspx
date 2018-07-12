@@ -57,6 +57,14 @@
                                 </div>
                             </div>
                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    N° de Ficha <span class="required">*</span>
+                                </label>
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <input id="txtNroFicha" runat="server" class="form-control col-md-7 col-xs-12" name="txtNroFicha" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtMotivoCons">
                                 </label>
                                 <div class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -92,11 +100,11 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Fecha Nac <span class="required">*</span>
+                                    Fecha Nac
                                 </label>
                                 <div class="col-md-5 col-sm-6 col-xs-12">
                                     <div class='input-group'>
-                                        <input type='text' id='txtFechaNacPro' runat="server" class="form-control" required="required" />
+                                        <input type='text' id='txtFechaNacPro' runat="server" class="form-control" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -112,11 +120,19 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtTelefono">
-                                    Teléfono <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtCelular">
+                                    Celular <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="txtTelefono" runat="server" name="txtTelefono" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="tel" id="txtCelular" runat="server" name="txtCelular" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtTelefono">
+                                    Teléfono
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="tel" id="txtTelefono" runat="server" name="txtTelefono" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -152,18 +168,18 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Raza <span class="required">*</span>
+                                    Raza
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
+                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">
-                                    Color <span class="required">*</span>
+                                    Color
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" runat="server" id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtColor" name="txtColor" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -215,18 +231,18 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Peso <span class="required">*</span>
+                                    Peso
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" runat="server" id="txtPeso" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtPeso" name="txtPeso" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Marca distintiva <span class="required">*</span>
+                                    Marca distintiva
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" runat="server" id="txtMarcaDist" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat="server" id="txtMarcaDist" name="txtMarcaDist" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -732,7 +748,7 @@
 
             function FN_LimpiarDatosPropietario() {
                 $("input[id$=hfIdPropietario]").val("0");
-                $("input[id$=txtNombrePro], input[id$=txtApellidos], input[id$=txtFechaNacPro], input[id$=txtDireccion], input[id$=txtTelefono], input[id$=txtEmail]").val("");
+                $("input[id$=txtNombrePro], input[id$=txtApellidos], input[id$=txtFechaNacPro], input[id$=txtDireccion], input[id$=txtCelular], input[id$=txtTelefono], input[id$=txtEmail]").val("");
             }
 
         })

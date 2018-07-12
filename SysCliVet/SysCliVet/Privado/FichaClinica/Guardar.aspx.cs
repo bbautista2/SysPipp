@@ -36,8 +36,9 @@ namespace SysCliVet.Privado.FichaClinica
                     Apellidos = txtApellidos.Value,
                     Email = txtEmail.Value,
                     Direccion = txtDireccion.Value,
+                    Celular = txtCelular.Value,
                     Telefono = txtTelefono.Value,
-                    FechaNacimiento = DateTime.ParseExact(txtFechaNacPro.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),//Convert.ToDateTime(txtFechaNacPro.Value, CultureInfo.InvariantCulture),
+                    FechaNacimiento = !String.IsNullOrEmpty(txtFechaNacPro.Value) ? DateTime.ParseExact(txtFechaNacPro.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now,
                     Dni = Convert.ToInt32(txtDni.Value),
                     Estado = 1
                 };
@@ -99,6 +100,7 @@ namespace SysCliVet.Privado.FichaClinica
                 {
                     Propietario = objPropietario,
                     Fecha = DateTime.ParseExact(txtFechaFicha.Value, "dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture),
+                    NroFicha = Convert.ToInt32(txtNroFicha.Value),
                     Mascota = objMascota,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
@@ -113,7 +115,7 @@ namespace SysCliVet.Privado.FichaClinica
                 resultado = clsLogica.Instance.FichaClinica_Guardar(ref baseEntidad, objFichaClinica);
                 if (resultado)
                 {
-                    String id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.Id.ToString()));
+                    String id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.NroFicha.ToString()));
                     Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf=" + id);
                 }
                 else ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando la Ficha Clínica\"" + ");</script>", false);
@@ -152,6 +154,7 @@ namespace SysCliVet.Privado.FichaClinica
                             Apellidos = item["Apellidos"].ToString(),
                             FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                             Direccion = item["Direccion"].ToString(),
+                            Celular = item["Celular"].ToString(),
                             Telefono = item["Telefono"].ToString(),
                             Email = item["Email"].ToString()
                         });

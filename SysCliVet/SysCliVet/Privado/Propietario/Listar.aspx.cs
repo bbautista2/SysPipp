@@ -38,6 +38,7 @@ namespace SysCliVet.Privado.Propietario
                         Nombre = item["Nombre"] + " " + item["Apellidos"],
                         FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                         Direccion = item["Direccion"],
+                        Celular = item["Celular"],
                         Telefono = item["Telefono"],
                         Email = item["Email"],
                         Estado = item["Estado"]
@@ -72,6 +73,7 @@ namespace SysCliVet.Privado.Propietario
                                 Nombre = item["Nombre"] + " " + item["Apellidos"],
                                 FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                                 Direccion = item["Direccion"],
+                                Celular = item["Celular"],
                                 Telefono = item["Telefono"],
                                 Email = item["Email"],
                                 Estado = item["Estado"]

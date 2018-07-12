@@ -41,18 +41,18 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Raza <span class="required">*</span>
+                                    Raza
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
+                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">
-                                    Color <span class="required">*</span>
+                                    Color
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" runat ="server"  id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat ="server"  id="txtColor" name="txtColor" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -100,18 +100,18 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Peso <span class="required">*</span>
+                                    Peso
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtPeso" runat="server" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtPeso" runat="server" name="txtPeso" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Marca distintiva <span class="required">*</span>
+                                    Marca distintiva
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtMarcaDist" runat="server" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtMarcaDist" runat="server" name="txtMarcaDist" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">

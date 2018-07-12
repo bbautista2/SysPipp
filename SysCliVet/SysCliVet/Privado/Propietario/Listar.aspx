@@ -58,9 +58,9 @@
                                     <th>Acciones</th>
                                     <th>Nombre</th>
                                     <th>Email</th>
+                                    <th>Celular</th>
                                     <th>Teléfono</th>
                                     <th>Fecha Nacimiento</th>
-                                    <th>Estado</th>
                                 </tr>
                             </thead>
                             <tbody id="tbodyPropietario">
@@ -164,15 +164,9 @@
                 </td>
                 <td>{{Nombre}}</td>
                 <td>{{Email}}</td>
+                <td>{{Celular}}</td>
                 <td>{{Telefono}}</td>
                 <td>{{FechaNacimiento}}</td>
-                {{#if Estado}}
-                <td>
-                    <button type="button" class="btn btn-success btn-xs">Activo</button></td>
-                {{else}}
-               <td>
-                   <button type="button" class="btn btn-danger btn-xs">Inactivo</button></td>
-                {{/if}}
             </tr>
 
         {{/each}}

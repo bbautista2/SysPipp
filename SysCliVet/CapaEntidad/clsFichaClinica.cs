@@ -40,6 +40,7 @@ namespace CapaEntidad
         public Int16 TipoDieta { get; set; }
         public String Motivo { get; set; }
         public String Observaciones { get; set; }
+        public Int32 NroFicha { get; set; }
 
 
     }
