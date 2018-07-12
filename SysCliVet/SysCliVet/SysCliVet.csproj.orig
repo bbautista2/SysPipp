@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome, Version=1.0.5578.25903, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome-ASP.NET.1.0.5578.25903\lib\net451\FontAwesome.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -71,30 +74,25 @@
     <Content Include="FileUpload.ashx" />
     <None Include="packages.config" />
     <Content Include="Privado\Citas\Ver.aspx" />
+    <Content Include="Privado\FichaClinica\Guardar.aspx" />
+    <Content Include="Privado\FichaClinica\js\autocomplete.js" />
     <Content Include="Privado\HistorialClinico\Guardar.aspx" />
     <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\Mascota\Listar.aspx" />
     <Content Include="Privado\Mascota\Ver.aspx" />
-    <Content Include="Privado\Paciente\Guardar.aspx" />
+    <Content Include="Privado\Mascota\Guardar.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
     <Content Include="Privado\Propietario\Guardar.aspx" />
     <Content Include="Privado\Propietario\Listar.aspx" />
+    <Content Include="Privado\Recordatorios\Ver.aspx" />
     <Content Include="Publico\Acceso.aspx" />
     <Content Include="Publico\src\img\logo.jpg" />
     <Content Include="src\build\css\custom-purple.css" />
-    <Content Include="src\build\css\custom.css" />
     <Content Include="src\build\css\custom-purple.min.css" />
-    <Content Include="src\build\css\custom.min.css" />
-    <Content Include="src\build\images\back_disabled.png" />
-    <Content Include="src\build\images\back_enabled.png" />
-    <Content Include="src\build\images\back_enabled_hover.png" />
-    <Content Include="src\build\images\forward_disabled.png" />
-    <Content Include="src\build\images\forward_enabled.png" />
-    <Content Include="src\build\images\forward_enabled_hover.png" />
-    <Content Include="src\build\images\loading.gif" />
-    <Content Include="src\build\images\logo.png" />
+    <Content Include="src\build\css\General.css" />
     <Content Include="src\build\js\custom.js" />
     <Content Include="src\build\js\custom.min.js" />
+    <Content Include="src\build\js\general.js" />
     <Content Include="src\imagenes\default.png" />
     <Content Include="src\js\custom.js" />
     <Content Include="src\js\helpers\smartresize.js" />
@@ -1268,9 +1266,6 @@
     <Content Include="src\vendors\dropzone\dist\min\dropzone.min.js" />
     <Content Include="src\vendors\echarts\.gitignore" />
     <Content Include="src\vendors\echarts\asset\logo.png" />
-    <Content Include="src\vendors\echarts\build\amd2common.js" />
-    <Content Include="src\vendors\echarts\build\mangleString.js" />
-    <Content Include="src\vendors\echarts\build\optimize.js" />
     <Content Include="src\vendors\echarts\dist\echarts.common.js" />
     <Content Include="src\vendors\echarts\dist\echarts.common.min.js" />
     <Content Include="src\vendors\echarts\dist\echarts.js" />
@@ -1875,6 +1870,86 @@
     <Content Include="src\vendors\font-awesome\css\font-awesome.min.css" />
     <Content Include="src\vendors\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="src\vendors\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="src\vendors\fullcalendar1\dist\fullcalendar.css" />
+    <Content Include="src\vendors\fullcalendar1\dist\fullcalendar.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\fullcalendar.min.css" />
+    <Content Include="src\vendors\fullcalendar1\dist\fullcalendar.min.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\fullcalendar.print.css" />
+    <Content Include="src\vendors\fullcalendar1\dist\fullcalendar.print.min.css" />
+    <Content Include="src\vendors\fullcalendar1\dist\gcal.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\gcal.min.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale-all.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\af.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ar-dz.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ar-kw.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ar-ly.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ar-ma.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ar-sa.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ar-tn.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ar.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\bg.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\bs.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ca.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\cs.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\da.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\de-at.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\de-ch.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\de.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\el.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\en-au.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\en-ca.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\en-gb.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\en-ie.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\en-nz.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\es-do.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\es-us.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\es.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\et.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\eu.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\fa.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\fi.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\fr-ca.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\fr-ch.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\fr.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\gl.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\he.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\hi.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\hr.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\hu.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\id.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\is.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\it.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ja.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ka.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\kk.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ko.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\lb.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\lt.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\lv.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\mk.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ms-my.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ms.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\nb.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\nl-be.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\nl.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\nn.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\pl.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\pt-br.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\pt.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ro.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\ru.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\sk.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\sl.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\sq.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\sr-cyrl.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\sr.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\sv.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\th.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\tr.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\uk.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\vi.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\zh-cn.js" />
+    <Content Include="src\vendors\fullcalendar1\dist\locale\zh-tw.js" />
     <Content Include="src\vendors\fullcalendar\dist\fullcalendar.css" />
     <Content Include="src\vendors\fullcalendar\dist\fullcalendar.js" />
     <Content Include="src\vendors\fullcalendar\dist\fullcalendar.min.css" />
@@ -2030,9 +2105,6 @@
     <Content Include="src\vendors\gauge.js\dist\gauge.min.js" />
     <Content Include="src\vendors\gauge.js\favicon.ico" />
     <Content Include="src\vendors\gauge.js\index.html" />
-    <Content Include="src\vendors\google-code-prettify\bin\prettify.min.css" />
-    <Content Include="src\vendors\google-code-prettify\bin\prettify.min.js" />
-    <Content Include="src\vendors\google-code-prettify\bin\run_prettify.min.js" />
     <Content Include="src\vendors\google-code-prettify\CHANGES.html" />
     <Content Include="src\vendors\google-code-prettify\examples\quine.html" />
     <Content Include="src\vendors\google-code-prettify\README-zh-Hans.html" />
@@ -2074,6 +2146,7 @@
     <Content Include="src\vendors\google-code-prettify\styles\index.html" />
     <Content Include="src\vendors\google-code-prettify\styles\sons-of-obsidian.css" />
     <Content Include="src\vendors\google-code-prettify\styles\sunburst.css" />
+    <Content Include="src\vendors\handlebars\handlebars-v4.0.11.js" />
     <Content Include="src\vendors\iCheck\icheck.js" />
     <Content Include="src\vendors\iCheck\icheck.min.js" />
     <Content Include="src\vendors\iCheck\skins\all.css" />
@@ -3195,9 +3268,6 @@
     <Content Include="src\vendors\parsleyjs\src\parsley\validator.js" />
     <Content Include="src\vendors\parsleyjs\src\parsley\validator_registry.js" />
     <Content Include="src\vendors\parsleyjs\src\vendor\inputevent.js" />
-    <Content Include="src\vendors\pdfmake\build\pdfmake.js" />
-    <Content Include="src\vendors\pdfmake\build\pdfmake.min.js" />
-    <Content Include="src\vendors\pdfmake\build\vfs_fonts.js" />
     <Content Include="src\vendors\pnotify\.gitignore" />
     <Content Include="src\vendors\pnotify\dist\pnotify.animate.js" />
     <Content Include="src\vendors\pnotify\dist\pnotify.brighttheme.css" />
@@ -3846,7 +3916,6 @@
     <Content Include="src\vendors\echarts\.github\ISSUE_TEMPLATE.md" />
     <Content Include="src\vendors\echarts\.jshintrc" />
     <Content Include="src\vendors\echarts\.npmignore" />
-    <Content Include="src\vendors\echarts\build\build.sh" />
     <Content Include="src\vendors\echarts\LICENSE" />
     <Content Include="src\vendors\echarts\map\json\china-contour.json" />
     <Content Include="src\vendors\echarts\map\json\china.json" />
@@ -4249,7 +4318,6 @@
     <Content Include="src\vendors\parsleyjs\LICENSE" />
     <Content Include="src\vendors\pdfmake\.bower.json" />
     <Content Include="src\vendors\pdfmake\bower.json" />
-    <Content Include="src\vendors\pdfmake\build\pdfmake.min.js.map" />
     <Content Include="src\vendors\pdfmake\LICENSE" />
     <Content Include="src\vendors\pnotify\.bower.json" />
     <Content Include="src\vendors\pnotify\bower.json" />
@@ -4417,6 +4485,11 @@
     <Content Include="src\vendors\validator\.bower.json" />
     <Content Include="src\vendors\validator\README.md" />
     <Content Include="src\vendors\validator\validator.jquery.json" />
+<<<<<<< HEAD
+    <None Include="Properties\PublishProfiles\betsy.pubxml" />
+=======
+    <None Include="Properties\PublishProfiles\Kepyor.pubxml" />
+>>>>>>> 6e916dfa8b82757da23089e3fefa122946290c53
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4443,6 +4516,13 @@
     </Compile>
     <Compile Include="Privado\Citas\Ver.aspx.designer.cs">
       <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\FichaClinica\Guardar.aspx.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\FichaClinica\Guardar.aspx.designer.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\HistorialClinico\Guardar.aspx.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
@@ -4472,14 +4552,11 @@
     <Compile Include="Privado\Mascota\Ver.aspx.designer.cs">
       <DependentUpon>Ver.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Privado\Paciente\Guardar.aspx.cs">
+    <Compile Include="Privado\Mascota\Guardar.aspx.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
-<<<<<<< HEAD
       <SubType>ASPXCodeBehind</SubType>
-=======
->>>>>>> cf428dc16e8affd28ac4c108b86d5f892cfe68b7
     </Compile>
-    <Compile Include="Privado\Paciente\Guardar.aspx.designer.cs">
+    <Compile Include="Privado\Mascota\Guardar.aspx.designer.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.cs">
@@ -4503,6 +4580,13 @@
     <Compile Include="Privado\Propietario\Listar.aspx.designer.cs">
       <DependentUpon>Listar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Privado\Recordatorios\Ver.aspx.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Recordatorios\Ver.aspx.designer.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Publico\Acceso.aspx.cs">
       <DependentUpon>Acceso.aspx</DependentUpon>
@@ -4517,6 +4601,14 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="src\build\images\" />
+<<<<<<< HEAD
+    <Folder Include="src\imagenes\mascota\imagenes\" />
+=======
+>>>>>>> 6e916dfa8b82757da23089e3fefa122946290c53
+    <Folder Include="src\vendors\echarts\build\" />
+    <Folder Include="src\vendors\google-code-prettify\bin\" />
+    <Folder Include="src\vendors\pdfmake\build\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">

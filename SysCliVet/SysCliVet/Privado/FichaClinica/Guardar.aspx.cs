@@ -100,7 +100,7 @@ namespace SysCliVet.Privado.FichaClinica
                 {
                     Propietario = objPropietario,
                     Fecha = DateTime.ParseExact(txtFechaFicha.Value, "dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture),
-                    NroFicha = Convert.ToInt32(txtNroFicha.Value),
+                    NumeroFicha = Convert.ToInt32(txtNroFicha.Value),
                     Mascota = objMascota,
                     InformacionMedica = txtInfMedica.Value,
                     MedioAmbiente = rbViveSolo.Checked ? (Int16)EnumMedioAmbiente.ViveSolo : (Int16)EnumMedioAmbiente.OtrosAnimales,
@@ -115,7 +115,7 @@ namespace SysCliVet.Privado.FichaClinica
                 resultado = clsLogica.Instance.FichaClinica_Guardar(ref baseEntidad, objFichaClinica);
                 if (resultado)
                 {
-                    String id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.NroFicha.ToString()));
+                    String id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.NumeroFicha.ToString()));
                     Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf=" + id);
                 }
                 else ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando la Ficha Clínica\"" + ");</script>", false);

@@ -42,7 +42,7 @@ namespace CapaDatos
                 SqlParameter outputId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
                 outputId.Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@ID", objHistoriaClinica.Id);
-                cmd.Parameters.AddWithValue("@FichaClinicaID", objHistoriaClinica.FichaClinica.NroFicha);
+                cmd.Parameters.AddWithValue("@FichaClinicaID", objHistoriaClinica.FichaClinica.NumeroFicha);
                 cmd.Parameters.AddWithValue("@Fecha", objHistoriaClinica.Fecha);
                 cmd.Parameters.AddWithValue("@Agitacion", objHistoriaClinica.Agitacion);
                 cmd.Parameters.AddWithValue("@Depresion", objHistoriaClinica.Depresion);

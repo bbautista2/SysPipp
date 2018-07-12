@@ -36,7 +36,7 @@ namespace SysCliVet.Privado.HistorialClinico
                 Boolean resultado = false;
                 clsFichaClinica objFicha = new clsFichaClinica
                 {
-                    NroFicha = !String.IsNullOrEmpty(lblNroFicha.Text) ? Convert.ToInt32(lblNroFicha.Text) : 0
+                    NumeroFicha = !String.IsNullOrEmpty(lblNroFicha.Text) ? Convert.ToInt32(lblNroFicha.Text) : 0
                 };
                 //Analisis
                 JavaScriptSerializer srAnalisis = new JavaScriptSerializer();

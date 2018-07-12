@@ -1,6 +1,7 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
 using CapaLibreria.Conexion;
+using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +26,61 @@ namespace CapaDatos
             }
         }
         #endregion
+
+        public clsFichaClinica GetByMascotaID(ref clsBaseEntidad baseEntidad, Int32 MascotaID)
+        {
+            SqlCommand cmd = null;
+            clsFichaClinica objFichaClinica = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("FichaClinica_GetByID", clsConexion.GetConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MascotaID", MascotaID);
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    objFichaClinica = new clsFichaClinica();
+                    while (dr.Read())
+                    {
+                        objFichaClinica.Descripcion = dr.ObtenerValorColumna<String>("Descripcion");
+                        objFichaClinica.Fecha = dr.ObtenerValorColumna<DateTime>("Fecha");
+                        objFichaClinica.InformacionMedica = dr.ObtenerValorColumna<String>("InformacionMedica");
+                        objFichaClinica.MedioAmbiente = dr.ObtenerValorColumna<Int16>("MedioAmbiente");
+                        objFichaClinica.Motivo = dr.ObtenerValorColumna<String>("Motivo");
+                        objFichaClinica.NumeroFicha= dr.ObtenerValorColumna<Int32>("NumeroFicha");
+                        objFichaClinica.Observaciones = dr.ObtenerValorColumna<String>("Observaciones");
+                        objFichaClinica.TipoDieta = dr.ObtenerValorColumna<Int16>("TipoDieta");
+                    }
+                   
+                    if (dr.NextResult())
+                    {
+                        objFichaClinica.LstVacunas = new List<clsVacuna>();
+                        while (dr.Read())
+                        {
+                            objFichaClinica.LstVacunas.Add(
+                                new clsVacuna
+                                {
+                                    Id =  dr.ObtenerValorColumna< Int32>("Id"),
+                                    FechaVacunacion = dr.ObtenerValorColumna<DateTime>("FechaVacunacion"),
+                                    Descripcion = dr.ObtenerValorColumna<String>("Descripcion")
+                                                                       
+                                });
+                        }
+                    }
+            
+                }
+            }
+            catch (Exception ex)
+            {
+                objFichaClinica = null;
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return objFichaClinica;
+        }
 
         public Boolean Guardar(ref clsBaseEntidad baseEntidad, clsFichaClinica objFichaClinica)
         {
@@ -51,7 +107,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Motivo", objFichaClinica.Motivo);
                 cmd.Parameters.AddWithValue("@Observaciones", objFichaClinica.Observaciones);
                 cmd.Parameters.AddWithValue("@Estado", objFichaClinica.Estado);
-                cmd.Parameters.AddWithValue("@NroFicha", objFichaClinica.NroFicha);
+                cmd.Parameters.AddWithValue("@NumeroFicha", objFichaClinica.NumeroFicha);
                 //Datos Propietario
                 cmd.Parameters.AddWithValue("@ProiId", objFichaClinica.Propietario.Id);
                 cmd.Parameters.AddWithValue("@ProiDni", objFichaClinica.Propietario.Dni);
@@ -78,7 +134,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@MasEstado", objFichaClinica.Mascota.Estado);
                 
                 cmd.ExecuteReader();
-                objFichaClinica.NroFicha = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
+                objFichaClinica.NumeroFicha = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
                 Resultado = true;
             }
             catch (Exception ex)

@@ -106,7 +106,8 @@
         {{# each items}}                   
                         <tr>
                             <td>
-                                <a onclick="fn_AbrirLink('Guardar.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
+        <a onclick="fn_AbrirLink('Ver.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Ver Mascota"><i class="fa fa-eye"></i></a>                        
+        <a onclick="fn_AbrirLink('Guardar.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
                                 <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
                             </td>
                             <td>
@@ -126,13 +127,7 @@
                                 </div>
                                 <small>{{Progreso}}% Completo</small>
                             </td>
-                            {{#if Estado}}
-                            <td>
-                                <button type="button" class="btn btn-success btn-xs">Activo</button></td>
-                            {{else}}
-                           <td>
-                               <button type="button" class="btn btn-danger btn-xs">Inactivo</button></td>
-                            {{/if}}
+
                         </tr>
 
         {{/each}}
