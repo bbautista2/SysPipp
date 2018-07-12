@@ -22,13 +22,13 @@ namespace SysCliVet.Privado.HistorialClinico {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaHistoria;
         
         /// <summary>
-        /// Control txtNroFicha.
+        /// Control lblNroFicha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroFicha;
+        protected global::System.Web.UI.WebControls.Label lblNroFicha;
         
         /// <summary>
         /// Control chkAgitacion.

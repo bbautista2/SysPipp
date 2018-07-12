@@ -92,7 +92,8 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Direccion", objPropietario.Direccion);
                 cmd.Parameters.AddWithValue("@Telefono", objPropietario.Telefono);
                 cmd.Parameters.AddWithValue("@Email", objPropietario.Email);
-                cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);               
+                cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);
+                cmd.Parameters.AddWithValue("@Celular", objPropietario.Celular);
                 cmd.ExecuteReader();
                 Resultado = true;
             }
@@ -160,6 +161,30 @@ namespace CapaDatos
                 clsConexion.DisposeCommand(cmd);
             }
             return dt;
+        }
+
+        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Propietario_EliminarPorId", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Id", id);
+                resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return resultado;
         }
 
         #endregion

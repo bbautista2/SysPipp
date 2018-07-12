@@ -58,6 +58,15 @@ namespace SysCliVet.Privado.Propietario {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtDireccion;
         
         /// <summary>
+        /// Control txtCelular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtCelular;
+        
+        /// <summary>
         /// Control txtTelefono.
         /// </summary>
         /// <remarks>

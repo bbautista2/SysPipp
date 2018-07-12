@@ -319,4 +319,11 @@
 
 <!-- Custom Theme Scripts -->
 <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".nav.child_menu").hide().closest("li").removeClass("active");
+    });
+</script>
+
 </html>

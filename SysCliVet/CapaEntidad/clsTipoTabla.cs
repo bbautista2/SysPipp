@@ -13,6 +13,7 @@ namespace CapaEntidad
     {
         public Int32 Id { get; set; }
         public DateTime Fecha { get; set; }
+        public String Nombre { get; set; }
         public String Descripcion { get; set; }
         public Int16 Estado { get; set; }
     }
@@ -25,6 +26,7 @@ namespace CapaEntidad
             SqlDataRecord ret = new SqlDataRecord(
                 new SqlMetaData("Id", SqlDbType.Int),
                 new SqlMetaData("Fecha", SqlDbType.Date),
+                new SqlMetaData("Nombre", SqlDbType.NVarChar, 50),
                 new SqlMetaData("Descripcion", SqlDbType.NVarChar, -1),
                 new SqlMetaData("Estado", SqlDbType.SmallInt)
 
@@ -33,8 +35,43 @@ namespace CapaEntidad
             {
                 ret.SetInt32(0, data.Id);
                 ret.SetDateTime(1, data.Fecha);
-                ret.SetString(2, data.Descripcion);
-                ret.SetInt16(3, data.Estado);
+                ret.SetString(2, data.Nombre);
+                ret.SetString(3, data.Descripcion);
+                ret.SetInt16(4, data.Estado);
+                yield return ret;
+            }
+        }
+    }
+
+    [Serializable]
+    public class tDesparasitacion
+    {
+        public Int32 Id { get; set; }
+        public DateTime Fecha { get; set; }
+        public String Nombre { get; set; }
+        public String Descripcion { get; set; }
+        public Int16 Estado { get; set; }
+    }
+
+    [Serializable]
+    public class tListaDesparasitacion : List<tDesparasitacion>, IEnumerable<SqlDataRecord>
+    {
+        IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
+        {
+            SqlDataRecord ret = new SqlDataRecord(
+                new SqlMetaData("Id", SqlDbType.Int),
+                new SqlMetaData("Fecha", SqlDbType.Date),
+                new SqlMetaData("Nombre", SqlDbType.NVarChar, 50),
+                new SqlMetaData("Descripcion", SqlDbType.NVarChar, -1),
+                new SqlMetaData("Estado", SqlDbType.SmallInt)
+                );
+            foreach (tDesparasitacion data in this)
+            {
+                ret.SetInt32(0, data.Id);
+                ret.SetDateTime(1, data.Fecha);
+                ret.SetString(2, data.Nombre);
+                ret.SetString(3, data.Descripcion);
+                ret.SetInt16(4, data.Estado);
                 yield return ret;
             }
         }

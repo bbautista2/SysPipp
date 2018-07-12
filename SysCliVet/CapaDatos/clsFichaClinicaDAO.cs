@@ -93,6 +93,8 @@ namespace CapaDatos
                 };
                 if (objFichaClinica.ListaVacunas.Count > 0)
                     cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_VACUNAS", Value = objFichaClinica.ListaVacunas, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_VACUNAS" });
+                if (objFichaClinica.ListaDesparasitaciones.Count > 0)
+                    cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_DESPARASITACIONES", Value = objFichaClinica.ListaDesparasitaciones, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_DESPARASITACIONES" });
                 //Datos Ficha Clínica
                 SqlParameter outputId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
                 outputId.Direction = ParameterDirection.Output;
@@ -104,6 +106,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Motivo", objFichaClinica.Motivo);
                 cmd.Parameters.AddWithValue("@Observaciones", objFichaClinica.Observaciones);
                 cmd.Parameters.AddWithValue("@Estado", objFichaClinica.Estado);
+                cmd.Parameters.AddWithValue("@NroFicha", objFichaClinica.NroFicha);
                 //Datos Propietario
                 cmd.Parameters.AddWithValue("@ProiId", objFichaClinica.Propietario.Id);
                 cmd.Parameters.AddWithValue("@ProiDni", objFichaClinica.Propietario.Dni);
@@ -111,6 +114,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@ProApellidos", objFichaClinica.Propietario.Apellidos);
                 cmd.Parameters.AddWithValue("@ProFechaNacimiento", objFichaClinica.Propietario.FechaNacimiento);
                 cmd.Parameters.AddWithValue("@ProDireccion", objFichaClinica.Propietario.Direccion);
+                cmd.Parameters.AddWithValue("@ProCelular", objFichaClinica.Propietario.Celular);
                 cmd.Parameters.AddWithValue("@ProTelefono", objFichaClinica.Propietario.Telefono);
                 cmd.Parameters.AddWithValue("@ProEmail", objFichaClinica.Propietario.Email);
                 cmd.Parameters.AddWithValue("@ProEstado", objFichaClinica.Propietario.Estado);
@@ -129,7 +133,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@MasEstado", objFichaClinica.Mascota.Estado);
                 
                 cmd.ExecuteReader();
-                objFichaClinica.Id = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
+                objFichaClinica.NroFicha = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
                 Resultado = true;
             }
             catch (Exception ex)

@@ -50,8 +50,8 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     N° de Ficha <span class="required">*</span>
                                 </label>
-                                <div class="col-md-3 col-sm-4 col-xs-12">
-                                    <input id="txtNroFicha" runat="server" class="form-control col-md-7 col-xs-12" name="txtNroFicha" required="required" type="text">
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <asp:Label id="lblNroFicha" runat="server" CssClass="col-md-7 col-xs-12" style="padding-top: 8px"></asp:Label>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
-                                    CC
+                                    Condición Corporal
                                 </label>
                                 <div class="col-md-5 col-sm-6 col-xs-12">
                                     <div class="radio">

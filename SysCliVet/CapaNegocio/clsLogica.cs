@@ -156,6 +156,20 @@ namespace CapaNegocio
             return dt;
         }
 
+        public bool Propietario_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsPropietarioDAO.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
         #endregion
 
         #region Ficha Clinica
