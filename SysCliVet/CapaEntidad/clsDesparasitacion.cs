@@ -3,7 +3,7 @@ using System;
 
 namespace CapaEntidad
 {
-    public class clsVacuna : clsBaseEntidad
+    public class clsDesparasitacion : clsBaseEntidad
     {
         clsFichaClinica _FichaClinica;
         public clsFichaClinica FichaClinica
@@ -17,6 +17,6 @@ namespace CapaEntidad
         }
 
         public String Fecha { get; set; }
-        public DateTime FechaVacunacion { get; set; }
+        public DateTime FechaDesparasitacion { get; set; }
     }
 }

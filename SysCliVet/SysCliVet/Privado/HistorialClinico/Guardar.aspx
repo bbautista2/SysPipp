@@ -5,7 +5,8 @@
 
     <div class="">
 
-        <div class="clearfix"></div>
+        <div class="clearfix">
+        </div>
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -50,8 +51,8 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     N° de Ficha <span class="required">*</span>
                                 </label>
-                                <div class="col-md-3 col-sm-4 col-xs-12">
-                                    <input id="txtNroFicha" runat="server" class="form-control col-md-7 col-xs-12" name="txtNroFicha" required="required" type="text">
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <asp:Label ID="lblNroFicha" runat="server" CssClass="col-md-7 col-xs-12" Style="padding-top: 8px"></asp:Label>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -101,7 +102,7 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
-                                    CC
+                                    Condición Corporal
                                 </label>
                                 <div class="col-md-5 col-sm-6 col-xs-12">
                                     <div class="radio">
@@ -223,6 +224,63 @@
                                     <input id="txtPresunDefin" runat="server" class="form-control col-md-7 col-xs-12" name="txtNroFicha" required="required" type="text">
                                 </div>
                             </div>
+                            <div class="tratamientos">
+                            <div class="divTratamiento">
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    </label>
+                                    <div class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        <h4 class="text-left">Tratamiento</h4>
+                                    </div>
+                                    <div class="control-label col-md-3 col-sm-6 col-xs-12">
+                                        <button id="addNuevoTratamiento" class="btn btn-primary">Agregar</button>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        Fecha<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-6">
+                                        <input id="txtFechaTrat" runat="server" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <table class="table table-striped table-bordered nowrap" id="tbTratamiento">
+                                            <thead>
+                                                <tr>
+                                                    <th style="display: none">Id</th>
+                                                    <th>Droga</th>
+                                                    <th>Dosis</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <button class="btn btn-primary addTratamiento">Agregar</button>
+                                    </div>
+                                </div>
+
+                                <div class="item form-group" style="margin-top: 14px;">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">
+                                        Observaciones 
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea id="txtObservacion" runat="server" class="form-control col-md-7 col-xs-12"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
@@ -243,9 +301,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script type="text/javascript">
         $(function () {
+            var tablaTratamiento;
             $('#FechaHistoria').datetimepicker({
                 format: 'DD/MM/YYYY hh:mm A'
             });
+            $('[id$=txtFechaTrat]').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+            tablaTratamiento = $("#tbTratamiento").DataTable({ searching: false, lengthChange: false, info: false, paging: false });
             $(".sintomas, #tags_2").tagsInput({
                 width: "auto", defaultText: 'Añadir', autocomplete: { selectFirst: true, width: '100px', autoFill: true }, typeahead: {
                     source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
@@ -265,6 +328,16 @@
 
             });
 
+            $("[id$=addNuevoTratamiento]").click(function (e) {
+                e.preventDefault();
+                var nroTratamiento = $(".divTratamiento").length+1;
+                FN_AgregarTratamiento(nroTratamiento);
+                $("#tbTratamiento" + nroTratamiento).DataTable({ searching: false, lengthChange: false, info: false, paging: false });
+                $('[id$=txtFechaTrat' + nroTratamiento +']').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+            });
+
             function FN_GuardarAnalisis() {
                 var obj = { Id: "", TipoId: "" };
                 var lista = [];
@@ -275,6 +348,56 @@
                     lista[i] = $.extend(true, {}, obj);
                 }
                 $("input[id$=hfAnalisis]").val(JSON.stringify(lista));
+            }
+
+            function FN_AgregarTratamiento(nroTratamiento) {
+                var htmlTratamiento = 
+                    '<div class="divTratamiento">'
+                                +'<div class="item form-group">'
+                                    +'<label class="control-label col-md-3 col-sm-3 col-xs-12">'
+                                    +'</label>'
+                                    +'<div class="control-label col-md-3 col-sm-3 col-xs-12">'
+                                        +'<h4 class="text-left">Tratamiento '+nroTratamiento+'</h4>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="item form-group">'
+                                    +'<label class="control-label col-md-3 col-sm-3 col-xs-12">'
+                                        +'Fecha<span class="required">*</span>'
+                                    +'</label>'
+                                    +'<div class="col-md-3 col-sm-6 col-xs-6">'
+                                        +'<input id="txtFechaTrat'+nroTratamiento+'" class="form-control col-md-7 col-xs-12" required="required" type="text">'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="item form-group">'
+                                    +'<label class="control-label col-md-3 col-sm-3 col-xs-12"></label>'
+                                    +'<div class="col-md-6 col-sm-6 col-xs-12">'
+                                        +'<table class="table table-striped table-bordered nowrap" id="tbTratamiento'+nroTratamiento+'">'
+                                            +'<thead>'
+                                                +'<tr>'
+                                                    +'<th style="display: none">Id</th>'
+                                                    +'<th>Droga</th>'
+                                                    +'<th>Dosis</th>'
+                                                    +'<th>Acciones</th>'
+                                                +'</tr>'
+                                            +'</thead>'
+                                            +'<tbody></tbody>'
+                                        +'</table>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="item form-group">'
+                                    +'<label class="control-label col-md-3 col-sm-3 col-xs-12"></label>'
+                                    +'<div class="col-md-6 col-sm-6 col-xs-12">'
+                                        +'<button class="btn btn-primary addTratamiento'+nroTratamiento+'">Agregar</button>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="item form-group" style="margin-top: 14px;">'
+                                    +'<label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Observaciones</label>'
+                                    +'<div class="col-md-6 col-sm-6 col-xs-12">'
+                                        +'<textarea id="txtObservacion'+nroTratamiento+'" class="form-control col-md-7 col-xs-12"></textarea>'
+                                    +'</div>'
+                                +'</div>'
+                    + '</div>';
+                $(".tratamientos").append(htmlTratamiento);
             }
 
         })

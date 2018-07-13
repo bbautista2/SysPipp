@@ -22,13 +22,13 @@ namespace SysCliVet.Privado.HistorialClinico {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaHistoria;
         
         /// <summary>
-        /// Control txtNroFicha.
+        /// Control lblNroFicha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroFicha;
+        protected global::System.Web.UI.WebControls.Label lblNroFicha;
         
         /// <summary>
         /// Control chkAgitacion.
@@ -155,6 +155,24 @@ namespace SysCliVet.Privado.HistorialClinico {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPresunDefin;
+        
+        /// <summary>
+        /// Control txtFechaTrat.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaTrat;
+        
+        /// <summary>
+        /// Control txtObservacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtObservacion;
         
         /// <summary>
         /// Control btnGuardarHistoria.

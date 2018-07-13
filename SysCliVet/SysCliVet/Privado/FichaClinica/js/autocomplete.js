@@ -916,6 +916,7 @@
 				$("input[id$=txtApellidos]").val(suggestion.value.Apellidos);
 				$("input[id$=txtFechaNacPro]").val(suggestion.value.FechaNacimiento);
 				$("input[id$=txtDireccion]").val(suggestion.value.Direccion);
+				$("input[id$=txtCelular]").val(suggestion.value.Celular);
 				$("input[id$=txtTelefono]").val(suggestion.value.Telefono);
 				$("input[id$=txtEmail]").val(suggestion.value.Email);
 				that.el.val(that.currentValue);

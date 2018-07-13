@@ -4,16 +4,12 @@ using CapaLibreria.General;
 using CapaNegocio;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SysCliVet.Privado.HistorialClinico
 {
-    public partial class Guardar : System.Web.UI.Page
+    public partial class Guardar : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +24,7 @@ namespace SysCliVet.Privado.HistorialClinico
             if (!String.IsNullOrEmpty(Request.QueryString["nf"]))
             {
                 String id = clsEncriptacion.Desencriptar(Request.QueryString["nf"]);
-                txtNroFicha.Value = id;
+                lblNroFicha.Text = id;
             }
         }
 
@@ -40,7 +36,7 @@ namespace SysCliVet.Privado.HistorialClinico
                 Boolean resultado = false;
                 clsFichaClinica objFicha = new clsFichaClinica
                 {
-                    Id = Convert.ToInt32(txtNroFicha.Value)
+                    NumeroFicha = !String.IsNullOrEmpty(lblNroFicha.Text) ? Convert.ToInt32(lblNroFicha.Text) : 0
                 };
                 //Analisis
                 JavaScriptSerializer srAnalisis = new JavaScriptSerializer();
@@ -76,6 +72,7 @@ namespace SysCliVet.Privado.HistorialClinico
                     Descarte = txtDescarte.Value,
                     Resultados = txtResultado.Value,
                     PresuntivoDefinitivo = txtPresunDefin.Value,
+                    Estado = 1
                 };
                 resultado = clsLogica.Instance.HistoriaClinica_Guardar(ref baseEntidad, objHistoriaClinica);
                 if(resultado)

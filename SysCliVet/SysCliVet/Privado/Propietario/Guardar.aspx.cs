@@ -61,6 +61,7 @@ namespace SysCliVet.Privado.Propietario
             txtNombre.Value = objPropietario.NombreCompleto;
             txtEmail.Value = objPropietario.Email;
             txtDireccion.Value = objPropietario.Direccion;
+            txtCelular.Value = objPropietario.Celular;
             txtTelefono.Value = objPropietario.Telefono;
             txtFechaNac.Value = objPropietario.FechaNacimiento.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
         }           
@@ -87,7 +88,8 @@ namespace SysCliVet.Privado.Propietario
             objPropietario.Email = txtEmail.Value;
             objPropietario.Direccion = txtDireccion.Value;
             objPropietario.Telefono = txtTelefono.Value;
-            objPropietario.FechaNacimiento = Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture);
+            objPropietario.Celular = txtCelular.Value;
+            objPropietario.FechaNacimiento = !String.IsNullOrEmpty(txtFechaNac.Value) ? Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture) : DateTime.Now;
 
             try
             {

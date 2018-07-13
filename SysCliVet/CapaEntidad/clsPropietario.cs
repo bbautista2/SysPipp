@@ -12,6 +12,7 @@ namespace CapaEntidad
         public String Apellidos { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public String Direccion { get; set; }
+        public String Celular { get; set; }
         public String Telefono { get; set; }
         public String Email { get; set; }
         public Int32 Dni { get; set; }

@@ -4485,7 +4485,7 @@
     <Content Include="src\vendors\validator\.bower.json" />
     <Content Include="src\vendors\validator\README.md" />
     <Content Include="src\vendors\validator\validator.jquery.json" />
-    <None Include="Properties\PublishProfiles\Kepyor.pubxml" />
+    <None Include="Properties\PublishProfiles\betsy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
