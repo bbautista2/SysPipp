@@ -94,7 +94,6 @@
     <Content Include="src\build\js\custom.min.js" />
     <Content Include="src\build\js\general.js" />
     <Content Include="src\imagenes\default.png" />
-    <Content Include="src\imagenes\mascota\imagenes\99_12062018001800_7046pacienteImagen.png" />
     <Content Include="src\js\custom.js" />
     <Content Include="src\js\helpers\smartresize.js" />
     <Content Include="src\css\style.css" />
@@ -4599,6 +4598,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="src\build\images\" />
+    <Folder Include="src\imagenes\mascota\imagenes\" />
     <Folder Include="src\vendors\echarts\build\" />
     <Folder Include="src\vendors\google-code-prettify\bin\" />
     <Folder Include="src\vendors\pdfmake\build\" />
