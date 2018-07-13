@@ -4,6 +4,7 @@ using CapaLibreria.General;
 using CapaNegocio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 
@@ -57,10 +58,31 @@ namespace SysCliVet.Privado.HistorialClinico
                     }
                 }
 
+                JavaScriptSerializer srTratamientos = new JavaScriptSerializer();
+                List<clsTratamiento> lstTratamientos = new List<clsTratamiento>();
+                tListaTratamientos ListaTratamientos = new tListaTratamientos();
+                lstTratamientos = srTratamientos.Deserialize<List<clsTratamiento>>(hfTratamientos.Value);
+                if (lstTratamientos != null)
+                {
+                    foreach (clsTratamiento item in lstTratamientos)
+                    {
+                        ListaTratamientos.Add(new tTratamiento
+                        {
+                            Id = item.Id,
+                            FechaTratamiento = DateTime.ParseExact(item.SFechaTratamiento.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            Droga = item.Droga,
+                            Dosis = item.Dosis,
+                            Observacion = item.Observacion,
+                            Estado = 1
+                        });
+                    }
+                }
+
                 clsHistoriaClinica objHistoriaClinica = new clsHistoriaClinica
                 {
                     FichaClinica = objFicha,
                     ListaAnalisis = ListaAnalisis,
+                    ListaTratamientos = ListaTratamientos,
                     Fecha = Convert.ToDateTime(txtFechaHistoria.Value),
                     Agitacion = chkAgitacion.Checked,
                     Depresion = chkDepresion.Checked,

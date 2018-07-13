@@ -21,6 +21,7 @@ namespace CapaEntidad
         }
 
         public tListaAnalisis ListaAnalisis { get; set; }
+        public tListaTratamientos ListaTratamientos { get; set; }
 
         public DateTime Fecha;
         public Int32 Temperatura;

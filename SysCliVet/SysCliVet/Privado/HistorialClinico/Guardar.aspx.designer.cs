@@ -157,22 +157,22 @@ namespace SysCliVet.Privado.HistorialClinico {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPresunDefin;
         
         /// <summary>
-        /// Control txtFechaTrat.
+        /// Control txtFechaTrat_1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaTrat;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaTrat_1;
         
         /// <summary>
-        /// Control txtObservacion.
+        /// Control txtObservacion_1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtObservacion;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtObservacion_1;
         
         /// <summary>
         /// Control btnGuardarHistoria.
@@ -200,5 +200,14 @@ namespace SysCliVet.Privado.HistorialClinico {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfAnalisis;
+        
+        /// <summary>
+        /// Control hfTratamientos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTratamientos;
     }
 }
