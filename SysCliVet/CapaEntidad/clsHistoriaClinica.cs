@@ -37,6 +37,7 @@ namespace CapaEntidad
         public String Descarte;
         public String PresuntivoDefinitivo;
         public String Resultados;
+        public Int32 NumeroFicha;
 
     }
 }

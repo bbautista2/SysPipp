@@ -1,6 +1,7 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
 using CapaLibreria.Conexion;
+using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -74,6 +75,46 @@ namespace CapaDatos
                 clsConexion.DisposeCommand(cmd);
             }
             return Resultado;
+        }
+
+        public List<clsHistoriaClinica> ObtenerPorMascotaID(ref clsBaseEntidad baseEntidad, Int32 MascotaID)
+        {
+            SqlCommand cmd = null;
+            List<clsHistoriaClinica> lstObjHistoriaClinica = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("HistoriaClinica_GetByMascotaID", clsConexion.GetConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MascotaID", MascotaID);
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    lstObjHistoriaClinica = new List<clsHistoriaClinica>();
+                    while (dr.Read())
+                    {
+                        lstObjHistoriaClinica.Add(
+                            new clsHistoriaClinica
+                            {
+                                Id = dr.ObtenerValorColumna<Int32>("Id"),
+                                NumeroFicha = dr.ObtenerValorColumna<Int32>("NumeroFicha"),
+                                Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"),
+                                Apetito = dr.ObtenerValorColumna<Int16>("Apetito"),
+                                CondicionCuerpo = dr.ObtenerValorColumna<Int16>("CondicionCuerpo"),
+                                PesoActual = dr.ObtenerValorColumna<String>("PesoActual")
+                            });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lstObjHistoriaClinica = null;
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstObjHistoriaClinica;
         }
 
     }

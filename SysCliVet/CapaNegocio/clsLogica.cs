@@ -213,6 +213,21 @@ namespace CapaNegocio
             }
             return resultado;
         }
+
+        public List<clsHistoriaClinica> HistoriaClinica_ObtenerPorMascotaId(ref clsBaseEntidad objEntidad, Int32 mascotaId)
+        {
+            List<clsHistoriaClinica> lstObjHistoriaClinica = new List<clsHistoriaClinica>();
+            try
+            {
+                lstObjHistoriaClinica = clsHistoriaClinicaDAO.Instance.ObtenerPorMascotaID(ref objEntidad, mascotaId);
+            }
+            catch (Exception ex)
+            {
+                objEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicacion [2]"));
+            }
+            return lstObjHistoriaClinica;
+        }
+
         #endregion
 
     }
