@@ -27,7 +27,7 @@ namespace CapaDatos
         }
         #endregion
 
-        public clsFichaClinica GetByMascotaID(ref clsBaseEntidad baseEntidad, Int32 MascotaID)
+        public clsFichaClinica ObtenerPorMascotaID(ref clsBaseEntidad baseEntidad, Int32 MascotaID)
         {
             SqlCommand cmd = null;
             clsFichaClinica objFichaClinica = null;
@@ -61,14 +61,30 @@ namespace CapaDatos
                             objFichaClinica.LstVacunas.Add(
                                 new clsVacuna
                                 {
-                                    Id =  dr.ObtenerValorColumna< Int32>("Id"),
-                                    FechaVacunacion = dr.ObtenerValorColumna<DateTime>("FechaVacunacion"),
+                                    Id =  dr.ObtenerValorColumna< Int32>("ID"),
+                                    Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"),
                                     Descripcion = dr.ObtenerValorColumna<String>("Descripcion")
                                                                        
                                 });
                         }
                     }
-            
+
+                    if (dr.NextResult())
+                    {
+                        objFichaClinica.LstDesparasitaciones = new List<clsDesparasitacion>();
+                        while (dr.Read())
+                        {
+                            objFichaClinica.LstDesparasitaciones.Add(
+                                new clsDesparasitacion
+                                {
+                                    Id = dr.ObtenerValorColumna<Int32>("ID"),
+                                    Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"),
+                                    Descripcion = dr.ObtenerValorColumna<String>("Descripcion")
+
+                                });
+                        }
+                    }
+
                 }
             }
             catch (Exception ex)

@@ -2655,6 +2655,7 @@
     <Content Include="src\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-component.js" />
     <Content Include="src\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-defaults.js" />
     <Content Include="src\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-plugin-wrapper.js" />
+    <Content Include="src\vendors\mobile\jquery.ui.touch-punch.min.js" />
     <Content Include="src\vendors\mocha\media\logo.svg" />
     <Content Include="src\vendors\mocha\mocha.css" />
     <Content Include="src\vendors\mocha\mocha.js" />

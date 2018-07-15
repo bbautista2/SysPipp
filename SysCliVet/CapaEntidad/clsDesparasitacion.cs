@@ -16,7 +16,7 @@ namespace CapaEntidad
             set => _FichaClinica = value;
         }
 
-        public String Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public DateTime FechaDesparasitacion { get; set; }
     }
 }

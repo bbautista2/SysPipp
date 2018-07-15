@@ -4,7 +4,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Perfil </h3>
+               <h3>Nro° <asp:Label runat="server" ID="lblNumeroFicha"></asp:Label></h3>
               </div>
 
               <div class="title_right">
@@ -68,38 +68,10 @@
                         </li>
                       </ul>
 
-                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Guardar</a>
                       <br />
 
-                      <!-- start skills -->
-                      <h4>Skills</h4>
-                      <ul class="list-unstyled user_data">
-                        <li>
-                          <p>Web Applications</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                          </div>
-                        </li>
-                        <li>
-                          <p>Website Design</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
-                          </div>
-                        </li>
-                        <li>
-                          <p>Automation & Testing</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
-                          </div>
-                        </li>
-                        <li>
-                          <p>UI / UX</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                          </div>
-                        </li>
-                      </ul>
-                      <!-- end of skills -->
+                     
 
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-12">
@@ -120,7 +92,7 @@
                       <!-- end of user-activity-graph -->
 
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs right" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_vacunas" id="vacunas-tab" role="tab" data-toggle="tab" aria-expanded="true">Vacunas</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_desparacitaciones" role="tab" id="desparacitaciones-tab" data-toggle="tab" aria-expanded="false">Desparacitaciones</a>
@@ -143,13 +115,30 @@
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody>                                            
+                                        <tbody id="tbodyVacunas">                                            
                                         </tbody>
                                   </table>
 
                           </div>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_desparacitaciones" aria-labelledby="profile-tab">
-                                                        
+                          <div role="tabpanel" class="tab-pane fade" id="tab_desparacitaciones" aria-labelledby="profile-tab">                             
+                              <div class="col-md-12 col-sm-12 col-xs-12">
+                                     <button id="addDesp" class="btn btn-primary">Agregar Desparasitación</button>
+                                </div>
+                                            
+                                    <table class="table table-striped table-bordered nowrap" id="tbDesparasitaciones">
+                                        <thead>
+                                            <tr>
+                                                <th style="display: none">Id</th>
+                                                <th>Fecha</th>
+                                                <th>Descripción</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                            
+
 
                           </div>
                          
@@ -357,28 +346,58 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
+      <asp:HiddenField ID="hfListadoVacunas" Value="[]" runat="server" />
+      <asp:HiddenField ID="hfVacunas" runat="server" />
+
     <script type="text/javascript">
         $(function () {
             var tablaVacuna;
             var tableRelation;
-            
+            Fn_ListarVacunas();
             $('[id$=txtFechaNacPro], [id$=txtFechaNacMas]').datetimepicker({
                 format: 'DD/MM/YYYY'
             });
             tablaVacuna = $("#tbVacunas").DataTable({ searching: false, lengthChange: false, info: false });
+            tablaDesparasitacion = $("#tbDesparasitaciones").DataTable({ searching: false, lengthChange: false, info: false });
 
             $("[id$=addVacuna]").on('click', function (e) {
                 e.preventDefault();
                 FN_AgregarFila();
             });
 
-            function FN_AgregarFila() {
+             $("[id$=addDesp]").on('click', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                FN_AgregarFila();
+            });
+
+            function FN_GuardarVacunas() {
+                var obj = { Id: "", Descripcion: "", Fecha: "" };
+                var lista = [];
+                var index = tablaVacuna.rows().data();
+                var leng = tablaVacuna.rows().length;
+                if (leng > 0) {
+                    for (var i = 0; i < index.length; i++) {
+                        var tempRow = $("#tbVacunas tbody tr:eq(" + i + ")");
+                        obj.Id = tempRow.find("td:eq(0)").text() || "0";
+                        obj.Fecha = tempRow.find("td:eq(1)").text();
+                        obj.Nombre = tempRow.find("td:eq(2)").text();
+                        lista[i] = $.extend(true, {}, obj);
+                    }
+                }
+                $("input[id$=hfVacunas]").val(JSON.stringify(lista));
+            }
+
+                function FN_AgregarFila() {
                 var acciones,
                     data,
                     $row,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
 
-                $("#addVacuna").attr({ 'disabled': 'disabled' });
+                if (nombreTabla == "tbVacuna")
+                    $("#addVacuna").attr({ 'disabled': 'disabled' });
+                else
+                    $("#addDesp").attr({ 'disabled': 'disabled' });
 
                 acciones = [
                     '<a href="#" class="btn btn-default btn-xs hidden on-editing save-row"><i class="fa fa-save"></i></a>',
@@ -399,24 +418,35 @@
                 FN_AgregarDataPicker();
             }
 
-            function FN_AgregarDataPicker() {
+                function FN_AgregarDataPicker() {
                 //$('.fechaVacuna').datetimepicker({
                 //    format: 'DD/MM/YYYY',
                 //});
-                $('.fechaVacuna').daterangepicker({
+                if (nombreTabla == "tbVacuna") {
+                    $('.fechaVacuna').daterangepicker({
+                        locale: {
+                            format: 'DD/MM/YYYY'
+                        },
+                        singleDatePicker: true,
+                        singleClasses: "picker_3"
+                    }, function (start, end, label) {
+                    });
+                } else {
+                    $('.fechaDesp').daterangepicker({
                     locale: {
                             format: 'DD/MM/YYYY'
                             },
                     singleDatePicker: true,
                     singleClasses: "picker_3"
-                }, function (start, end, label) {
-                    //console.log(start.toISOString(), end.toISOString(), label);
-                });
+                    }, function (start, end, label) {
+                    });
+                }
+                
             }
 
             function FN_EditarFila($row) {
                 var data,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
 
                 data = tabla.row($row.get(0)).data();
 
@@ -426,8 +456,12 @@
                     if ($this.hasClass('acciones')) {
                         FN_SetAccionesEditar($row);
                     } else {
-                        if (i == 1)
-                            $this.html('<input type="text" class="form-control fechaVacuna" value="' + data[i] + '"/>');
+                        if (i == 1) {
+                            if (nombreTabla == "tbVacuna")
+                                $this.html('<input type="text" class="form-control fechaVacuna" value="' + data[i] + '"/>');
+                            else
+                                $this.html('<input type="text" class="form-control fechaDesp" value="' + data[i] + '"/>');
+                        }                            
                         else
                             $this.html('<input type="text" class="form-control input-block" value="' + data[i] + '"/>');
                     }
@@ -448,7 +482,7 @@
                 var $acciones,
                     i,
                     data,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
 
                 if ($row.hasClass('adding')) {
                     FN_EliminarFila($row);
@@ -467,16 +501,19 @@
             }
 
             function FN_EliminarFila($row) {
-                var tabla = tablaVacuna;
+                var tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
                 if ($row.hasClass('adding')) {
-                    $("#addVacuna").removeAttr('disabled');
+                    if (nombreTabla == "tbVacuna")
+                        $("#addVacuna").removeAttr('disabled');
+                    else
+                        $("#addDesp").removeAttr('disabled');
                 }
                 tabla.row($row.get(0)).remove().draw();
             }
 
             function FN_GuardarFila($row) {
                 var $acciones,
-                    tabla = tablaVacuna;
+                    tabla = nombreTabla == "tbVacuna" ? tablaVacuna : tablaDesparasitacion;
                 values = [];
                 var returnval = true;
                 var tdid;
@@ -521,7 +558,10 @@
                 }
                 tabla.draw();
                 if ($row.hasClass('adding')) {
-                    $("#addVacuna").removeAttr('disabled');
+                    if (nombreTabla == "tbVacuna")
+                        $("#addVacuna").removeAttr('disabled');
+                    else
+                        $("#addDesp").removeAttr('disabled');
                     $row.removeClass('adding');
                 }
             }
@@ -549,62 +589,60 @@
                     $(".bs-example-modal-sm").modal("hide");
                 });
             });
+             $("#tbDesparasitaciones").on('click', 'a.cancel-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                FN_CancelarFila($(this).closest('tr'));
+            });
+            $("#tbDesparasitaciones").on('click', 'a.edit-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                FN_EditarFila($(this).closest('tr'));
+                FN_AgregarDataPicker();
+            });
+            $("#tbDesparasitaciones").on('click', 'a.save-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                FN_GuardarFila($(this).closest('tr'));
+            });
+            $("#tbDesparasitaciones").on('click', 'a.remove-row', function (e) {
+                e.preventDefault();
+                nombreTabla = "tbDesp";
+                $(".bs-example-modal-sm").modal("show");
+                var $row = $(this).closest('tr');
+                $('#Confirmar').on('click', function (e) {
+                    e.preventDefault();
+                    FN_EliminarFila($row);
+                    $(".bs-example-modal-sm").modal("hide");
+                });
+            });
 
 
         })
+            function Fn_ListarVacunas() {
+            var object = {};
+            object.items = ($("input[type=hidden][id$=hfListadoVacunas]").val() != "" && $("input[type=hidden][id$=hfListadoVacunas]").val() != undefined) ? $.parseJSON($("input[type=hidden][id$=hfListadoVacunas]").val()) : "[]";
+            var items = fn_CargarPlantilla("datatable-vacunas", object);
+            $("[id$=tbodyVacunas]").append(items);
+            
+        }
 
-           function Fn_ConstruirDatatable(data, idtable, idTemplate) {
-                    var glancedata = data == '' ? '{}' : data;
-                    //console.log(glancedata);
-                    try {
-
-                        var object = {};
-                        object.request = JSON.parse(glancedata);
-                        //var len = obj.length;
-                        var item = fn_LoadTemplates(idTemplate, object)
-
-                        $("#" + idtable + " tbody").html(item);
-                        if (idtable == "tbVacunas") {
-                            tableRelation = $("#" + idtable).DataTable();
-                        } 
-
-                        $('#all').click(function () {
-                            $(':checkbox', table.rows().nodes()).prop('checked', this.checked);
-                            if ($(this).is(":checked")) $("#" + idtable + " tbody tr").addClass('selected');
-                            else $("#" + idtable + " tbody tr").removeClass('selected');
-                        });
-                        $("#" + idtable + " tbody").on('change', 'input[type="checkbox"]', function () {
-                            var row = $(this).closest("tr")
-                            if ($(row).hasClass('selected')) {
-                                $(row).removeClass('selected');
-                            }
-                            else {
-                                //        tableTask.$('tr.selected').removeClass('selected');
-                                $(row).addClass('selected');
-                            }
-                        });
-                        $(".datatables-header").hide();
-                        $(".datatables-footer").hide();
-                    }
-                    catch (e) {
-                        fn_message('e', 'An error occurred while loading data...');
-                    }
-                }
 
     </script>
 
     <script type="text/x-handlebars-template" id="datatable-vacunas">
-        {{# each request}}
+        {{# each items}}
             <tr class="editable">
-                <td style="display: none;" id='id_value'>{{Id}}</td>
-                <td>{{FechaVacunacion}}</td>  
-                <td>{{Descripcion}}</td>            
-                <td class="actions">
-                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-					    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-					    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-					    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                </td>                          
+                <td style="display: none;" id='id_value'>{{id}}</td>
+                <td>{{fecha}}</td>  
+                <td>{{descripcion}}</td>            
+                <td class="acciones">
+                    <a href="#" class="btn btn-default btn-xs hidden on-editing save-row"><i class="fa fa-save"></i></a> 
+                    <a href="#" class="btn btn-default btn-xs hidden on-editing cancel-row"><i class="fa fa-times"></i></a> 
+                    <a href="#" class="btn btn-default btn-xs on-default edit-row"><i class="fa fa-pencil"></i></a> 
+                    <a href="#" class="btn btn-default btn-xs on-default remove-row"><i class="fa fa-trash-o"></i></a>
+
+                </td>                         
             </tr>
         {{/each}}
     </script>
