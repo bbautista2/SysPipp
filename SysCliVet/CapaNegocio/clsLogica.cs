@@ -38,12 +38,12 @@ namespace CapaNegocio
                     String message = String.Empty;
                     if (objUsuario != null)
                     {
-                        if(objUsuario.Estado == (Int32)EnumEstadoUsuario.Inactive)
+                        if (objUsuario.Estado == (Int32)EnumEstadoUsuario.Inactive)
                             baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Tu cuenta está inactiva"));
                     }
                     else
                         baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Usuario y/o contraseña inválidos"));
-                }else
+                } else
                     baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Ingresa tu Usuario y contraseña"));
 
             }
@@ -108,7 +108,7 @@ namespace CapaNegocio
             try
             {
                 objPropietario = clsPropietarioDAO.Instance.porID(ref baseEntidad, id);
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
             }
             return objPropietario;
@@ -119,7 +119,7 @@ namespace CapaNegocio
             Boolean resultado = false;
             try
             {
-                resultado = clsPropietarioDAO.Instance.Guardar(ref baseEntidad, objPropietario);               
+                resultado = clsPropietarioDAO.Instance.Guardar(ref baseEntidad, objPropietario);
             }
             catch (Exception ex)
             {
@@ -185,6 +185,17 @@ namespace CapaNegocio
                 baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
             }
             return resultado;
+        }
+
+        public clsFichaClinica FichaClinica_ObtenerPorMascotaId(ref clsBaseEntidad objEntidad,Int32 mascotaId) {
+            clsFichaClinica objFichaClinica = new clsFichaClinica();
+            try {
+                objFichaClinica = clsFichaClinicaDAO.Instance.ObtenerPorMascotaID(ref objEntidad,mascotaId);
+
+            } catch(Exception ex) {
+                objEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex,"Ha ocurrido un error en la aplicacion [2]"));
+            }
+            return objFichaClinica;
         }
         #endregion
 

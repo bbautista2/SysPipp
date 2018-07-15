@@ -13,6 +13,15 @@ namespace SysCliVet.Privado.Mascota {
     public partial class Ver {
         
         /// <summary>
+        /// Control lblNumeroFicha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumeroFicha;
+        
+        /// <summary>
         /// Control ImgFotoMascota.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,23 @@ namespace SysCliVet.Privado.Mascota {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEdadMascota;
+        
+        /// <summary>
+        /// Control hfListadoVacunas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfListadoVacunas;
+        
+        /// <summary>
+        /// Control hfVacunas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfVacunas;
     }
 }

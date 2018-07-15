@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -30,10 +31,33 @@ namespace SysCliVet.Privado.Mascota
                 {
                     clsBaseEntidad baseEntidad = new clsBaseEntidad();
                     clsMascota objMascota = new clsMascota();
+                    clsFichaClinica objFichaClinica = new clsFichaClinica();
+                    List<Object> lstVacunas = new List<Object>();
                     objMascota = clsLogica.Instance.Mascota_PorId(ref baseEntidad, Convert.ToInt32(id));
+                    objFichaClinica = clsLogica.Instance.FichaClinica_ObtenerPorMascotaId(ref baseEntidad, Convert.ToInt32(id));
+
+                    foreach (clsVacuna vacuna in objFichaClinica.LstVacunas)
+                    {
+                        lstVacunas.Add(new {
+                            id = vacuna.Id,
+                            fecha = vacuna.Fecha.ToStringDate(),
+                            nombre = vacuna.Nombre,
+                            descripcion = vacuna.Descripcion                            
+                        });                        
+                    }
+                    
+                    hfListadoVacunas.Value = (new JavaScriptSerializer()).Serialize(lstVacunas); 
                     Mascota_MostrarInformacion(objMascota);
+                    FichaClinica_MostrarInformacion(objFichaClinica);
+
+
                 }
             }
+        }
+
+        private void FichaClinica_MostrarInformacion(clsFichaClinica objFichaClinica)
+        {
+            lblNumeroFicha.Text = objFichaClinica.NumeroFicha.ToString();
         }
 
         private void Mascota_MostrarInformacion(clsMascota objMascota) {
