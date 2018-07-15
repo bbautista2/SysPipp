@@ -38,6 +38,8 @@ namespace CapaDatos
                 };
                 if (objHistoriaClinica.ListaAnalisis.Count > 0)
                     cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_ANALISIS", Value = objHistoriaClinica.ListaAnalisis, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_ANALISIS" });
+                if (objHistoriaClinica.ListaTratamientos.Count > 0)
+                    cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_TRATAMIENTO", Value = objHistoriaClinica.ListaTratamientos, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_TRATAMIENTO" });
                 //Datos Historia Clínica
                 SqlParameter outputId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
                 outputId.Direction = ParameterDirection.Output;
