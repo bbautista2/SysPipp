@@ -53,6 +53,7 @@ namespace SysCliVet.Privado.HistorialClinico
                             Id = item.Id,
                             HistoriaClinicaId = 0,
                             TipoAnalisisId = item.TipoId,
+                            Descripcion = item.Descripcion,
                             Estado = 1
                         });
                     }
@@ -83,9 +84,11 @@ namespace SysCliVet.Privado.HistorialClinico
                     FichaClinica = objFicha,
                     ListaAnalisis = ListaAnalisis,
                     ListaTratamientos = ListaTratamientos,
-                    Fecha = Convert.ToDateTime(txtFechaHistoria.Value),
+                    Fecha = DateTime.ParseExact(txtFechaHistoria.Value, "dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture),
                     Agitacion = chkAgitacion.Checked,
+                    AgitacionDescripcion = txtAgitacionDescripcion.Value,
                     Depresion = chkDepresion.Checked,
+                    DepresionDescripcion = txtDepresionDescripcion.Value,
                     Apetito = rbApBueno.Checked ? (Int16)EnumApetito.Bueno : rbApMalo.Checked ? (Int16)EnumApetito.Malo : rbApNormal.Checked ? (Int16)EnumApetito.Normal : (Int16)0,
                     CondicionCuerpo = rbCCNormal.Checked ? (Int16)EnumCC.Normal : rbCCObeso.Checked ? (Int16)EnumCC.Obeso : rbCCCaquesico.Checked ? (Int16)EnumCC.Caquesico : (Int16)0,
                     PesoActual = txtPeso.Value,

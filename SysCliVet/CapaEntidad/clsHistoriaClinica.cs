@@ -26,7 +26,9 @@ namespace CapaEntidad
         public DateTime Fecha;
         public Int32 Temperatura;
         public Boolean Agitacion;
+        public String AgitacionDescripcion;
         public Boolean Depresion;
+        public String DepresionDescripcion;
         public Int16 Apetito;
         public Int16 CondicionCuerpo;
         public String PesoActual;

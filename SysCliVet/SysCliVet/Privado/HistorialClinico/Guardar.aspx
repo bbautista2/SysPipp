@@ -62,17 +62,23 @@
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
                                 </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-md-2 col-sm-6 col-xs-12">
                                     <input type="checkbox" id="chkAgitacion" class="flat" runat="server">
                                     Agitación
+                                </div>                                
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input id="txtAgitacionDescripcion" runat="server" class="form-control col-md-7 col-xs-12" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
                                 </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-md-2 col-sm-6 col-xs-12">
                                     <input type="checkbox" id="chkDepresion" class="flat" runat="server">
                                     Depresión
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input id="txtDepresionDescripcion" runat="server" class="form-control col-md-7 col-xs-12" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -153,49 +159,67 @@
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
                                 </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-md-2 col-sm-6 col-xs-12">
                                     <input type="checkbox" id="chkHemo" class="flat chkAnalisis" value="1">
                                     Hemograma
                                 </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input class="form-control col-md-7 col-xs-12 txtDescripcion" type="text">
+                                </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
                                 </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-md-2 col-sm-6 col-xs-12">
                                     <input type="checkbox" id="chkBio" class="flat chkAnalisis" value="2">
                                     Bioquímica
                                 </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input class="form-control col-md-7 col-xs-12 txtDescripcion" type="text">
+                                </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
                                 </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-md-2 col-sm-6 col-xs-12">
                                     <input type="checkbox" id="chkUro" class="flat chkAnalisis" value="3">
                                     Uroanálisis
                                 </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input class="form-control col-md-7 col-xs-12 txtDescripcion" type="text">
+                                </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
                                 </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-md-2 col-sm-6 col-xs-12">
                                     <input type="checkbox" id="chkRX" class="flat chkAnalisis" value="4">
                                     RX
                                 </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
-                                </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <input type="checkbox" id="chkEco" class="flat chkAnalisis" value="5">
-                                    Eco
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input class="form-control col-md-7 col-xs-12 txtDescripcion" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
                                 </label>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="col-md-2 col-sm-6 col-xs-12">
+                                    <input type="checkbox" id="chkEco" class="flat chkAnalisis" value="5">
+                                    Eco
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input class="form-control col-md-7 col-xs-12 txtDescripcion" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="">
+                                </label>
+                                <div class="col-md-2 col-sm-6 col-xs-12">
                                     <input type="checkbox" id="chkCito" class="flat chkAnalisis" value="6">
                                     Citología
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <input class="form-control col-md-7 col-xs-12 txtDescripcion" type="text">
                                 </div>
                             </div>
 
@@ -364,6 +388,7 @@
                 for (var i = 0; i < elementos.length; i++) {
                     obj.Id = "0";
                     obj.TipoId = $(elementos[i]).val();
+                    obj.Descripcion = $(elementos[i]).closest(".form-group").find(".txtDescripcion").val();
                     lista[i] = $.extend(true, {}, obj);
                 }
                 $("input[id$=hfAnalisis]").val(JSON.stringify(lista));
@@ -473,7 +498,7 @@
         function FN_EliminarFila($row, tablaTratamiento, nroTratamiento) {
             var tabla = tablaTratamiento;
             if ($row.hasClass('adding')) {
-                $("#btnAddTrat_"+nroTratamiento).removeAttr('disabled');
+                $("#btnAddTrat_" + nroTratamiento).removeAttr('disabled');
             }
             tabla.row($row.get(0)).remove().draw();
         }
@@ -573,7 +598,7 @@
                     var length = tabla.rows().length;
                     if (length > 0) {
                         for (var j = 0; j < index.length; j++) {
-                            var tempRow = $("#tbTratamiento_"+i+" tbody tr:eq(" + j + ")");
+                            var tempRow = $("#tbTratamiento_" + i + " tbody tr:eq(" + j + ")");
                             obj.Id = tempRow.find("td:eq(0)").text() || "0";
                             obj.SFechaTratamiento = $("input[id$=txtFechaTrat_" + i + "]").val();
                             obj.Droga = tempRow.find("td:eq(1)").text();
@@ -584,7 +609,7 @@
                         }
                     }
                 }
-                
+
             }
 
             $("input[id$=hfTratamientos]").val(JSON.stringify(lista));
@@ -606,7 +631,7 @@
         function FN_EditarFilaTra(e) {
             var nroTratamiento = $(e).attr("data-numero");
             var tablaTratamiento = $("#tbTratamiento_" + nroTratamiento).DataTable();
-            FN_EditarFila($(e).closest('tr'),tablaTratamiento, nroTratamiento);
+            FN_EditarFila($(e).closest('tr'), tablaTratamiento, nroTratamiento);
         }
 
         function FN_EliminarFilaTra(e) {
@@ -616,7 +641,7 @@
             var $row = $(e).closest('tr');
             $('#Confirmar').on('click', function (e) {
                 e.preventDefault();
-                FN_EliminarFila($row,tablaTratamiento, nroTratamiento);
+                FN_EliminarFila($row, tablaTratamiento, nroTratamiento);
                 $(".bs-example-modal-sm").modal("hide");
             });
         }

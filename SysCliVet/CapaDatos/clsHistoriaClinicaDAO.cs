@@ -47,7 +47,9 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@FichaClinicaID", objHistoriaClinica.FichaClinica.NumeroFicha);
                 cmd.Parameters.AddWithValue("@Fecha", objHistoriaClinica.Fecha);
                 cmd.Parameters.AddWithValue("@Agitacion", objHistoriaClinica.Agitacion);
+                cmd.Parameters.AddWithValue("@AgitacionDescripcion", objHistoriaClinica.AgitacionDescripcion);
                 cmd.Parameters.AddWithValue("@Depresion", objHistoriaClinica.Depresion);
+                cmd.Parameters.AddWithValue("@DepresionDescripcion", objHistoriaClinica.DepresionDescripcion);
                 cmd.Parameters.AddWithValue("@Apetito", objHistoriaClinica.Apetito);
                 cmd.Parameters.AddWithValue("@CondicionCuerpo", objHistoriaClinica.CondicionCuerpo);
                 cmd.Parameters.AddWithValue("@PesoActual", objHistoriaClinica.PesoActual);

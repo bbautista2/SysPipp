@@ -40,6 +40,15 @@ namespace SysCliVet.Privado.HistorialClinico {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkAgitacion;
         
         /// <summary>
+        /// Control txtAgitacionDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAgitacionDescripcion;
+        
+        /// <summary>
         /// Control chkDepresion.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace SysCliVet.Privado.HistorialClinico {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkDepresion;
+        
+        /// <summary>
+        /// Control txtDepresionDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDepresionDescripcion;
         
         /// <summary>
         /// Control rbApBueno.

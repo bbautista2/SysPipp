@@ -84,6 +84,7 @@ namespace CapaEntidad
         public Int32 HistoriaClinicaId { get; set; }
         public Int16 TipoAnalisisId { get; set; }
         public Int16 Estado { get; set; }
+        public String Descripcion { get; set; }
     }
 
     [Serializable]
@@ -94,16 +95,17 @@ namespace CapaEntidad
             SqlDataRecord ret = new SqlDataRecord(
                 new SqlMetaData("Id", SqlDbType.Int),
                 new SqlMetaData("HistoriaClinicaID", SqlDbType.Int),
+                new SqlMetaData("Descripcion", SqlDbType.NVarChar, 100),
                 new SqlMetaData("TipoAnalisisId", SqlDbType.SmallInt),
                 new SqlMetaData("Estado", SqlDbType.SmallInt)
-
                 );
             foreach (tAnalisis data in this)
             {
                 ret.SetInt32(0, data.Id);
                 ret.SetInt32(1, data.HistoriaClinicaId);
-                ret.SetInt16(2, data.TipoAnalisisId);
-                ret.SetInt16(3, data.Estado);
+                ret.SetString(2, data.Descripcion);
+                ret.SetInt16(3, data.TipoAnalisisId);
+                ret.SetInt16(4, data.Estado);
                 yield return ret;
             }
         }
