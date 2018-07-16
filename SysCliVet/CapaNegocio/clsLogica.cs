@@ -228,6 +228,20 @@ namespace CapaNegocio
             return lstObjHistoriaClinica;
         }
 
+        public clsHistoriaClinica HistoriaClinica_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            clsHistoriaClinica objHistoria = new clsHistoriaClinica();
+            try
+            {
+                objHistoria = clsHistoriaClinicaDAO.Instance.porID(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return objHistoria;
+        }
+
         #endregion
 
     }

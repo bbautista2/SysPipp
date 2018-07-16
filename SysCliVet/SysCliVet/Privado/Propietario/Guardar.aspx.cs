@@ -3,16 +3,12 @@ using CapaLibreria.Base;
 using CapaLibreria.General;
 using CapaNegocio;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SysCliVet.Privado.Propietario
 {
-    public partial class Guardar : System.Web.UI.Page
+    public partial class Guardar : Page
     {
 
         public Int32 vsId
