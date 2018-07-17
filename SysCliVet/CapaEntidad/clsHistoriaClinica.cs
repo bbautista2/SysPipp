@@ -21,7 +21,28 @@ namespace CapaEntidad
         }
 
         public tListaAnalisis ListaAnalisis { get; set; }
+        List<clsAnalisis> lstAnalisis;
+        public List<clsAnalisis> LstAnalisis
+        {
+            get
+            {
+                lstAnalisis = lstAnalisis ?? new List<clsAnalisis>();
+                return lstAnalisis;
+            }
+            set => lstAnalisis = value;
+        }
+
         public tListaTratamientos ListaTratamientos { get; set; }
+        List<clsTratamiento> lstTratamientos;
+        public List<clsTratamiento> LstTratamientos
+        {
+            get
+            {
+                lstTratamientos = lstTratamientos ?? new List<clsTratamiento>();
+                return lstTratamientos;
+            }
+            set => lstTratamientos = value;
+        }
 
         public DateTime Fecha;
         public Int32 Temperatura;
@@ -37,6 +58,7 @@ namespace CapaEntidad
         public String Descarte;
         public String PresuntivoDefinitivo;
         public String Resultados;
+        public Int32 NumeroFicha;
 
     }
 }

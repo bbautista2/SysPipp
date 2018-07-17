@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.HistorialClinico.Guardar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+<style type="text/css">
+    .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate {
+        display: none;
+    }
+</style>
 
     <div class="">
 
@@ -353,7 +359,9 @@
             $('[id$=txtFechaTrat_1]').datetimepicker({
                 format: 'DD/MM/YYYY'
             });
-            tablaTratamiento = $("#tbTratamiento_1").DataTable({ searching: false, lengthChange: false, info: false, paging: false });
+            //tablaTratamiento = $("#tbTratamiento_1").DataTable({ searching: false, lengthChange: false, info: false, paging: false });
+            if ($("input[id$=hfTratamientos]").val() == "")
+                $("#tbTratamiento_1").DataTable();
             $(".sintomas, #tags_2").tagsInput({
                 width: "auto", defaultText: 'Añadir', autocomplete: { selectFirst: true, width: '100px', autoFill: true }, typeahead: {
                     source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
@@ -380,6 +388,108 @@
                     format: 'DD/MM/YYYY'
                 });
             });
+
+            FN_CargarAnalisis();
+            function FN_CargarAnalisis() {
+                var lista = JSON.parse($("input[id$=hfAnalisis]").val());
+
+                if (lista.length > 0) {
+                    for (var i = 0; i < lista.length; i++) {
+                        var tipoId = lista[i].TipoId;
+                        var descripcion = lista[i].Descripcion;
+
+                        switch (tipoId) {
+                            case 1:
+                                $("input[id$=chkHemo]").prop("checked", true);
+                                $("input[id$=chkHemo]").parent().addClass("checked");
+                                $("input[id$=chkHemo]").closest(".form-group").find(".txtDescripcion").val(descripcion);
+                                break;
+                            case 2:
+                                $("input[id$=chkBio]").prop("checked", true);
+                                $("input[id$=chkBio]").parent().addClass("checked");
+                                $("input[id$=chkBio]").closest(".form-group").find(".txtDescripcion").val(descripcion);
+                                break;
+                            case 3:
+                                $("input[id$=chkUro]").prop("checked", true);
+                                $("input[id$=chkUro]").parent().addClass("checked");
+                                $("input[id$=chkUro]").closest(".form-group").find(".txtDescripcion").val(descripcion);
+                                break;
+                            case 4:
+                                $("input[id$=chkRX]").prop("checked", true);
+                                $("input[id$=chkRX]").parent().addClass("checked");
+                                $("input[id$=chkRX]").closest(".form-group").find(".txtDescripcion").val(descripcion);
+                                break;
+                            case 5:
+                                $("input[id$=chkEco]").prop("checked", true);
+                                $("input[id$=chkEco]").parent().addClass("checked");
+                                $("input[id$=chkEco]").closest(".form-group").find(".txtDescripcion").val(descripcion);
+                                break;
+                            case 6:
+                                $("input[id$=chkCito]").prop("checked", true);
+                                $("input[id$=chkCito]").parent().addClass("checked");
+                                $("input[id$=chkCito]").closest(".form-group").find(".txtDescripcion").val(descripcion);
+                                break;
+                        }
+                    }
+
+                }
+            }
+
+            FN_CargarTratamientos();
+            function FN_CargarTratamientos() {
+                var lista = JSON.parse($("input[id$=hfTratamientos]").val());
+
+                if (lista.length > 0) {
+                    var nroTratamiento = 1;
+                    var fecha = lista[0].FechaTratamiento;
+                    var idTabla = "tbTratamiento_"
+                    $("input[id$=txtFechaTrat_" + 1 + "]").val(fecha);
+                    $("textarea[id$=txtObservacion_" + 1 + "]").val(lista[0].Observacion);
+
+                    FN_InsertarDrogasyDosis(idTabla+"1",nroTratamiento,lista[0].Id,lista[0].Droga,lista[0].Dosis);
+                    
+                    for (var i = 1; i < lista.length; i++) {
+                        var id = lista[i].Id;
+                        var droga = lista[i].Droga;
+                        var dosis = lista[i].Dosis;
+                        var fechaTratamiento = lista[i].FechaTratamiento;
+                        var observacion = lista[i].Observacion;
+
+                        if (fechaTratamiento != lista[i - 1].FechaTratamiento) {
+                            nroTratamiento++;
+                            FN_AgregarNuevoTratamiento(nroTratamiento);
+                            $("input[id$=txtFechaTrat_" + nroTratamiento + "]").val(fechaTratamiento);
+                            $("textarea[id$=txtObservacion_" + nroTratamiento + "]").val(observacion);
+                            FN_InsertarDrogasyDosis(idTabla, nroTratamiento, id, droga, dosis);                            
+                        } else {
+                            $("input[id$=txtFechaTrat_" + nroTratamiento + "]").val(fechaTratamiento);
+                            $("textarea[id$=txtObservacion_" + nroTratamiento + "]").val(observacion);
+                            FN_InsertarDrogasyDosis(idTabla, nroTratamiento, id, droga, dosis);
+                        }
+                    }
+
+                    for (var j = 1; j <= nroTratamiento; j++) {
+                        $("#tbTratamiento_" + j).DataTable();
+                    }
+                }
+            }
+
+            function FN_InsertarDrogasyDosis(idTabla, nroTratamiento, id, droga, dosis, fecha, observacion) {
+
+                var items = 
+                        '<tr class="editable">'
+                            +'<td style="display: none;">'+id+'</td>'
+                            +'<td>'+droga+'</td>'
+                            +'<td>'+dosis+'</td>'
+                            +'<td class="acciones">'
+                                +'<a data-numero="' + nroTratamiento + '" onclick="FN_GuardarFilaTra(this)" class="btn btn-default btn-xs hidden on-editing save-row"><i class="fa fa-save"></i></a>'
+                                +'<a data-numero="' + nroTratamiento + '" onclick="FN_CancelarFilaTra(this)" class="btn btn-default btn-xs hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'
+                                +'<a data-numero="' + nroTratamiento + '" onclick="FN_EditarFilaTra(this)" class="btn btn-default btn-xs on-default edit-row"><i class="fa fa-pencil"></i></a>'
+                                +'<a data-numero="' + nroTratamiento + '" onclick="FN_EliminarFilaTra(this)" class="btn btn-default btn-xs on-default remove-row"><i class="fa fa-trash-o"></i></a>'
+                    + '</td>'
+                    + '</tr>';
+                $("#tbTratamiento_" + nroTratamiento + " tbody").append(items);
+            }
 
             function FN_GuardarAnalisis() {
                 var obj = { Id: "", TipoId: "" };
@@ -639,8 +749,8 @@
             var tablaTratamiento = $("#tbTratamiento_" + nroTratamiento).DataTable();
             $("#ModalTratamiento").modal("show");
             var $row = $(e).closest('tr');
-            $('#Confirmar').on('click', function (e) {
-                e.preventDefault();
+            $('#Confirmar').on('click', function (ex) {
+                ex.preventDefault();
                 FN_EliminarFila($row, tablaTratamiento, nroTratamiento);
                 $(".bs-example-modal-sm").modal("hide");
             });

@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace SysCliVet.Privado.Mascota
 {
-    public partial class Ver : System.Web.UI.Page
+    public partial class Ver : Page
     {
 
         public Int32 mascotaId
@@ -50,7 +50,29 @@ namespace SysCliVet.Privado.Mascota
                     Mascota_MostrarInformacion(objMascota);
                     FichaClinica_MostrarInformacion(objFichaClinica);
 
+                    #region Lista Historias
+                    List<clsHistoriaClinica> lstObjHistoria = new List<clsHistoriaClinica>();
+                    List<Object> lstHistoria = new List<object>();
+                    lstObjHistoria = clsLogica.Instance.HistoriaClinica_ObtenerPorMascotaId(ref baseEntidad, Convert.ToInt32(id));
 
+                    if(lstObjHistoria != null && lstObjHistoria.Count > 0)
+                    {
+                        foreach (clsHistoriaClinica historia in lstObjHistoria)
+                        {
+                            lstHistoria.Add(new
+                            {
+                                Id = clsEncriptacion.Encriptar(historia.Id.ToString()),
+                                Fecha = historia.Fecha.ToStringDate(),
+                                NroFicha = historia.NumeroFicha,
+                                Apetito = historia.Apetito == (Int32)EnumApetito.Bueno ? "Bueno" : historia.Apetito == (Int32)EnumApetito.Malo ? "Malo" : "Normal",
+                                CondicionCuerpo = historia.CondicionCuerpo == (Int32)EnumCC.Caquesico ? "Caquesico" : historia.CondicionCuerpo == (Int32)EnumCC.Obeso ? "Obeso" : "Normal",
+                                historia.PesoActual
+                            });
+                        }
+                        hfListadoHistoria.Value = (new JavaScriptSerializer()).Serialize(lstHistoria);
+                    }
+                    
+                    #endregion
                 }
             }
         }

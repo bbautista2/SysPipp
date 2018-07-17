@@ -12,6 +12,12 @@ namespace SysCliVet.Privado.HistorialClinico
 {
     public partial class Guardar : Page
     {
+        public Int32 vsId
+        {
+            get { return ViewState["ID"] != null ? (Int32)ViewState["ID"] : default(Int32); }
+            set { ViewState["ID"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -27,6 +33,80 @@ namespace SysCliVet.Privado.HistorialClinico
                 String id = clsEncriptacion.Desencriptar(Request.QueryString["nf"]);
                 lblNroFicha.Text = id;
             }
+            if (!String.IsNullOrEmpty(Request.QueryString["i"]))
+            {
+                String id = clsEncriptacion.Desencriptar(Request.QueryString["i"]);
+                if (id != String.Empty)
+                {
+                    vsId = Convert.ToInt32(id);
+                    try
+                    {
+                        clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                        clsHistoriaClinica objHistoria = new clsHistoriaClinica();
+                        objHistoria = clsLogica.Instance.HistoriaClinica_PorId(ref baseEntidad, vsId);
+                        MostrarInformacion(objHistoria);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                }
+            }
+        }
+
+        private void MostrarInformacion(clsHistoriaClinica objHistoria)
+        {
+            txtFechaHistoria.Value = objHistoria.Fecha.ToLongStringDate();
+            lblNroFicha.Text = objHistoria.NumeroFicha.ToString();
+            chkAgitacion.Checked = objHistoria.Agitacion;
+            txtAgitacionDescripcion.Value = objHistoria.AgitacionDescripcion;
+            chkDepresion.Checked = objHistoria.Depresion;
+            txtDepresionDescripcion.Value = objHistoria.DepresionDescripcion;
+            rbApBueno.Checked = objHistoria.Apetito == (Int16)EnumApetito.Bueno;
+            rbApMalo.Checked = objHistoria.Apetito == (Int16)EnumApetito.Malo;
+            rbApNormal.Checked = objHistoria.Apetito == (Int16)EnumApetito.Normal;
+            rbCCNormal.Checked = objHistoria.CondicionCuerpo == (Int16)EnumCC.Normal;
+            rbCCObeso.Checked = objHistoria.CondicionCuerpo == (Int16)EnumCC.Obeso;
+            rbCCCaquesico.Checked = objHistoria.CondicionCuerpo == (Int16)EnumCC.Caquesico;
+            txtPeso.Value = objHistoria.PesoActual;
+            txtPesoPerdida.Value = objHistoria.PerdidaPeso;
+            txtSintomas.Value = objHistoria.Sintomas;
+            txtDescarte.Value = objHistoria.Descarte;
+            txtResultado.Value = objHistoria.Resultados;
+            txtPresunDefin.Value = objHistoria.PresuntivoDefinitivo;
+            JavaScriptSerializer sr = new JavaScriptSerializer();
+            List<Object> lstAnalisis = new List<Object>();
+            if (objHistoria.LstAnalisis != null && objHistoria.LstAnalisis.Count > 0)
+            {
+                foreach (clsAnalisis item in objHistoria.LstAnalisis)
+                {
+                    lstAnalisis.Add(new
+                    {
+                        item.Id,
+                        item.TipoId,
+                        item.Descripcion
+                    });
+                }
+            }
+            hfAnalisis.Value = sr.Serialize(lstAnalisis);
+            List<Object> lstTratamientos = new List<Object>();
+            if (objHistoria.LstTratamientos != null && objHistoria.LstTratamientos.Count > 0)
+            {
+                foreach (clsTratamiento item in objHistoria.LstTratamientos)
+                {
+                    lstTratamientos.Add(new
+                    {
+                        item.Id,
+                        FechaTratamiento = item.FechaTratamiento.ToStringDate(),
+                        item.Droga,
+                        item.Dosis,
+                        item.Observacion
+                    });
+                }
+            }
+            hfTratamientos.Value = sr.Serialize(lstTratamientos);
+
         }
 
         protected void btnGuardarHistoria_Click(object sender, EventArgs e)
