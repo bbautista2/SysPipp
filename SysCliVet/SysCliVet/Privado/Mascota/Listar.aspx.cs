@@ -33,7 +33,7 @@ namespace SysCliVet.Privado.Mascota
                 {
                     var Mascota = new
                     {
-                        Id = clsEncriptacion.Encriptar(item["ID"].ToString()),
+                        Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
                         Nombre = item["Nombre"],
                         Propietario = item["Nombre_Propietario"],
                         Progreso = 0,                        

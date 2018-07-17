@@ -71,6 +71,7 @@ namespace SysCliVet.Privado.HistorialClinico
             rbCCCaquesico.Checked = objHistoria.CondicionCuerpo == (Int16)EnumCC.Caquesico;
             txtPeso.Value = objHistoria.PesoActual;
             txtPesoPerdida.Value = objHistoria.PerdidaPeso;
+            txtSintomas.Value = objHistoria.Sintomas;
             txtDescarte.Value = objHistoria.Descarte;
             txtResultado.Value = objHistoria.Resultados;
             txtPresunDefin.Value = objHistoria.PresuntivoDefinitivo;
@@ -96,6 +97,7 @@ namespace SysCliVet.Privado.HistorialClinico
                 {
                     lstTratamientos.Add(new
                     {
+                        item.Id,
                         FechaTratamiento = item.FechaTratamiento.ToStringDate(),
                         item.Droga,
                         item.Dosis,

@@ -606,7 +606,6 @@
                     <a href="#" class="btn btn-default btn-xs hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                     <a href="#" class="btn btn-default btn-xs on-default edit-row"><i class="fa fa-pencil"></i></a>
                     <a href="#" class="btn btn-default btn-xs on-default remove-row"><i class="fa fa-trash-o"></i></a>
-
                 </td>
             </tr>
         {{/each}}
