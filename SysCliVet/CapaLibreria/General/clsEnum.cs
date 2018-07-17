@@ -11,6 +11,7 @@ namespace CapaLibreria.General
 
     }
 
+
     public enum EnumEstadoUsuario
     {
         Inactive = 0,

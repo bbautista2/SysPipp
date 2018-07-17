@@ -57,6 +57,20 @@ namespace CapaNegocio
         #endregion
 
         #region Mascota
+        public List<clsMascota> Mascota_PorNombre(ref clsBaseEntidad baseEntidad, String nombre)
+        {
+            List<clsMascota> lstMascota = new List<clsMascota>();
+            try
+            {
+                lstMascota = clsMascotaDAO.Instance.porNombre(ref baseEntidad, nombre);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstMascota;
+        }
+
         public clsMascota Mascota_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
         {
             clsMascota objMascota = new clsMascota();
@@ -215,5 +229,51 @@ namespace CapaNegocio
         }
         #endregion
 
+        #region TipoCita
+        public List<TipoCita> TipoCita_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<TipoCita> lstTiposCita = new List<TipoCita>();
+            try
+            {
+                lstTiposCita = TipoCitaDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstTiposCita;
+        }
+        #endregion
+
+        #region Cita
+        public List<Cita> Cita_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<Cita> lstCita = new List<Cita>();
+            try
+            {
+                lstCita = CitaDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstCita;
+        }
+
+        public Boolean Cita_Guardar(ref clsBaseEntidad objBase,Cita objCita)
+        {
+            Boolean respuesta = false;
+            try
+            {
+                respuesta = CitaDao.Instance.Guardar(ref objBase,objCita);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return respuesta;
+        }
+
+        #endregion
     }
 }

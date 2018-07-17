@@ -66,26 +66,31 @@
             <h4 class="modal-title" id="myModalLabel">Nueva Cita</h4>
           </div>
           <div class="modal-body">
+              <div id="msjCrearCita"></div>
             <div id="testmodal" style="padding: 5px 20px;">
               <div id="antoform" class="form-horizontal calender" role="form">
                  <div class="form-group">
                   <label class="col-sm-3 control-label">Paciente</label>                     
                   <div class="col-sm-9">
-                   <input type="text" name="autocomplete-custom-append" id="autocomplete-custom-append" class="form-control col-md-10"/>
+                     <input id="txtNombreMascota" runat="server" class="form-control col-md-6 col-xs-6" style="width:80%!important" required="required" type="text" maxlength="8">
+                                    <span class="input-group-btn">
+                     <button id="btnBuscarMascota" type="button" class="btn btn-primary" style="height: 34px;"><i class="fa fa-search"></i></button>
+                                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Tipo Cita</label>
+                  <div class="col-sm-9">
+                  <asp:DropDownList ID="cmbTipoCita" CssClass="form-control" runat="server"></asp:DropDownList>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Descripcion</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                    <textarea class="form-control" style="height:55px;" id="txtDescripcion" name="descr"></textarea>
                   </div>
                 </div>
-                   <div class="form-group">
-                  <label class="col-sm-3 control-label">Descripcion</label>
-                  <div class="col-sm-9">
-                      <select class="js-data-example-ajax"></select>
-                  </div>
-                </div>
+                   
                 
               </div>
             </div>
@@ -112,7 +117,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Paciente</label>
                   <div class="col-sm-9">
-                    <input type="text" name="country" id="autocomplete-custom-append1" class="form-control col-md-10"/>
+                 
                   </div>
                 </div>
                 <div class="form-group">
@@ -142,17 +147,56 @@
 
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
-
+<asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server"> 
+    <asp:HiddenField ID="hfIdMascota" runat="server" />
+    <script src="<%=ResolveUrl("~/Privado/Citas/js/autocomplete-buscarMascota.js") %>"></script>
     <script type="text/javascript">
         $(function () {
-            init_autocomplete1();
-            init_calendar1();
-
+            Fn_Cita_Listar();
+            
+            $("[id$=btnBuscarMascota]").on('click', function (e) {
+                Fn_BuscarMascota();
+            });
         });
 
-           function  init_calendar1() {
+           function Fn_Cita_Listar() {    
 
+                success = function (response) {
+                    var obj = response.d;
+                     init_calendar1(obj);            
+                   
+                }
+
+                error = function (xhr, ajaxOptions, thrownError) {
+                    console.log("colocar mensaje de error");                    
+                };
+
+               FN_LlamarMetodo("Ver.aspx/Cita_Listar", "{}", success, error);
+
+        };
+
+             function Fn_Cita_Guardar(objCita) {    
+
+                success = function (response) {
+                    var obj = response.d;
+                                 
+                   
+                }
+
+                error = function (xhr, ajaxOptions, thrownError) {
+                    console.log("colocar mensaje de error");                    
+                };
+
+                 FN_LlamarMetodo("Ver.aspx/Cita_Guardar", JSON.stringify(objCita), success, error);
+
+        };
+
+        function Fn_Limpiar_CrearCita() {
+            $("[id$=hfIdMascota]").val("");
+
+        }
+
+           function  init_calendar1(object) {
 
 	     			var date = new Date(),
 					d = date.getDate(),
@@ -168,33 +212,46 @@
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay,listMonth'
                    },
-                   defaultView:'agendaDay',
+                   defaultView: 'agendaDay',
+                   ignoreTimezone: false,
                    selectable: true,   
                    longPressDelay: 10,
-				  select: function(start, end, allDay,jsEvent) {
-					$('#fc_create').click();
+                   select: function (start, end, allDay, jsEvent) {
+                    Fn_Limpiar_CrearCita();
+                       $('#fc_create').click();
+
+                      
 
 					started = start;
 					ended = end;
 
-					$(".antosubmit").on("click", function() {
-					  var title = $("#autocomplete-custom-append").val();
-					 
-
+                       $(".antosubmit").on("click", function () {
+                            var mascotaId = $("[id$=hfIdMascota]").val();
+                       var tipoCita = $("[id$=cmbTipoCita]").val();
+                       var motivo = $("[id$=txtDescripcion]").val();
 					  categoryClass = $("#event_type").val();
+                           
+                           var objCita = {
+                               objCita: {
+                                   mascotaId: mascotaId,
+                                   inicio:  moment(started).format("YYYY-MM-DD hh:mm:ss"),
+                                   fin:  moment(ended).format("YYYY-MM-DD hh:mm:ss"),                                 
+                                   tipoCita : tipoCita,
+                                   motivo: motivo}
+                           }
 
-					  if (title) {
-						calendar.fullCalendar('renderEvent', {
-							title: title,
-							start: started,
-							end: ended,
-							allDay: allDay
-						  },
-						  true // make the event "stick"
-						);
-					  }
+                           Fn_Cita_Guardar(objCita);
 
-					  $('#autocomplete-custom-append').val('');
+					 // if (title) {
+						//calendar.fullCalendar('renderEvent', {
+						//	title: title,
+						//	start: started,
+						//	end: ended,
+						//	allDay: allDay
+						//  },
+						//  true // make the event "stick"
+						//);
+					 // }                           			 
 
 					  calendar.fullCalendar('unselect');
 
@@ -218,45 +275,21 @@
 
 					calendar.fullCalendar('unselect');
 				  },
-				  editable: true,
-				  events: [{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				  }, {
-					title: 'Long Event',
-					start: new Date(y, m, d - 5),
-					end: new Date(y, m, d - 2)
-				  }, {
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				  }, {
-					title: 'Lunch',
-					start: new Date(y, m, d + 14, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				  }, {
-					title: 'Birthday Party',
-					start: new Date(y, m, d + 1, 19, 0),
-					end: new Date(y, m, d + 1, 22, 30),
-					allDay: false
-				  }, {
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
-				  }]
+                   editable: true,
+                   events: object
 				});
 
 
 			};
 
-
-
              function Fn_BuscarMascota() {
-                $(".autocomplete-suggestions").remove();
-                FN_LimpiarDatosPropietario();
-                var Dni = $("[id$=txtDni]").val();
+                 $(".autocomplete-suggestions").remove();
+                 
+
+                 $("[id$=btnBuscarMascota]").addClass("btn-loading");
+                 
+                     $("[id$=btnBuscarMascota]").attr("disabled", true);
+                var nombre = $("[id$=txtNombreMascota]").val();
 
                 success = function (response) {
                     var lista = response.d;
@@ -269,18 +302,29 @@
                         });
 
                         // initialize autocomplete with custom appendTo
-                        $('[id$=txtDni]').autocomplete({
+                        $('[id$=txtNombreMascota]').autocomplete({
                             lookup: listaPropietarios
+
+
                         });
-                        setTimeout(function () { $("[id$=txtDni]").trigger('keyup'); }, 1000);
-                    }
+                        setTimeout(function () { $("[id$=txtNombreMascota]").trigger('keyup'); }, 1000);
+                        $("[id$=btnBuscarMascota]").removeClass("btn-loading"); 
+                         $("[id$=btnBuscarMascota]").attr("disabled", false);
+                    } else {
+                        $("[id$=btnBuscarMascota]").removeClass("btn-loading");
+                         $("[id$=btnBuscarMascota]").attr("disabled", false);
+                        FN_Mensaje("i","No hay mascota registrada con ese nombre","msjCrearCita");
+                    }                  
+                   
                 }
 
                 error = function (xhr, ajaxOptions, thrownError) {
                     console.log("colocar mensaje de error");
+                     $("[id$=btnBuscarMascota]").removeClass("btn-loading");
+                     $("[id$=btnBuscarMascota]").attr("disabled", false);
                 };
 
-                FN_LlamarMetodo("Guardar.aspx/ListaPropietariosPorDni", '{dni: "' + Dni + '" }', success, error);
+                FN_LlamarMetodo("Ver.aspx/ListaMascotasPorNombre", '{nombre: "' + nombre + '" }', success, error);
 
             };
 

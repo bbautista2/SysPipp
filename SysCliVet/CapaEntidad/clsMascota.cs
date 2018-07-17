@@ -31,6 +31,9 @@ namespace CapaEntidad
         public String MarcaDistintiva { get; set; }
         public String Foto { get; set; }
 
+        public String obtenerNombrePropietario() {
+            return Nombre + "-" + Propietario.Nombre + "," + Propietario.Apellidos; 
+        }
 
 
     }

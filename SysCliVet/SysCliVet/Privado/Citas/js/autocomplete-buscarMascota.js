@@ -10,6 +10,7 @@
 /*global define, window, document, jQuery, exports, require */
 
 // Expose plugin as an AMD module if AMD loader is present:
+// Expose plugin as an AMD module if AMD loader is present:
 (function (factory) {
 	'use strict';
 	if (typeof define === 'function' && define.amd) {
@@ -82,7 +83,7 @@
 				triggerSelectOnValidInput: true,
 				preventBadQueries: true,
 				lookupFilter: function (suggestion, originalQuery, queryLowerCase) {
-					return suggestion.value.Dni.indexOf(queryLowerCase) !== -1;
+					return suggestion.value.nombre.toLowerCase().indexOf(queryLowerCase) !== -1;
 				},
 				paramName: 'query',
 				transformResult: function (response) {
@@ -129,7 +130,7 @@
 	Autocomplete.formatResult = function (suggestion, currentValue) {
 		var pattern = '(' + utils.escapeRegExChars(currentValue) + ')';
 
-		return suggestion.value.Dni + ' | ' + suggestion.value.Nombre
+		return suggestion.value.nombre
 			.replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>')
 			.replace(/&/g, '&amp;')
 			.replace(/</g, '&lt;')
@@ -202,7 +203,7 @@
 			that.el.on('keyup.autocomplete', function (e) { that.onKeyUp(e); });
 			//that.el.on('blur.autocomplete', function () { that.onBlur(); });
 			//that.el.on('focus.autocomplete', function () { that.onFocus(); });
-			that.el.on('change.autocomplete', function (e) { that.onKeyUp(e); });
+			//that.el.on('change.autocomplete', function (e) { that.onKeyUp(e); });
 			//that.el.on('input.autocomplete', function (e) { that.onKeyUp(e); });
 		},
 
@@ -498,7 +499,7 @@
 		isExactMatch: function (query) {
 			var suggestions = this.suggestions;
 
-			return (suggestions.length === 1 && suggestions[0].value.Dni === query);
+			return (suggestions.length === 1 && suggestions[0].value.nombre === query);
 		},
 
 		getQuery: function (value) {
@@ -746,7 +747,7 @@
 			}
 
 			$.each(that.suggestions, function (i, suggestion) {
-				var foundMatch = suggestion.value.Dni.indexOf(value) === 0;
+				var foundMatch = suggestion.value.nombre.indexOf(value) === 0;
 				if (foundMatch) {
 					bestMatch = suggestion;
 				}
@@ -760,7 +761,7 @@
 			var hintValue = '',
 				that = this;
 			if (suggestion) {
-				hintValue = that.currentValue + suggestion.value.Dni.substr(that.currentValue.length);
+				hintValue = that.currentValue + suggestion.value.nombre.substr(that.currentValue.length);
 			}
 			if (that.hintValue !== hintValue) {
 				that.hintValue = hintValue;
@@ -908,17 +909,17 @@
 				onSelectCallback = that.options.onSelect,
 				suggestion = that.suggestions[index];
 
-			that.currentValue = that.getValue(suggestion.value.Dni);
+			that.currentValue = that.getValue(suggestion.value.nombre);
 
-			//if (that.currentValue !== that.el.val() && !that.options.preserveInput) {
-				$("input[id$=hfIdPropietario]").val(suggestion.value.Id);
-				$("input[id$=txtNombrePro]").val(suggestion.value.Nombre);
-				$("input[id$=txtApellidos]").val(suggestion.value.Apellidos);
-				$("input[id$=txtFechaNacPro]").val(suggestion.value.FechaNacimiento);
-				$("input[id$=txtDireccion]").val(suggestion.value.Direccion);
-				$("input[id$=txtCelular]").val(suggestion.value.Celular);
-				$("input[id$=txtTelefono]").val(suggestion.value.Telefono);
-				$("input[id$=txtEmail]").val(suggestion.value.Email);
+			////if (that.currentValue !== that.el.val() && !that.options.preserveInput) {
+			//	$("input[id$=hfIdPropietario]").val(suggestion.value.Id);
+			//	$("input[id$=txtNombrePro]").val(suggestion.value.Nombre);
+			//	$("input[id$=txtApellidos]").val(suggestion.value.Apellidos);
+			//	$("input[id$=txtFechaNacPro]").val(suggestion.value.FechaNacimiento);
+			//	$("input[id$=txtDireccion]").val(suggestion.value.Direccion);
+			//	$("input[id$=txtCelular]").val(suggestion.value.Celular);
+			//	$("input[id$=txtTelefono]").val(suggestion.value.Telefono);
+			    $("[id$=hfIdMascota]").val(suggestion.value.id);
 				that.el.val(that.currentValue);
 			//}
 

@@ -59,6 +59,42 @@ namespace CapaDatos
         #endregion
 
         #region Crud
+        public List<clsMascota> porNombre(ref clsBaseEntidad baseEntidad, String nombre)
+        {
+            List<clsMascota> lstMascota = new List<clsMascota>();
+            clsMascota objMascota;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("Mascota_ObtenerPorNombre", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        objMascota = new clsMascota();
+                        objMascota = SetEntidad(dr);
+                        lstMascota.Add(objMascota);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {               
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstMascota;
+        }
+
         public clsMascota porID(ref clsBaseEntidad baseEntidad, Int32 id)
         {
             clsMascota Mascota = null;

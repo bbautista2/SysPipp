@@ -45,12 +45,12 @@
     <Compile Include="clsMascota.cs" />
     <Compile Include="clsTipoTabla.cs" />
     <Compile Include="clsVacuna.cs" />
-    <Compile Include="clsCita.cs" />
+    <Compile Include="Cita.cs" />
     <Compile Include="clsFichaClinica.cs" />
     <Compile Include="clsHistorialFotografico.cs" />
     <Compile Include="clsPropietario.cs" />
     <Compile Include="clsRecordatorio.cs" />
-    <Compile Include="clsTipoCita.cs" />
+    <Compile Include="TipoCita.cs" />
     <Compile Include="clsTratamiento.cs" />
     <Compile Include="clsUsuario.cs" />
     <Compile Include="clsHistoriaClinica.cs" />

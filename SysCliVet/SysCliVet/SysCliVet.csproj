@@ -73,6 +73,7 @@
   <ItemGroup>
     <Content Include="FileUpload.ashx" />
     <None Include="packages.config" />
+    <Content Include="Privado\Citas\js\autocomplete-buscarMascota.js" />
     <Content Include="Privado\Citas\Ver.aspx" />
     <Content Include="Privado\FichaClinica\Guardar.aspx" />
     <Content Include="Privado\FichaClinica\js\autocomplete.js" />
@@ -90,6 +91,7 @@
     <Content Include="src\build\css\custom-purple.css" />
     <Content Include="src\build\css\custom-purple.min.css" />
     <Content Include="src\build\css\General.css" />
+    <Content Include="src\build\images\loading2.gif" />
     <Content Include="src\build\js\custom.js" />
     <Content Include="src\build\js\custom.min.js" />
     <Content Include="src\build\js\general.js" />
@@ -4598,7 +4600,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="src\build\images\" />
     <Folder Include="src\imagenes\mascota\imagenes\" />
     <Folder Include="src\vendors\echarts\build\" />
     <Folder Include="src\vendors\google-code-prettify\bin\" />
