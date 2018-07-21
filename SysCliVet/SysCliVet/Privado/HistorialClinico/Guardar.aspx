@@ -313,7 +313,7 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <a type="submit" class="btn btn-default" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
+                                    <a type="submit" class="btn btn-default hide" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
                                     <asp:Button runat="server" ID="btnGuardarHistoria" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardarHistoria_Click" />
                                 </div>
                             </div>
@@ -353,6 +353,9 @@
     <script type="text/javascript">
         $(function () {
             var tablaTratamiento;
+            var nroTratamientoEliminar;
+            var tablaTratamientoEliminar;
+            var $rowEliminar;
             $('#FechaHistoria').datetimepicker({
                 format: 'DD/MM/YYYY hh:mm A'
             });
@@ -389,7 +392,8 @@
                 });
             });
 
-            FN_CargarAnalisis();
+            if ($("input[id$=hfAnalisis]").val() != "")
+                FN_CargarAnalisis();
             function FN_CargarAnalisis() {
                 var lista = JSON.parse($("input[id$=hfAnalisis]").val());
 
@@ -435,7 +439,9 @@
                 }
             }
 
-            FN_CargarTratamientos();
+            if ($("input[id$=hfTratamientos]").val() != "")
+                FN_CargarTratamientos();
+
             function FN_CargarTratamientos() {
                 var lista = JSON.parse($("input[id$=hfTratamientos]").val());
 
@@ -745,13 +751,14 @@
         }
 
         function FN_EliminarFilaTra(e) {
-            var nroTratamiento = $(e).attr("data-numero");
-            var tablaTratamiento = $("#tbTratamiento_" + nroTratamiento).DataTable();
+            nroTratamientoEliminar = $(e).attr("data-numero");
+            tablaTratamientoEliminar = $("#tbTratamiento_" + nroTratamientoEliminar).DataTable();
             $("#ModalTratamiento").modal("show");
-            var $row = $(e).closest('tr');
-            $('#Confirmar').on('click', function (ex) {
+            $rowEliminar = $(e).closest('tr');
+            $('#Confirmar').unbind('click');
+            $('#Confirmar').one('click', function (ex) {
                 ex.preventDefault();
-                FN_EliminarFila($row, tablaTratamiento, nroTratamiento);
+                FN_EliminarFila($rowEliminar, tablaTratamientoEliminar, nroTratamientoEliminar);
                 $(".bs-example-modal-sm").modal("hide");
             });
         }

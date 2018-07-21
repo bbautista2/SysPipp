@@ -46,7 +46,9 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        
                         <br>
+                        <div id="idMensaje"></div>
 
                         <div id="frmPropietario" class="form-horizontal form-label-left">
 

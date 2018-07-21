@@ -48,7 +48,7 @@ namespace SysCliVet.Privado.FichaClinica
                     Nombre = txtNombreMas.Value,
                     FechaNacimiento = DateTime.ParseExact(txtFechaNacMas.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),//Convert.ToDateTime(txtFechaNacMas.Value, CultureInfo.InvariantCulture),
                     Raza = txtRaza.Value,
-                    Color = txtDireccion.Value,
+                    Color = txtColor.Value,
                     Especie = txtEspecie.Value,
                     Sexo = rbMacho.Checked ? (Int16)EnumGeneroMascota.Macho : (Int16)EnumGeneroMascota.Hembra,
                     Intac = rbIntacSi.Checked ? true : false,
@@ -69,7 +69,7 @@ namespace SysCliVet.Privado.FichaClinica
                         ListaVacunas.Add(new tVacuna
                         {
                             Id = item.Id,
-                            Fecha = DateTime.ParseExact(item.Fecha.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),//Convert.ToDateTime(item.Fecha, CultureInfo.InvariantCulture),
+                            Fecha = item.SFecha.ToStringDate(),
                             Nombre = item.Nombre,
                             Descripcion = String.Empty,
                             Estado = 1
@@ -88,7 +88,7 @@ namespace SysCliVet.Privado.FichaClinica
                         ListaDesp.Add(new tDesparasitacion
                         {
                             Id = item.Id,
-                            Fecha = DateTime.ParseExact(item.Fecha.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            Fecha = item.SFecha.ToStringDate(),
                             Nombre = item.Nombre,
                             Descripcion = String.Empty,
                             Estado = 1
@@ -116,7 +116,7 @@ namespace SysCliVet.Privado.FichaClinica
                 if (resultado)
                 {
                     String id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.NumeroFicha.ToString()));
-                    Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf=" + id);
+                    Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf=" + id + "&s=si");
                 }
                 else ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando la Ficha Clínica\"" + ");</script>", false);
             }

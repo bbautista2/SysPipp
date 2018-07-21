@@ -34,7 +34,7 @@ namespace SysCliVet.Privado.Propietario
                 {
                     lst.Add(new
                     {
-                        Id = clsEncriptacion.Encriptar(item["ID"].ToString()),
+                        Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
                         Nombre = item["Nombre"] + " " + item["Apellidos"],
                         FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                         Direccion = item["Direccion"],
@@ -69,7 +69,7 @@ namespace SysCliVet.Privado.Propietario
                         {
                             lst.Add(new
                             {
-                                Id = clsEncriptacion.Encriptar(item["ID"].ToString()),
+                                Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
                                 Nombre = item["Nombre"] + " " + item["Apellidos"],
                                 FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                                 Direccion = item["Direccion"],
@@ -96,7 +96,7 @@ namespace SysCliVet.Privado.Propietario
 
             try
             {
-                Int32 idPropietario = Convert.ToInt32(clsEncriptacion.Desencriptar(id));
+                Int32 idPropietario = Convert.ToInt32(clsEncriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
 
                 clsBaseEntidad baseEntidad = new clsBaseEntidad();
 

@@ -113,6 +113,20 @@ namespace CapaNegocio
             return dt;
         }
 
+        public Boolean Mascota_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsMascotaDAO.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
         #endregion
 
         #region Propietario
@@ -170,7 +184,7 @@ namespace CapaNegocio
             return dt;
         }
 
-        public bool Propietario_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        public Boolean Propietario_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
         {
             Boolean resultado = false;
             try
@@ -200,7 +214,19 @@ namespace CapaNegocio
             }
             return resultado;
         }
-
+        public Boolean FichaClinica_Actualizar(ref clsBaseEntidad baseEntidad, clsFichaClinica objFichaClinica)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsFichaClinicaDAO.Instance.Actualizar(ref baseEntidad, objFichaClinica);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
         public clsFichaClinica FichaClinica_ObtenerPorMascotaId(ref clsBaseEntidad objEntidad,Int32 mascotaId) {
             clsFichaClinica objFichaClinica = new clsFichaClinica();
             try {
@@ -254,6 +280,20 @@ namespace CapaNegocio
                 baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
             }
             return objHistoria;
+        }
+
+        public bool HistoriaClinica_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsHistoriaClinicaDAO.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
         }
 
         #endregion

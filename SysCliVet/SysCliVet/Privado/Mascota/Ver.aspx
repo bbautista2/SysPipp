@@ -46,6 +46,8 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <br>
+                        <div id="idMensaje"></div>
                         <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
                             <div class="profile_img">
                                 <div id="crop-avatar">
@@ -73,10 +75,8 @@
                                 </li>
                             </ul>
 
-                            <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Guardar</a>
+                            <asp:Button runat="server" ID="btnGuardarDatosMascota" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardarDatosMascota_Click" />
                             <br />
-
-
 
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -111,7 +111,7 @@
                                             <button id="addVacuna" class="btn btn-primary">Agregar Vacuna</button>
                                         </div>
 
-                                        <table class="table table-striped table-bordered nowrap" id="tbVacunas">
+                                        <table class="table table-striped table-bordered nowrap" id="tbVacunas" style="width: 100%">
                                             <thead>
                                                 <tr>
                                                     <th style="display: none">Id</th>
@@ -139,7 +139,7 @@
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="tbodyDesparasitaciones">
                                             </tbody>
                                         </table>
 
@@ -172,14 +172,12 @@
                                     </li>
                                     <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
                                     </li>
-                                    <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
-                                    </li>
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <button id="agregarHistoria" class="btn btn-primary">Añadir</button>
+                                            <a id="send" onclick="fn_AbrirLink('../HistorialClinico/Guardar.aspx')" class="btn btn-success"><i class="fa fa-plus-square"></i>Añadir</a>
                                         </div>
 
                                         <table class="table table-striped table-bordered nowrap" id="tbHistoria">
@@ -261,12 +259,6 @@
                                         <!-- end user projects -->
 
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                                        <p>
-                                            xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
-                              photo booth letterpress, commodo enim craft beer mlkshk
-                                        </p>
-                                    </div>
                                 </div>
                             </div>
 
@@ -298,18 +290,46 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="ModalHistoria">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">¿Estás seguro?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro que quieres eliminar esta fila?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="ConfirmarHistoria">Confirmar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <asp:HiddenField ID="hfListadoVacunas" Value="[]" runat="server" />
     <asp:HiddenField ID="hfVacunas" runat="server" />
+    <asp:HiddenField ID="hfListadoDesparasitaciones" Value="[]" runat="server" />
+    <asp:HiddenField ID="hfDesparasitaciones" runat="server" />
     <asp:HiddenField ID="hfListadoHistoria" Value="[]" runat="server" />
+    <asp:HiddenField ID="hfIdFicha" Value="0" runat="server" />
+    <asp:HiddenField ID="hfIdMascota" Value="0" runat="server" />
 
     <script type="text/javascript">
+        var tablaHistoria;
         $(function () {
             var tablaVacuna;
             var tableRelation;
-            var tablaHistoria;
+            var nombreTabla;
+            var $rowEliminar;
             Fn_ListarVacunas();
+            Fn_ListarDesparasitaciones();
             Fn_ListarHistorias();
             $('[id$=txtFechaNacPro], [id$=txtFechaNacMas]').datetimepicker({
                 format: 'DD/MM/YYYY'
@@ -319,6 +339,7 @@
 
             $("[id$=addVacuna]").on('click', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
                 FN_AgregarFila();
             });
 
@@ -327,24 +348,7 @@
                 nombreTabla = "tbDesp";
                 FN_AgregarFila();
             });
-
-            function FN_GuardarVacunas() {
-                var obj = { Id: "", Descripcion: "", Fecha: "" };
-                var lista = [];
-                var index = tablaVacuna.rows().data();
-                var leng = tablaVacuna.rows().length;
-                if (leng > 0) {
-                    for (var i = 0; i < index.length; i++) {
-                        var tempRow = $("#tbVacunas tbody tr:eq(" + i + ")");
-                        obj.Id = tempRow.find("td:eq(0)").text() || "0";
-                        obj.Fecha = tempRow.find("td:eq(1)").text();
-                        obj.Nombre = tempRow.find("td:eq(2)").text();
-                        lista[i] = $.extend(true, {}, obj);
-                    }
-                }
-                $("input[id$=hfVacunas]").val(JSON.stringify(lista));
-            }
-
+            
             function FN_AgregarFila() {
                 var acciones,
                     data,
@@ -525,10 +529,12 @@
 
             $("#tbVacunas").on('click', 'a.cancel-row', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
                 FN_CancelarFila($(this).closest('tr'));
             });
             $("#tbVacunas").on('click', 'a.edit-row', function (e) {
                 e.preventDefault();
+                nombreTabla = "tbVacuna";
                 FN_EditarFila($(this).closest('tr'));
                 FN_AgregarDataPicker();
             });
@@ -539,10 +545,12 @@
             $("#tbVacunas").on('click', 'a.remove-row', function (e) {
                 e.preventDefault();
                 $(".bs-example-modal-sm").modal("show");
-                var $row = $(this).closest('tr');
-                $('#Confirmar').on('click', function (e) {
+                $rowEliminar = $(this).closest('tr');
+                $('#Confirmar').unbind('click');
+                $('#Confirmar').one('click', function (e) {
                     e.preventDefault();
-                    FN_EliminarFila($row);
+                    nombreTabla = "tbVacuna";
+                    FN_EliminarFila($rowEliminar);
                     $(".bs-example-modal-sm").modal("hide");
                 });
             });
@@ -564,34 +572,113 @@
             });
             $("#tbDesparasitaciones").on('click', 'a.remove-row', function (e) {
                 e.preventDefault();
-                nombreTabla = "tbDesp";
                 $(".bs-example-modal-sm").modal("show");
-                var $row = $(this).closest('tr');
-                $('#Confirmar').on('click', function (e) {
+                $rowEliminar = $(this).closest('tr');
+                $('#Confirmar').unbind('click');
+                $('#Confirmar').one('click', function (e) {
                     e.preventDefault();
-                    FN_EliminarFila($row);
+                    nombreTabla = "tbDesp";
+                    FN_EliminarFila($rowEliminar);
                     $(".bs-example-modal-sm").modal("hide");
                 });
             });
 
+            function Fn_ListarVacunas() {
+                var object = {};
+                object.items = ($("input[type=hidden][id$=hfListadoVacunas]").val() != "" && $("input[type=hidden][id$=hfListadoVacunas]").val() != undefined) ? $.parseJSON($("input[type=hidden][id$=hfListadoVacunas]").val()) : "[]";
+                var items = fn_CargarPlantilla("datatable-vacunas", object);
+                $("[id$=tbodyVacunas]").append(items);
+            }
+
+            function Fn_ListarDesparasitaciones() {
+                var object = {};
+                object.items = $("input[type=hidden][id$=hfListadoDesparasitaciones]").val() != "[]" ? $.parseJSON($("input[type=hidden][id$=hfListadoDesparasitaciones]").val()) : "[]";
+                var items = fn_CargarPlantilla("datatable-deparasitaciones", object);
+                $("[id$=tbodyDesparasitaciones]").append(items);
+            }
+
+            function Fn_ListarHistorias() {
+                var object = {};
+                object.items = $("input[type=hidden][id$=hfListadoHistoria]").val() != "[]" ? $.parseJSON($("input[type=hidden][id$=hfListadoHistoria]").val()) : "[]";
+                var items = fn_CargarPlantilla("table-historia", object);
+                $("[id$=tbodyHistoria]").html(items);
+                tablaHistoria = $("[id$=tbHistoria]").DataTable();
+            }
+
+            function FN_GuardarVacunas() {
+                var obj = { Id: "", Nombre: "", SFecha: "" };
+                var lista = [];
+                var index = tablaVacuna.rows().data();
+                var leng = tablaVacuna.rows().length;
+                if (leng > 0) {
+                    for (var i = 0; i < index.length; i++) {
+                        var tempRow = $("#tbVacunas tbody tr:eq(" + i + ")");
+                        obj.Id = tempRow.find("td:eq(0)").text() || "0";
+                        obj.SFecha = tempRow.find("td:eq(1)").text();
+                        obj.Nombre = tempRow.find("td:eq(2)").text();
+                        lista[i] = $.extend(true, {}, obj);
+                    }
+                }
+                $("input[id$=hfVacunas]").val(JSON.stringify(lista));
+            }
+
+            function FN_GuardarDesparasitaciones() {
+                var obj = { Id: "", Nombre: "", SFecha: "" };
+                var lista = [];
+                var index = tablaDesparasitacion.rows().data();
+                var leng = tablaDesparasitacion.rows().length;
+                if (leng > 0) {
+                    for (var i = 0; i < index.length; i++) {
+                        var tempRow = $("#tbDesparasitaciones tbody tr:eq(" + i + ")");
+                        obj.Id = tempRow.find("td:eq(0)").text() || "0";
+                        obj.SFecha = tempRow.find("td:eq(1)").text();
+                        obj.Nombre = tempRow.find("td:eq(2)").text();
+                        lista[i] = $.extend(true, {}, obj);
+                    }
+                }
+                $("input[id$=hfDesparasitaciones]").val(JSON.stringify(lista));
+            }
+
+            $("[id$=btnGuardarDatosMascota]").click(function (e) {
+                FN_GuardarVacunas();
+                FN_GuardarDesparasitaciones();
+                return true;
+             });
 
         })
-        function Fn_ListarVacunas() {
-            var object = {};
-            object.items = ($("input[type=hidden][id$=hfListadoVacunas]").val() != "" && $("input[type=hidden][id$=hfListadoVacunas]").val() != undefined) ? $.parseJSON($("input[type=hidden][id$=hfListadoVacunas]").val()) : "[]";
-            var items = fn_CargarPlantilla("datatable-vacunas", object);
-            $("[id$=tbodyVacunas]").append(items);
 
+        function FN_Eliminar(id) {
+            $("[id$=ModalHistoria]").modal("show");
+            $('#ConfirmarHistoria').unbind().click(function() {
+                FN_EliminarHistoria(id);
+            });
         }
 
-        function Fn_ListarHistorias() {
-            var object = {};
-            object.items = $("input[type=hidden][id$=hfListadoHistoria]").val() != "[]" ? $.parseJSON($("input[type=hidden][id$=hfListadoHistoria]").val()) : "[]";
-            var items = fn_CargarPlantilla("table-historia", object);
-            $("[id$=tbodyHistoria]").html(items);
-            tablaHistoria = $("[id$=tbHistoria]").DataTable();
-        }
+        function FN_EliminarHistoria(id) {
 
+            success = function (response) {
+                var result = response.d;
+                if (result.correcto == true) {
+                    tablaHistoria.destroy();
+                    var object = {};
+                    object.items = result.Lista;
+                    var items = fn_CargarPlantilla("table-historia", object);
+                    $("[id$=tbodyHistoria]").html(items);
+                    tablaHistoria = $("[id$=tbHistoria]").DataTable();
+                    FN_Mensaje('s', result.mensaje);
+                }
+                else
+                    FN_Mensaje('e', result.mensaje);
+
+                $("[id$=ModalHistoria]").modal("hide");
+            }
+
+            error = function (xhr, ajaxOptions, thrownError) {
+                $("[id$=ModalHistoria]").modal("hide");
+            };
+
+            FN_LlamarMetodo("Ver.aspx/EliminarHistoria", '{id: "' + id + '", idMascota: '+$("input[id$=hfIdMascota]").val()+' }', success, error);
+        }
 
     </script>
 
@@ -600,7 +687,23 @@
             <tr class="editable">
                 <td style="display: none;" id='id_value'>{{id}}</td>
                 <td>{{fecha}}</td>
-                <td>{{descripcion}}</td>
+                <td>{{nombre}}</td>
+                <td class="acciones">
+                    <a href="#" class="btn btn-default btn-xs hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                    <a href="#" class="btn btn-default btn-xs hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                    <a href="#" class="btn btn-default btn-xs on-default edit-row"><i class="fa fa-pencil"></i></a>
+                    <a href="#" class="btn btn-default btn-xs on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        {{/each}}
+    </script>
+
+    <script type="text/x-handlebars-template" id="datatable-deparasitaciones">
+        {{# each items}}
+            <tr class="editable">
+                <td style="display: none;" id='id_value'>{{id}}</td>
+                <td>{{fecha}}</td>
+                <td>{{nombre}}</td>
                 <td class="acciones">
                     <a href="#" class="btn btn-default btn-xs hidden on-editing save-row"><i class="fa fa-save"></i></a>
                     <a href="#" class="btn btn-default btn-xs hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -615,7 +718,7 @@
         {{# each items}}                   
             <tr>
                 <td>
-                    <a onclick="fn_AbrirLink('../HistorialClinico/Guardar.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
+                    <a onclick="fn_AbrirLink('../HistorialClinico/Guardar.aspx?i={{Id}}&nf={{NroFichaEncriptado}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
                     <a onclick="FN_Eliminar('{{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
                 </td>
                 <td>{{Fecha}}</td>
@@ -629,7 +732,3 @@
     </script>
 
 </asp:Content>
-
-
-
-

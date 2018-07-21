@@ -32,6 +32,10 @@ namespace SysCliVet.Privado.HistorialClinico
             {
                 String id = clsEncriptacion.Desencriptar(Request.QueryString["nf"]);
                 lblNroFicha.Text = id;
+                if (!String.IsNullOrEmpty(Request.QueryString["s"]) && Request.QueryString["s"] == "si")
+                {
+                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Ficha Clinica Guardada Correctamente\"" + ");</script>", false);
+                }
             }
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))
             {
@@ -131,7 +135,7 @@ namespace SysCliVet.Privado.HistorialClinico
                         ListaAnalisis.Add(new tAnalisis
                         {
                             Id = item.Id,
-                            HistoriaClinicaId = 0,
+                            HistoriaClinicaId = vsId,
                             TipoAnalisisId = item.TipoId,
                             Descripcion = item.Descripcion,
                             Estado = 1
@@ -161,6 +165,7 @@ namespace SysCliVet.Privado.HistorialClinico
 
                 clsHistoriaClinica objHistoriaClinica = new clsHistoriaClinica
                 {
+                    Id = vsId,
                     FichaClinica = objFicha,
                     ListaAnalisis = ListaAnalisis,
                     ListaTratamientos = ListaTratamientos,

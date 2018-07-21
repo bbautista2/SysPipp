@@ -67,6 +67,15 @@ namespace SysCliVet.Privado.Mascota {
         protected global::System.Web.UI.WebControls.Label lblEdadMascota;
         
         /// <summary>
+        /// Control btnGuardarDatosMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarDatosMascota;
+        
+        /// <summary>
         /// Control hfListadoVacunas.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,24 @@ namespace SysCliVet.Privado.Mascota {
         protected global::System.Web.UI.WebControls.HiddenField hfVacunas;
         
         /// <summary>
+        /// Control hfListadoDesparasitaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfListadoDesparasitaciones;
+        
+        /// <summary>
+        /// Control hfDesparasitaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfDesparasitaciones;
+        
+        /// <summary>
         /// Control hfListadoHistoria.
         /// </summary>
         /// <remarks>
@@ -92,5 +119,23 @@ namespace SysCliVet.Privado.Mascota {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfListadoHistoria;
+        
+        /// <summary>
+        /// Control hfIdFicha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdFicha;
+        
+        /// <summary>
+        /// Control hfIdMascota.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdMascota;
     }
 }

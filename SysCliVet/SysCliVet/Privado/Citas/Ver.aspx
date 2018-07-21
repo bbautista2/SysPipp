@@ -276,7 +276,8 @@
 					calendar.fullCalendar('unselect');
 				  },
                    editable: true,
-                   events: object
+                   events: object,
+                   timezone: 'local'
 				});
 
 

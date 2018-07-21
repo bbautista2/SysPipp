@@ -51,9 +51,9 @@ namespace SysCliVet.Privado.Propietario
             }
         }
        
-
         private void MostrarInformacion(clsPropietario objPropietario)
         {
+            txtDni.Value = objPropietario.Dni.ToString();
             txtNombre.Value = objPropietario.NombreCompleto;
             txtEmail.Value = objPropietario.Email;
             txtDireccion.Value = objPropietario.Direccion;
@@ -86,14 +86,23 @@ namespace SysCliVet.Privado.Propietario
             objPropietario.Telefono = txtTelefono.Value;
             objPropietario.Celular = txtCelular.Value;
             objPropietario.FechaNacimiento = !String.IsNullOrEmpty(txtFechaNac.Value) ? Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture) : DateTime.Now;
+            objPropietario.Estado = 1;
 
             try
             {
                 resultado = clsLogica.Instance.Propietario_Guardar(ref baseEntidad, objPropietario);
-                if (resultado) { ObtenerInformacion(); }
+                if (resultado)
+                {
+                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Propietario guardado correctamente\"" + ");</script>", false);
+                    ObtenerInformacion();
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando el Propietario\"" + ");</script>", false);
+                }
             }
             catch (Exception ex) {
-                
+                ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando el Propietario [1]\"" + ");</script>", false);
             }
         }
     }

@@ -43,6 +43,7 @@ namespace CapaDatos
                     objFichaClinica = new clsFichaClinica();
                     while (dr.Read())
                     {
+                        objFichaClinica.Id = dr.ObtenerValorColumna<Int32>("Id");
                         objFichaClinica.Descripcion = dr.ObtenerValorColumna<String>("Descripcion");
                         objFichaClinica.Fecha = dr.ObtenerValorColumna<DateTime>("Fecha");
                         objFichaClinica.InformacionMedica = dr.ObtenerValorColumna<String>("InformacionMedica");
@@ -63,6 +64,7 @@ namespace CapaDatos
                                 {
                                     Id =  dr.ObtenerValorColumna< Int32>("ID"),
                                     Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"),
+                                    Nombre = dr.ObtenerValorColumna<String>("Nombre"),
                                     Descripcion = dr.ObtenerValorColumna<String>("Descripcion")
                                                                        
                                 });
@@ -79,8 +81,8 @@ namespace CapaDatos
                                 {
                                     Id = dr.ObtenerValorColumna<Int32>("ID"),
                                     Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"),
+                                    Nombre = dr.ObtenerValorColumna<String>("Nombre"),
                                     Descripcion = dr.ObtenerValorColumna<String>("Descripcion")
-
                                 });
                         }
                     }
@@ -151,6 +153,38 @@ namespace CapaDatos
                 
                 cmd.ExecuteReader();
                 objFichaClinica.NumeroFicha = Convert.ToInt32(cmd.Parameters["@NuevoId"].Value);
+                Resultado = true;
+            }
+            catch (Exception ex)
+            {
+                Resultado = false;
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return Resultado;
+        }
+
+        public Boolean Actualizar (ref clsBaseEntidad baseEntidad, clsFichaClinica objFichaClinica)
+        {
+            Boolean Resultado = false;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("FichaClinica_Actualizar", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                if (objFichaClinica.ListaVacunas.Count > 0)
+                    cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_VACUNAS", Value = objFichaClinica.ListaVacunas, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_VACUNAS" });
+                if (objFichaClinica.ListaDesparasitaciones.Count > 0)
+                    cmd.Parameters.Add(new SqlParameter { ParameterName = "@TYPE_DESPARASITACIONES", Value = objFichaClinica.ListaDesparasitaciones, SqlDbType = SqlDbType.Structured, TypeName = "dbo.TY_DESPARASITACIONES" });
+                //Datos Ficha Clínica
+                cmd.Parameters.AddWithValue("@ID", objFichaClinica.Id);
+
+                cmd.ExecuteReader();
                 Resultado = true;
             }
             catch (Exception ex)

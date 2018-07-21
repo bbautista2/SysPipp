@@ -41,6 +41,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <div id="idMensaje"></div>
                         <br />
                         <div class="form-horizontal form-label-left">
                             <div class="item form-group">
@@ -367,7 +368,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <a type="submit" class="btn btn-default" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
+                                    <a type="submit" class="btn btn-default hide" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
                                     <asp:Button runat="server" ID="btnGuardarFicha" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardarFicha_Click" />
                                 </div>
                             </div>
@@ -664,7 +665,7 @@
             });
 
             function FN_GuardarVacunas() {
-                var obj = { Id: "", Descripcion: "", Fecha: "" };
+                var obj = { Id: "", Descripcion: "", SFecha: "" };
                 var lista = [];
                 var index = tablaVacuna.rows().data();
                 var leng = tablaVacuna.rows().length;
@@ -672,7 +673,7 @@
                     for (var i = 0; i < index.length; i++) {
                         var tempRow = $("#tbVacunas tbody tr:eq(" + i + ")");
                         obj.Id = tempRow.find("td:eq(0)").text() || "0";
-                        obj.Fecha = tempRow.find("td:eq(1)").text();
+                        obj.SFecha = tempRow.find("td:eq(1)").text();
                         obj.Nombre = tempRow.find("td:eq(2)").text();
                         lista[i] = $.extend(true, {}, obj);
                     }
@@ -681,7 +682,7 @@
             }
 
             function FN_GuardarDesparasitaciones() {
-                var obj = { Id: "", Descripcion: "", Fecha: "" };
+                var obj = { Id: "", Descripcion: "", SFecha: "" };
                 var lista = [];
                 var index = tablaDesparasitacion.rows().data();
                 var leng = tablaDesparasitacion.rows().length;
@@ -689,7 +690,7 @@
                     for (var i = 0; i < index.length; i++) {
                         var tempRow = $("#tbDesparasitaciones tbody tr:eq(" + i + ")");
                         obj.Id = tempRow.find("td:eq(0)").text() || "0";
-                        obj.Fecha = tempRow.find("td:eq(1)").text();
+                        obj.SFecha = tempRow.find("td:eq(1)").text();
                         obj.Nombre = tempRow.find("td:eq(2)").text();
                         lista[i] = $.extend(true, {}, obj);
                     }

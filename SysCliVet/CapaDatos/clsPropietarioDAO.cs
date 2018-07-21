@@ -38,7 +38,9 @@ namespace CapaDatos
             Propietario.Direccion = dr.ObtenerValorColumna<String>("Direccion");
             Propietario.Telefono = dr.ObtenerValorColumna<String>("Telefono");
             Propietario.Email = dr.ObtenerValorColumna<String>("Email");
+            Propietario.Celular = dr.ObtenerValorColumna<String>("Celular");
             Propietario.Estado = dr.ObtenerValorColumna<Int16>("Estado");
+            Propietario.Dni = dr.ObtenerValorColumna<Int32>("Dni");
             return Propietario;
         }
         #endregion

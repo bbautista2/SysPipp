@@ -17,6 +17,7 @@ namespace CapaEntidad
         }
 
         public DateTime Fecha { get; set; }
+        public String SFecha { get; set; }
         public DateTime FechaDesparasitacion { get; set; }
     }
 }
