@@ -22,6 +22,8 @@
     <link href="<%=ResolveUrl("~/src/vendors/animate.css/animate.min.css") %>" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<%=ResolveUrl("~/src/build/css/custom-purple.min.css") %>" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="<%=ResolveUrl("~/src/vendors/jquery/dist/jquery.min.js") %>"></script>
 
     <style type="text/css">
         .Login_link {
@@ -39,7 +41,44 @@
             background: #fff;
             padding: 15px 0;
         }
+
+        .login_content a:hover {
+            text-decoration: none;
+        }
     </style>
+
+    <script type="text/javascript">
+
+        $(function () {
+            if ($("input[id$=hfNroPropietario]").val() != "0") {
+                $("[id$=btnLlamar]").attr("href", "tel:"+$("input[id$=hfNroPropietario]").val());
+            }
+        }
+
+        function FN_Mensaje(tipo, mensaje, id) {
+            var result = '';
+            switch (tipo) {
+                case "s":
+                    result = '<div class="myForm1_alert"><span class=""></span><p class="alert alert-success">' + ((mensaje == undefined) ? "Guardado Correctamente!" : mensaje) + '</p></div>'
+                    break;
+                case "e":
+                    result = '<div class="myForm1_alert"><span class=""></span><p class="alert alert-danger">' + ((mensaje == undefined) ? "Ha ocurrido un error guardando" : mensaje) + '</p></div>';
+                    break;
+                case "i":
+                    result = '<p class="alert alert-warning">' + ((mensaje == undefined) ? "Advertencia!" : mensaje) + '</p>';
+                    break;
+            }
+
+            if (id == '' || id == undefined) {
+                $('div[id$=idMensaje]').empty().fadeIn().append(result);
+                $('div[id$=idMensaje]').delay("6000").fadeOut();
+            } else {
+                $('div[id$=' + id + ']').empty().fadeIn().append(result);
+                $('div[id$=' + id + ']').delay("6000").fadeOut();
+            }
+            $('html, body').animate({ scrollTop: 1 }, 'slow');
+        }
+    </script>
 
 </head>
 
@@ -47,6 +86,8 @@
     <div>
         <div class="login_wrapper">
             <div class="animate form login_form">
+                <br>
+                <div id="idMensaje"></div>
                 <div style="text-align: center;">
                     <img src="../src/img/logo.jpg" height="180" />
                 </div>
@@ -55,27 +96,27 @@
                         <h1 style="color: #ffffff; letter-spacing: 0">Datos de Mascota</h1>
                         <div class="divDatos">
                             <div>
-                                <span class="">Nombre: <span>Tazz</span></span>
+                                <span style="font-weight: bold" class="">Nombre: <span id="lblNombre" runat="server"></span></span>
                             </div>
                             <div>
-                                <span class="">Fecha de Nacimiento: <span>Tazz</span></span>
+                                <span style="font-weight: bold" class="">Fecha de Nacimiento: <span id="lblFechaNac" runat="server"></span></span>
                             </div>
                             <div>
-                                <span class="">Raza: <span>Tazz</span></span>
+                                <span style="font-weight: bold" class="">Raza: <span id="lblRaza" runat="server"></span></span>
                             </div>
                             <div>
-                                <span class="">Color: <span>Marron</span></span>
+                                <span style="font-weight: bold" class="">Color: <span id="lblColor" runat="server"></span></span>
                             </div>
                             <div>
-                                <span class="">Sexo: <span>Macho</span></span>
+                                <span style="font-weight: bold" class="">Sexo: <span id="lblSexo" runat="server"></span></span>
                             </div>
                         </div>
                         <div class="clearfix"></div>
 
                         <div class="separator">
-                            <p class="change_link">
-                                <a href="#signup" class="to_register Login_link">Olvidaste tu Contraseña! </a>
-                            </p>
+                            <div>
+                                <a href="#" id="btnLlamar" style="background-color: #449d44;" class="btn btn-success" onclick="return (navigator.userAgent.match(/Android | iPhone | movile /i)) != null;">Llamar al Propietario</a>
+                            </div>
 
                             <div class="clearfix"></div>
                             <br />
@@ -88,41 +129,8 @@
                 </section>
             </div>
 
-            <div id="register" class="animate form registration_form">
-                <div id="col-md-12" style="text-align: center;">
-                    <img src="src/img/logo.jpg" height="180" />
-                </div>
-                <section class="login_content">
-                    <form>
-                        <h2 style="color: #ffffff">Recuperar Contraseña</h2>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Usuario" required="" />
-                        </div>
-
-                        <div>
-                            <a class="btn btn-default submit" href="index.html">Enviar</a>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="separator">
-                            <p class="change_link" style="color: #fff">
-                                Eres usuario?
-                  <a href="#signin" class="to_register Login_link">Ingresa </a>
-                            </p>
-
-                            <div class="clearfix"></div>
-                            <br />
-
-                            <div>
-                                <h1><i class="fa fa-paw" style="color: #ffffff"></i></h1>
-
-                            </div>
-                        </div>
-                    </form>
-                </section>
-            </div>
         </div>
     </div>
+    <asp:HiddenField ID="hfNroPropietario" Value="0" runat="server" />
 </body>
 </html>
