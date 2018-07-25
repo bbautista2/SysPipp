@@ -1,8 +1,12 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
+using CapaLibreria.General;
 using CapaNegocio;
+using MessagingToolkit.QRCode.Codec;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -15,6 +19,7 @@ namespace SysCliVet.Privado.Citas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CodigoQr_Crear();
             if (!IsPostBack)
             { TipoCita_Obtener(); }
         }
@@ -68,6 +73,7 @@ namespace SysCliVet.Privado.Citas
             clsBaseEntidad baseEntidad = new clsBaseEntidad();
             Object respuesta = new Object();
             Boolean guardado = false;
+
             Cita cita = new Cita();
             try
             {
@@ -80,6 +86,7 @@ namespace SysCliVet.Privado.Citas
                     cita.TipoCita.Id = Convert.ToInt32(objCita["tipoCita"]);                    
 
                     guardado = clsLogica.Instance.Cita_Guardar(ref baseEntidad, cita);
+                    Email.EnviarEmail("bbautista.ortiz@hotmail.com","Hola probando","probando");
                 }
                
             }
@@ -88,6 +95,27 @@ namespace SysCliVet.Privado.Citas
                 return null;
             }
             return respuesta;
+        }
+
+        public void CodigoQr_Crear()
+        {
+            QRCodeEncoder qrEncoder = new QRCodeEncoder();
+            String url = "http://40.121.42.36/Privado/Mascota/Listar.aspx";
+            Bitmap img = qrEncoder.Encode(url);
+            System.Drawing.Image imgQr = img;
+            String srcImagen = String.Empty;
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imgQr.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] imagenBytes = ms.ToArray();
+                srcImagen = "data:image/gif;base64," + Convert.ToBase64String(imagenBytes);
+            }
+
+            String mensaje= "<img src='" + srcImagen + "' />";
+
+            Email.EnviarEmail("bbautista.ortiz@hotmail.com", mensaje, "probando");
+
         }
 
         [WebMethod]
