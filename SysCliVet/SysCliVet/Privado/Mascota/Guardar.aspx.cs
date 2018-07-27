@@ -83,6 +83,7 @@ namespace SysCliVet.Privado.Mascota
             txtMarcaDist.Value = objMascota.MarcaDistintiva;
             txtPropietario.Value = objMascota.Propietario.Nombre;
             hfPropietarioId.Value = objMascota.Propietario.Id.ToString();
+            hfMascotaId.Value = objMascota.Id.ToString();
             ImageMain.Src = Config.MascotaRutaVirtual + "imagenes/" + objMascota.Foto;
         }
 
@@ -129,39 +130,63 @@ namespace SysCliVet.Privado.Mascota
             }
         }
 
-        [WebMethod]
-        public static void UploadQR(/*String codigoId*/)
+        protected void btnGenerar_Click(Object sender, EventArgs e)
         {
-            /*if (String.IsNullOrEmpty(codigoId))
-                return;*/
-
-            QRCodeEncoder qrEncoder = new QRCodeEncoder();
-            String url = "http://40.121.42.36/Privado/Mascota/Listar.aspx";
-            Bitmap img = qrEncoder.Encode(url);
-            System.Drawing.Image imgQr = img;
-            
-            Random ran = new Random();
-            String nombreImagen = DateTime.Now.ToString("ddMMyyyyHHmmss") + "_" + ran.Next(0, 10000) + "MascotaQR";
-            String resourcePath = Config.PacienteRutaFisica + "imagenes\\" + nombreImagen + ".png";
-
-            if (!Directory.Exists(Config.PacienteRutaFisica + "imagenes\\"))
-                Directory.CreateDirectory(Config.PacienteRutaFisica + "imagenes\\");
-            
-
-            using (FileStream fs = new FileStream(resourcePath, FileMode.Create))
+            try
             {
-                using (BinaryWriter bw = new BinaryWriter(fs))
+                if (String.IsNullOrEmpty(hfMascotaId.Value))
+                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"El paciente no existe\"" + ");</script>", false);
+
+                String url = Config.UrlInfoCodigoQr + "Mascota.aspx?i=" + HttpUtility.UrlEncode(clsEncriptacion.Encriptar(hfMascotaId.Value));
+
+                String email = Config.EmailQr;
+
+                if(email.IndexOf("@gmail.com") != -1)
                 {
+                    String mensaje = @"<html><body><img src='cid:{imageQrId}' /></body></html>";
+                    Email.EnviarEmailQr(email, mensaje, "Código QR - Mascota - " + txtNombre.Value, url);
+                }
+                else
+                {
+                    QRCodeEncoder qrEncoder = new QRCodeEncoder();
+                    Bitmap img = qrEncoder.Encode(url);
+                    System.Drawing.Image imgQr = img;
+                    String srcImagen = String.Empty;
                     using (MemoryStream ms = new MemoryStream())
                     {
                         imgQr.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                         byte[] imagenBytes = ms.ToArray();
-                        bw.Write(imagenBytes);
-                        bw.Close();
-                    }                    
+                        srcImagen = "data:image/gif;base64," + Convert.ToBase64String(imagenBytes);
+                    }
+                    String mensaje = @"<html><body><img src='" + srcImagen + "' /></body></html>";
+                    Email.EnviarEmail(email, mensaje, "Código QR - Mascota - " + txtNombre.Value);
                 }
+                
+
+                ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"El código Qr del Paciente se ha enviado satisfactoriamente\"" + ");</script>", false);
+            }
+            catch (Exception)
+            {
+                ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error enviando el código Qr del Paciente\"" + ");</script>", false);
             }
         }
+
+        //[WebMethod]
+        //public static void GenerarCodigoQr(String mascotaId, String nombreMascota)
+        //{
+        //    //if (String.IsNullOrEmpty(mascotaId))
+        //    //    return new { tipo = "e", mensaje = "El paciente no existe" };
+            
+        //    String url = Config.UrlInfoCodigoQr + "Mascota.aspx?i=" + HttpUtility.UrlEncode(clsEncriptacion.Encriptar(mascotaId));
+
+        //    String mensaje = @"<html><body><img src='cid:{imageQrId}' /></body></html>";
+        //    String email = Config.EmailQr;
+        //    Boolean success = Email.EnviarEmailQr(email, mensaje, "Código QR - Mascota - " + nombreMascota, url);
+        //    //if (success)
+        //    //    return new { tipo = "s", mensaje = "El código Qr del Paciente se ha enviado satisfactoriamente" };
+        //    //else
+        //    //    return new { tipo = "e", mensaje = "Ha ocurrido un error enviando el código Qr del Paciente" };
+        //}
 
     }
 }

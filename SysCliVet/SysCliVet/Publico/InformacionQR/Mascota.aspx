@@ -51,9 +51,9 @@
 
         $(function () {
             if ($("input[id$=hfNroPropietario]").val() != "0") {
-                $("[id$=btnLlamar]").attr("href", "tel:"+$("input[id$=hfNroPropietario]").val());
+                $("[id$=btnLlamar]").attr("href", "tel:" + $("input[id$=hfNroPropietario]").val());
             }
-        }
+        });
 
         function FN_Mensaje(tipo, mensaje, id) {
             var result = '';
@@ -125,12 +125,13 @@
                             </div>
                         </div>
                         <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+
+                        <asp:HiddenField ID="hfNroPropietario" Value="0" runat="server" />
                     </form>
                 </section>
             </div>
 
         </div>
     </div>
-    <asp:HiddenField ID="hfNroPropietario" Value="0" runat="server" />
 </body>
 </html>
