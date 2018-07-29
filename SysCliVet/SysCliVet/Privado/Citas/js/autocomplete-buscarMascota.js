@@ -919,7 +919,8 @@
 			//	$("input[id$=txtDireccion]").val(suggestion.value.Direccion);
 			//	$("input[id$=txtCelular]").val(suggestion.value.Celular);
 			//	$("input[id$=txtTelefono]").val(suggestion.value.Telefono);
-			    $("[id$=hfIdMascota]").val(suggestion.value.id);
+			$("[id$=hfIdMascota]").val(suggestion.value.id);
+			$("[id$=hfEmailPropietario]").val(suggestion.value.email);
 				that.el.val(that.currentValue);
 			//}
 

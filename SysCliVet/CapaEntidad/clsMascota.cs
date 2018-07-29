@@ -32,7 +32,7 @@ namespace CapaEntidad
         public String Foto { get; set; }
 
         public String obtenerNombrePropietario() {
-            return Nombre + "-" + Propietario.Nombre + "," + Propietario.Apellidos; 
+            return Nombre + "-" + Propietario.Nombre + ", " + Propietario.Apellidos; 
         }
 
 

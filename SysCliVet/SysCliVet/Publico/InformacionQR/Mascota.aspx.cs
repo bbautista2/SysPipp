@@ -2,6 +2,7 @@
 using CapaLibreria.Base;
 using CapaLibreria.General;
 using CapaNegocio;
+using SysCliVet.src.app_code;
 using System;
 using System.Web.UI;
 
@@ -51,6 +52,7 @@ namespace SysCliVet.Publico.InformacionQR
             lblColor.InnerText = objMascota.Color;
             lblSexo.InnerText = objMascota.Sexo == (Int16)EnumGeneroMascota.Macho ? "Macho" : "Hembra";
             hfNroPropietario.Value = objMascota.Propietario.Celular;
+            ImgFotoMascota.ImageUrl = Config.MascotaRutaVirtual + "imagenes/" + objMascota.Foto;
         }
 
     }

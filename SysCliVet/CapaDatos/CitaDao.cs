@@ -35,7 +35,7 @@ namespace CapaDatos
             cita.Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"); 
             cita.Estado = dr.ObtenerValorColumna<Int16>("Estado");
             cita.TipoCita.Id = dr.ObtenerValorColumna<Int32>("TipoCitaID");
-            cita.TipoCita.Nombre = dr.ObtenerValorColumna<String>("[TipoCita_Nombre]");
+            cita.TipoCita.Nombre = dr.ObtenerValorColumna<String>("TipoCita_Nombre");
             cita.Mascota.Id= dr.ObtenerValorColumna<Int32>("MascotaID");
             cita.Mascota.Nombre = dr.ObtenerValorColumna<String>("Nombre_Mascota");
             cita.Mascota.Propietario.Nombre = dr.ObtenerValorColumna<String>("Nombre_Propietario");
@@ -107,5 +107,30 @@ namespace CapaDatos
             }
             return lstCitas;
         }
+
+        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Cita_EliminarPorId", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Id", id);
+                resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return resultado;
+        }
+
     }
 }

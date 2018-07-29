@@ -57,7 +57,6 @@ function FN_LlamarMetodo(url, data, success, error) {
 		type: "POST",
 		url: url,
 		data: data,
-		headers: { 'XSS-Custom-Header': 'Async' },
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success: success,

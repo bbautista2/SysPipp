@@ -3,10 +3,12 @@ using CapaLibreria.Base;
 using CapaLibreria.General;
 using CapaNegocio;
 using MessagingToolkit.QRCode.Codec;
+using SysCliVet.src.app_code;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Web;
 using System.Web.Services;
 
 namespace SysCliVet.Privado.Citas
@@ -15,7 +17,6 @@ namespace SysCliVet.Privado.Citas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CodigoQr_Crear();
             if (!IsPostBack)
             { TipoCita_Obtener(); }
         }
@@ -51,7 +52,8 @@ namespace SysCliVet.Privado.Citas
                         lista.Add(new
                         {
                             id = mascota.Id,
-                            nombre = mascota.obtenerNombrePropietario()                         
+                            nombre = mascota.obtenerNombrePropietario(),
+                            email = mascota.Propietario.Email
                         });
                     }
                 }
@@ -73,44 +75,82 @@ namespace SysCliVet.Privado.Citas
             Cita cita = new Cita();
             try
             {
-               
                 if (objCita != null)
                 {
                     cita.Motivo = objCita["motivo"];
                     cita.Fecha = Convert.ToDateTime(objCita["inicio"]);
                     cita.Mascota.Id = Convert.ToInt32(objCita["mascotaId"]);
-                    cita.TipoCita.Id = Convert.ToInt32(objCita["tipoCita"]);                    
-
+                    cita.TipoCita.Id = Convert.ToInt32(objCita["tipoCita"]);
                     guardado = clsLogica.Instance.Cita_Guardar(ref baseEntidad, cita);
-                    Email.EnviarEmail("bbautista.ortiz@hotmail.com","Hola probando","probando");
-                }
-               
+
+                    if (guardado && !String.IsNullOrEmpty(objCita["emailPropietario"]))
+                        CodigoQr_Crear(objCita);
+
+                    if (guardado)
+                        return new { correcto = true, mensaje = "Cita guardada correctamente" };
+                    else
+                        return new { correcto = false, mensaje = "Ha ocurrido un error guardando la Cita" };
+
+                }else
+                    return new { correcto = false, mensaje = "Ha ocurrido un error guardando la Cita" };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return null;
+                return new { correcto = false, mensaje = "Ha ocurrido un error guardando la Cita [1]" };
             }
-            return respuesta;
         }
 
-        public void CodigoQr_Crear()
+        [WebMethod]
+        public static Object Cita_Eliminar(Int32 id)
         {
-            QRCodeEncoder qrEncoder = new QRCodeEncoder();
-            String url = "http://40.121.42.36/Privado/Mascota/Listar.aspx";
-            Bitmap img = qrEncoder.Encode(url);
-            System.Drawing.Image imgQr = img;
-            String srcImagen = String.Empty;
-
-            using (MemoryStream ms = new MemoryStream())
+            Boolean resultado = false;
+            
+            try
             {
-                imgQr.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                byte[] imagenBytes = ms.ToArray();
-                srcImagen = "data:image/gif;base64," + Convert.ToBase64String(imagenBytes);
+                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                resultado = clsLogica.Instance.Cita_EliminarPorId(ref baseEntidad, id);
+                if (resultado)
+                    return new { correcto = true, mensaje = "Cita Eliminada correctamente" };
+                else
+                    return new { correcto = false, mensaje = "Ha ocurrido un error eliminando la Cita" };
             }
+            catch (Exception)
+            {
+                return new { correcto = false, mensaje = "Ha ocurrido un error eliminando la Cita [1]" };
+            }
+            
+        }
 
-            String mensaje= "<img src='" + srcImagen + "' />";
+        public static void CodigoQr_Crear(dynamic objCita)
+        {
 
-            Email.EnviarEmail("bbautista.ortiz@hotmail.com", mensaje, "probando");
+            String url = Config.UrlDomain + "Privado/Mascota/Ver.aspx?i="+ HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objCita["mascotaId"]));
+            String telefonoVeterinaria = Config.TelefonoVeterinaria;
+
+            if (objCita["emailPropietario"].IndexOf("@gmail.com") != -1)
+            {
+                String mensaje = HttpUtility.HtmlDecode("<div style='text-align: center; '><img class='image-res' src='http://intranet.vetpippapets.com/src/mascota/imagenes/logo.jpg' width: 200px; height: 200px; style ='background-color: transparent;'></div><div style='text-align: center; '><br></div><div style='text-align: left;'><br></div><div style='text-align: left;'><b>Fecha:&nbsp;</b>&nbsp; &nbsp; " + objCita["inicio"] + "<img src='cid:{imageQrId}' style='float: right; width: 25%; margin-right: 20px;'></div><div style='text-align: left;'><b>Motivo:</b>&nbsp; &nbsp; " + objCita["motivo"] + "</div><div style='text-align: left;'><br></div><div style='text-align: left;'><b>*Si desea anular la cita, contactarse con el número " + telefonoVeterinaria + "</b></div>");
+
+                Email.EnviarEmailQr(objCita["emailPropietario"], mensaje, "Cita - " + objCita["nombrePropietario"], url);
+            }
+            else
+            {
+                QRCodeEncoder qrEncoder = new QRCodeEncoder();
+                Bitmap img = qrEncoder.Encode(url);
+                System.Drawing.Image imgQr = img;
+                String srcImagen = String.Empty;
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imgQr.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] imagenBytes = ms.ToArray();
+                    srcImagen = "data:image/png;base64," + Convert.ToBase64String(imagenBytes);
+                }
+
+                String mensaje = HttpUtility.HtmlDecode("<div style='text-align: center; '><img class='image-res' src='http://intranet.vetpippapets.com/src/mascota/imagenes/logo.jpg' width: 200px; height: 200px; style='background-color: transparent;'></div><div style='text-align: center; '><br></div><div style='text-align: left;'><br></div><div style='text-align: left;'><b>Fecha:&nbsp;</b>&nbsp; &nbsp; " + objCita["inicio"] + "<img src='" + srcImagen + "' style='float: right; width: 25%; margin-right: 20px;'></div><div style='text-align: left;'><b>Motivo:</b>&nbsp; &nbsp; " + objCita["motivo"] + "</div><div style='text-align: left;'><br></div><div style='text-align: left;'><b>*Si desea anular la cita, contactarse con el número " + telefonoVeterinaria + "</b></div>");
+
+                Email.EnviarEmail(objCita["emailPropietario"], mensaje, "Cita - " + objCita["nombrePropietario"]);
+            }
 
         }
 
@@ -127,8 +167,11 @@ namespace SysCliVet.Privado.Citas
                 foreach (Cita cita in lstCitas) {
                     objCita = new
                     {
-                        title = cita.TipoCita.Descripcion + " - " + cita.Mascota.Nombre,
-                        start = cita.Fecha
+                        title = cita.TipoCita.Nombre + " - " + cita.Mascota.Nombre,
+                        start = cita.Fecha,
+                        id = cita.Id,
+                        mascota = cita.Mascota.Nombre,
+                        motivo = cita.Motivo
                      };
                     lstObject.Add(objCita);
                 }

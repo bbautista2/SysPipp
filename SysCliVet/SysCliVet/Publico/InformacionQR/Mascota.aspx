@@ -45,6 +45,23 @@
         .login_content a:hover {
             text-decoration: none;
         }
+
+        .login_content {
+            min-width: 370px;
+            margin-top: -20px;
+        }
+
+        #crop-avatar {
+            margin-bottom: 10px;
+        }
+
+        .login_wrapper {
+            margin-top: 0;
+        }
+
+        .login_content form {
+            margin: 0;
+        }
     </style>
 
     <script type="text/javascript">
@@ -88,27 +105,54 @@
             <div class="animate form login_form">
                 <br>
                 <div id="idMensaje"></div>
-                <div style="text-align: center;">
+                <div style="text-align: center; min-width: 370px;">
                     <img src="../src/img/logo.jpg" height="180" />
                 </div>
                 <section class="login_content">
                     <form runat="server">
                         <h1 style="color: #ffffff; letter-spacing: 0">Datos de Mascota</h1>
-                        <div class="divDatos">
-                            <div>
-                                <span style="font-weight: bold" class="">Nombre: <span id="lblNombre" runat="server"></span></span>
+                        <div class="divDatos col-md-12 col-sm-12 col-xs-12">
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div id="crop-avatar">
+                                    <asp:Image runat="server" Style="width: 50%; margin-left: auto; margin-right: auto; max-width: 175px; max-height: 175px;" CssClass="img-responsive avatar-view" ID="ImgFotoMascota" onerror="this.src='../../src/imagenes/default.png'" />
+                                </div>
                             </div>
-                            <div>
-                                <span style="font-weight: bold" class="">Fecha de Nacimiento: <span id="lblFechaNac" runat="server"></span></span>
-                            </div>
-                            <div>
-                                <span style="font-weight: bold" class="">Raza: <span id="lblRaza" runat="server"></span></span>
-                            </div>
-                            <div>
-                                <span style="font-weight: bold" class="">Color: <span id="lblColor" runat="server"></span></span>
-                            </div>
-                            <div>
-                                <span style="font-weight: bold" class="">Sexo: <span id="lblSexo" runat="server"></span></span>
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="font-size: 14px;">
+                                <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right; padding-left: 0;">
+                                    <div>
+                                        <span style="font-weight: bold; color: #851d64;">Nombre: </span>
+                                    </div>
+                                    <div>
+                                        <span style="font-weight: bold; color: #851d64;">Fecha de Nacimiento: </span>
+                                    </div>
+                                    <div>
+                                        <span style="font-weight: bold; color: #851d64;">Raza: </span>
+                                    </div>
+                                    <div>
+                                        <span style="font-weight: bold; color: #851d64;">Color: </span>
+                                    </div>
+                                    <div>
+                                        <span style="font-weight: bold; color: #851d64;">Sexo: </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: left; padding-left: 0; padding-right: 0; font-weight: 600; color: #000;">
+                                    <div>
+                                        <span id="lblNombre" runat="server"></span>
+                                    </div>
+                                    <div>
+                                        <span id="lblFechaNac" runat="server"></span>
+                                    </div>
+                                    <div>
+                                        <span id="lblRaza" runat="server"></span>
+                                    </div>
+                                    <div>
+                                        <span id="lblColor" runat="server"></span>
+                                    </div>
+                                    <div>
+                                        <span id="lblSexo" runat="server"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="clearfix"></div>

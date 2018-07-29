@@ -343,6 +343,20 @@ namespace CapaNegocio
             return respuesta;
         }
 
+        public Boolean Cita_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = CitaDao.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
         #endregion
     }
 }

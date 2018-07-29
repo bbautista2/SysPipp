@@ -69,7 +69,7 @@ namespace SysCliVet.Privado.Mascota
         private void MostrarInformacion(clsMascota objMascota)
         {
             txtNombre.Value = objMascota.Nombre;
-            txtFechaNac.Value = objMascota.FechaNacimiento.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            txtFechaNac.Value = objMascota.FechaNacimiento.ToStringDate();
             txtRaza.Value = objMascota.Raza;
             txtColor.Value = objMascota.Color;
             txtEspecie.Value = objMascota.Especie;
@@ -93,26 +93,26 @@ namespace SysCliVet.Privado.Mascota
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
-            Boolean resultado = false;
-            clsMascota objMascota = new clsMascota
-            {
-                Id = vsId,
-                Nombre = txtNombre.Value,
-                Raza = txtRaza.Value,
-                Color = txtColor.Value,
-                Especie = txtEspecie.Value,
-                Peso = txtPeso.Value,
-                MarcaDistintiva = txtMarcaDist.Value,
-                Intac = rbIntacSi.Checked,
-                Cast = rbCastSi.Checked,
-                Foto = hfMain.Value,
-                Sexo = rbMacho.Checked ? (Int16)EnumGeneroMascota.Macho : (Int16)EnumGeneroMascota.Hembra,
-                FechaNacimiento = Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture)
-            };
+        {            
             try
             {
+                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                Boolean resultado = false;
+                clsMascota objMascota = new clsMascota
+                {
+                    Id = vsId,
+                    Nombre = txtNombre.Value,
+                    Raza = txtRaza.Value,
+                    Color = txtColor.Value,
+                    Especie = txtEspecie.Value,
+                    Peso = txtPeso.Value,
+                    MarcaDistintiva = txtMarcaDist.Value,
+                    Intac = rbIntacSi.Checked,
+                    Cast = rbCastSi.Checked,
+                    Foto = hfMain.Value,
+                    Sexo = rbMacho.Checked ? (Int16)EnumGeneroMascota.Macho : (Int16)EnumGeneroMascota.Hembra,
+                    FechaNacimiento = txtFechaNac.Value.ToStringDate()
+                };
                 resultado = clsLogica.Instance.Mascota_Guardar(ref baseEntidad, objMascota);
                 if (resultado)
                 {

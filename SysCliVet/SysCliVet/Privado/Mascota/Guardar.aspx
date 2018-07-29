@@ -152,7 +152,7 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button type="submit" class="btn btn-default">Regresar</button>
+                                    <a type="submit" class="btn btn-default" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
                                     <asp:Button ID="btnGuardar" runat="server"
                                         Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-success" />
                                 </div>

@@ -42,8 +42,7 @@ namespace CapaLibreria.General
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-
+                
                 String mailFrom = "soporte@vetpippapets.com";
                 String mailServer = "smtp.sendgrid.net";
                 Int32 mailPort = 587;
@@ -53,7 +52,6 @@ namespace CapaLibreria.General
                 String mailBody = message;
                 mailBody = message;
                 MailMessage insMail = new MailMessage(new MailAddress(mailFrom), new MailAddress(mailTo));
-
 
                 var _with1 = insMail;
                 _with1.Subject = mailSubject;
@@ -70,11 +68,8 @@ namespace CapaLibreria.General
                     Credentials = new NetworkCredential(mailFromAccount, mailFromPassword)
                 };
 
-                smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
-                MailView objMail = new MailView(message, subject, mailFrom);
-                objMail.mailTo = new List<string>();
-                objMail.mailTo.Add(mailTo);
-                smtp.SendAsync(insMail, objMail);
+                //smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
+                smtp.Send(insMail);
 
                 return true;
 
@@ -149,12 +144,12 @@ namespace CapaLibreria.General
                     Credentials = new NetworkCredential(mailFromAccount, mailFromPassword)
                 };
 
-
-                smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
-                MailView objMail = new MailView(message, subject, mailFrom);
-                objMail.mailTo = new List<string>();
-                objMail.mailTo.Add(mailTo);
-                smtp.SendAsync(insMail, objMail);
+                //smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
+                //MailView objMail = new MailView(message, subject, mailFrom);
+                //objMail.mailTo = new List<string>();
+                //objMail.mailTo.Add(mailTo);
+                //smtp.SendAsync(insMail, objMail);
+                smtp.Send(insMail);
 
                 return true;
 
