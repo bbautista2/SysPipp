@@ -50,6 +50,9 @@
     <Compile Include="clsHistorialFotografico.cs" />
     <Compile Include="clsPropietario.cs" />
     <Compile Include="clsRecordatorio.cs" />
+    <Compile Include="Producto.cs" />
+    <Compile Include="ProductoCategoria.cs" />
+    <Compile Include="ProductoMovimiento.cs" />
     <Compile Include="TipoCita.cs" />
     <Compile Include="clsTratamiento.cs" />
     <Compile Include="clsUsuario.cs" />

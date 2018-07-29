@@ -358,5 +358,38 @@ namespace CapaNegocio
         }
 
         #endregion
-    }
+
+        #region Producto Categoria
+        public List<ProductoCategoria> ProductoCategoria_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<ProductoCategoria> lstCategorias = new List<ProductoCategoria>();
+            try
+            {
+                lstCategorias = ProductoCategoriaDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstCategorias;
+        }
+
+        #endregion
+
+        #region Producto
+        public Boolean Producto_Guardar(ref clsBaseEntidad objBase, Producto objProducto)
+        {
+            Boolean respuesta = false;
+            try
+            {
+                respuesta = ProductoDao.Instance.Guardar(ref objBase, objProducto);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return respuesta;
+        }
+            #endregion
+        }
 }
