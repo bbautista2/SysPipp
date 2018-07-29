@@ -148,13 +148,13 @@ namespace SysCliVet.Privado.Mascota {
         protected global::System.Web.UI.HtmlControls.HtmlImage ImageMain;
         
         /// <summary>
-        /// Control ImgQR.
+        /// Control btnGenerarQR.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ImgQR;
+        protected global::System.Web.UI.WebControls.Button btnGenerarQR;
         
         /// <summary>
         /// Control btnGuardar.
@@ -191,5 +191,14 @@ namespace SysCliVet.Privado.Mascota {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfPropietarioId;
+        
+        /// <summary>
+        /// Control hfMascotaId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfMascotaId;
     }
 }

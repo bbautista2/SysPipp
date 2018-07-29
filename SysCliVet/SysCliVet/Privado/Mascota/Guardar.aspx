@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.Mascota.Guardar" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.Mascota.Guardar" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -139,13 +139,14 @@
                                     <img id="ImageMain" runat="server" style="margin-left: 8px; max-width: 100px" onerror="this.src='../../src/imagenes/default.png'" />
                                 </div>
                             </div>
-                            <div class="item form-group hide" style="margin-top:15px;">
+                            <div class="item form-group" style="margin-top:15px;">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Código QR 
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-lg-9">      
-                                    <button class="btn btn-success" id="btnGenerarQR" onclick="FN_SubirCodigoQR()">Generar</button>
-                                    <img id="ImgQR" runat="server" style="margin-left: 8px; max-width: 100px" onerror="this.src='../../src/imagenes/default.png'" />
+                                    <%--<a class="btn btn-success" id="btnGenerarQR" onclick="FN_GenerarCodigoQR()">Generar</a>--%>
+                                    <asp:Button ID="btnGenerarQR" runat="server"
+                                        Text="Generar" OnClick="btnGenerar_Click" CssClass="btn btn-success" />
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -166,6 +167,7 @@
     <asp:HiddenField ID="hfImageSrc" runat="server" />
     <asp:HiddenField ID="hfMain" runat="server" />
     <asp:HiddenField ID="hfPropietarioId" runat="server" />
+    <asp:HiddenField ID="hfMascotaId" runat="server" />
 </asp:Content>
 
 
@@ -219,16 +221,16 @@
             }
         }
 
-        function FN_SubirCodigoQR() {
-
+        function FN_GenerarCodigoQR() {
+            var mascotaId = $("input[id$=hfMascotaId]").val();
+            var nombreMascota = $("input[id$=txtNombre]").val();
             success = function (response) {
-                alert("test qr");
+                FN_Mensaje(response.d.tipo, response.d.mensaje);
             }
-
             error = function (xhr, ajaxOptions, thrownError) {
             };
 
-            FN_LlamarMetodo("Guardar.aspx/UploadQR", '{}', success, error);
+            FN_LlamarMetodo("Guardar.aspx/GenerarCodigoQr", '{mascotaId:"'+mascotaId+'", nombreMascota:"'+nombreMascota+'"}', success, error);
         }
 
     </script>

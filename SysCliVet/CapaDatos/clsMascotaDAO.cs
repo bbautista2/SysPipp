@@ -51,6 +51,7 @@ namespace CapaDatos
             Mascota.Propietario.FechaNacimiento = dr.ObtenerValorColumna<DateTime>("Propietario_FechaNacimiento");
             Mascota.Propietario.Direccion = dr.ObtenerValorColumna<String>("Propietario_Direccion");
             Mascota.Propietario.Telefono = dr.ObtenerValorColumna<String>("Propietario_Telefono");
+            Mascota.Propietario.Celular = dr.ObtenerValorColumna<String>("Propietario_Celular");
             Mascota.Propietario.Email =  dr.ObtenerValorColumna<String>("Propietario_Email");
             Mascota.Propietario.Estado = dr.ObtenerValorColumna<Int16>("Propietario_Estado");
 
