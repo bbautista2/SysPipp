@@ -40,7 +40,6 @@ namespace CapaDatos
 
         #region Crud
 
-
         public List<ProductoCategoria> ObtenerTodo(ref clsBaseEntidad baseEntidad)
         {
             List<ProductoCategoria> lstCategorias = new List<ProductoCategoria>();
@@ -75,9 +74,7 @@ namespace CapaDatos
             }
             return lstCategorias;
         }
-
-
-
+        
         #endregion
     }
 }

@@ -10,8 +10,5 @@ namespace CapaEntidad
    public class ProductoMovimiento:clsBaseEntidad
     {
         public Int32 Cantidad { get; set; }
-        public Decimal PrecioCosto { get; set; }
-        public Decimal PrecioVenta { get; set; }
-
     }
 }

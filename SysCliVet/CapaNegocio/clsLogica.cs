@@ -43,7 +43,8 @@ namespace CapaNegocio
                     }
                     else
                         baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Usuario y/o contraseña inválidos"));
-                } else
+                }
+                else
                     baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Ingresa tu Usuario y contraseña"));
 
             }
@@ -136,7 +137,9 @@ namespace CapaNegocio
             try
             {
                 objPropietario = clsPropietarioDAO.Instance.porID(ref baseEntidad, id);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
             }
             return objPropietario;
@@ -227,13 +230,17 @@ namespace CapaNegocio
             }
             return resultado;
         }
-        public clsFichaClinica FichaClinica_ObtenerPorMascotaId(ref clsBaseEntidad objEntidad,Int32 mascotaId) {
+        public clsFichaClinica FichaClinica_ObtenerPorMascotaId(ref clsBaseEntidad objEntidad, Int32 mascotaId)
+        {
             clsFichaClinica objFichaClinica = new clsFichaClinica();
-            try {
-                objFichaClinica = clsFichaClinicaDAO.Instance.ObtenerPorMascotaID(ref objEntidad,mascotaId);
+            try
+            {
+                objFichaClinica = clsFichaClinicaDAO.Instance.ObtenerPorMascotaID(ref objEntidad, mascotaId);
 
-            } catch(Exception ex) {
-                objEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex,"Ha ocurrido un error en la aplicacion [2]"));
+            }
+            catch (Exception ex)
+            {
+                objEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicacion [2]"));
             }
             return objFichaClinica;
         }
@@ -329,12 +336,12 @@ namespace CapaNegocio
             return lstCita;
         }
 
-        public Boolean Cita_Guardar(ref clsBaseEntidad objBase,Cita objCita)
+        public Boolean Cita_Guardar(ref clsBaseEntidad objBase, Cita objCita)
         {
             Boolean respuesta = false;
             try
             {
-                respuesta = CitaDao.Instance.Guardar(ref objBase,objCita);
+                respuesta = CitaDao.Instance.Guardar(ref objBase, objCita);
             }
             catch (Exception ex)
             {
@@ -390,6 +397,73 @@ namespace CapaNegocio
             }
             return respuesta;
         }
-            #endregion
+
+        public Producto Producto_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Producto objProducto = new Producto();
+            try
+            {
+                objProducto = ProductoDao.Instance.porID(ref baseEntidad, id);
+                if (objProducto != null && objProducto.Id > 0)
+                    objProducto.LstProductoMovimientos = ProductoMovimientoDao.Instance.porProductoID(ref baseEntidad, objProducto.Id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return objProducto;
         }
+
+        public List<Producto> Producto_Listar(ref clsBaseEntidad baseEntidad)
+        {
+            List<Producto> lstProductos = new List<Producto>();
+            try
+            {
+                lstProductos = ProductoDao.Instance.Listar(ref baseEntidad);
+                if(lstProductos != null && lstProductos.Count > 0)
+                {
+                    foreach (Producto objProducto in lstProductos)
+                    {
+                        if (objProducto != null && objProducto.Id > 0)
+                            objProducto.LstProductoMovimientos = ProductoMovimientoDao.Instance.porProductoID(ref baseEntidad, objProducto.Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstProductos;
+        }
+
+        public Boolean Producto_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = ProductoDao.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
+        public Int32 ProductoMovimiento_ActualizarStock(ref clsBaseEntidad baseEntidad, Int32 productoId, String descripcion, Int32 cantidad)
+        {
+            Int32 stockActual = 0;
+            try
+            {
+                stockActual = ProductoMovimientoDao.Instance.ActualizarStock(ref baseEntidad, productoId, descripcion, cantidad);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return stockActual;
+        }
+
+        #endregion
+    }
 }

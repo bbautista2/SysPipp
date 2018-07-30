@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Citas <small>Añadir y editar</small></h3>
+                <h3>Citas <small>Añadir y eliminar</small></h3>
             </div>
 
             <div class="title_right">

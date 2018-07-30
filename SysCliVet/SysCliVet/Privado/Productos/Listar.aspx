@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Listar.aspx.cs" Inherits="SysCliVet.Privado.Productos.Ver" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Listar.aspx.cs" Inherits="SysCliVet.Privado.Productos.Listar" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="EstilosPlaceHolder" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <div class="">
+    <div class="">
         <div class="page-title">
             <div class="title_left">
                 <h3>Producto</h3>
@@ -49,7 +50,9 @@
                         <div id="idMensaje"></div>
                         <div class="form-group">
                             <div class="col-md-12 left">
-                                <button id="send" type="submit" class="btn btn-success"><i class="fa fa-plus-square"></i>Añadir</button>
+                                <a id="send" href="Guardar.aspx" class="btn btn-success"><i class="fa fa-plus-square"></i>Añadir</a>
+                                <asp:Button ID="btnGenerarQr" runat="server"
+                                        Text="Guardar" OnClick="btnDescargarQr_Click" CssClass="btn btn-success hide" />
                             </div>
                         </div>
                         <br />
@@ -96,7 +99,9 @@
 
 </asp:Content>
 <asp:Content ID="content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
-     <asp:HiddenField ID="hfListadoProductos" Value="[]" runat="server" />
+    <asp:HiddenField ID="hfListadoProductos" Value="[]" runat="server" />
+    <asp:HiddenField ID="hfProductoId" runat="server" />
+    <asp:HiddenField ID="hfCodigo" runat="server" />
     <script type="text/javascript">
         var tabla;
         $(function () {
@@ -118,12 +123,12 @@
 
         function FN_Eliminar(id) {
             $("[id$=ModalProducto]").modal("show");
-            $('#Confirmar').unbind().click(function() {
-                FN_EliminarPropietario(id);
+            $('#Confirmar').unbind().click(function () {
+                FN_EliminarProducto(id);
             });
         }
 
-        function FN_EliminarPropietario(id) {
+        function FN_EliminarProducto(id) {
 
             success = function (response) {
                 var result = response.d;
@@ -149,36 +154,27 @@
             FN_LlamarMetodo("Listar.aspx/EliminarProducto", '{id: "' + id + '" }', success, error);
         }
 
+        function FN_DescargarQr(id, codigo) {
+            $("input[id$=hfProductoId]").val(id);
+            $("input[id$=hfCodigo]").val(codigo);
+            $("input[id$=btnGenerarQr]").click();
+        }
+
     </script>
 
     <script type="text/x-handlebars-template" id="table-producto">
         {{# each items}}                   
-                        <tr>
-                            <td>
-                                <a onclick="fn_AbrirLink('Ver.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Ver Mascota"><i class="fa fa-eye"></i></a>
-                                <a onclick="fn_AbrirLink('Guardar.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
-                                <a onclick="FN_Eliminar('{{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                            <td>
-                                <ul class="list-inline">
-                                    <li>
-                                        <img src="{{Foto}}" class="avatar" alt="Avatar" onerror="this.src='../../src/imagenes/default.png'">
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>{{Nombre}}</td>
-                            <td>{{Propietario}}           
-                            </td>
-                            <td>{{Edad}}</td>
-                            <td>
-                                <div class="progress progress_sm">
-                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{Progreso}}"></div>
-                                </div>
-                                <small>{{Progreso}}% Completo</small>
-                            </td>
-
-                        </tr>
-
+            <tr>
+                <td>
+                    <a onclick="fn_AbrirLink('Guardar.aspx?i={{Id}}&s=1')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Actualizar Stock"><i class="fa fa-eye"></i></a>
+                    <a onclick="fn_AbrirLink('Guardar.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
+                    <a onclick="FN_Eliminar('{{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
+                    <a onclick="FN_DescargarQr('{{Id}}','{{Codigo}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Decargar QR"><i class="fa fa-qrcode"></i></a>
+                </td>
+                <td>{{Categoria}}</td>
+                <td>{{Descripcion}}</td>
+                <td>{{Stock}}</td>
+            </tr>
         {{/each}}
     </script>
 </asp:Content>

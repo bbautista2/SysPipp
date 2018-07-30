@@ -175,7 +175,7 @@
                                     <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <a id="send" onclick="fn_AbrirLink('../HistorialClinico/Guardar.aspx')" class="btn btn-success"><i class="fa fa-plus-square"></i>Añadir</a>
+                                            <a id="send" class="btn btn-success"><i class="fa fa-plus-square"></i>Añadir</a>
                                         </div>
 
                                         <table class="table table-striped table-bordered nowrap" id="tbHistoria">
@@ -317,6 +317,7 @@
     <asp:HiddenField ID="hfDesparasitaciones" runat="server" />
     <asp:HiddenField ID="hfListadoHistoria" Value="[]" runat="server" />
     <asp:HiddenField ID="hfIdFicha" Value="0" runat="server" />
+    <asp:HiddenField ID="hfNroFicha" runat="server" />
     <asp:HiddenField ID="hfIdMascota" Value="0" runat="server" />
 
     <script type="text/javascript">
@@ -346,7 +347,7 @@
                 nombreTabla = "tbDesp";
                 FN_AgregarFila();
             });
-            
+
             function FN_AgregarFila() {
                 var acciones,
                     data,
@@ -641,13 +642,16 @@
                 FN_GuardarVacunas();
                 FN_GuardarDesparasitaciones();
                 return true;
-             });
+            });
+
+            var nroFicha = $("input[id$=hfNroFicha]").val();
+            $("[id$=send]").attr("onclick", "fn_AbrirLink('../HistorialClinico/Guardar.aspx?nf=" + nroFicha + "')");
 
         })
 
         function FN_Eliminar(id) {
             $("[id$=ModalHistoria]").modal("show");
-            $('#ConfirmarHistoria').unbind().click(function() {
+            $('#ConfirmarHistoria').unbind().click(function () {
                 FN_EliminarHistoria(id);
             });
         }
@@ -675,7 +679,7 @@
                 $("[id$=ModalHistoria]").modal("hide");
             };
 
-            FN_LlamarMetodo("Ver.aspx/EliminarHistoria", '{id: "' + id + '", idMascota: '+$("input[id$=hfIdMascota]").val()+' }', success, error);
+            FN_LlamarMetodo("Ver.aspx/EliminarHistoria", '{id: "' + id + '", idMascota: ' + $("input[id$=hfIdMascota]").val() + ' }', success, error);
         }
 
     </script>

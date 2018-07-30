@@ -76,6 +76,7 @@ namespace SysCliVet.Privado.Mascota
         private void FichaClinica_MostrarInformacion(clsFichaClinica objFichaClinica)
         {
             lblNumeroFicha.Text = objFichaClinica.NumeroFicha.ToString();
+            hfNroFicha.Value = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.NumeroFicha.ToString()));
         }
 
         private void Mascota_MostrarInformacion(clsMascota objMascota) {

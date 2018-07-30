@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-   public class ProductoDao
+    public class ProductoDao
     {
         #region Singleton
         private static ProductoDao instance = null;
@@ -32,10 +32,11 @@ namespace CapaDatos
         {
             Producto producto = new Producto();
             producto.Id = dr.ObtenerValorColumna<Int32>("ID");
-            producto.Codigo= dr.ObtenerValorColumna<String>("Codigo");
+            producto.Codigo = dr.ObtenerValorColumna<String>("Codigo");
             producto.Descripcion = dr.ObtenerValorColumna<String>("Descripcion");
-            producto.CantidadMinima = dr.ObtenerValorColumna<Int16>("CantidadMinima");
             producto.Estado = dr.ObtenerValorColumna<Int16>("Estado");
+            producto.Categoria.Id = dr.ObtenerValorColumna<Int32>("Categoria_Id");
+            producto.Categoria.Descripcion = dr.ObtenerValorColumna<String>("Categoria_Descripcion");
             return producto;
         }
         #endregion
@@ -51,13 +52,14 @@ namespace CapaDatos
                 cmd = new SqlCommand("Producto_Guardar", clsConexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
-                };  
+                };
+                cmd.Parameters.AddWithValue("@Id", objProducto.Id);
                 cmd.Parameters.AddWithValue("@Codigo", objProducto.Codigo);
                 cmd.Parameters.AddWithValue("@ProductoCategoryID", objProducto.Categoria.Id);
                 cmd.Parameters.AddWithValue("@Descripcion", objProducto.Descripcion);
-                cmd.Parameters.AddWithValue("@CantidadMinima", objProducto.CantidadMinima);
                 cmd.Parameters.AddWithValue("@CantidadIngreso", objProducto.ProductoMovimiento.Cantidad);
-                cmd.Parameters.AddWithValue("@PrecioCosto", objProducto.ProductoMovimiento.PrecioCosto);       
+                cmd.Parameters.AddWithValue("@Movimiento_Descripcion", objProducto.ProductoMovimiento.Descripcion);
+                cmd.ExecuteReader();
                 Resultado = true;
             }
             catch (Exception ex)
@@ -71,6 +73,97 @@ namespace CapaDatos
             }
             return Resultado;
         }
+
+        public Producto porID(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Producto objProducto = null;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Producto_PorID", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@ID", id);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        objProducto = SetEntidad(dr);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objProducto = null;
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return objProducto;
+        }
+
+        public List<Producto> Listar(ref clsBaseEntidad baseEntidad)
+        {
+            List<Producto> lstProductos = new List<Producto>();
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("Producto_Listar", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        Producto objProducto = new Producto();
+                        objProducto = SetEntidad(dr);
+                        lstProductos.Add(objProducto);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lstProductos = null;
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstProductos;
+        }
+
+        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Producto_EliminarPorId", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Id", id);
+                resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return resultado;
+        }
+
         #endregion
 
     }

@@ -7,7 +7,6 @@ namespace CapaEntidad
 {
     public class Producto: clsBaseEntidad
     {
-        public Int32 CantidadMinima { get; set; }
         public String Codigo { get; set; }
         ProductoCategoria categoria;
         public ProductoCategoria Categoria

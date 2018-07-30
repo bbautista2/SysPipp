@@ -40,15 +40,6 @@ namespace SysCliVet.Privado.Productos {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescripcion;
         
         /// <summary>
-        /// Control txtCantidadMinima.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCantidadMinima;
-        
-        /// <summary>
         /// Control txtCantidadIngreso.
         /// </summary>
         /// <remarks>
@@ -58,13 +49,13 @@ namespace SysCliVet.Privado.Productos {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtCantidadIngreso;
         
         /// <summary>
-        /// Control txtPrecioCosto.
+        /// Control divStock.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrecioCosto;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStock;
         
         /// <summary>
         /// Control btnGuardar.
@@ -74,5 +65,14 @@ namespace SysCliVet.Privado.Productos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
+        
+        /// <summary>
+        /// Control hfProductoId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfProductoId;
     }
 }

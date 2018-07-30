@@ -1,45 +1,47 @@
-﻿using CapaLibreria.Base;
+﻿using CapaEntidad;
+using CapaLibreria.Base;
 using CapaLibreria.General;
 using CapaNegocio;
+using MessagingToolkit.QRCode.Codec;
+using SysCliVet.src.app_code;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+using System.Drawing;
+using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SysCliVet.Privado.Productos
 {
-    public partial class Ver : System.Web.UI.Page
+    public partial class Listar : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Producto_Listar();
         }
 
-        public void Mascota_Listar()
+        public void Producto_Listar()
         {
             clsBaseEntidad baseEntidad = new clsBaseEntidad();
-            DataTable dt = null;
+            List<Producto> lstProductos = null;
             List<Object> lst = new List<Object>();
             try
             {
-                dt = clsLogica.Instance.Mascota_Listar(ref baseEntidad);
+                lstProductos = clsLogica.Instance.Producto_Listar(ref baseEntidad);
 
-                foreach (DataRow item in dt.Rows)
+                foreach (Producto item in lstProductos)
                 {
-                    var Mascota = new
+                    var Producto = new
                     {
-                        Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
-                        Nombre = item["Nombre"],
-                        Propietario = item["Nombre_Propietario"],
-                        Progreso = 0,                        
-                        Estado = item["Estado"]
+                        Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item.Id.ToString())),
+                        Categoria = item.Categoria.Descripcion,
+                        item.Descripcion,
+                        Stock = item.Stock().ToString(),
+                        item.Codigo
                     };
-                    lst.Add(Mascota);
+                    lst.Add(Producto);
                 }
 
                 hfListadoProductos.Value = (new JavaScriptSerializer()).Serialize(lst);
@@ -52,22 +54,22 @@ namespace SysCliVet.Privado.Productos
         }
 
         [WebMethod]
-        public static Object EliminarMascota(String id)
+        public static Object EliminarProducto(String id)
         {
             Boolean resultado = false;
 
             try
             {
-                Int32 idMascota = Convert.ToInt32(clsEncriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
+                Int32 idProducto = Convert.ToInt32(clsEncriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
 
                 clsBaseEntidad baseEntidad = new clsBaseEntidad();
 
-                resultado = clsLogica.Instance.Mascota_EliminarPorId(ref baseEntidad, idMascota);
+                resultado = clsLogica.Instance.Producto_EliminarPorId(ref baseEntidad, idProducto);
 
                 if (resultado)
-                    return new { Lista = ObtenerMascotas(), correcto = true, mensaje = "Productos Eliminada Correctamente" };
+                    return new { Lista = ObtenerProductos(), correcto = true, mensaje = "Producto Eliminado Correctamente" };
                 else
-                    return new { Lista = new List<Object>(), correcto = false, mensaje = "Ha ocurrido un Error Eliminando el Productos" };
+                    return new { Lista = new List<Object>(), correcto = false, mensaje = "Ha ocurrido un Error Eliminando el Producto" };
 
             }
             catch (Exception)
@@ -77,26 +79,26 @@ namespace SysCliVet.Privado.Productos
         }
 
         [WebMethod]
-        public static List<Object> ObtenerMascotas()
+        public static List<Object> ObtenerProductos()
         {
             List<Object> lst = new List<Object>();
             try
             {
                 clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                DataTable dt = clsLogica.Instance.Mascota_Listar(ref baseEntidad);
+                List<Producto> lstProductos = null;
+                lstProductos = clsLogica.Instance.Producto_Listar(ref baseEntidad);
                 if (baseEntidad.Errores.Count == 0)
                 {
-                    if (dt != null)
+                    if (lstProductos != null)
                     {
-                        foreach (DataRow item in dt.Rows)
+                        foreach (Producto item in lstProductos)
                         {
                             lst.Add(new
                             {
-                                Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
-                                Nombre = item["Nombre"],
-                                Propietario = item["Nombre_Propietario"],
-                                Progreso = 0,                             
-                                Estado = item["Estado"]
+                                Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item.Id.ToString())),
+                                Categoria = item.Categoria.Descripcion,
+                                item.Descripcion,
+                                Stock = item.Stock().ToString()
                             });
                         }
                     }
@@ -107,6 +109,39 @@ namespace SysCliVet.Privado.Productos
                 lst = null;
             }
             return lst;
+        }
+
+        protected void btnDescargarQr_Click(object sender, EventArgs e)
+        {
+            DescargarQr();
+        }
+
+        public void DescargarQr()
+        {
+            try
+            {
+                String url = Config.UrlDomain + "Productos/Guardar.aspx?i=" + hfProductoId.Value + "&s=1";
+                String codigo = hfCodigo.Value;
+                QRCodeEncoder qrEncoder = new QRCodeEncoder();
+                Bitmap img = qrEncoder.Encode(url);
+                System.Drawing.Image imgQr = img;
+
+                MemoryStream ms = new MemoryStream();
+                imgQr.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                ms.Position = 0;
+                byte[] imagenBytes = ms.ToArray();
+                HttpContext.Current.Response.AddHeader("Content-disposition", "attachment; filename=" + "CodigoQr_" + codigo + ".png");
+                HttpContext.Current.Response.ContentType = "image/png";
+                HttpContext.Current.Response.BinaryWrite(imagenBytes);
+                HttpContext.Current.Response.Flush();
+                HttpContext.Current.Response.SuppressContent = true;
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

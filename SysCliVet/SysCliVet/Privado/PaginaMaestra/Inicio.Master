@@ -103,6 +103,8 @@
                                             <li><a href="<%=ResolveUrl("~/Privado/Mascota/Listar.aspx") %>">Paciente</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="<%=ResolveUrl("~/Privado/Productos/Listar.aspx") %>"><i class="fa fa-book"></i>Productos <span class="fa fa-chevron-down"></span></a>
+                                    </li>
                                     <li><a><i class="fa fa-calendar"></i>Citas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="<%=ResolveUrl("~/Privado/Citas/Ver.aspx") %>">Ver</a></li>
