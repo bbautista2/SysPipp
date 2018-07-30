@@ -128,6 +128,20 @@ namespace CapaNegocio
             return resultado;
         }
 
+        public List<clsMascota> Mascota_ObtenerPorCumpleMesActual(ref clsBaseEntidad objBase)
+        {
+            List<clsMascota> lstMascota = new List<clsMascota>();
+            try
+            {
+                lstMascota = clsMascotaDAO.Instance.ObtenerPorCumpleMesActual(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstMascota;
+        }
+
         #endregion
 
         #region Propietario
@@ -336,6 +350,20 @@ namespace CapaNegocio
             return lstCita;
         }
 
+        public List<Cita> Cita_ObtenerPorFechaActual(ref clsBaseEntidad objBase)
+        {
+            List<Cita> lstCita = new List<Cita>();
+            try
+            {
+                lstCita = CitaDao.Instance.ObtenerPorFechaActual(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstCita;
+        }
+
         public Boolean Cita_Guardar(ref clsBaseEntidad objBase, Cita objCita)
         {
             Boolean respuesta = false;
@@ -462,6 +490,20 @@ namespace CapaNegocio
                 baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
             }
             return stockActual;
+        }
+
+        public List<ProductoMovimiento> ProductoMovimiento_ObtenerMasVendidos(ref clsBaseEntidad objBase)
+        {
+            List<ProductoMovimiento> lstProductoMovimientos = new List<ProductoMovimiento>();
+            try
+            {
+                lstProductoMovimientos = ProductoMovimientoDao.Instance.ObtenerMasVendidos(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstProductoMovimientos;
         }
 
         #endregion

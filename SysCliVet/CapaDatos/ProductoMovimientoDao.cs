@@ -102,5 +102,38 @@ namespace CapaDatos
             return stockActual;
         }
 
+        public List<ProductoMovimiento> ObtenerMasVendidos(ref clsBaseEntidad baseEntidad)
+        {
+            List<ProductoMovimiento> lstProductoMovimiento = new List<ProductoMovimiento>();
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("ProductoMovimiento_ObtenerMasVendidos", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ProductoMovimiento objProductoMovimiento = new ProductoMovimiento();
+                        objProductoMovimiento = SetEntidad(dr);
+                        lstProductoMovimiento.Add(objProductoMovimiento);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lstProductoMovimiento = null;
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstProductoMovimiento;
+        }
+
     }
 }

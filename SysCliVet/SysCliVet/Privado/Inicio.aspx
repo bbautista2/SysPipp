@@ -37,17 +37,8 @@
             <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
                     <h2>Top 5</h2>
-                    <ul class="nav navbar-right panel_toolbox">
+                    <ul class="nav navbar-right panel_toolbox" style="min-width: 46px;">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -56,88 +47,8 @@
                 </div>
                 <div class="x_content">
                     <h4>Productos mas vendidos</h4>
-                    <div class="widget_summary">
-                        <div class="w_left w_25">
-                            <span>Producto 1</span>
-                        </div>
-                        <div class="w_center w_55">
-                            <div class="progress">
-                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w_right w_20">
-                            <span>100</span>
-                        </div>
-                        <div class="clearfix"></div>
+                    <div id="divProductos">
                     </div>
-
-                    <div class="widget_summary">
-                        <div class="w_left w_25">
-                            <span>Producto 1</span>
-                        </div>
-                        <div class="w_center w_55">
-                            <div class="progress">
-                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w_right w_20">
-                            <span>20</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="widget_summary">
-                        <div class="w_left w_25">
-                            <span>Producto 3</span>
-                        </div>
-                        <div class="w_center w_55">
-                            <div class="progress">
-                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w_right w_20">
-                            <span>23k</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="widget_summary">
-                        <div class="w_left w_25">
-                            <span>Producto 4</span>
-                        </div>
-                        <div class="w_center w_55">
-                            <div class="progress">
-                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w_right w_20">
-                            <span>3k</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="widget_summary">
-                        <div class="w_left w_25">
-                            <span>Producto 5</span>
-                        </div>
-                        <div class="w_center w_55">
-                            <div class="progress">
-                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w_right w_20">
-                            <span>1k</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -146,17 +57,8 @@
             <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
                     <h2>Citas del día</h2>
-                    <ul class="nav navbar-right panel_toolbox">
+                    <ul class="nav navbar-right panel_toolbox" style="min-width: 46px;">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -166,59 +68,16 @@
                 <div class="x_content">
                     <div id="divCitas">
                     </div>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-
-                    </article>
-
-
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
                     <h2>Cumpleaños del mes</h2>
-                    <ul class="nav navbar-right panel_toolbox">
+                    <ul class="nav navbar-right panel_toolbox" style="min-width: 46px;">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -226,50 +85,28 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
+                    <div id="divCumple">
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
 
-
-
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
+    <asp:HiddenField ID="hfListadoCitas" Value="[]" runat="server" />
+    <asp:HiddenField ID="hfListadoCumple" Value="[]" runat="server" />
+    <asp:HiddenField ID="hfListadoProductos" Value="[]" runat="server" />
+
     <script type="text/javascript">
         $(function () {
+
+            Fn_ListarCitas();
+            Fn_ListarCumple();
+            Fn_ListarProductos();
+
             var arr_data1 = [
                 [gd(2012, 1, 1), 17],
                 [gd(2012, 1, 2), 74],
@@ -354,6 +191,27 @@
                 $.plot($("#chart_plot_cu"), [arr_data1, arr_data2], chart_plot_01_settings);
             }
 
+            function Fn_ListarCitas() {
+                var object = {};
+                object.items = $("input[type=hidden][id$=hfListadoCitas]").val() != "[]" ? $.parseJSON($("input[type=hidden][id$=hfListadoCitas]").val()) : "[]";
+                var items = fn_CargarPlantilla("data-citas", object);
+                $("[id$=divCitas]").html(items);
+            }
+
+            function Fn_ListarCumple() {
+                var object = {};
+                object.items = $("input[type=hidden][id$=hfListadoCumple]").val() != "[]" ? $.parseJSON($("input[type=hidden][id$=hfListadoCumple]").val()) : "[]";
+                var items = fn_CargarPlantilla("data-cumple", object);
+                $("[id$=divCumple]").html(items);
+            }
+
+            function Fn_ListarProductos() {
+                var object = {};
+                object.items = $("input[type=hidden][id$=hfListadoProductos]").val() != "[]" ? $.parseJSON($("input[type=hidden][id$=hfListadoProductos]").val()) : "[]";
+                var items = fn_CargarPlantilla("data-productos", object);
+                $("[id$=divProductos]").html(items);
+            }
+
         })
 
     </script>
@@ -370,6 +228,41 @@
                     <p>{{Motivo}}</p>
                 </div>
             </article>
+        {{/each}}
+    </script>
+
+    <script type="text/x-handlebars-template" id="data-cumple">
+        {{# each items}}                   
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">{{Mes}}</p>
+                    <p class="day">{{Dia}}</p>
+                </a>
+                <div class="media-body">
+                    <a class="title" href="#">{{Paciente}}</a>
+                    <p>Edad: {{Edad}}</p>
+                </div>
+            </article>
+        {{/each}}
+    </script>
+
+    <script type="text/x-handlebars-template" id="data-productos">
+        {{# each items}}                   
+            <div class="widget_summary">
+                <div class="w_left" style="width: 80%">
+                    <span>{{Nombre}}</span>
+                </div>
+                <div class="w_center w_55 hide">
+                    <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w_right w_20">
+                    <span>{{Salida}}</span>
+                </div>
+            </div>
         {{/each}}
     </script>
 

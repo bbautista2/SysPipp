@@ -216,6 +216,40 @@ namespace CapaDatos
             return resultado;
         }
 
+        public List<clsMascota> ObtenerPorCumpleMesActual(ref clsBaseEntidad baseEntidad)
+        {
+            List<clsMascota> lstMascotas = new List<clsMascota>();
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("Mascota_Listar_PorCumpleMesActual", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        clsMascota objMascota = new clsMascota();
+                        objMascota = SetEntidad(dr);
+                        lstMascotas.Add(objMascota);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstMascotas;
+        }
+
         #endregion
     }
 }

@@ -96,6 +96,7 @@ namespace SysCliVet.Privado.Productos
                 clsBaseEntidad objBase = new clsBaseEntidad();
                 Producto objProducto = new Producto
                 {
+                    Id = vsId,
                     Descripcion = txtDescripcion.Value,
                     Codigo = txtCodigo.Value,
                 };

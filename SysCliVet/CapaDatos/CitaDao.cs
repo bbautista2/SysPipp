@@ -108,6 +108,41 @@ namespace CapaDatos
             return lstCitas;
         }
 
+        public List<Cita> ObtenerPorFechaActual(ref clsBaseEntidad baseEntidad)
+        {
+            List<Cita> lstCitas = new List<Cita>();
+            Cita objCita;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("Cita_Listar_PorFechaActual", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        objCita = new Cita();
+                        objCita = SetEntidad(dr);
+                        lstCitas.Add(objCita);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstCitas;
+        }
+
         public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
         {
             Boolean resultado = false;
@@ -130,7 +165,7 @@ namespace CapaDatos
                 clsConexion.DisposeCommand(cmd);
             }
             return resultado;
-        }
+        }        
 
     }
 }
