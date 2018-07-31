@@ -49,7 +49,7 @@
     <Compile Include="clsFichaClinica.cs" />
     <Compile Include="clsHistorialFotografico.cs" />
     <Compile Include="clsPropietario.cs" />
-    <Compile Include="clsRecordatorio.cs" />
+    <Compile Include="Recordatorio.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ProductoCategoria.cs" />
     <Compile Include="ProductoMovimiento.cs" />

@@ -50,6 +50,7 @@
     <Compile Include="ProductoDao.cs" />
     <Compile Include="ProductoMovimientoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordatorioDao.cs" />
     <Compile Include="TipoCitaDao.cs" />
   </ItemGroup>
   <ItemGroup>

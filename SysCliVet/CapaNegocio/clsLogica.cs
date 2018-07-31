@@ -507,5 +507,22 @@ namespace CapaNegocio
         }
 
         #endregion
+
+        #region Recordatorio
+        public List<Recordatorio> Recordatorio_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<Recordatorio> lstRecordatorio = new List<Recordatorio>();
+            try
+            {
+                lstRecordatorio = RecordatorioDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstRecordatorio;
+        }
+        #endregion
+
     }
 }

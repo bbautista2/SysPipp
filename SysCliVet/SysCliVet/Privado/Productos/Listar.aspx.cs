@@ -120,7 +120,7 @@ namespace SysCliVet.Privado.Productos
         {
             try
             {
-                String url = Config.UrlDomain + "Productos/Guardar.aspx?i=" + hfProductoId.Value + "&s=1";
+                String url = Config.UrlDomain + "Privado/Productos/Guardar.aspx?i=" + hfProductoId.Value + "&s=1";
                 String codigo = hfCodigo.Value;
                 QRCodeEncoder qrEncoder = new QRCodeEncoder();
                 Bitmap img = qrEncoder.Encode(url);
