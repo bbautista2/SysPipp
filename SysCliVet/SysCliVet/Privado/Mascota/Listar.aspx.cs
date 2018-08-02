@@ -37,7 +37,8 @@ namespace SysCliVet.Privado.Mascota
                         Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
                         Nombre = item["Nombre"],
                         Propietario = item["Nombre_Propietario"],
-                        Progreso = 0,                        
+                        Progreso = 0,
+                        Edad = item["Edad"],
                         Foto = Config.MascotaRutaVirtual + "imagenes/"+ item["Foto"],
                         Estado = item["Estado"]
                     };
@@ -98,6 +99,7 @@ namespace SysCliVet.Privado.Mascota
                                 Nombre = item["Nombre"],
                                 Propietario = item["Nombre_Propietario"],
                                 Progreso = 0,
+                                Edad = item["Edad"],
                                 Foto = Config.MascotaRutaVirtual + "imagenes/" + item["Foto"],
                                 Estado = item["Estado"]
                             });

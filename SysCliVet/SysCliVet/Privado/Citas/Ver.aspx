@@ -1,6 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Ver.aspx.cs" Inherits="SysCliVet.Privado.Citas.Ver" Async="true"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Ver.aspx.cs" Inherits="SysCliVet.Privado.Citas.Ver" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="EstilosPlaceHolder" runat="server">
+    <style type="text/css">
+        .fc-nonbusiness {
+            background: #f70d0d;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -47,7 +52,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <br>    
+                        <br>
                         <div id="idMensaje"></div>
                         <div id='calendar1'></div>
                     </div>
@@ -179,9 +184,9 @@
         function Fn_Cita_Listar_Editar() {
 
             success = function (response) {
-                var obj = response.d;                
+                var obj = response.d;
                 $('#calendar1').fullCalendar('removeEvents');
-                $('#calendar1').fullCalendar('addEventSource', obj);  
+                $('#calendar1').fullCalendar('addEventSource', obj);
             }
 
             error = function (xhr, ajaxOptions, thrownError) {
@@ -200,7 +205,7 @@
                     Fn_Cita_Listar_Editar();
                     FN_Mensaje('s', result.mensaje);
                 } else
-                    FN_Mensaje('e', result.mensaje);                   
+                    FN_Mensaje('e', result.mensaje);
             }
 
             error = function (xhr, ajaxOptions, thrownError) {
@@ -219,7 +224,7 @@
                     Fn_Cita_Listar_Editar();
                     FN_Mensaje('s', result.mensaje);
                 } else
-                    FN_Mensaje('e', result.mensaje);   
+                    FN_Mensaje('e', result.mensaje);
                 $('#fc_edit').click();
             }
 
@@ -256,10 +261,24 @@
                 ignoreTimezone: false,
                 selectable: true,
                 longPressDelay: 10,
+                forceEventDuration: true,
+                defaultTimedEventDuration: "00:30:00",
+                businessHours: [ // specify an array instead
+                    {
+                        dow: [1, 2, 3, 4, 5, 6], // Monday, Tuesday, Wednesday
+                        start: '08:30', // 8am
+                        end: '13:30' // 6pm
+                    },
+                    {
+                        dow: [1, 2, 3, 4, 5, 6], // Thursday, Friday
+                        start: '16:00', // 10am
+                        end: '20:00' // 4pm
+                    }
+                ],
                 select: function (start, end, allDay, jsEvent) {
                     Fn_Limpiar_CrearCita();
                     $('#fc_create').click();
-                    
+
                     started = start;
                     ended = end;
 
@@ -288,7 +307,7 @@
 
                         calendar.fullCalendar('unselect');
 
-                        $('.antoclose').click();    
+                        $('.antoclose').click();
 
                         return false;
                     });
@@ -309,7 +328,7 @@
                 },
                 editable: true,
                 events: object,
-                timezone: 'local'
+                timezone: ''
             });
 
 

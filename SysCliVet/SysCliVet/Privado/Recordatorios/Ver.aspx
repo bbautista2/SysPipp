@@ -229,7 +229,7 @@
                 },
                 editable: true,
                 events: object,
-                timezone: 'local'
+                timezone: ''
             });
 
 

@@ -61,8 +61,6 @@
                                     <th>Nombre</th>
                                     <th>Dueño</th>
                                     <th>Edad</th>
-                                    <th>En tratamiento</th>
-
                                 </tr>
                             </thead>
                             <tbody id="tbodyMascota">
@@ -173,12 +171,6 @@
                             <td>{{Propietario}}           
                             </td>
                             <td>{{Edad}}</td>
-                            <td>
-                                <div class="progress progress_sm">
-                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{Progreso}}"></div>
-                                </div>
-                                <small>{{Progreso}}% Completo</small>
-                            </td>
 
                         </tr>
 
