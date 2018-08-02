@@ -2,11 +2,17 @@
 using CapaLibreria.Base;
 using CapaLibreria.General;
 using CapaNegocio;
+<<<<<<< HEAD
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+=======
 using SysCliVet.src.app_code;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+>>>>>>> 19bf392baf5f0a3ec1d060d71f2456e4de68a5b6
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -65,6 +71,56 @@ namespace SysCliVet.Privado.Mascota
         {
             Response.Redirect("Listar.aspx");
         }
+<<<<<<< HEAD
+
+        private void MostrarInformacion(clsMascota objMascota)
+        {
+            txtNombre.Value = objMascota.Nombre;
+            txtFechaNac.Value = objMascota.FechaNacimiento.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            txtRaza.Value = objMascota.Raza;
+            txtColor.Value = objMascota.Color;
+            txtEspecie.Value = objMascota.Especie;
+            txtGenero1.Checked = objMascota.Sexo==1;
+            txtGenero2.Checked = objMascota.Sexo==2;
+            //txtIntac.Value = objMascota.Intac;
+            //txtCast.Value = objMascota.Cast;
+            txtPeso.Value = objMascota.Peso;
+            txtMarcaDist.Value = objMascota.MarcaDistintiva;
+            txtPropietario.Value = objMascota.Propietario.Nombre;
+            ImageMain.Src = objMascota.Foto;
+        }
+
+        public void Message(String title, String text, String tipo)
+        {
+            ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>Fn_Mensaje('" + title + "', '" + text + "','" + tipo + "');</script>", false);
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            Boolean resultado = false;
+            clsMascota objMascota = new clsMascota();
+            objMascota.Id = vsId;
+            objMascota.Nombre = txtNombre.Value;
+            objMascota.Raza = txtRaza.Value;
+            objMascota.Color = txtColor.Value;
+            objMascota.Especie = txtEspecie.Value;
+            objMascota.Peso = txtPeso.Value;
+            objMascota.MarcaDistintiva = txtMarcaDist.Value;
+            objMascota.Propietario.Id = 1;
+            objMascota.Foto = hfMain.Value;
+            objMascota.FechaNacimiento = Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture);
+
+            try
+            {
+                resultado = clsLogica.Instance.Mascota_Guardar(ref baseEntidad, objMascota);
+                if (resultado) { ObtenerInformacion(); }
+            }
+            catch (Exception ex)
+            {
+
+            }
+=======
 
         private void MostrarInformacion(clsMascota objMascota)
         {
@@ -84,8 +140,15 @@ namespace SysCliVet.Privado.Mascota
             txtPropietario.Value = objMascota.Propietario.Nombre;
             hfPropietarioId.Value = objMascota.Propietario.Id.ToString();
             hfMascotaId.Value = objMascota.Id.ToString();
-            ImageMain.Src = Config.MascotaRutaVirtual + "imagenes/" + objMascota.Foto;        
+            ImageMain.Src = Config.MascotaRutaVirtual + "imagenes/" + objMascota.Foto;
+>>>>>>> 19bf392baf5f0a3ec1d060d71f2456e4de68a5b6
         }
+
+        public void Message(String title, String text, String tipo)
+        {
+            ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>Fn_Mensaje('" + title + "', '" + text + "','" + tipo + "');</script>", false);
+        }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {            
             try

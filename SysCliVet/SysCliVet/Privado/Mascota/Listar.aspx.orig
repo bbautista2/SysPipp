@@ -171,6 +171,14 @@
                             <td>{{Propietario}}           
                             </td>
                             <td>{{Edad}}</td>
+<<<<<<< HEAD
+=======
+                            <td>
+                                <div class="progress progress_sm">
+                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{Progreso}}"></div>
+                                </div>
+                                <small>{{Progreso}}% Completo</small>
+                            </td>
                             {{#if Estado}}
                             <td>
                                 <button type="button" class="btn btn-success btn-xs">Activo</button></td>
@@ -178,6 +186,7 @@
                            <td>
                                <button type="button" class="btn btn-danger btn-xs">Inactivo</button></td>
                             {{/if}}
+>>>>>>> 2d5b9e26f322f465a124a30210c572a56f2fe6b7
 
                         </tr>
 
