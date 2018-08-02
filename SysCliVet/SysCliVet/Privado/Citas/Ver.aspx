@@ -1,136 +1,142 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Ver.aspx.cs" Inherits="SysCliVet.Privado.Citas.Ver" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" AutoEventWireup="true" CodeBehind="Ver.aspx.cs" Inherits="SysCliVet.Privado.Citas.Ver" Async="true"%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="EstilosPlaceHolder" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-        <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Citas <small>Añadir y editar</small></h3>
-              </div>
 
-              <div class="title_right">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Citas <small>Añadir y eliminar</small></h3>
+            </div>
+
+            <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
                 </div>
-              </div>
             </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Ver Citas</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div id='calendar1'></div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        <!-- calendar modal -->
-    <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel">Nueva Cita</h4>
-          </div>
-          <div class="modal-body">
-            <div id="testmodal" style="padding: 5px 20px;">
-              <div id="antoform" class="form-horizontal calender" role="form">
-                 <div class="form-group">
-                  <label class="col-sm-3 control-label">Paciente</label>                     
-                  <div class="col-sm-9">
-                   <input type="text" name="autocomplete-custom-append" id="autocomplete-custom-append" class="form-control col-md-10"/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Descripcion</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
-                  </div>
-                </div>
-                   <div class="form-group">
-                  <label class="col-sm-3 control-label">Descripcion</label>
-                  <div class="col-sm-9">
-                      <select class="js-data-example-ajax"></select>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary antosubmit">Guardar</button>
-          </div>
         </div>
-      </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Ver Citas</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>    
+                        <div id="idMensaje"></div>
+                        <div id='calendar1'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- calendar modal -->
+    <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="z-index: 9999">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Nueva Cita</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="msjCrearCita"></div>
+                    <div id="testmodal" style="padding: 5px 20px;">
+                        <div id="antoform" class="form-horizontal calender" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Paciente</label>
+                                <div class="col-sm-9">
+                                    <input id="txtNombreMascota" runat="server" class="form-control col-md-6 col-xs-6" style="width: 80%!important" required="required" type="text" maxlength="8">
+                                    <span class="input-group-btn">
+                                        <button id="btnBuscarMascota" type="button" class="btn btn-primary" style="height: 34px;"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tipo Cita</label>
+                                <div class="col-sm-9">
+                                    <asp:DropDownList ID="cmbTipoCita" CssClass="form-control" runat="server"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Motivo</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" style="height: 55px;" id="txtDescripcion" name="descr"></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary antosubmit">Guardar</button>
+                    <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-dialog" style="z-index: 9999">
+            <div class="modal-content">
 
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel2">Editar Cita</h4>
-          </div>
-          <div class="modal-body">
-
-            <div id="testmodal2" style="padding: 5px 20px;">
-              <div id="antoform2" class="form-horizontal calender" role="form">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Paciente</label>
-                  <div class="col-sm-9">
-                    <input type="text" name="country" id="autocomplete-custom-append1" class="form-control col-md-10"/>
-                  </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel2">Editar Cita</h4>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Descripcion</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
-                  </div>
-                </div>
+                <div class="modal-body">
 
-              </div>
+                    <div id="testmodal2" style="padding: 5px 20px;">
+                        <div id="antoform2" class="form-horizontal calender" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Paciente</label>
+                                <div class="col-sm-9" style="padding-top: 8px;">
+                                    <label id="lblPaciente"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Motivo</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" style="height: 55px;" id="txtMotivo" disabled name="descr"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary antosubmit2">Eliminar</button>
+                    <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary antosubmit2">Guardar</button>
-          </div>
         </div>
-      </div>
     </div>
 
     <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
@@ -143,191 +149,218 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
-
+    <asp:HiddenField ID="hfIdMascota" runat="server" />
+    <asp:HiddenField ID="hfEmailPropietario" Value="" runat="server" />
+    <script src="<%=ResolveUrl("~/Privado/Citas/js/autocomplete-buscarMascota.js?a=1") %>"></script>
     <script type="text/javascript">
         $(function () {
-            init_autocomplete1();
-            init_calendar1();
-         $(".js-data-example-ajax").select2({
-  ajax: {
-    url: "http://localhost:50288/Publico/json.html",
-    dataType: 'json',
-    delay: 250,
-    data: function (params) {
-      return {
-        q: params.term, // search term
-        page: params.page
-      };
-    },
-    processResults: function (data, params) {
-      // parse the results into the format expected by Select2
-      // since we are using custom formatting functions we do not need to
-      // alter the remote JSON data, except to indicate that infinite
-      // scrolling can be used
-      params.page = params.page || 1;
+            Fn_Cita_Listar();
 
-      return {
-        results: data.items,
-        pagination: {
-          more: (params.page * 30) < data.total_count
-        }
-      };
-    },
-    cache: true
-  },
-  placeholder: 'Search for a repository',
-  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-  minimumInputLength: 1,
- 
-});
+            $("[id$=btnBuscarMascota]").on('click', function (e) {
+                Fn_BuscarMascota();
+            });
         });
 
-           function  init_calendar1() {
+        function Fn_Cita_Listar() {
 
+            success = function (response) {
+                var obj = response.d;
+                init_calendar1(obj);
+            }
 
-	     			var date = new Date(),
-					d = date.getDate(),
-					m = date.getMonth(),
-					y = date.getFullYear(),
-					started,
-					categoryClass;
+            error = function (xhr, ajaxOptions, thrownError) {
+                console.log("colocar mensaje de error");
+            };
 
-               var calendar = $('#calendar1').fullCalendar({
-                   
-				  header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay,listMonth'
-                   },
-                   defaultView:'agendaDay',
-				  selectable: true,
-				  selectHelper: true,
-				  select: function(start, end, allDay) {
-					$('#fc_create').click();
+            FN_LlamarMetodo("Ver.aspx/Cita_Listar", "{}", success, error);
 
-					started = start;
-					ended = end;
-
-					$(".antosubmit").on("click", function() {
-					  var title = $("#autocomplete-custom-append").val();
-					 
-
-					  categoryClass = $("#event_type").val();
-
-					  if (title) {
-						calendar.fullCalendar('renderEvent', {
-							title: title,
-							start: started,
-							end: ended,
-							allDay: allDay
-						  },
-						  true // make the event "stick"
-						);
-					  }
-
-					  $('#autocomplete-custom-append').val('');
-
-					  calendar.fullCalendar('unselect');
-
-					  $('.antoclose').click();
-
-					  return false;
-					});
-				  },
-				  eventClick: function(calEvent, jsEvent, view) {
-					$('#fc_edit').click();
-					$('#autocomplete-custom-append1').val(calEvent.title);
-
-					categoryClass = $("#event_type").val();
-
-					$(".antosubmit2").on("click", function() {
-					  calEvent.title = $("#autocomplete-custom-append1").val();
-
-					  calendar.fullCalendar('updateEvent', calEvent);
-					  $('.antoclose2').click();
-					});
-
-					calendar.fullCalendar('unselect');
-				  },
-				  editable: true,
-				  events: [{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				  }, {
-					title: 'Long Event',
-					start: new Date(y, m, d - 5),
-					end: new Date(y, m, d - 2)
-				  }, {
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				  }, {
-					title: 'Lunch',
-					start: new Date(y, m, d + 14, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				  }, {
-					title: 'Birthday Party',
-					start: new Date(y, m, d + 1, 19, 0),
-					end: new Date(y, m, d + 1, 22, 30),
-					allDay: false
-				  }, {
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
-				  }]
-				});
-
-
-			};
-        function init_autocomplete1() {		
-			
-			
-			var countries = { AD:"Andorra",A2:"Andorra Test",AE:"United Arab Emirates",AF:"Afghanistan",AG:"Antigua and Barbuda",AI:"Anguilla",AL:"Albania",AM:"Armenia",AN:"Netherlands Antilles",AO:"Angola",AQ:"Antarctica",AR:"Argentina",AS:"American Samoa",AT:"Austria",AU:"Australia",AW:"Aruba",AX:"Åland Islands",AZ:"Azerbaijan",BA:"Bosnia and Herzegovina",BB:"Barbados",BD:"Bangladesh",BE:"Belgium",BF:"Burkina Faso",BG:"Bulgaria",BH:"Bahrain",BI:"Burundi",BJ:"Benin",BL:"Saint Barthélemy",BM:"Bermuda",BN:"Brunei",BO:"Bolivia",BQ:"British Antarctic Territory",BR:"Brazil",BS:"Bahamas",BT:"Bhutan",BV:"Bouvet Island",BW:"Botswana",BY:"Belarus",BZ:"Belize",CA:"Canada",CC:"Cocos [Keeling] Islands",CD:"Congo - Kinshasa",CF:"Central African Republic",CG:"Congo - Brazzaville",CH:"Switzerland",CI:"Côte d’Ivoire",CK:"Cook Islands",CL:"Chile",CM:"Cameroon",CN:"China",CO:"Colombia",CR:"Costa Rica",CS:"Serbia and Montenegro",CT:"Canton and Enderbury Islands",CU:"Cuba",CV:"Cape Verde",CX:"Christmas Island",CY:"Cyprus",CZ:"Czech Republic",DD:"East Germany",DE:"Germany",DJ:"Djibouti",DK:"Denmark",DM:"Dominica",DO:"Dominican Republic",DZ:"Algeria",EC:"Ecuador",EE:"Estonia",EG:"Egypt",EH:"Western Sahara",ER:"Eritrea",ES:"Spain",ET:"Ethiopia",FI:"Finland",FJ:"Fiji",FK:"Falkland Islands",FM:"Micronesia",FO:"Faroe Islands",FQ:"French Southern and Antarctic Territories",FR:"France",FX:"Metropolitan France",GA:"Gabon",GB:"United Kingdom",GD:"Grenada",GE:"Georgia",GF:"French Guiana",GG:"Guernsey",GH:"Ghana",GI:"Gibraltar",GL:"Greenland",GM:"Gambia",GN:"Guinea",GP:"Guadeloupe",GQ:"Equatorial Guinea",GR:"Greece",GS:"South Georgia and the South Sandwich Islands",GT:"Guatemala",GU:"Guam",GW:"Guinea-Bissau",GY:"Guyana",HK:"Hong Kong SAR China",HM:"Heard Island and McDonald Islands",HN:"Honduras",HR:"Croatia",HT:"Haiti",HU:"Hungary",ID:"Indonesia",IE:"Ireland",IL:"Israel",IM:"Isle of Man",IN:"India",IO:"British Indian Ocean Territory",IQ:"Iraq",IR:"Iran",IS:"Iceland",IT:"Italy",JE:"Jersey",JM:"Jamaica",JO:"Jordan",JP:"Japan",JT:"Johnston Island",KE:"Kenya",KG:"Kyrgyzstan",KH:"Cambodia",KI:"Kiribati",KM:"Comoros",KN:"Saint Kitts and Nevis",KP:"North Korea",KR:"South Korea",KW:"Kuwait",KY:"Cayman Islands",KZ:"Kazakhstan",LA:"Laos",LB:"Lebanon",LC:"Saint Lucia",LI:"Liechtenstein",LK:"Sri Lanka",LR:"Liberia",LS:"Lesotho",LT:"Lithuania",LU:"Luxembourg",LV:"Latvia",LY:"Libya",MA:"Morocco",MC:"Monaco",MD:"Moldova",ME:"Montenegro",MF:"Saint Martin",MG:"Madagascar",MH:"Marshall Islands",MI:"Midway Islands",MK:"Macedonia",ML:"Mali",MM:"Myanmar [Burma]",MN:"Mongolia",MO:"Macau SAR China",MP:"Northern Mariana Islands",MQ:"Martinique",MR:"Mauritania",MS:"Montserrat",MT:"Malta",MU:"Mauritius",MV:"Maldives",MW:"Malawi",MX:"Mexico",MY:"Malaysia",MZ:"Mozambique",NA:"Namibia",NC:"New Caledonia",NE:"Niger",NF:"Norfolk Island",NG:"Nigeria",NI:"Nicaragua",NL:"Netherlands",NO:"Norway",NP:"Nepal",NQ:"Dronning Maud Land",NR:"Nauru",NT:"Neutral Zone",NU:"Niue",NZ:"New Zealand",OM:"Oman",PA:"Panama",PC:"Pacific Islands Trust Territory",PE:"Peru",PF:"French Polynesia",PG:"Papua New Guinea",PH:"Philippines",PK:"Pakistan",PL:"Poland",PM:"Saint Pierre and Miquelon",PN:"Pitcairn Islands",PR:"Puerto Rico",PS:"Palestinian Territories",PT:"Portugal",PU:"U.S. Miscellaneous Pacific Islands",PW:"Palau",PY:"Paraguay",PZ:"Panama Canal Zone",QA:"Qatar",RE:"Réunion",RO:"Romania",RS:"Serbia",RU:"Russia",RW:"Rwanda",SA:"Saudi Arabia",SB:"Solomon Islands",SC:"Seychelles",SD:"Sudan",SE:"Sweden",SG:"Singapore",SH:"Saint Helena",SI:"Slovenia",SJ:"Svalbard and Jan Mayen",SK:"Slovakia",SL:"Sierra Leone",SM:"San Marino",SN:"Senegal",SO:"Somalia",SR:"Suriname",ST:"São Tomé and Príncipe",SU:"Union of Soviet Socialist Republics",SV:"El Salvador",SY:"Syria",SZ:"Swaziland",TC:"Turks and Caicos Islands",TD:"Chad",TF:"French Southern Territories",TG:"Togo",TH:"Thailand",TJ:"Tajikistan",TK:"Tokelau",TL:"Timor-Leste",TM:"Turkmenistan",TN:"Tunisia",TO:"Tonga",TR:"Turkey",TT:"Trinidad and Tobago",TV:"Tuvalu",TW:"Taiwan",TZ:"Tanzania",UA:"Ukraine",UG:"Uganda",UM:"U.S. Minor Outlying Islands",US:"United States",UY:"Uruguay",UZ:"Uzbekistan",VA:"Vatican City",VC:"Saint Vincent and the Grenadines",VD:"North Vietnam",VE:"Venezuela",VG:"British Virgin Islands",VI:"U.S. Virgin Islands",VN:"Vietnam",VU:"Vanuatu",WF:"Wallis and Futuna",WK:"Wake Island",WS:"Samoa",YD:"People's Democratic Republic of Yemen",YE:"Yemen",YT:"Mayotte",ZA:"South Africa",ZM:"Zambia",ZW:"Zimbabwe",ZZ:"Unknown or Invalid Region" };
-
-			var countriesArray = $.map(countries, function(value, key) {
-			  return {
-				value: value,
-				data: key
-			  };
-			});
-
-			// initialize autocomplete with custom appendTo
-			$('#autocomplete-custom-append1').autocomplete({
-			  lookup: countriesArray
-			});
-			
         };
 
-        
-function formatRepo (repo) {
-  if (repo.loading) {
-    return repo.text;
-  }
+        function Fn_Cita_Listar_Editar() {
 
-  var markup = "<div class='select2-result-repository clearfix'>" +
-    "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
-    "<div class='select2-result-repository__meta'>" +
-      "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+            success = function (response) {
+                var obj = response.d;                
+                $('#calendar1').fullCalendar('removeEvents');
+                $('#calendar1').fullCalendar('addEventSource', obj);  
+            }
 
-  if (repo.description) {
-    markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
-  }
+            error = function (xhr, ajaxOptions, thrownError) {
+                console.log("colocar mensaje de error");
+            };
 
-  markup += "<div class='select2-result-repository__statistics'>" +
-    "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>" +
-    "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
-    "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
-  "</div>" +
-  "</div></div>";
+            FN_LlamarMetodo("Ver.aspx/Cita_Listar", "{}", success, error);
 
-  return markup;
-}
+        };
 
-function formatRepoSelection (repo) {
-  return repo.full_name || repo.text;
-}
+        function Fn_Cita_Guardar(objCita) {
+
+            success = function (response) {
+                var result = response.d;
+                if (result.correcto == true) {
+                    Fn_Cita_Listar_Editar();
+                    FN_Mensaje('s', result.mensaje);
+                } else
+                    FN_Mensaje('e', result.mensaje);                   
+            }
+
+            error = function (xhr, ajaxOptions, thrownError) {
+                console.log("colocar mensaje de error");
+            };
+
+            FN_LlamarMetodo("Ver.aspx/Cita_Guardar", JSON.stringify(objCita), success, error);
+
+        };
+
+        function Fn_Cita_Eliminar(idCita) {
+
+            success = function (response) {
+                var result = response.d;
+                if (result.correcto == true) {
+                    Fn_Cita_Listar_Editar();
+                    FN_Mensaje('s', result.mensaje);
+                } else
+                    FN_Mensaje('e', result.mensaje);   
+                $('#fc_edit').click();
+            }
+
+            error = function (xhr, ajaxOptions, thrownError) {
+                console.log("colocar mensaje de error");
+                $('#fc_edit').click();
+            };
+
+            FN_LlamarMetodo("Ver.aspx/Cita_Eliminar", '{id: ' + idCita + ' }', success, error);
+
+        };
+
+        function Fn_Limpiar_CrearCita() {
+            $("[id$=hfIdMascota], [id$=hfEmailPropietario], input[id$=txtNombreMascota], [id$=txtDescripcion]").val("");
+
+        }
+
+        function init_calendar1(object) {
+
+            var date = new Date(),
+                d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear(),
+                started,
+                categoryClass;
+            var calendar = $('#calendar1').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                defaultView: 'agendaDay',
+                allDaySlot: false,
+                ignoreTimezone: false,
+                selectable: true,
+                longPressDelay: 10,
+                select: function (start, end, allDay, jsEvent) {
+                    Fn_Limpiar_CrearCita();
+                    $('#fc_create').click();
+                    
+                    started = start;
+                    ended = end;
+
+                    $('.antosubmit').unbind('click');
+                    $(".antosubmit").one("click", function () {
+                        var mascotaId = $("[id$=hfIdMascota]").val();
+                        var tipoCita = $("[id$=cmbTipoCita]").val();
+                        var motivo = $("[id$=txtDescripcion]").val();
+                        var nombrePropietario = $("input[id$=txtNombreMascota]").val().split("-")[1];
+                        var emailPropietario = $("[id$=hfEmailPropietario]").val();
+                        categoryClass = $("#event_type").val();
+
+                        var objCita = {
+                            objCita: {
+                                mascotaId: mascotaId,
+                                inicio: moment(started).format("YYYY-MM-DD hh:mm:ss a"),
+                                fin: moment(ended).format("YYYY-MM-DD hh:mm:ss a"),
+                                tipoCita: tipoCita,
+                                motivo: motivo,
+                                nombrePropietario: nombrePropietario,
+                                emailPropietario: emailPropietario
+                            }
+                        }
+
+                        Fn_Cita_Guardar(objCita);
+
+                        calendar.fullCalendar('unselect');
+
+                        $('.antoclose').click();    
+
+                        return false;
+                    });
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                    $('#fc_edit').click();
+                    $('#autocomplete-custom-append1').val(calEvent.title);
+                    $('[id$=lblPaciente]').text(calEvent.mascota);
+                    $('[id$=txtMotivo]').val(calEvent.motivo);
+                    var id = calEvent.id;
+
+                    $('.antosubmit2').unbind('click');
+                    $(".antosubmit2").one("click", function () {
+                        Fn_Cita_Eliminar(id);
+                    });
+
+                    calendar.fullCalendar('unselect');
+                },
+                editable: true,
+                events: object,
+                timezone: 'local'
+            });
+
+
+        };
+
+        function Fn_BuscarMascota() {
+            $(".autocomplete-suggestions").remove();
+
+
+            $("[id$=btnBuscarMascota]").addClass("btn-loading");
+
+            $("[id$=btnBuscarMascota]").attr("disabled", true);
+            var nombre = $("[id$=txtNombreMascota]").val();
+
+            success = function (response) {
+                var lista = response.d;
+                if (lista != null && lista.length > 0) {
+                    var listaPropietarios = $.map(lista, function (value, key) {
+                        return {
+                            value: value,
+                            data: key
+                        };
+                    });
+
+                    // initialize autocomplete with custom appendTo
+                    $('[id$=txtNombreMascota]').autocomplete({
+                        lookup: listaPropietarios
+
+
+                    });
+                    setTimeout(function () { $("[id$=txtNombreMascota]").trigger('keyup'); }, 1000);
+                    $("[id$=btnBuscarMascota]").removeClass("btn-loading");
+                    $("[id$=btnBuscarMascota]").attr("disabled", false);
+                } else {
+                    $("[id$=btnBuscarMascota]").removeClass("btn-loading");
+                    $("[id$=btnBuscarMascota]").attr("disabled", false);
+                    FN_Mensaje("i", "No hay mascota registrada con ese nombre", "msjCrearCita");
+                }
+
+            }
+
+            error = function (xhr, ajaxOptions, thrownError) {
+                console.log("colocar mensaje de error");
+                $("[id$=btnBuscarMascota]").removeClass("btn-loading");
+                $("[id$=btnBuscarMascota]").attr("disabled", false);
+            };
+
+            FN_LlamarMetodo("Ver.aspx/ListaMascotasPorNombre", '{nombre: "' + nombre + '" }', success, error);
+
+        };
+
 
     </script>
 </asp:Content>

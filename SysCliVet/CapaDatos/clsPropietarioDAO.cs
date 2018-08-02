@@ -38,7 +38,9 @@ namespace CapaDatos
             Propietario.Direccion = dr.ObtenerValorColumna<String>("Direccion");
             Propietario.Telefono = dr.ObtenerValorColumna<String>("Telefono");
             Propietario.Email = dr.ObtenerValorColumna<String>("Email");
+            Propietario.Celular = dr.ObtenerValorColumna<String>("Celular");
             Propietario.Estado = dr.ObtenerValorColumna<Int16>("Estado");
+            Propietario.Dni = dr.ObtenerValorColumna<Int32>("Dni");
             return Propietario;
         }
         #endregion
@@ -92,7 +94,8 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Direccion", objPropietario.Direccion);
                 cmd.Parameters.AddWithValue("@Telefono", objPropietario.Telefono);
                 cmd.Parameters.AddWithValue("@Email", objPropietario.Email);
-                cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);               
+                cmd.Parameters.AddWithValue("@Estado", objPropietario.Estado);
+                cmd.Parameters.AddWithValue("@Celular", objPropietario.Celular);
                 cmd.ExecuteReader();
                 Resultado = true;
             }
@@ -135,6 +138,56 @@ namespace CapaDatos
             return dt;
         }
 
+        public DataTable ObtenerPorDni(ref clsBaseEntidad baseEntidad, String dni, Int16 tipoBusqueda)
+        {
+            DataTable dt = null;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Propietario_ObtenerPorDni", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Dni", dni);
+                cmd.Parameters.AddWithValue("@Tipo", tipoBusqueda);
+                dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return dt;
+        }
+
+        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Propietario_EliminarPorId", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Id", id);
+                resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return resultado;
+        }
 
         #endregion
     }

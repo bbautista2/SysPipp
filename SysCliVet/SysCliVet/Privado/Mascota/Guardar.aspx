@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.Mascota.Guardar" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Privado/PaginaMaestra/Inicio.Master" CodeBehind="Guardar.aspx.cs" Inherits="SysCliVet.Privado.Mascota.Guardar" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -20,6 +20,7 @@
                     </div>
                     <div class="x_content">
                         <br>
+                        <div id="idMensaje"></div>
 
                         <div class="form-horizontal form-label-left">
 
@@ -41,18 +42,18 @@
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Raza <span class="required">*</span>
+                                    Raza
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" required="required" type="text">
+                                    <input id="txtRaza" runat="server" class="form-control col-md-7 col-xs-12" name="txtRaza" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">
-                                    Color <span class="required">*</span>
+                                    Color
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" runat ="server"  id="txtColor" name="txtColor" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" runat ="server"  id="txtColor" name="txtColor" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -70,51 +71,55 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" runat="server" name="txtGenero"  id="txtGenero1" value="1">
-                                            &nbsp; Macho &nbsp;
-                           
+                                            <input type="radio" name="gender" id="rbMacho" runat="server">
+                                            &nbsp; Macho &nbsp;                           
                                         </label>
                                         <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" runat="server" name="txtGenero" id="txtGenero2"   value="2">
-                                            Hembra
-                           
+                                            <input type="radio" name="gender" id="rbHembra" runat="server">
+                                            Hembra                           
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Intac <span class="required">*</span>
+                                    Intac
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtIntac" runat="server" name="txtIntac" required="required" class="form-control col-md-7 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 8px;">
+                                    Sí
+                                            <input type="radio" runat="server" class="flat" name="rbIntac" id="rbIntacSi" />
+                                    No
+                                            <input type="radio" runat="server" class="flat" name="rbIntac" id="rbIntacNo" />
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Cast <span class="required">*</span>
+                                    Cast
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtCast" runat="server"  name="txtCast" required="required" class="form-control col-md-7 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 8px;">
+                                    Sí
+                                            <input type="radio" runat="server" class="flat" name="rbCast" id="rbCastSi" />
+                                    No
+                                            <input type="radio" runat="server" class="flat" name="rbCast" id="rbCastNo" />
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Peso <span class="required">*</span>
+                                    Peso
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtPeso" runat="server" name="txtPeso" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtPeso" runat="server" name="txtPeso" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Marca distintiva <span class="required">*</span>
+                                    Marca distintiva
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="txtMarcaDist" runat="server" name="txtMarcaDist" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="txtMarcaDist" runat="server" name="txtMarcaDist" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
-                            <div class="item form-group">
+                            <div class="item form-group hidden">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtPropietario">
                                     Propietario <span class="required">*</span>
                                 </label>
@@ -134,10 +139,19 @@
                                     <img id="ImageMain" runat="server" style="margin-left: 8px; max-width: 100px" onerror="this.src='../../src/imagenes/default.png'" />
                                 </div>
                             </div>
+                            <div class="item form-group" style="margin-top:15px;">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Código QR 
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-lg-9">      
+                                    <asp:Button ID="btnGenerarQR" runat="server"
+                                        Text="Generar" OnClick="btnGenerar_Click" CssClass="btn btn-success" />
+                                </div>
+                            </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button type="submit" class="btn btn-default">Regresar</button>
+                                    <a type="submit" class="btn btn-default" href="Listar.aspx"><i class="fa fa-arrow-circle-left"></i>Regresar</a>
                                     <asp:Button ID="btnGuardar" runat="server"
                                         Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-success" />
                                 </div>
@@ -151,6 +165,8 @@
     </div>
     <asp:HiddenField ID="hfImageSrc" runat="server" />
     <asp:HiddenField ID="hfMain" runat="server" />
+    <asp:HiddenField ID="hfPropietarioId" runat="server" />
+    <asp:HiddenField ID="hfMascotaId" runat="server" />
 </asp:Content>
 
 
@@ -202,6 +218,18 @@
                     $("img[id$=ImageMain]").attr("src", img);
                 });
             }
+        }
+
+        function FN_GenerarCodigoQR() {
+            var mascotaId = $("input[id$=hfMascotaId]").val();
+            var nombreMascota = $("input[id$=txtNombre]").val();
+            success = function (response) {
+                FN_Mensaje(response.d.tipo, response.d.mensaje);
+            }
+            error = function (xhr, ajaxOptions, thrownError) {
+            };
+
+            FN_LlamarMetodo("Guardar.aspx/GenerarCodigoQr", '{mascotaId:"'+mascotaId+'", nombreMascota:"'+nombreMascota+'"}', success, error);
         }
 
     </script>

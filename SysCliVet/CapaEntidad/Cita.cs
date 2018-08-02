@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-   public class clsCita:clsBaseEntidad
+   public class Cita:clsBaseEntidad
     {
         clsMascota _Mascota;
         public clsMascota Mascota
@@ -21,12 +21,12 @@ namespace CapaEntidad
         }
         public DateTime Fecha { get; set; }
         public String Hora { get; set; }
-        clsTipoCita _TipoCita;
-        public clsTipoCita TipoCita
+        TipoCita _TipoCita;
+        public TipoCita TipoCita
         {
             get
             {
-                _TipoCita = _TipoCita ?? new clsTipoCita();
+                _TipoCita = _TipoCita ?? new TipoCita();
                 return _TipoCita;
             }
             set => _TipoCita = value;

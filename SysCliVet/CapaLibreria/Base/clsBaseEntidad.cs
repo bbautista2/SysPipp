@@ -17,6 +17,7 @@ namespace CapaLibreria.Base
         public DateTime FechaActualizacion { get; set; }
         public Int32 CreadoPor { get; set; }
         public Int32 ActualizadoPor { get; set; }
+        public DateTime FechaNacimiento { get; set; }
 
         [XmlIgnore()]
         public List<ListaError> Errores { get; set; }
@@ -47,6 +48,12 @@ namespace CapaLibreria.Base
                 MensajeCliente = mensaje;
             }
 
+        }
+
+        public Int32 getEdad()
+        {
+            Int32 edad = DateTime.Today.AddTicks(-FechaNacimiento.Ticks).Year - 1;
+            return edad;
         }
     }
 }

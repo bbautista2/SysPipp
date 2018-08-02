@@ -44,7 +44,8 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-
+                        <br>
+                        <div id="idMensaje"></div>
                         <div class="form-group">
                             <div class="col-md-12 left">
                                 <button id="send" type="submit" class="btn btn-success"><i class="fa fa-plus-square"></i>Añadir</button>
@@ -65,13 +66,32 @@
                                 </tr>
                             </thead>
                             <tbody id="tbodyMascota">
-
                             </tbody>
                         </table>
 
-
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="ModalMascota">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">¿Estás seguro?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro que quieres eliminar esta fila?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="Confirmar">Confirmar</button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -81,6 +101,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <asp:HiddenField ID="hfListadoMascotas" Value="[]" runat="server" />
     <script type="text/javascript">
+        var tabla;
         $(function () {
             fn_iniciar();
 
@@ -92,13 +113,44 @@
 
         function Fn_ListarMascotas() {
             var object = {};
-            object.items = ($("input[type=hidden][id$=hfListadoMascotas]").val() != "" && $("input[type=hidden][id$=hfListadoMascotas]").val() != undefined) ? $.parseJSON($("input[type=hidden][id$=hfListadoMascotas]").val()) : "[]";
+            object.items = $("input[type=hidden][id$=hfListadoMascotas]").val() != "[]" ? $.parseJSON($("input[type=hidden][id$=hfListadoMascotas]").val()) : "[]";
             var items = fn_CargarPlantilla("table-mascota", object);
             $("[id$=tbodyMascota]").append(items);
-            $("[id$=datatable-responsive2]").DataTable();
+            tabla = $("[id$=datatable-responsive2]").DataTable();
         }
 
+        function FN_Eliminar(id) {
+            $("[id$=ModalMascota]").modal("show");
+            $('#Confirmar').unbind().click(function() {
+                FN_EliminarPropietario(id);
+            });
+        }
 
+        function FN_EliminarPropietario(id) {
+
+            success = function (response) {
+                var result = response.d;
+                if (result.correcto == true) {
+                    tabla.destroy();
+                    var object = {};
+                    object.items = result.Lista;
+                    var items = fn_CargarPlantilla("table-mascota", object);
+                    $("[id$=tbodyMascota]").html(items);
+                    tabla = $("[id$=datatable-responsive2]").DataTable();
+                    FN_Mensaje('s', result.mensaje);
+                }
+                else
+                    FN_Mensaje('e', result.mensaje);
+
+                $("[id$=ModalMascota]").modal("hide");
+            }
+
+            error = function (xhr, ajaxOptions, thrownError) {
+                $("[id$=ModalMascota]").modal("hide");
+            };
+
+            FN_LlamarMetodo("Listar.aspx/EliminarMascota", '{id: "' + id + '" }', success, error);
+        }
 
     </script>
 
@@ -106,13 +158,14 @@
         {{# each items}}                   
                         <tr>
                             <td>
+                                <a onclick="fn_AbrirLink('Ver.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Ver Mascota"><i class="fa fa-eye"></i></a>
                                 <a onclick="fn_AbrirLink('Guardar.aspx?i={{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
-                                <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
+                                <a onclick="FN_Eliminar('{{Id}}')" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
                             </td>
                             <td>
                                 <ul class="list-inline">
                                     <li>
-                                        <img src="{{Foto}}" class="avatar" alt="Avatar">
+                                        <img src="{{Foto}}" class="avatar" alt="Avatar" onerror="this.src='../../src/imagenes/default.png'">
                                     </li>
                                 </ul>
                             </td>
@@ -133,6 +186,7 @@
                            <td>
                                <button type="button" class="btn btn-danger btn-xs">Inactivo</button></td>
                             {{/if}}
+
                         </tr>
 
         {{/each}}

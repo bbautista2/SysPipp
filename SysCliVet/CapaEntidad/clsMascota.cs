@@ -20,7 +20,7 @@ namespace CapaEntidad
             set => _Propietario = value;
         }
 
-        public DateTime FechaNacimiento { get; set; }
+       
         public String Raza { get; set; }
         public String Color { get; set; }
         public String Especie { get; set; }
@@ -30,6 +30,11 @@ namespace CapaEntidad
         public String Peso { get; set; }
         public String MarcaDistintiva { get; set; }
         public String Foto { get; set; }
+
+        public String obtenerNombrePropietario() {
+            return Nombre + "-" + Propietario.Nombre + ", " + Propietario.Apellidos; 
+        }
+
 
     }
 }

@@ -11,6 +11,7 @@ namespace CapaLibreria.General
 
     }
 
+
     public enum EnumEstadoUsuario
     {
         Inactive = 0,
@@ -34,6 +35,26 @@ namespace CapaLibreria.General
         ComidaCasera = 1,
         Concentrado = 2,
         Mixto = 3
+    }
+
+    public enum EnumTipoBusqueda
+    {
+        Inexacta = 0,
+        Exacta = 1
+    }
+
+    public enum EnumApetito
+    {
+        Bueno = 1,
+        Malo = 2,
+        Normal = 3
+    }
+
+    public enum EnumCC
+    {
+        Normal = 1,
+        Obeso = 2,
+        Caquesico = 3
     }
 
 }

@@ -22,6 +22,15 @@ namespace SysCliVet.Privado.FichaClinica {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaFicha;
         
         /// <summary>
+        /// Control txtNroFicha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNroFicha;
+        
+        /// <summary>
         /// Control txtDni.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace SysCliVet.Privado.FichaClinica {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtDireccion;
         
         /// <summary>
+        /// Control txtCelular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtCelular;
+        
+        /// <summary>
         /// Control txtTelefono.
         /// </summary>
         /// <remarks>
@@ -85,22 +103,22 @@ namespace SysCliVet.Privado.FichaClinica {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtEmail;
         
         /// <summary>
-        /// Control txtNombrePac.
+        /// Control txtNombreMas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombrePac;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombreMas;
         
         /// <summary>
-        /// Control txtFechaNacPac.
+        /// Control txtFechaNacMas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaNacPac;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaNacMas;
         
         /// <summary>
         /// Control txtRaza.
@@ -280,7 +298,7 @@ namespace SysCliVet.Privado.FichaClinica {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnGuardarFicha;
+        protected global::System.Web.UI.WebControls.Button btnGuardarFicha;
         
         /// <summary>
         /// Control hfIdPropietario.
@@ -292,15 +310,6 @@ namespace SysCliVet.Privado.FichaClinica {
         protected global::System.Web.UI.WebControls.HiddenField hfIdPropietario;
         
         /// <summary>
-        /// Control hfIdPaciente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfIdPaciente;
-        
-        /// <summary>
         /// Control hfVacunas.
         /// </summary>
         /// <remarks>
@@ -308,5 +317,14 @@ namespace SysCliVet.Privado.FichaClinica {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfVacunas;
+        
+        /// <summary>
+        /// Control hfDesparasitaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfDesparasitaciones;
     }
 }

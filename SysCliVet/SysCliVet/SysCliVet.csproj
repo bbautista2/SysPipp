@@ -48,6 +48,9 @@
     <Reference Include="FontAwesome, Version=1.0.5578.25903, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome-ASP.NET.1.0.5578.25903\lib\net451\FontAwesome.dll</HintPath>
     </Reference>
+    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MessagingToolkit.QRCode.1.3.0\lib\MessagingToolkit.QRCode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -73,32 +76,28 @@
   <ItemGroup>
     <Content Include="FileUpload.ashx" />
     <None Include="packages.config" />
+    <Content Include="Privado\Citas\js\autocomplete-buscarMascota.js" />
     <Content Include="Privado\Citas\Ver.aspx" />
     <Content Include="Privado\FichaClinica\Guardar.aspx" />
+    <Content Include="Privado\FichaClinica\js\autocomplete.js" />
     <Content Include="Privado\HistorialClinico\Guardar.aspx" />
     <Content Include="Privado\Inicio.aspx" />
     <Content Include="Privado\Mascota\Listar.aspx" />
     <Content Include="Privado\Mascota\Ver.aspx" />
     <Content Include="Privado\Mascota\Guardar.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
+    <Content Include="Privado\Productos\Guardar.aspx" />
+    <Content Include="Privado\Productos\Listar.aspx" />
     <Content Include="Privado\Propietario\Guardar.aspx" />
     <Content Include="Privado\Propietario\Listar.aspx" />
     <Content Include="Privado\Recordatorios\Ver.aspx" />
     <Content Include="Publico\Acceso.aspx" />
+    <Content Include="Publico\InformacionQR\Mascota.aspx" />
     <Content Include="Publico\src\img\logo.jpg" />
     <Content Include="src\build\css\custom-purple.css" />
-    <Content Include="src\build\css\custom.css" />
     <Content Include="src\build\css\custom-purple.min.css" />
-    <Content Include="src\build\css\custom.min.css" />
     <Content Include="src\build\css\General.css" />
-    <Content Include="src\build\images\back_disabled.png" />
-    <Content Include="src\build\images\back_enabled.png" />
-    <Content Include="src\build\images\back_enabled_hover.png" />
-    <Content Include="src\build\images\forward_disabled.png" />
-    <Content Include="src\build\images\forward_enabled.png" />
-    <Content Include="src\build\images\forward_enabled_hover.png" />
-    <Content Include="src\build\images\loading.gif" />
-    <Content Include="src\build\images\logo.png" />
+    <Content Include="src\build\images\loading2.gif" />
     <Content Include="src\build\js\custom.js" />
     <Content Include="src\build\js\custom.min.js" />
     <Content Include="src\build\js\general.js" />
@@ -1275,9 +1274,6 @@
     <Content Include="src\vendors\dropzone\dist\min\dropzone.min.js" />
     <Content Include="src\vendors\echarts\.gitignore" />
     <Content Include="src\vendors\echarts\asset\logo.png" />
-    <Content Include="src\vendors\echarts\build\amd2common.js" />
-    <Content Include="src\vendors\echarts\build\mangleString.js" />
-    <Content Include="src\vendors\echarts\build\optimize.js" />
     <Content Include="src\vendors\echarts\dist\echarts.common.js" />
     <Content Include="src\vendors\echarts\dist\echarts.common.min.js" />
     <Content Include="src\vendors\echarts\dist\echarts.js" />
@@ -2117,9 +2113,6 @@
     <Content Include="src\vendors\gauge.js\dist\gauge.min.js" />
     <Content Include="src\vendors\gauge.js\favicon.ico" />
     <Content Include="src\vendors\gauge.js\index.html" />
-    <Content Include="src\vendors\google-code-prettify\bin\prettify.min.css" />
-    <Content Include="src\vendors\google-code-prettify\bin\prettify.min.js" />
-    <Content Include="src\vendors\google-code-prettify\bin\run_prettify.min.js" />
     <Content Include="src\vendors\google-code-prettify\CHANGES.html" />
     <Content Include="src\vendors\google-code-prettify\examples\quine.html" />
     <Content Include="src\vendors\google-code-prettify\README-zh-Hans.html" />
@@ -2670,6 +2663,7 @@
     <Content Include="src\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-component.js" />
     <Content Include="src\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-defaults.js" />
     <Content Include="src\vendors\mjolnic-bootstrap-colorpicker\src\js\colorpicker-plugin-wrapper.js" />
+    <Content Include="src\vendors\mobile\jquery.ui.touch-punch.min.js" />
     <Content Include="src\vendors\mocha\media\logo.svg" />
     <Content Include="src\vendors\mocha\mocha.css" />
     <Content Include="src\vendors\mocha\mocha.js" />
@@ -3283,9 +3277,6 @@
     <Content Include="src\vendors\parsleyjs\src\parsley\validator.js" />
     <Content Include="src\vendors\parsleyjs\src\parsley\validator_registry.js" />
     <Content Include="src\vendors\parsleyjs\src\vendor\inputevent.js" />
-    <Content Include="src\vendors\pdfmake\build\pdfmake.js" />
-    <Content Include="src\vendors\pdfmake\build\pdfmake.min.js" />
-    <Content Include="src\vendors\pdfmake\build\vfs_fonts.js" />
     <Content Include="src\vendors\pnotify\.gitignore" />
     <Content Include="src\vendors\pnotify\dist\pnotify.animate.js" />
     <Content Include="src\vendors\pnotify\dist\pnotify.brighttheme.css" />
@@ -3934,7 +3925,6 @@
     <Content Include="src\vendors\echarts\.github\ISSUE_TEMPLATE.md" />
     <Content Include="src\vendors\echarts\.jshintrc" />
     <Content Include="src\vendors\echarts\.npmignore" />
-    <Content Include="src\vendors\echarts\build\build.sh" />
     <Content Include="src\vendors\echarts\LICENSE" />
     <Content Include="src\vendors\echarts\map\json\china-contour.json" />
     <Content Include="src\vendors\echarts\map\json\china.json" />
@@ -4337,7 +4327,6 @@
     <Content Include="src\vendors\parsleyjs\LICENSE" />
     <Content Include="src\vendors\pdfmake\.bower.json" />
     <Content Include="src\vendors\pdfmake\bower.json" />
-    <Content Include="src\vendors\pdfmake\build\pdfmake.min.js.map" />
     <Content Include="src\vendors\pdfmake\LICENSE" />
     <Content Include="src\vendors\pnotify\.bower.json" />
     <Content Include="src\vendors\pnotify\bower.json" />
@@ -4505,6 +4494,7 @@
     <Content Include="src\vendors\validator\.bower.json" />
     <Content Include="src\vendors\validator\README.md" />
     <Content Include="src\vendors\validator\validator.jquery.json" />
+    <None Include="Properties\PublishProfiles\betsy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4581,6 +4571,20 @@
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.designer.cs">
       <DependentUpon>Inicio.Master</DependentUpon>
     </Compile>
+    <Compile Include="Privado\Productos\Guardar.aspx.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Productos\Guardar.aspx.designer.cs">
+      <DependentUpon>Guardar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Productos\Listar.aspx.cs">
+      <DependentUpon>Listar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Productos\Listar.aspx.designer.cs">
+      <DependentUpon>Listar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Privado\Propietario\Guardar.aspx.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4610,13 +4614,23 @@
     <Compile Include="Publico\Acceso.aspx.designer.cs">
       <DependentUpon>Acceso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Publico\InformacionQR\Mascota.aspx.cs">
+      <DependentUpon>Mascota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Publico\InformacionQR\Mascota.aspx.designer.cs">
+      <DependentUpon>Mascota.aspx</DependentUpon>
+    </Compile>
     <Compile Include="src\app_code\Config.cs" />
     <Compile Include="src\app_code\Sesion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="src\imagenes\mascota\" />
+    <Folder Include="src\imagenes\mascota\imagenes\" />
+    <Folder Include="src\vendors\echarts\build\" />
+    <Folder Include="src\vendors\google-code-prettify\bin\" />
+    <Folder Include="src\vendors\pdfmake\build\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">

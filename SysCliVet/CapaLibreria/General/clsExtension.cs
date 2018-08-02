@@ -72,8 +72,18 @@ namespace CapaLibreria.General
 
         }
 
+        public static DateTime ToStringDate(this String fecha)
+        {
+            return DateTime.ParseExact(fecha, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        }
+
         public static String ToStringDate(this DateTime fecha) {
             return fecha.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+        }
+
+        public static String ToLongStringDate(this DateTime fecha)
+        {
+            return fecha.ToString("dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture);
         }
 
     }

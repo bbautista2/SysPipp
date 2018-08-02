@@ -58,40 +58,58 @@ namespace SysCliVet.Privado.Mascota {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtEspecie;
         
         /// <summary>
-        /// Control txtGenero1.
+        /// Control rbMacho.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton txtGenero1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbMacho;
         
         /// <summary>
-        /// Control txtGenero2.
+        /// Control rbHembra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton txtGenero2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbHembra;
         
         /// <summary>
-        /// Control txtIntac.
+        /// Control rbIntacSi.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtIntac;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbIntacSi;
         
         /// <summary>
-        /// Control txtCast.
+        /// Control rbIntacNo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCast;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbIntacNo;
+        
+        /// <summary>
+        /// Control rbCastSi.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbCastSi;
+        
+        /// <summary>
+        /// Control rbCastNo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rbCastNo;
         
         /// <summary>
         /// Control txtPeso.
@@ -139,6 +157,24 @@ namespace SysCliVet.Privado.Mascota {
         protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
+        /// Control btnGenerarQR.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerarQR;
+        
+        /// <summary>
+        /// Control btnGuardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        
+        /// <summary>
         /// Control hfImageSrc.
         /// </summary>
         /// <remarks>
@@ -155,5 +191,23 @@ namespace SysCliVet.Privado.Mascota {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfMain;
+        
+        /// <summary>
+        /// Control hfPropietarioId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfPropietarioId;
+        
+        /// <summary>
+        /// Control hfMascotaId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfMascotaId;
     }
 }

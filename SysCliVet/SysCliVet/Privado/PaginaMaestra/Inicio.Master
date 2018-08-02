@@ -37,32 +37,34 @@
     <link href="<%=ResolveUrl("~/src/build/css/custom-purple.min.css") %>" rel="stylesheet" />
     <!-- General -->
     <link href="<%=ResolveUrl("~/src/css/style.css") %>" rel="stylesheet" />
-        
+
     <!-- jQuery -->
     <script src="<%=ResolveUrl("~/src/vendors/jquery/dist/jquery.min.js") %>"></script>
-      <!-- morris.js -->
+    <!-- morris.js -->
     <script src="<%=ResolveUrl("~/src/vendors/raphael/raphael.min.js") %>"></script>
     <script src="<%=ResolveUrl("~/src/vendors/morris.js/morris.min.js") %>"></script>
 
     <!-- bootstrap-datetimepicker -->
     <link href="<%=ResolveUrl("~/src/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css") %>" rel="stylesheet">
 
-      <!-- FullCalendar -->
+    <!-- FullCalendar -->
     <link href="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.min.css") %>" rel="stylesheet">
     <link href="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.print.css") %>" rel="stylesheet" media="print">
-    
-    <!-- jQuery autocomplete -->
-    <script src="<%=ResolveUrl("~/src/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js") %>"></script>
 
-    
+    <!-- jQuery autocomplete -->
+    <script src="<%=ResolveUrl("~/src/vendors/devbridge-autocomplete/dist/jquery.autocomplete.js") %>"></script>
+
+
     <!-- PNotify -->
     <link href="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.css") %>" rel="stylesheet">
     <link href="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.buttons.css") %>" rel="stylesheet">
     <link href="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.nonblock.css") %>" rel="stylesheet">
 
- 
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script src="<%=ResolveUrl("~/src/build/js/general.js") %>"></script>
 
 </head>
 
@@ -78,7 +80,9 @@
                         <div class="profile clearfix">
                             <div class="profile_info">
                                 <span>Bienvenido,</span>
-                                <h2><asp:Label runat="server" ID="lblNombreUsuario"></asp:Label> </h2>
+                                <h2>
+                                    <asp:Label runat="server" ID="lblNombreUsuario"></asp:Label>
+                                </h2>
                             </div>
                         </div>
                         <!-- /menu profile quick info -->
@@ -94,21 +98,24 @@
                                     </li>
                                     <li><a><i class="fa fa-edit"></i>Atención <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="<%=ResolveUrl("~/Privado/Propietario/Guardar.aspx") %>">Propietario</a></li>
-                                            <li><a href="<%=ResolveUrl("~/Privado/Paciente/Guardar.aspx") %>">Paciente</a></li>
+                                            <li><a href="<%=ResolveUrl("~/Privado/FichaClinica/Guardar.aspx") %>">Ficha Clínica</a></li>
+                                            <li><a href="<%=ResolveUrl("~/Privado/Propietario/Listar.aspx") %>">Propietario</a></li>
+                                            <li><a href="<%=ResolveUrl("~/Privado/Mascota/Listar.aspx") %>">Paciente</a></li>
                                         </ul>
                                     </li>
-                                       <li><a><i class="fa fa-calendar"></i>Citas <span class="fa fa-chevron-down"></span></a>
+                                    <li><a href="<%=ResolveUrl("~/Privado/Productos/Listar.aspx") %>"><i class="fa fa-book"></i>Productos <span class="fa fa-chevron-down"></span></a>
+                                    </li>
+                                    <li><a><i class="fa fa-calendar"></i>Citas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="<%=ResolveUrl("~/Privado/Citas/Ver.aspx") %>">Ver</a></li>                                          
+                                            <li><a href="<%=ResolveUrl("~/Privado/Citas/Ver.aspx") %>">Ver</a></li>
                                         </ul>
                                     </li>
-                                      <li><a><i class="fa fa-clock-o"></i>Recordatorios <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-clock-o"></i>Recordatorios <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="<%=ResolveUrl("~/Privado/Recordatorios/Ver.aspx") %>">Ver</a></li>                                          
+                                            <li><a href="<%=ResolveUrl("~/Privado/Recordatorios/Ver.aspx") %>">Ver</a></li>
                                         </ul>
                                     </li>
-                                
+
                                 </ul>
                             </div>
 
@@ -137,12 +144,13 @@
                 <!-- top navigation -->
                 <div class="top_nav">
                     <div class="nav_menu">
-                        <nav>                           
+                        <nav>
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><asp:Label runat="server" ID="lblNombreUsuario2"></asp:Label>
-                    <span class=" fa fa-angle-down"></span>
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <asp:Label runat="server" ID="lblNombreUsuario2"></asp:Label>
+                                        <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                                         <li><a href="javascript:;">Profile</a></li>
@@ -230,7 +238,6 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        
                     </div>
                     <div class="clearfix"></div>
                 </footer>
@@ -239,79 +246,86 @@
         </div>
     </form>
 </body>
-    <!-- handlebars -->
-    <script src="<%=ResolveUrl("~/src/vendors/handlebars/handlebars-v4.0.11.js") %>"></script>
-    <!-- Bootstrap -->
-    <script src="<%=ResolveUrl("~/src/vendors/bootstrap/dist/js/bootstrap.min.js") %>"></script>
-    <!-- FastClick -->
-    <script src="<%=ResolveUrl("~/src/vendors/fastclick/lib/fastclick.js") %>"></script>
-    <!-- NProgress -->
-    <script src="<%=ResolveUrl("~/src/vendors/nprogress/nprogress.js") %>"></script>
-    <!-- Chart.js -->
-    <script src="<%=ResolveUrl("~/src/vendors/Chart.js/dist/Chart.min.js") %>"></script>
-    <!-- gauge.js -->
-    <script src="<%=ResolveUrl("~/src/vendors/gauge.js/dist/gauge.min.js") %>"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js") %>"></script>
-    <!-- iCheck -->
-    <script src="<%=ResolveUrl("~/src/vendors/iCheck/icheck.min.js") %>"></script>
-    <!-- Skycons -->
-    <script src="<%=ResolveUrl("~/src/vendors/skycons/skycons.js") %>"></script>
-    <!-- Flot -->
-    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.pie.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.time.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.stack.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.resize.js") %>"></script>
-    <!-- Flot plugins -->
-    <script src="<%=ResolveUrl("~/src/vendors/flot.orderbars/js/jquery.flot.orderBars.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/flot-spline/js/jquery.flot.spline.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/flot.curvedlines/curvedLines.js") %>"></script>
-    <!-- DateJS -->
-    <script src="<%=ResolveUrl("~/src/vendors/DateJS/build/date.js") %>"></script>
-    <!-- JQVMap -->
-    <script src="<%=ResolveUrl("~/src/vendors/jqvmap/dist/jquery.vmap.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/jqvmap/dist/maps/jquery.vmap.world.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js") %>"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="<%=ResolveUrl("~/src/vendors/moment/min/moment.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
-    <!-- validator -->
-    <script src="<%=ResolveUrl("~/src/vendors/validator/validator.js") %>"></script>
 
-    <!-- Datatables -->
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net/js/jquery.dataTables.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/dataTables.buttons.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/buttons.flash.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/buttons.html5.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/buttons.print.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-responsive/js/dataTables.responsive.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/datatables.net-scroller/js/dataTables.scroller.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/jszip/dist/jszip.min.js") %>"></script>
-    <!-- jQuery Smart Wizard -->
-    <script src="<%=ResolveUrl("~/src/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
-    <!-- bootstrap-datetimepicker -->    
-    <script src="<%=ResolveUrl("~/src/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js") %>"></script>
-    
-    <!-- jQuery Tags Input -->
-    <script src="<%=ResolveUrl("~/src/vendors/jquery.tagsinput/src/jquery.tagsinput.js") %>"></script>
+<!-- handlebars -->
+<script src="<%=ResolveUrl("~/src/vendors/handlebars/handlebars-v4.0.11.js") %>"></script>
+<!-- Bootstrap -->
+<script src="<%=ResolveUrl("~/src/vendors/bootstrap/dist/js/bootstrap.min.js") %>"></script>
+<!-- FastClick -->
+<script src="<%=ResolveUrl("~/src/vendors/fastclick/lib/fastclick.js") %>"></script>
+<!-- NProgress -->
+<script src="<%=ResolveUrl("~/src/vendors/nprogress/nprogress.js") %>"></script>
+<!-- Chart.js -->
+<script src="<%=ResolveUrl("~/src/vendors/Chart.js/dist/Chart.min.js") %>"></script>
+<!-- gauge.js -->
+<script src="<%=ResolveUrl("~/src/vendors/gauge.js/dist/gauge.min.js") %>"></script>
+<!-- bootstrap-progressbar -->
+<script src="<%=ResolveUrl("~/src/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js") %>"></script>
+<!-- iCheck -->
+<script src="<%=ResolveUrl("~/src/vendors/iCheck/icheck.min.js") %>"></script>
+<!-- Skycons -->
+<script src="<%=ResolveUrl("~/src/vendors/skycons/skycons.js") %>"></script>
+<!-- Flot -->
+<script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.pie.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.time.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.stack.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/Flot/jquery.flot.resize.js") %>"></script>
+<!-- Flot plugins -->
+<script src="<%=ResolveUrl("~/src/vendors/flot.orderbars/js/jquery.flot.orderBars.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/flot-spline/js/jquery.flot.spline.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/flot.curvedlines/curvedLines.js") %>"></script>
+<!-- DateJS -->
+<script src="<%=ResolveUrl("~/src/vendors/DateJS/build/date.js") %>"></script>
+<!-- JQVMap -->
+<script src="<%=ResolveUrl("~/src/vendors/jqvmap/dist/jquery.vmap.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/jqvmap/dist/maps/jquery.vmap.world.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js") %>"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="<%=ResolveUrl("~/src/vendors/moment/min/moment.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
+<!-- validator -->
+<script src="<%=ResolveUrl("~/src/vendors/validator/validator.js") %>"></script>
 
-    <script src="<%=ResolveUrl("~/src/vendors/moment/min/moment.min.js") %>"></script>
-   
-    <script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/locale/es.js") %>"></script>
+<!-- Datatables -->
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net/js/jquery.dataTables.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/dataTables.buttons.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/buttons.flash.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/buttons.html5.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-buttons/js/buttons.print.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-responsive/js/dataTables.responsive.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/datatables.net-scroller/js/dataTables.scroller.min.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/jszip/dist/jszip.min.js") %>"></script>
+<!-- jQuery Smart Wizard -->
+<script src="<%=ResolveUrl("~/src/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/bootstrap-daterangepicker/daterangepicker.js") %>"></script>
+<!-- bootstrap-datetimepicker -->
+<script src="<%=ResolveUrl("~/src/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js") %>"></script>
 
-    <script src="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.buttons.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.nonblock.js") %>"></script>
+<!-- jQuery Tags Input -->
+<script src="<%=ResolveUrl("~/src/vendors/jquery.tagsinput/src/jquery.tagsinput.js") %>"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
-    <script src="<%=ResolveUrl("~/src/build/js/general.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/moment/min/moment.min.js") %>"></script>
+
+<script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/fullcalendar.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/fullcalendar1/dist/locale/es.js") %>"></script>
+
+<script src="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.buttons.js") %>"></script>
+<script src="<%=ResolveUrl("~/src/vendors/pnotify/dist/pnotify.nonblock.js") %>"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="<%=ResolveUrl("~/src/build/js/custom.min.js") %>"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".nav.child_menu").hide().closest("li").removeClass("active");
+    });
+</script>
+
 </html>

@@ -41,7 +41,7 @@ namespace CapaDatos
             Mascota.Intac = dr.ObtenerValorColumna<Boolean>("Intac");
             Mascota.Cast = dr.ObtenerValorColumna<Boolean>("Cast");
             Mascota.Peso = dr.ObtenerValorColumna<String>("Peso");
-            Mascota.MarcaDistintiva = dr.ObtenerValorColumna<string>("MarcaDistintiva");
+            Mascota.MarcaDistintiva = dr.ObtenerValorColumna<String>("MarcaDistintiva");
             Mascota.Estado = dr.ObtenerValorColumna<Int16>("Estado");
             Mascota.Foto = dr.ObtenerValorColumna<String>("Foto");
             Mascota.Propietario.Id= dr.ObtenerValorColumna<Int32>("PropetarioID");
@@ -51,6 +51,7 @@ namespace CapaDatos
             Mascota.Propietario.FechaNacimiento = dr.ObtenerValorColumna<DateTime>("Propietario_FechaNacimiento");
             Mascota.Propietario.Direccion = dr.ObtenerValorColumna<String>("Propietario_Direccion");
             Mascota.Propietario.Telefono = dr.ObtenerValorColumna<String>("Propietario_Telefono");
+            Mascota.Propietario.Celular = dr.ObtenerValorColumna<String>("Propietario_Celular");
             Mascota.Propietario.Email =  dr.ObtenerValorColumna<String>("Propietario_Email");
             Mascota.Propietario.Estado = dr.ObtenerValorColumna<Int16>("Propietario_Estado");
 
@@ -59,6 +60,42 @@ namespace CapaDatos
         #endregion
 
         #region Crud
+        public List<clsMascota> porNombre(ref clsBaseEntidad baseEntidad, String nombre)
+        {
+            List<clsMascota> lstMascota = new List<clsMascota>();
+            clsMascota objMascota;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("Mascota_ObtenerPorNombre", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        objMascota = new clsMascota();
+                        objMascota = SetEntidad(dr);
+                        lstMascota.Add(objMascota);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {               
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstMascota;
+        }
+
         public clsMascota porID(ref clsBaseEntidad baseEntidad, Int32 id)
         {
             clsMascota Mascota = null;
@@ -155,6 +192,63 @@ namespace CapaDatos
             return dt;
         }
 
+        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Mascota_EliminarPorId", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Id", id);
+                resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return resultado;
+        }
+
+        public List<clsMascota> ObtenerPorCumpleMesActual(ref clsBaseEntidad baseEntidad)
+        {
+            List<clsMascota> lstMascotas = new List<clsMascota>();
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                cmd = new SqlCommand("Mascota_Listar_PorCumpleMesActual", clsConexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        clsMascota objMascota = new clsMascota();
+                        objMascota = SetEntidad(dr);
+                        lstMascotas.Add(objMascota);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+            }
+            finally
+            {
+                clsConexion.DisposeCommand(cmd);
+            }
+            return lstMascotas;
+        }
 
         #endregion
     }

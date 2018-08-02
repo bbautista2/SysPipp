@@ -20,8 +20,10 @@ namespace CapaEntidad
             set => _HistoriaClinica = value;
         }
 
-        public DateTime Fecha { get; set; }
+        public DateTime FechaTratamiento { get; set; }
+        public String SFechaTratamiento { get; set; }
+        public String Droga { get; set; }
         public String Dosis { get; set; }
-        public String Observaciones { get; set; }        
+        public String Observacion { get; set; }        
     }
 }

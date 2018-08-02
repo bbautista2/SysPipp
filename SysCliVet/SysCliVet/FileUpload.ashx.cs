@@ -31,7 +31,7 @@ namespace SysCliVet
                         HttpPostedFile uploadFile = context.Request.Files[0];
                         //clsUsuario objUsuario = Sesion.SsUsuario;
                         Random ran = new Random();
-                        string nombreImagen = 99/*objUsuario.Id*/ + "_" + DateTime.Now.ToString("ddMMyyyyHHmmss") + "_" + ran.Next(0, 10000) + "pacienteImagen" + Path.GetExtension(uploadFile.FileName).ToLower();
+                        string nombreImagen = DateTime.Now.ToString("ddMMyyyyHHmmss") + "_" + ran.Next(0, 10000) + "pacienteImagen" + Path.GetExtension(uploadFile.FileName).ToLower();
                         string resourcePath = Config.PacienteRutaFisica + "imagenes\\" + nombreImagen;
                         if (!Directory.Exists(Config.PacienteRutaFisica + "imagenes\\"))
                             Directory.CreateDirectory(Config.PacienteRutaFisica + "imagenes\\");
@@ -40,7 +40,7 @@ namespace SysCliVet
                             uploadFile.SaveAs(resourcePath);
                             context.Response.ContentType = "text/plain";
                             context.Response.Write(
-                                "{\"nombre\":\"" + Config.PacienteRutaFisica + "imagenes/" + nombreImagen +
+                                "{\"nombre\":\"" + Config.MascotaRutaVirtual + "imagenes/" + nombreImagen +
                                 "\",\"Type\":\"" + uploadFile.ContentType +
                                 "\",\"tag\":\"" + "?q=" + DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") +
                                 "\",\"localFolder\":\"" + "/Recursos/paciente/imagenes/" + uploadFile.FileName + "\"}"

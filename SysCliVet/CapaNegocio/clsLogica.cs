@@ -38,12 +38,13 @@ namespace CapaNegocio
                     String message = String.Empty;
                     if (objUsuario != null)
                     {
-                        if(objUsuario.Estado == (Int32)EnumEstadoUsuario.Inactive)
+                        if (objUsuario.Estado == (Int32)EnumEstadoUsuario.Inactive)
                             baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Tu cuenta está inactiva"));
                     }
                     else
                         baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Usuario y/o contraseña inválidos"));
-                }else
+                }
+                else
                     baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(new Exception(), "Ingresa tu Usuario y contraseña"));
 
             }
@@ -57,6 +58,20 @@ namespace CapaNegocio
         #endregion
 
         #region Mascota
+        public List<clsMascota> Mascota_PorNombre(ref clsBaseEntidad baseEntidad, String nombre)
+        {
+            List<clsMascota> lstMascota = new List<clsMascota>();
+            try
+            {
+                lstMascota = clsMascotaDAO.Instance.porNombre(ref baseEntidad, nombre);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstMascota;
+        }
+
         public clsMascota Mascota_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
         {
             clsMascota objMascota = new clsMascota();
@@ -99,6 +114,34 @@ namespace CapaNegocio
             return dt;
         }
 
+        public Boolean Mascota_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsMascotaDAO.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
+        public List<clsMascota> Mascota_ObtenerPorCumpleMesActual(ref clsBaseEntidad objBase)
+        {
+            List<clsMascota> lstMascota = new List<clsMascota>();
+            try
+            {
+                lstMascota = clsMascotaDAO.Instance.ObtenerPorCumpleMesActual(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstMascota;
+        }
+
         #endregion
 
         #region Propietario
@@ -108,7 +151,9 @@ namespace CapaNegocio
             try
             {
                 objPropietario = clsPropietarioDAO.Instance.porID(ref baseEntidad, id);
-            } catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
             }
             return objPropietario;
@@ -119,7 +164,7 @@ namespace CapaNegocio
             Boolean resultado = false;
             try
             {
-                resultado = clsPropietarioDAO.Instance.Guardar(ref baseEntidad, objPropietario);               
+                resultado = clsPropietarioDAO.Instance.Guardar(ref baseEntidad, objPropietario);
             }
             catch (Exception ex)
             {
@@ -142,6 +187,34 @@ namespace CapaNegocio
             return dt;
         }
 
+        public DataTable Propietario_ObtenerPorDni(ref clsBaseEntidad baseEntidad, String dni, Int16 tipoBusqueda)
+        {
+            DataTable dt = null;
+            try
+            {
+                dt = clsPropietarioDAO.Instance.ObtenerPorDni(ref baseEntidad, dni, tipoBusqueda);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return dt;
+        }
+
+        public Boolean Propietario_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsPropietarioDAO.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
         #endregion
 
         #region Ficha Clinica
@@ -158,8 +231,298 @@ namespace CapaNegocio
             }
             return resultado;
         }
+        public Boolean FichaClinica_Actualizar(ref clsBaseEntidad baseEntidad, clsFichaClinica objFichaClinica)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsFichaClinicaDAO.Instance.Actualizar(ref baseEntidad, objFichaClinica);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+        public clsFichaClinica FichaClinica_ObtenerPorMascotaId(ref clsBaseEntidad objEntidad, Int32 mascotaId)
+        {
+            clsFichaClinica objFichaClinica = new clsFichaClinica();
+            try
+            {
+                objFichaClinica = clsFichaClinicaDAO.Instance.ObtenerPorMascotaID(ref objEntidad, mascotaId);
+
+            }
+            catch (Exception ex)
+            {
+                objEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicacion [2]"));
+            }
+            return objFichaClinica;
+        }
         #endregion
 
+        #region Historia Clinica
+        public Boolean HistoriaClinica_Guardar(ref clsBaseEntidad baseEntidad, clsHistoriaClinica objHistoriaClinica)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsHistoriaClinicaDAO.Instance.Guardar(ref baseEntidad, objHistoriaClinica);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
+        public List<clsHistoriaClinica> HistoriaClinica_ObtenerPorMascotaId(ref clsBaseEntidad objEntidad, Int32 mascotaId)
+        {
+            List<clsHistoriaClinica> lstObjHistoriaClinica = new List<clsHistoriaClinica>();
+            try
+            {
+                lstObjHistoriaClinica = clsHistoriaClinicaDAO.Instance.ObtenerPorMascotaID(ref objEntidad, mascotaId);
+            }
+            catch (Exception ex)
+            {
+                objEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicacion [2]"));
+            }
+            return lstObjHistoriaClinica;
+        }
+
+        public clsHistoriaClinica HistoriaClinica_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            clsHistoriaClinica objHistoria = new clsHistoriaClinica();
+            try
+            {
+                objHistoria = clsHistoriaClinicaDAO.Instance.porID(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return objHistoria;
+        }
+
+        public bool HistoriaClinica_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = clsHistoriaClinicaDAO.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
+        #endregion
+
+        #region TipoCita
+        public List<TipoCita> TipoCita_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<TipoCita> lstTiposCita = new List<TipoCita>();
+            try
+            {
+                lstTiposCita = TipoCitaDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstTiposCita;
+        }
+        #endregion
+
+        #region Cita
+        public List<Cita> Cita_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<Cita> lstCita = new List<Cita>();
+            try
+            {
+                lstCita = CitaDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstCita;
+        }
+
+        public List<Cita> Cita_ObtenerPorFechaActual(ref clsBaseEntidad objBase)
+        {
+            List<Cita> lstCita = new List<Cita>();
+            try
+            {
+                lstCita = CitaDao.Instance.ObtenerPorFechaActual(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstCita;
+        }
+
+        public Boolean Cita_Guardar(ref clsBaseEntidad objBase, Cita objCita)
+        {
+            Boolean respuesta = false;
+            try
+            {
+                respuesta = CitaDao.Instance.Guardar(ref objBase, objCita);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return respuesta;
+        }
+
+        public Boolean Cita_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = CitaDao.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
+        #endregion
+
+        #region Producto Categoria
+        public List<ProductoCategoria> ProductoCategoria_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<ProductoCategoria> lstCategorias = new List<ProductoCategoria>();
+            try
+            {
+                lstCategorias = ProductoCategoriaDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstCategorias;
+        }
+
+        #endregion
+
+        #region Producto
+        public Boolean Producto_Guardar(ref clsBaseEntidad objBase, Producto objProducto)
+        {
+            Boolean respuesta = false;
+            try
+            {
+                respuesta = ProductoDao.Instance.Guardar(ref objBase, objProducto);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return respuesta;
+        }
+
+        public Producto Producto_PorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Producto objProducto = new Producto();
+            try
+            {
+                objProducto = ProductoDao.Instance.porID(ref baseEntidad, id);
+                if (objProducto != null && objProducto.Id > 0)
+                    objProducto.LstProductoMovimientos = ProductoMovimientoDao.Instance.porProductoID(ref baseEntidad, objProducto.Id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return objProducto;
+        }
+
+        public List<Producto> Producto_Listar(ref clsBaseEntidad baseEntidad)
+        {
+            List<Producto> lstProductos = new List<Producto>();
+            try
+            {
+                lstProductos = ProductoDao.Instance.Listar(ref baseEntidad);
+                if(lstProductos != null && lstProductos.Count > 0)
+                {
+                    foreach (Producto objProducto in lstProductos)
+                    {
+                        if (objProducto != null && objProducto.Id > 0)
+                            objProducto.LstProductoMovimientos = ProductoMovimientoDao.Instance.porProductoID(ref baseEntidad, objProducto.Id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstProductos;
+        }
+
+        public Boolean Producto_EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        {
+            Boolean resultado = false;
+            try
+            {
+                resultado = ProductoDao.Instance.EliminarPorId(ref baseEntidad, id);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return resultado;
+        }
+
+        public Int32 ProductoMovimiento_ActualizarStock(ref clsBaseEntidad baseEntidad, Int32 productoId, String descripcion, Int32 cantidad)
+        {
+            Int32 stockActual = 0;
+            try
+            {
+                stockActual = ProductoMovimientoDao.Instance.ActualizarStock(ref baseEntidad, productoId, descripcion, cantidad);
+            }
+            catch (Exception ex)
+            {
+                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return stockActual;
+        }
+
+        public List<ProductoMovimiento> ProductoMovimiento_ObtenerMasVendidos(ref clsBaseEntidad objBase)
+        {
+            List<ProductoMovimiento> lstProductoMovimientos = new List<ProductoMovimiento>();
+            try
+            {
+                lstProductoMovimientos = ProductoMovimientoDao.Instance.ObtenerMasVendidos(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstProductoMovimientos;
+        }
+
+        #endregion
+
+        #region Recordatorio
+        public List<Recordatorio> Recordatorio_ObtenerTodo(ref clsBaseEntidad objBase)
+        {
+            List<Recordatorio> lstRecordatorio = new List<Recordatorio>();
+            try
+            {
+                lstRecordatorio = RecordatorioDao.Instance.ObtenerTodo(ref objBase);
+            }
+            catch (Exception ex)
+            {
+                objBase.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [2]"));
+            }
+            return lstRecordatorio;
+        }
+        #endregion
 
     }
 }

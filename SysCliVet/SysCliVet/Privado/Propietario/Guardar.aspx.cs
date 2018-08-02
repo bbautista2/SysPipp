@@ -3,16 +3,12 @@ using CapaLibreria.Base;
 using CapaLibreria.General;
 using CapaNegocio;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SysCliVet.Privado.Propietario
 {
-    public partial class Guardar : System.Web.UI.Page
+    public partial class Guardar : Page
     {
 
         public Int32 vsId
@@ -28,9 +24,6 @@ namespace SysCliVet.Privado.Propietario
                 ObtenerInformacion();
             }
         }
-
-
-
 
         private void ObtenerInformacion()
         {
@@ -58,12 +51,13 @@ namespace SysCliVet.Privado.Propietario
             }
         }
        
-
         private void MostrarInformacion(clsPropietario objPropietario)
         {
+            txtDni.Value = objPropietario.Dni.ToString();
             txtNombre.Value = objPropietario.NombreCompleto;
             txtEmail.Value = objPropietario.Email;
             txtDireccion.Value = objPropietario.Direccion;
+            txtCelular.Value = objPropietario.Celular;
             txtTelefono.Value = objPropietario.Telefono;
             txtFechaNac.Value = objPropietario.FechaNacimiento.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
         }           
@@ -90,15 +84,25 @@ namespace SysCliVet.Privado.Propietario
             objPropietario.Email = txtEmail.Value;
             objPropietario.Direccion = txtDireccion.Value;
             objPropietario.Telefono = txtTelefono.Value;
-            objPropietario.FechaNacimiento = Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture);
+            objPropietario.Celular = txtCelular.Value;
+            objPropietario.FechaNacimiento = !String.IsNullOrEmpty(txtFechaNac.Value) ? Convert.ToDateTime(txtFechaNac.Value, CultureInfo.InvariantCulture) : DateTime.Now;
+            objPropietario.Estado = 1;
 
             try
             {
                 resultado = clsLogica.Instance.Propietario_Guardar(ref baseEntidad, objPropietario);
-                if (resultado) { ObtenerInformacion(); }
+                if (resultado)
+                {
+                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Propietario guardado correctamente\"" + ");</script>", false);
+                    ObtenerInformacion();
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando el Propietario\"" + ");</script>", false);
+                }
             }
             catch (Exception ex) {
-                
+                ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando el Propietario [1]\"" + ");</script>", false);
             }
         }
     }
