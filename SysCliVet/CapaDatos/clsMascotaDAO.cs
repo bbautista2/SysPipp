@@ -107,9 +107,11 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Color",objMascota.Color);
                 cmd.Parameters.AddWithValue("@Especie", objMascota.Especie);
                 cmd.Parameters.AddWithValue("@Sexo", objMascota.Sexo);
-                cmd.Parameters.AddWithValue("@Intac", objMascota.Intac); cmd.Parameters.AddWithValue("@Cast", objMascota.Cast);
+                cmd.Parameters.AddWithValue("@Intac", objMascota.Intac);
+                cmd.Parameters.AddWithValue("@Cast", objMascota.Cast);
                 cmd.Parameters.AddWithValue("@Peso", objMascota.Peso);
                 cmd.Parameters.AddWithValue("@MarcaDistintiva", objMascota.MarcaDistintiva);
+                cmd.Parameters.AddWithValue("@Foto", objMascota.Foto);
                 cmd.Parameters.AddWithValue("@Estado", objMascota.Estado);
                 cmd.ExecuteReader();
                 Resultado = true;
