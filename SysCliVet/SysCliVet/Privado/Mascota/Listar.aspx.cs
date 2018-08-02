@@ -29,32 +29,7 @@ namespace SysCliVet.Privado.Mascota
             try
             {
                 dt = clsLogica.Instance.Mascota_Listar(ref baseEntidad);
-
-                foreach (DataRow item in dt.Rows)
-                {
-                    var Mascota = new
-                    {
-                        Id = clsEncriptacion.Encriptar(item["ID"].ToString()),
-                        Nombre = item["Nombre"],
-                        Propietario = item["Nombre_Propietario"],
-                        Progreso = 0,                        
-                        Foto = Config.MascotaRutaVirtual + "imagenes/"+ item["Foto"],
-                        Estado = item["Estado"]
-                    };
-                    lst.Add(Mascota);
-                }
-
-                hfListadoMascotas.Value = (new JavaScriptSerializer()).Serialize(lst);
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-
-
-
+                
                 foreach (DataRow item in dt.Rows)
                 {
                     var Mascota = new

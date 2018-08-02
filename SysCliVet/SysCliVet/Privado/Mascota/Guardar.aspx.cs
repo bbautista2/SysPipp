@@ -4,14 +4,9 @@ using CapaLibreria.General;
 using CapaNegocio;
 using SysCliVet.src.app_code;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Drawing;
 using MessagingToolkit.QRCode.Codec;
 
