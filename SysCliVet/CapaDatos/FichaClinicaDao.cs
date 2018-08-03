@@ -1,46 +1,42 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
 using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using CapaLibreria.Conexiones;
 namespace CapaDatos
 {
-    public  class clsFichaClinicaDAO
+    public  class FichaClinicaDao
     {
         #region Singleton
-        private static clsFichaClinicaDAO instance = null;
-        public static clsFichaClinicaDAO Instance
+        private static FichaClinicaDao instance = null;
+        public static FichaClinicaDao Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new clsFichaClinicaDAO();
+                    instance = new FichaClinicaDao();
                 return instance;
             }
         }
         #endregion
 
-        public clsFichaClinica ObtenerPorMascotaID(ref clsBaseEntidad baseEntidad, Int32 MascotaID)
+        public FichaClinica ObtenerPorMascotaID(ref BaseEntidad baseEntidad, Int32 MascotaID)
         {
             SqlCommand cmd = null;
-            clsFichaClinica objFichaClinica = null;
+            FichaClinica objFichaClinica = null;
             SqlDataReader dr = null;
             try
             {
-                cmd = new SqlCommand("FichaClinica_GetByID", clsConexion.GetConexion());
+                cmd = new SqlCommand("FichaClinica_GetByID", Conexion.GetConexion());
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MascotaID", MascotaID);
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    objFichaClinica = new clsFichaClinica();
+                    objFichaClinica = new FichaClinica();
                     while (dr.Read())
                     {
                         objFichaClinica.Id = dr.ObtenerValorColumna<Int32>("Id");
@@ -56,11 +52,11 @@ namespace CapaDatos
                    
                     if (dr.NextResult())
                     {
-                        objFichaClinica.LstVacunas = new List<clsVacuna>();
+                        objFichaClinica.LstVacunas = new List<Vacuna>();
                         while (dr.Read())
                         {
                             objFichaClinica.LstVacunas.Add(
-                                new clsVacuna
+                                new Vacuna
                                 {
                                     Id =  dr.ObtenerValorColumna< Int32>("ID"),
                                     Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"),
@@ -73,11 +69,11 @@ namespace CapaDatos
 
                     if (dr.NextResult())
                     {
-                        objFichaClinica.LstDesparasitaciones = new List<clsDesparasitacion>();
+                        objFichaClinica.LstDesparasitaciones = new List<Desparasitacion>();
                         while (dr.Read())
                         {
                             objFichaClinica.LstDesparasitaciones.Add(
-                                new clsDesparasitacion
+                                new Desparasitacion
                                 {
                                     Id = dr.ObtenerValorColumna<Int32>("ID"),
                                     Fecha = dr.ObtenerValorColumna<DateTime>("Fecha"),
@@ -95,18 +91,18 @@ namespace CapaDatos
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return objFichaClinica;
         }
 
-        public Boolean Guardar(ref clsBaseEntidad baseEntidad, clsFichaClinica objFichaClinica)
+        public Boolean Guardar(ref BaseEntidad baseEntidad, FichaClinica objFichaClinica)
         {
             Boolean Resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("FichaClinica_Guardar", clsConexion.GetConexion())
+                cmd = new SqlCommand("FichaClinica_Guardar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -158,22 +154,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Resultado = false;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Resultado;
         }
 
-        public Boolean Actualizar (ref clsBaseEntidad baseEntidad, clsFichaClinica objFichaClinica)
+        public Boolean Actualizar (ref BaseEntidad baseEntidad, FichaClinica objFichaClinica)
         {
             Boolean Resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("FichaClinica_Actualizar", clsConexion.GetConexion())
+                cmd = new SqlCommand("FichaClinica_Actualizar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -190,11 +186,11 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Resultado = false;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Resultado;
         }

@@ -30,7 +30,7 @@ namespace SysCliVet.Privado.HistorialClinico
         {
             if (!String.IsNullOrEmpty(Request.QueryString["nf"]))
             {
-                String id = clsEncriptacion.Desencriptar(Request.QueryString["nf"]);
+                String id = Encriptacion.Desencriptar(Request.QueryString["nf"]);
                 lblNroFicha.Text = id;
                 if (!String.IsNullOrEmpty(Request.QueryString["s"]) && Request.QueryString["s"] == "si")
                 {
@@ -39,15 +39,15 @@ namespace SysCliVet.Privado.HistorialClinico
             }
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))
             {
-                String id = clsEncriptacion.Desencriptar(Request.QueryString["i"]);
+                String id = Encriptacion.Desencriptar(Request.QueryString["i"]);
                 if (id != String.Empty)
                 {
                     vsId = Convert.ToInt32(id);
                     try
                     {
-                        clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                        clsHistoriaClinica objHistoria = new clsHistoriaClinica();
-                        objHistoria = clsLogica.Instance.HistoriaClinica_PorId(ref baseEntidad, vsId);
+                        BaseEntidad baseEntidad = new BaseEntidad();
+                        HistoriaClinica objHistoria = new HistoriaClinica();
+                        objHistoria = Logica.Instance.HistoriaClinica_PorId(ref baseEntidad, vsId);
                         MostrarInformacion(objHistoria);
                     }
                     catch (Exception ex)
@@ -59,7 +59,7 @@ namespace SysCliVet.Privado.HistorialClinico
             }
         }
 
-        private void MostrarInformacion(clsHistoriaClinica objHistoria)
+        private void MostrarInformacion(HistoriaClinica objHistoria)
         {
             txtFechaHistoria.Value = objHistoria.Fecha.ToLongStringDate();
             lblNroFicha.Text = objHistoria.NumeroFicha.ToString();
@@ -83,7 +83,7 @@ namespace SysCliVet.Privado.HistorialClinico
             List<Object> lstAnalisis = new List<Object>();
             if (objHistoria.LstAnalisis != null && objHistoria.LstAnalisis.Count > 0)
             {
-                foreach (clsAnalisis item in objHistoria.LstAnalisis)
+                foreach (Analisis item in objHistoria.LstAnalisis)
                 {
                     lstAnalisis.Add(new
                     {
@@ -97,7 +97,7 @@ namespace SysCliVet.Privado.HistorialClinico
             List<Object> lstTratamientos = new List<Object>();
             if (objHistoria.LstTratamientos != null && objHistoria.LstTratamientos.Count > 0)
             {
-                foreach (clsTratamiento item in objHistoria.LstTratamientos)
+                foreach (Tratamiento item in objHistoria.LstTratamientos)
                 {
                     lstTratamientos.Add(new
                     {
@@ -117,20 +117,20 @@ namespace SysCliVet.Privado.HistorialClinico
         {
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
                 Boolean resultado = false;
-                clsFichaClinica objFicha = new clsFichaClinica
+                CapaEntidad.FichaClinica objFicha = new CapaEntidad.FichaClinica
                 {
-                    NumeroFicha = !String.IsNullOrEmpty(lblNroFicha.Text) ? Convert.ToInt32(lblNroFicha.Text) : 0
+                    NumeroFicha = !string.IsNullOrEmpty(lblNroFicha.Text) ? Convert.ToInt32(lblNroFicha.Text) : 0
                 };
                 //Analisis
                 JavaScriptSerializer srAnalisis = new JavaScriptSerializer();
-                List<clsAnalisis> lstAnalisis = new List<clsAnalisis>();
+                List<Analisis> lstAnalisis = new List<Analisis>();
                 tListaAnalisis ListaAnalisis = new tListaAnalisis();
-                lstAnalisis = srAnalisis.Deserialize<List<clsAnalisis>>(hfAnalisis.Value);
+                lstAnalisis = srAnalisis.Deserialize<List<Analisis>>(hfAnalisis.Value);
                 if (lstAnalisis != null)
                 {
-                    foreach (clsAnalisis item in lstAnalisis)
+                    foreach (Analisis item in lstAnalisis)
                     {
                         ListaAnalisis.Add(new tAnalisis
                         {
@@ -144,12 +144,12 @@ namespace SysCliVet.Privado.HistorialClinico
                 }
 
                 JavaScriptSerializer srTratamientos = new JavaScriptSerializer();
-                List<clsTratamiento> lstTratamientos = new List<clsTratamiento>();
+                List<Tratamiento> lstTratamientos = new List<Tratamiento>();
                 tListaTratamientos ListaTratamientos = new tListaTratamientos();
-                lstTratamientos = srTratamientos.Deserialize<List<clsTratamiento>>(hfTratamientos.Value);
+                lstTratamientos = srTratamientos.Deserialize<List<Tratamiento>>(hfTratamientos.Value);
                 if (lstTratamientos != null)
                 {
-                    foreach (clsTratamiento item in lstTratamientos)
+                    foreach (Tratamiento item in lstTratamientos)
                     {
                         ListaTratamientos.Add(new tTratamiento
                         {
@@ -163,7 +163,7 @@ namespace SysCliVet.Privado.HistorialClinico
                     }
                 }
 
-                clsHistoriaClinica objHistoriaClinica = new clsHistoriaClinica
+                HistoriaClinica objHistoriaClinica = new HistoriaClinica
                 {
                     Id = vsId,
                     FichaClinica = objFicha,
@@ -184,7 +184,7 @@ namespace SysCliVet.Privado.HistorialClinico
                     PresuntivoDefinitivo = txtPresunDefin.Value,
                     Estado = 1
                 };
-                resultado = clsLogica.Instance.HistoriaClinica_Guardar(ref baseEntidad, objHistoriaClinica);
+                resultado = Logica.Instance.HistoriaClinica_Guardar(ref baseEntidad, objHistoriaClinica);
                 if(resultado)
                 {
                     ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Historia Clínica Guardada Correctamente\"" + ");</script>", false);

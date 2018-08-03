@@ -1,14 +1,11 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
 using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CapaLibreria.Conexiones;
 
 namespace CapaDatos
 {
@@ -42,14 +39,14 @@ namespace CapaDatos
         #endregion
 
         #region CRUD
-        public Boolean Guardar(ref clsBaseEntidad baseEntidad, Producto objProducto)
+        public Boolean Guardar(ref BaseEntidad baseEntidad, Producto objProducto)
         {
 
             Boolean Resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Producto_Guardar", clsConexion.GetConexion())
+                cmd = new SqlCommand("Producto_Guardar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -65,22 +62,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Resultado = false;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Resultado;
         }
 
-        public Producto porID(ref clsBaseEntidad baseEntidad, Int32 id)
+        public Producto porID(ref BaseEntidad baseEntidad, Int32 id)
         {
             Producto objProducto = null;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Producto_PorID", clsConexion.GetConexion())
+                cmd = new SqlCommand("Producto_PorID", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -97,23 +94,23 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 objProducto = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return objProducto;
         }
 
-        public List<Producto> Listar(ref clsBaseEntidad baseEntidad)
+        public List<Producto> Listar(ref BaseEntidad baseEntidad)
         {
             List<Producto> lstProductos = new List<Producto>();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             try
             {
-                cmd = new SqlCommand("Producto_Listar", clsConexion.GetConexion())
+                cmd = new SqlCommand("Producto_Listar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -131,22 +128,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 lstProductos = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return lstProductos;
         }
 
-        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        public Boolean EliminarPorId(ref BaseEntidad baseEntidad, Int32 id)
         {
             Boolean resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Producto_EliminarPorId", clsConexion.GetConexion())
+                cmd = new SqlCommand("Producto_EliminarPorId", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -155,11 +152,11 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return resultado;
         }

@@ -29,17 +29,17 @@ namespace SysCliVet.Privado.Mascota
         {
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))
             {
-                String id = clsEncriptacion.Desencriptar(Request.QueryString["i"]);
+                String id = Encriptacion.Desencriptar(Request.QueryString["i"]);
                 if (id != String.Empty)
                 {
                     mascotaId = Convert.ToInt32(id);
                     hfIdMascota.Value = mascotaId.ToString();
-                    clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                    clsMascota objMascota = new clsMascota();
-                    clsFichaClinica objFichaClinica = new clsFichaClinica();
+                    BaseEntidad baseEntidad = new BaseEntidad();
+                    CapaEntidad.Mascota objMascota = new CapaEntidad.Mascota();
+                    CapaEntidad.FichaClinica objFichaClinica = new CapaEntidad.FichaClinica();
                     List<Object> lstVacunas = new List<Object>();
-                    objMascota = clsLogica.Instance.Mascota_PorId(ref baseEntidad, mascotaId);
-                    objFichaClinica = clsLogica.Instance.FichaClinica_ObtenerPorMascotaId(ref baseEntidad, mascotaId);
+                    objMascota = Logica.Instance.Mascota_PorId(ref baseEntidad, mascotaId);
+                    objFichaClinica = Logica.Instance.FichaClinica_ObtenerPorMascotaId(ref baseEntidad, mascotaId);
                     hfIdFicha.Value = objFichaClinica.Id.ToString();
                     Mascota_MostrarInformacion(objMascota);
                     FichaClinica_MostrarInformacion(objFichaClinica);
@@ -47,23 +47,23 @@ namespace SysCliVet.Privado.Mascota
                     CargarDatos(objFichaClinica);
 
                     #region Lista Historias
-                    List<clsHistoriaClinica> lstObjHistoria = new List<clsHistoriaClinica>();
+                    List<HistoriaClinica> lstObjHistoria = new List<HistoriaClinica>();
                     List<Object> lstHistoria = new List<Object>();
-                    lstObjHistoria = clsLogica.Instance.HistoriaClinica_ObtenerPorMascotaId(ref baseEntidad, mascotaId);
+                    lstObjHistoria = Logica.Instance.HistoriaClinica_ObtenerPorMascotaId(ref baseEntidad, mascotaId);
 
                     if (lstObjHistoria != null && lstObjHistoria.Count > 0)
                     {
-                        foreach (clsHistoriaClinica historia in lstObjHistoria)
+                        foreach (HistoriaClinica historia in lstObjHistoria)
                         {
                             lstHistoria.Add(new
                             {
-                                Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(historia.Id.ToString())),
+                                Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(historia.Id.ToString())),
                                 Fecha = historia.Fecha.ToStringDate(),
                                 NroFicha = historia.NumeroFicha,
                                 Apetito = historia.Apetito == (Int32)EnumApetito.Bueno ? "Bueno" : historia.Apetito == (Int32)EnumApetito.Malo ? "Malo" : "Normal",
                                 CondicionCuerpo = historia.CondicionCuerpo == (Int32)EnumCC.Caquesico ? "Caquesico" : historia.CondicionCuerpo == (Int32)EnumCC.Obeso ? "Obeso" : "Normal",
                                 historia.PesoActual,
-                                NroFichaEncriptado = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(historia.NumeroFicha.ToString()))
+                                NroFichaEncriptado = HttpUtility.UrlEncode(Encriptacion.Encriptar(historia.NumeroFicha.ToString()))
                             });
                         }
                         hfListadoHistoria.Value = (new JavaScriptSerializer()).Serialize(lstHistoria);
@@ -73,26 +73,26 @@ namespace SysCliVet.Privado.Mascota
             }
         }
 
-        private void FichaClinica_MostrarInformacion(clsFichaClinica objFichaClinica)
+        private void FichaClinica_MostrarInformacion(CapaEntidad.FichaClinica objFichaClinica)
         {
             lblNumeroFicha.Text = objFichaClinica.NumeroFicha.ToString();
-            hfNroFicha.Value = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.NumeroFicha.ToString()));
+            hfNroFicha.Value = HttpUtility.UrlEncode(Encriptacion.Encriptar(objFichaClinica.NumeroFicha.ToString()));
         }
 
-        private void Mascota_MostrarInformacion(clsMascota objMascota) {
+        private void Mascota_MostrarInformacion(CapaEntidad.Mascota objMascota) {
             lblNombreMascota.Text = objMascota.Nombre;
             lblRazaMascota.Text = objMascota.Raza;
             lblPesoMascota.Text = objMascota.Peso;
             lblEdadMascota.Text = objMascota.getEdad().ToString();
             ImgFotoMascota.ImageUrl = Config.MascotaRutaVirtual + "imagenes/" + objMascota.Foto;
         }
-        private void CargarDatos(clsFichaClinica objFichaClinica)
+        private void CargarDatos(CapaEntidad.FichaClinica objFichaClinica)
         {
             #region Lista Vacunas
 
             List<Object> lstVacunas = new List<Object>();
             hfIdFicha.Value = objFichaClinica.Id.ToString();
-            foreach (clsVacuna vacuna in objFichaClinica.LstVacunas)
+            foreach (Vacuna vacuna in objFichaClinica.LstVacunas)
             {
                 lstVacunas.Add(new
                 {
@@ -109,7 +109,7 @@ namespace SysCliVet.Privado.Mascota
 
             #region Lista Desparasitaciones
             List<Object> lstDesparasitaciones = new List<Object>();
-            foreach (clsDesparasitacion desparasitacion in objFichaClinica.LstDesparasitaciones)
+            foreach (Desparasitacion desparasitacion in objFichaClinica.LstDesparasitaciones)
             {
                 lstDesparasitaciones.Add(new
                 {
@@ -126,16 +126,16 @@ namespace SysCliVet.Privado.Mascota
         {
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
                 Boolean resultado = false;
 
                 JavaScriptSerializer srVacunas = new JavaScriptSerializer();
-                List<clsVacuna> lstVacunas = new List<clsVacuna>();
+                List<Vacuna> lstVacunas = new List<Vacuna>();
                 tListaVacunas ListaVacunas = new tListaVacunas();
-                lstVacunas = srVacunas.Deserialize<List<clsVacuna>>(hfVacunas.Value);
+                lstVacunas = srVacunas.Deserialize<List<Vacuna>>(hfVacunas.Value);
                 if (lstVacunas != null)
                 {
-                    foreach (clsVacuna item in lstVacunas)
+                    foreach (Vacuna item in lstVacunas)
                     {
                         ListaVacunas.Add(new tVacuna
                         {
@@ -149,12 +149,12 @@ namespace SysCliVet.Privado.Mascota
                 }
 
                 JavaScriptSerializer srDesp = new JavaScriptSerializer();
-                List<clsDesparasitacion> lstDesp = new List<clsDesparasitacion>();
+                List<Desparasitacion> lstDesp = new List<Desparasitacion>();
                 tListaDesparasitacion ListaDesp = new tListaDesparasitacion();
-                lstDesp = srDesp.Deserialize<List<clsDesparasitacion>>(hfDesparasitaciones.Value);
+                lstDesp = srDesp.Deserialize<List<Desparasitacion>>(hfDesparasitaciones.Value);
                 if (lstDesp != null)
                 {
-                    foreach (clsDesparasitacion item in lstDesp)
+                    foreach (Desparasitacion item in lstDesp)
                     {
                         ListaDesp.Add(new tDesparasitacion
                         {
@@ -167,18 +167,18 @@ namespace SysCliVet.Privado.Mascota
                     }
                 }
 
-                clsFichaClinica objFichaClinica = new clsFichaClinica
+                CapaEntidad.FichaClinica objFichaClinica = new CapaEntidad.FichaClinica
                 {
                     Id = Convert.ToInt32(hfIdFicha.Value),
                     ListaVacunas = ListaVacunas,
                     ListaDesparasitaciones = ListaDesp
                 };
 
-                resultado = clsLogica.Instance.FichaClinica_Actualizar(ref baseEntidad, objFichaClinica);
+                resultado = Logica.Instance.FichaClinica_Actualizar(ref baseEntidad, objFichaClinica);
                 if (resultado)
                 {
-                    objFichaClinica = new clsFichaClinica();
-                    objFichaClinica = clsLogica.Instance.FichaClinica_ObtenerPorMascotaId(ref baseEntidad, mascotaId);
+                    objFichaClinica = new CapaEntidad.FichaClinica();
+                    objFichaClinica = Logica.Instance.FichaClinica_ObtenerPorMascotaId(ref baseEntidad, mascotaId);
                     CargarDatos(objFichaClinica);
                     ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Datos de la Mascota Guardada Correctamente\"" + ");</script>", false);
                 }
@@ -197,11 +197,11 @@ namespace SysCliVet.Privado.Mascota
 
             try
             {
-                Int32 idHistoria = Convert.ToInt32(clsEncriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
+                Int32 idHistoria = Convert.ToInt32(Encriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
 
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
 
-                resultado = clsLogica.Instance.HistoriaClinica_EliminarPorId(ref baseEntidad, idHistoria);
+                resultado = Logica.Instance.HistoriaClinica_EliminarPorId(ref baseEntidad, idHistoria);
 
                 if (resultado)
                     return new { Lista = ObtenerHistorias(idMascota), correcto = true, mensaje = "Historia Eliminada correctamente" };
@@ -221,22 +221,22 @@ namespace SysCliVet.Privado.Mascota
             List<Object> lst = new List<Object>();
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                List<clsHistoriaClinica> lstObjHistoria = new List<clsHistoriaClinica>();
-                lstObjHistoria = clsLogica.Instance.HistoriaClinica_ObtenerPorMascotaId(ref baseEntidad, idMascota);
+                BaseEntidad baseEntidad = new BaseEntidad();
+                List<HistoriaClinica> lstObjHistoria = new List<HistoriaClinica>();
+                lstObjHistoria = Logica.Instance.HistoriaClinica_ObtenerPorMascotaId(ref baseEntidad, idMascota);
                 if (baseEntidad.Errores.Count == 0 && lstObjHistoria != null && lstObjHistoria.Count > 0)
                 {
-                    foreach (clsHistoriaClinica historia in lstObjHistoria)
+                    foreach (HistoriaClinica historia in lstObjHistoria)
                     {
                         lst.Add(new
                         {
-                            Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(historia.Id.ToString())),
+                            Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(historia.Id.ToString())),
                             Fecha = historia.Fecha.ToStringDate(),
                             NroFicha = historia.NumeroFicha,
                             Apetito = historia.Apetito == (Int32)EnumApetito.Bueno ? "Bueno" : historia.Apetito == (Int32)EnumApetito.Malo ? "Malo" : "Normal",
                             CondicionCuerpo = historia.CondicionCuerpo == (Int32)EnumCC.Caquesico ? "Caquesico" : historia.CondicionCuerpo == (Int32)EnumCC.Obeso ? "Obeso" : "Normal",
                             historia.PesoActual,
-                            NroFichaEncriptado = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(historia.NumeroFicha.ToString()))
+                            NroFichaEncriptado = HttpUtility.UrlEncode(Encriptacion.Encriptar(historia.NumeroFicha.ToString()))
                         });
                     }
                 }

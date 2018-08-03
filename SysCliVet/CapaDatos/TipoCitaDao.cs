@@ -1,14 +1,11 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
 using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CapaLibreria.Conexiones;
 
 namespace CapaDatos
 {
@@ -39,7 +36,7 @@ namespace CapaDatos
         }
         #endregion
 
-        public List<TipoCita> ObtenerTodo(ref clsBaseEntidad baseEntidad)
+        public List<TipoCita> ObtenerTodo(ref BaseEntidad baseEntidad)
         {
             List<TipoCita> lstTiposCita = new List<TipoCita>();
             TipoCita objTipoCita;
@@ -47,7 +44,7 @@ namespace CapaDatos
             SqlDataReader dr = null;
             try
             {
-                cmd = new SqlCommand("TipoCita_Listar", clsConexion.GetConexion())
+                cmd = new SqlCommand("TipoCita_Listar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };               
@@ -65,11 +62,11 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return lstTiposCita;
         }

@@ -1,36 +1,33 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
+using CapaLibreria.Conexiones;
 using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class clsHistoriaClinicaDAO
+    public class HistoriaClinicaDao
     {
         #region Singleton
-        private static clsHistoriaClinicaDAO instance = null;
-        public static clsHistoriaClinicaDAO Instance
+        private static HistoriaClinicaDao instance = null;
+        public static HistoriaClinicaDao Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new clsHistoriaClinicaDAO();
+                    instance = new HistoriaClinicaDao();
                 return instance;
             }
         }
         #endregion
 
         #region Llenar Entidades
-        public clsHistoriaClinica SetEntidad(SqlDataReader dr)
+        public HistoriaClinica SetEntidad(SqlDataReader dr)
         {
-            clsHistoriaClinica objHistoria = new clsHistoriaClinica();
+            HistoriaClinica objHistoria = new HistoriaClinica();
             objHistoria.Id = dr.ObtenerValorColumna<Int32>("ID");
             objHistoria.Fecha = dr.ObtenerValorColumna<DateTime>("Fecha");
             objHistoria.NumeroFicha = dr.ObtenerValorColumna<Int32>("NumeroFicha");
@@ -50,13 +47,13 @@ namespace CapaDatos
         }
         #endregion
 
-        public Boolean Guardar(ref clsBaseEntidad baseEntidad, clsHistoriaClinica objHistoriaClinica)
+        public Boolean Guardar(ref BaseEntidad baseEntidad, HistoriaClinica objHistoriaClinica)
         {
             Boolean Resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("HistoriaClinica_Guardar", clsConexion.GetConexion())
+                cmd = new SqlCommand("HistoriaClinica_Guardar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -91,33 +88,33 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Resultado = false;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Resultado;
         }
 
-        public List<clsHistoriaClinica> ObtenerPorMascotaID(ref clsBaseEntidad baseEntidad, Int32 MascotaID)
+        public List<HistoriaClinica> ObtenerPorMascotaID(ref BaseEntidad baseEntidad, Int32 MascotaID)
         {
             SqlCommand cmd = null;
-            List<clsHistoriaClinica> lstObjHistoriaClinica = null;
+            List<HistoriaClinica> lstObjHistoriaClinica = null;
             SqlDataReader dr = null;
             try
             {
-                cmd = new SqlCommand("HistoriaClinica_GetByMascotaID", clsConexion.GetConexion());
+                cmd = new SqlCommand("HistoriaClinica_GetByMascotaID", Conexion.GetConexion());
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MascotaID", MascotaID);
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    lstObjHistoriaClinica = new List<clsHistoriaClinica>();
+                    lstObjHistoriaClinica = new List<HistoriaClinica>();
                     while (dr.Read())
                     {
                         lstObjHistoriaClinica.Add(
-                            new clsHistoriaClinica
+                            new HistoriaClinica
                             {
                                 Id = dr.ObtenerValorColumna<Int32>("Id"),
                                 NumeroFicha = dr.ObtenerValorColumna<Int32>("NumeroFicha"),
@@ -135,18 +132,18 @@ namespace CapaDatos
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return lstObjHistoriaClinica;
         }
 
-        public clsHistoriaClinica porID(ref clsBaseEntidad baseEntidad, Int32 id)
+        public HistoriaClinica porID(ref BaseEntidad baseEntidad, Int32 id)
         {
-            clsHistoriaClinica objHistoria = null;
+            HistoriaClinica objHistoria = null;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("HistoriaClinica_PorID", clsConexion.GetConexion())
+                cmd = new SqlCommand("HistoriaClinica_PorID", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -160,11 +157,11 @@ namespace CapaDatos
                     }
                     if (dr.NextResult())
                     {
-                        objHistoria.LstAnalisis = new List<clsAnalisis>();
+                        objHistoria.LstAnalisis = new List<Analisis>();
                         while (dr.Read())
                         {
                             objHistoria.LstAnalisis.Add(
-                                new clsAnalisis
+                                new Analisis
                                 {
                                     Id = dr.ObtenerValorColumna<Int32>("Id"),
                                     TipoId = dr.ObtenerValorColumna<Int16>("TipoAnalisisId"),
@@ -174,11 +171,11 @@ namespace CapaDatos
                     }
                     if (dr.NextResult())
                     {
-                        objHistoria.LstTratamientos = new List<clsTratamiento>();
+                        objHistoria.LstTratamientos = new List<Tratamiento>();
                         while (dr.Read())
                         {
                             objHistoria.LstTratamientos.Add(
-                                new clsTratamiento
+                                new Tratamiento
                                 {
                                     Id = dr.ObtenerValorColumna<Int32>("Id"),
                                     FechaTratamiento = dr.ObtenerValorColumna<DateTime>("FechaTratamiento"),
@@ -193,22 +190,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 objHistoria = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return objHistoria;
         }
 
-        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        public Boolean EliminarPorId(ref BaseEntidad baseEntidad, Int32 id)
         {
             Boolean resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("HistoriaClinica_EliminarPorId", clsConexion.GetConexion())
+                cmd = new SqlCommand("HistoriaClinica_EliminarPorId", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -217,11 +214,11 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return resultado;
         }

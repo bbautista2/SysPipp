@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-   public class clsTratamiento:clsBaseEntidad
+   public class Tratamiento:BaseEntidad
     {
-        clsHistoriaClinica _HistoriaClinica;
-        public clsHistoriaClinica HistoriaClinica
+        HistoriaClinica _HistoriaClinica;
+        public HistoriaClinica HistoriaClinica
         {
             get
             {
-                _HistoriaClinica = _HistoriaClinica ?? new clsHistoriaClinica();
+                _HistoriaClinica = _HistoriaClinica ?? new HistoriaClinica();
                 return _HistoriaClinica;
             }
             set => _HistoriaClinica = value;

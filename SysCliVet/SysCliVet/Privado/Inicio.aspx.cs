@@ -24,11 +24,11 @@ namespace SysCliVet.Privado
         {
             #region Lista Citas
 
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             List<Cita> lstCitas = new List<Cita>();
             List<Object> lstObject = new List<Object>();
 
-            lstCitas = clsLogica.Instance.Cita_ObtenerPorFechaActual(ref baseEntidad);
+            lstCitas = Logica.Instance.Cita_ObtenerPorFechaActual(ref baseEntidad);
 
             if(lstCitas != null)
             {
@@ -49,15 +49,15 @@ namespace SysCliVet.Privado
             #endregion
 
             #region Lista Citas
-            
-            List<clsMascota> lstMascotas = new List<clsMascota>();
+
+            List<CapaEntidad.Mascota> lstMascotas = new List<CapaEntidad.Mascota>();
             List<Object> lstObjectCumple = new List<Object>();
 
-            lstMascotas = clsLogica.Instance.Mascota_ObtenerPorCumpleMesActual(ref baseEntidad);
+            lstMascotas = Logica.Instance.Mascota_ObtenerPorCumpleMesActual(ref baseEntidad);
 
             if (lstMascotas != null)
             {
-                foreach (clsMascota mascota in lstMascotas)
+                foreach (CapaEntidad.Mascota mascota in lstMascotas)
                 {
                     lstObjectCumple.Add(new
                     {
@@ -78,7 +78,7 @@ namespace SysCliVet.Privado
             List<ProductoMovimiento> lstProductos = new List<ProductoMovimiento>();
             List<Object> lstObjectProducto = new List<Object>();
 
-            lstProductos = clsLogica.Instance.ProductoMovimiento_ObtenerMasVendidos(ref baseEntidad);
+            lstProductos = Logica.Instance.ProductoMovimiento_ObtenerMasVendidos(ref baseEntidad);
 
             if (lstProductos != null)
             {

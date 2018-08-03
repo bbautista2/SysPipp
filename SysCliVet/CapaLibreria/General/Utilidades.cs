@@ -4,7 +4,7 @@ using System.Web;
 
 namespace CapaLibreria.General
 {
-    public static class clsUtilidades
+    public static class Utilidades
     {
         public static class SessionStateServerSharedHelper
         {

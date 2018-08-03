@@ -40,23 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsAnalisis.cs" />
-    <Compile Include="clsDesparasitacion.cs" />
-    <Compile Include="clsMascota.cs" />
-    <Compile Include="clsTipoTabla.cs" />
-    <Compile Include="clsVacuna.cs" />
+    <Compile Include="Analisis.cs" />
+    <Compile Include="Desparasitacion.cs" />
+    <Compile Include="Mascota.cs" />
+    <Compile Include="TipoTabla.cs" />
+    <Compile Include="Vacuna.cs" />
     <Compile Include="Cita.cs" />
-    <Compile Include="clsFichaClinica.cs" />
-    <Compile Include="clsHistorialFotografico.cs" />
-    <Compile Include="clsPropietario.cs" />
+    <Compile Include="FichaClinica.cs" />
+    <Compile Include="HistorialFotografico.cs" />
+    <Compile Include="Propietario.cs" />
     <Compile Include="Recordatorio.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ProductoCategoria.cs" />
     <Compile Include="ProductoMovimiento.cs" />
     <Compile Include="TipoCita.cs" />
-    <Compile Include="clsTratamiento.cs" />
-    <Compile Include="clsUsuario.cs" />
-    <Compile Include="clsHistoriaClinica.cs" />
+    <Compile Include="Tratamiento.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="HistoriaClinica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -21,9 +21,9 @@ namespace SysCliVet.Privado.Citas
             { TipoCita_Obtener(); }
         }
         public void TipoCita_Obtener() {
-            clsBaseEntidad objBase = new clsBaseEntidad();
+            BaseEntidad objBase = new BaseEntidad();
             List<TipoCita> lstTiposCita = new List<TipoCita>();
-            lstTiposCita = clsLogica.Instance.TipoCita_ObtenerTodo(ref objBase);
+            lstTiposCita = Logica.Instance.TipoCita_ObtenerTodo(ref objBase);
                          
                 cmbTipoCita.DataTextField = "Nombre";
                 cmbTipoCita.DataValueField = "ID";
@@ -36,18 +36,18 @@ namespace SysCliVet.Privado.Citas
         [WebMethod]
         public static List<Object> ListaMascotasPorNombre(String nombre)
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
-            List<clsMascota> listaMascota = new List<clsMascota>();
+            BaseEntidad baseEntidad = new BaseEntidad();
+            List<CapaEntidad.Mascota> listaMascota = new List<CapaEntidad.Mascota>();
             List<Object> lista = new List<Object>();
             nombre = nombre == "undefined" ? "" : nombre;
             try
             {               
 
-                listaMascota = clsLogica.Instance.Mascota_PorNombre(ref baseEntidad, nombre);
+                listaMascota = Logica.Instance.Mascota_PorNombre(ref baseEntidad, nombre);
 
                 if (listaMascota != null && listaMascota.Count > 0)
                 {
-                    foreach (clsMascota mascota in listaMascota)
+                    foreach (CapaEntidad.Mascota mascota in listaMascota)
                     {
                         lista.Add(new
                         {
@@ -68,7 +68,7 @@ namespace SysCliVet.Privado.Citas
         [WebMethod]
         public static Object Cita_Guardar(dynamic objCita)
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             Object respuesta = new Object();
             Boolean guardado = false;
 
@@ -81,7 +81,7 @@ namespace SysCliVet.Privado.Citas
                     cita.Fecha = Convert.ToDateTime(objCita["inicio"]);
                     cita.Mascota.Id = Convert.ToInt32(objCita["mascotaId"]);
                     cita.TipoCita.Id = Convert.ToInt32(objCita["tipoCita"]);
-                    guardado = clsLogica.Instance.Cita_Guardar(ref baseEntidad, cita);
+                    guardado = Logica.Instance.Cita_Guardar(ref baseEntidad, cita);
 
                     if (guardado && !String.IsNullOrEmpty(objCita["emailPropietario"]))
                         CodigoQr_Crear(objCita);
@@ -107,8 +107,8 @@ namespace SysCliVet.Privado.Citas
             
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                resultado = clsLogica.Instance.Cita_EliminarPorId(ref baseEntidad, id);
+                BaseEntidad baseEntidad = new BaseEntidad();
+                resultado = Logica.Instance.Cita_EliminarPorId(ref baseEntidad, id);
                 if (resultado)
                     return new { correcto = true, mensaje = "Cita Eliminada correctamente" };
                 else
@@ -124,7 +124,7 @@ namespace SysCliVet.Privado.Citas
         public static void CodigoQr_Crear(dynamic objCita)
         {
 
-            String url = Config.UrlDomain + "Privado/Mascota/Ver.aspx?i="+ HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objCita["mascotaId"]));
+            String url = Config.UrlDomain + "Privado/Mascota/Ver.aspx?i="+ HttpUtility.UrlEncode(Encriptacion.Encriptar(objCita["mascotaId"]));
             String telefonoVeterinaria = Config.TelefonoVeterinaria;
 
             if (objCita["emailPropietario"].IndexOf("@gmail.com") != -1)
@@ -157,13 +157,13 @@ namespace SysCliVet.Privado.Citas
         [WebMethod]
         public static Object Cita_Listar()
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             List<Cita> lstCitas = new List<Cita>();
             List<Object> lstObject = new List<object>();
             Object objCita;
             try
             {
-                lstCitas = clsLogica.Instance.Cita_ObtenerTodo(ref baseEntidad);
+                lstCitas = Logica.Instance.Cita_ObtenerTodo(ref baseEntidad);
                 foreach (Cita cita in lstCitas) {
                     objCita = new
                     {

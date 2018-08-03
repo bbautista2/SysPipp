@@ -32,16 +32,16 @@ namespace SysCliVet.Privado.Productos
         {
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))
             {
-                String id = clsEncriptacion.Desencriptar(Request.QueryString["i"]);
+                String id = Encriptacion.Desencriptar(Request.QueryString["i"]);
                 if (id != String.Empty)
                 {
                     vsId = Convert.ToInt32(id);
                     hfProductoId.Value = id;
                     try
                     {
-                        clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                        BaseEntidad baseEntidad = new BaseEntidad();
                         Producto objProducto = new Producto();
-                        objProducto = clsLogica.Instance.Producto_PorId(ref baseEntidad, vsId);
+                        objProducto = Logica.Instance.Producto_PorId(ref baseEntidad, vsId);
                         if (objProducto.Id == 0) { Volver(); }
                         MostrarInformacion(objProducto);
                     }
@@ -75,9 +75,9 @@ namespace SysCliVet.Privado.Productos
         {
             try
             {
-                clsBaseEntidad objBase = new clsBaseEntidad();
+                BaseEntidad objBase = new BaseEntidad();
                 List<ProductoCategoria> lstTiposProducto = new List<ProductoCategoria>();
-                lstTiposProducto = clsLogica.Instance.ProductoCategoria_ObtenerTodo(ref objBase);
+                lstTiposProducto = Logica.Instance.ProductoCategoria_ObtenerTodo(ref objBase);
                 cmbProductoCategoria.DataTextField = "Descripcion";
                 cmbProductoCategoria.DataValueField = "ID";
                 cmbProductoCategoria.DataSource = lstTiposProducto;
@@ -93,7 +93,7 @@ namespace SysCliVet.Privado.Productos
             try
             {
                 Boolean resultado = false;
-                clsBaseEntidad objBase = new clsBaseEntidad();
+                BaseEntidad objBase = new BaseEntidad();
                 Producto objProducto = new Producto
                 {
                     Id = vsId,
@@ -103,7 +103,7 @@ namespace SysCliVet.Privado.Productos
                 objProducto.Categoria.Id = Convert.ToInt32(cmbProductoCategoria.SelectedValue);
                 objProducto.ProductoMovimiento.Cantidad = Convert.ToInt32(txtCantidadIngreso.Value);
                 objProducto.ProductoMovimiento.Descripcion = "Registro";
-                resultado = clsLogica.Instance.Producto_Guardar(ref objBase, objProducto);
+                resultado = Logica.Instance.Producto_Guardar(ref objBase, objProducto);
                 if (resultado)
                 {
                     ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Producto guardado correctamente\"" + ");</script>", false);
@@ -132,12 +132,12 @@ namespace SysCliVet.Privado.Productos
 
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
 
                 Int32 idProducto = Convert.ToInt32(id);
                 cantidad = tipo == 1 ? cantidad : cantidad * -1;
 
-                stockActual = clsLogica.Instance.ProductoMovimiento_ActualizarStock(ref baseEntidad, idProducto, descripcion, cantidad);
+                stockActual = Logica.Instance.ProductoMovimiento_ActualizarStock(ref baseEntidad, idProducto, descripcion, cantidad);
 
                 if (baseEntidad.Errores.Count == 0)
                     return new { correcto = true, mensaje = "Stock actualizado correctamente", stockActual };

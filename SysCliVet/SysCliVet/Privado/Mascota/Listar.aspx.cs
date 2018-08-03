@@ -23,18 +23,18 @@ namespace SysCliVet.Privado.Mascota
 
         public void Mascota_Listar()
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             DataTable dt = null;
             List<Object> lst = new List<Object>();
             try
             {
-                dt = clsLogica.Instance.Mascota_Listar(ref baseEntidad);
+                dt = Logica.Instance.Mascota_Listar(ref baseEntidad);
                 
                 foreach (DataRow item in dt.Rows)
                 {
                     var Mascota = new
                     {
-                        Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
+                        Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(item["ID"].ToString())),
                         Nombre = item["Nombre"],
                         Propietario = item["Nombre_Propietario"],
                         Progreso = 0,
@@ -61,11 +61,11 @@ namespace SysCliVet.Privado.Mascota
 
             try
             {
-                Int32 idMascota = Convert.ToInt32(clsEncriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
+                Int32 idMascota = Convert.ToInt32(Encriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
 
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
 
-                resultado = clsLogica.Instance.Mascota_EliminarPorId(ref baseEntidad, idMascota);
+                resultado = Logica.Instance.Mascota_EliminarPorId(ref baseEntidad, idMascota);
 
                 if (resultado)
                     return new { Lista = ObtenerMascotas(), correcto = true, mensaje = "Mascota Eliminada correctamente" };
@@ -85,8 +85,8 @@ namespace SysCliVet.Privado.Mascota
             List<Object> lst = new List<Object>();
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                DataTable dt = clsLogica.Instance.Mascota_Listar(ref baseEntidad);
+                BaseEntidad baseEntidad = new BaseEntidad();
+                DataTable dt = Logica.Instance.Mascota_Listar(ref baseEntidad);
                 if (baseEntidad.Errores.Count == 0)
                 {
                     if (dt != null)
@@ -95,7 +95,7 @@ namespace SysCliVet.Privado.Mascota
                         {
                             lst.Add(new
                             {
-                                Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
+                                Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(item["ID"].ToString())),
                                 Nombre = item["Nombre"],
                                 Propietario = item["Nombre_Propietario"],
                                 Progreso = 0,

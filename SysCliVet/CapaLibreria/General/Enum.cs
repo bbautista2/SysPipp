@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaLibreria.General
 {
-    public static class clsEnum
+    public static class Enum
     {
 
     }

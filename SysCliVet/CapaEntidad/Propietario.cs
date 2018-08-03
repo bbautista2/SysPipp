@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class clsPropietario : clsBaseEntidad
+    public class Propietario : BaseEntidad
     {
         public String Apellidos { get; set; }
         public DateTime FechaNacimiento { get; set; }

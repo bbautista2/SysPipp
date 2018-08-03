@@ -29,14 +29,14 @@ namespace SysCliVet.Privado.Propietario
         {
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))
             {
-                String id = clsEncriptacion.Desencriptar(Request.QueryString["i"]);
+                String id = Encriptacion.Desencriptar(Request.QueryString["i"]);
                 if (id != String.Empty)
                 {
                     vsId = Convert.ToInt32(id);
                     try {
-                        clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                        clsPropietario objPropietario = new clsPropietario();
-                        objPropietario = clsLogica.Instance.Propietario_PorId(ref baseEntidad, vsId);
+                        BaseEntidad baseEntidad = new BaseEntidad();
+                        CapaEntidad.Propietario objPropietario = new CapaEntidad.Propietario();
+                        objPropietario = Logica.Instance.Propietario_PorId(ref baseEntidad, vsId);
                         if (objPropietario.Id == 0) { Volver(); }
                         MostrarInformacion(objPropietario);
                     } catch (Exception ex) {
@@ -51,7 +51,7 @@ namespace SysCliVet.Privado.Propietario
             }
         }
        
-        private void MostrarInformacion(clsPropietario objPropietario)
+        private void MostrarInformacion(CapaEntidad.Propietario objPropietario)
         {
             txtDni.Value = objPropietario.Dni.ToString();
             txtNombre.Value = objPropietario.NombreCompleto;
@@ -75,9 +75,9 @@ namespace SysCliVet.Privado.Propietario
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             Boolean resultado = false;
-            clsPropietario objPropietario = new clsPropietario();
+            CapaEntidad.Propietario objPropietario = new CapaEntidad.Propietario();
             objPropietario.Id = vsId;
             objPropietario.Dni = Convert.ToInt32(txtDni.Value);
             objPropietario.Nombre = txtNombre.Value;
@@ -90,7 +90,7 @@ namespace SysCliVet.Privado.Propietario
 
             try
             {
-                resultado = clsLogica.Instance.Propietario_Guardar(ref baseEntidad, objPropietario);
+                resultado = Logica.Instance.Propietario_Guardar(ref baseEntidad, objPropietario);
                 if (resultado)
                 {
                     ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Propietario guardado correctamente\"" + ");</script>", false);

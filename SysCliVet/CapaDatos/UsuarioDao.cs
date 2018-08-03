@@ -1,40 +1,36 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
 using CapaLibreria.General;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CapaLibreria.Conexiones;
 
 namespace CapaDatos
 {
-    public class clsUsuarioDao
+    public class UsuarioDao
     {
         #region Singleton
-        private static clsUsuarioDao instance = null;
-        public static clsUsuarioDao Instance
+        private static UsuarioDao instance = null;
+        public static UsuarioDao Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new clsUsuarioDao();
+                    instance = new UsuarioDao();
                 return instance;
             }
         }
         #endregion
 
         #region Llenar Entidades
-        public clsUsuario SetEntidad(SqlDataReader dr)
+        public Usuario SetEntidad(SqlDataReader dr)
         {
-            clsUsuario Usuario = new clsUsuario();
+            Usuario Usuario = new Usuario();
             Usuario.Id = dr.ObtenerValorColumna<Int32>("ID");
             Usuario.Nombres = dr.ObtenerValorColumna<String>("Nombres");
             Usuario.Apellidos = dr.ObtenerValorColumna<String>("Apellidos");
-            Usuario.Usuario = dr.ObtenerValorColumna<String>("Usuario");
+            Usuario.NombreUsuario = dr.ObtenerValorColumna<String>("NombreUsuario");
             Usuario.Email = dr.ObtenerValorColumna<String>("Email");
             Usuario.Estado = dr.ObtenerValorColumna<Int16>("Estado");
             return Usuario;
@@ -42,17 +38,17 @@ namespace CapaDatos
         #endregion
 
         #region Acceso
-        public clsUsuario ValidarAcceso(ref clsBaseEntidad baseEntidad, String usuario, String password)
+        public Usuario ValidarAcceso(ref BaseEntidad baseEntidad, String usuario, String password)
         {
-            clsUsuario Usuario = null;
+            Usuario Usuario = null;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Usuario_ValidarAcceso", clsConexion.GetConexion())
+                cmd = new SqlCommand("Usuario_ValidarAcceso", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@Usuario", usuario);
+                cmd.Parameters.AddWithValue("@NombreUsuario", usuario);
                 cmd.Parameters.AddWithValue("@Password", password);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -61,11 +57,11 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Usuario = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Usuario;
         }

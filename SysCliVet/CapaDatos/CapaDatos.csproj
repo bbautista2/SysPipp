@@ -41,11 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CitaDao.cs" />
-    <Compile Include="clsFichaClinicaDAO.cs" />
-    <Compile Include="clsHistoriaClinicaDAO.cs" />
-    <Compile Include="clsMascotaDAO.cs" />
-    <Compile Include="clsPropietarioDAO.cs" />
-    <Compile Include="clsUsuarioDao.cs" />
+    <Compile Include="FichaClinicaDao.cs" />
+    <Compile Include="HistoriaClinicaDao.cs" />
+    <Compile Include="MascotaDao.cs" />
+    <Compile Include="PropietarioDao.cs" />
+    <Compile Include="UsuarioDao.cs" />
     <Compile Include="ProductoCategoriaDao.cs" />
     <Compile Include="ProductoDao.cs" />
     <Compile Include="ProductoMovimientoDao.cs" />

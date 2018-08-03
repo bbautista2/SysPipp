@@ -1,36 +1,32 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
 using CapaLibreria.General;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CapaLibreria.Conexiones;
 
 namespace CapaDatos
 {
-    public class clsPropietarioDAO
+    public class PropietarioDao
     {
         #region Singleton
-        private static clsPropietarioDAO instance = null;
-        public static clsPropietarioDAO Instance
+        private static PropietarioDao instance = null;
+        public static PropietarioDao Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new clsPropietarioDAO();
+                    instance = new PropietarioDao();
                 return instance;
             }
         }
         #endregion
 
         #region Llenar Entidades
-        public clsPropietario SetEntidad(SqlDataReader dr)
+        public Propietario SetEntidad(SqlDataReader dr)
         {
-            clsPropietario Propietario = new clsPropietario();
+            Propietario Propietario = new Propietario();
             Propietario.Id = dr.ObtenerValorColumna<Int32>("ID");
             Propietario.Nombre = dr.ObtenerValorColumna<String>("Nombre");
             Propietario.Apellidos = dr.ObtenerValorColumna<String>("Apellidos");
@@ -46,13 +42,13 @@ namespace CapaDatos
         #endregion
 
         #region Crud
-        public clsPropietario porID(ref clsBaseEntidad baseEntidad, Int32 id)
+        public Propietario porID(ref BaseEntidad baseEntidad, Int32 id)
         {
-            clsPropietario Propietario = null;
+            Propietario Propietario = null;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Propietario_PorID", clsConexion.GetConexion())
+                cmd = new SqlCommand("Propietario_PorID", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -64,22 +60,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Propietario = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Propietario;
         }
 
-        public Boolean Guardar(ref clsBaseEntidad baseEntidad,clsPropietario objPropietario) {
+        public Boolean Guardar(ref BaseEntidad baseEntidad,Propietario objPropietario) {
 
             Boolean Resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Propietario_Guardar", clsConexion.GetConexion())
+                cmd = new SqlCommand("Propietario_Guardar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -102,23 +98,23 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Resultado = false;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Resultado;
         }
 
-        public DataTable Listar(ref clsBaseEntidad baseEntidad)
+        public DataTable Listar(ref BaseEntidad baseEntidad)
         {
 
             DataTable dt = null;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Propietario_Listar", clsConexion.GetConexion())
+                cmd = new SqlCommand("Propietario_Listar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -129,22 +125,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 dt = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return dt;
         }
 
-        public DataTable ObtenerPorDni(ref clsBaseEntidad baseEntidad, String dni, Int16 tipoBusqueda)
+        public DataTable ObtenerPorDni(ref BaseEntidad baseEntidad, String dni, Int16 tipoBusqueda)
         {
             DataTable dt = null;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Propietario_ObtenerPorDni", clsConexion.GetConexion())
+                cmd = new SqlCommand("Propietario_ObtenerPorDni", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -156,22 +152,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 dt = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return dt;
         }
 
-        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        public Boolean EliminarPorId(ref BaseEntidad baseEntidad, Int32 id)
         {
             Boolean resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Propietario_EliminarPorId", clsConexion.GetConexion())
+                cmd = new SqlCommand("Propietario_EliminarPorId", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -180,11 +176,11 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return resultado;
         }

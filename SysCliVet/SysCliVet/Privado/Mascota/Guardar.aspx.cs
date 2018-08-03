@@ -31,15 +31,15 @@ namespace SysCliVet.Privado.Mascota
         {
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))
             {
-                String id = clsEncriptacion.Desencriptar(Request.QueryString["i"]);
+                String id = Encriptacion.Desencriptar(Request.QueryString["i"]);
                 if (id != String.Empty)
                 {
                     vsId = Convert.ToInt32(id);
                     try
                     {
-                        clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                        clsMascota objMascota = new clsMascota();
-                        objMascota = clsLogica.Instance.Mascota_PorId(ref baseEntidad, vsId);
+                        BaseEntidad baseEntidad = new BaseEntidad();
+                        CapaEntidad.Mascota objMascota = new CapaEntidad.Mascota();
+                        objMascota = Logica.Instance.Mascota_PorId(ref baseEntidad, vsId);
                         if (objMascota.Id == 0) { Volver(); }
                         MostrarInformacion(objMascota);
                     }
@@ -61,7 +61,7 @@ namespace SysCliVet.Privado.Mascota
             Response.Redirect("Listar.aspx");
         }
 
-        private void MostrarInformacion(clsMascota objMascota)
+        private void MostrarInformacion(CapaEntidad.Mascota objMascota)
         {
             txtNombre.Value = objMascota.Nombre;
             txtFechaNac.Value = objMascota.FechaNacimiento.ToStringDate();
@@ -85,9 +85,9 @@ namespace SysCliVet.Privado.Mascota
         {            
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
                 Boolean resultado = false;
-                clsMascota objMascota = new clsMascota
+                CapaEntidad.Mascota objMascota = new CapaEntidad.Mascota
                 {
                     Id = vsId,
                     Nombre = txtNombre.Value,
@@ -102,7 +102,7 @@ namespace SysCliVet.Privado.Mascota
                     Sexo = rbMacho.Checked ? (Int16)EnumGeneroMascota.Macho : (Int16)EnumGeneroMascota.Hembra,
                     FechaNacimiento = txtFechaNac.Value.ToStringDate()
                 };
-                resultado = clsLogica.Instance.Mascota_Guardar(ref baseEntidad, objMascota);
+                resultado = Logica.Instance.Mascota_Guardar(ref baseEntidad, objMascota);
                 if (resultado)
                 {
                     ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Paciente guardado correctamente\"" + ");</script>", false);
@@ -126,7 +126,7 @@ namespace SysCliVet.Privado.Mascota
                 if (String.IsNullOrEmpty(hfMascotaId.Value))
                     ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"El paciente no existe\"" + ");</script>", false);
 
-                String url = Config.UrlInfoCodigoQr + "Mascota.aspx?i=" + HttpUtility.UrlEncode(clsEncriptacion.Encriptar(hfMascotaId.Value));
+                String url = Config.UrlInfoCodigoQr + "Mascota.aspx?i=" + HttpUtility.UrlEncode(Encriptacion.Encriptar(hfMascotaId.Value));
 
                 String email = Config.EmailQr;
 

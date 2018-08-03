@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CapaLibreria.General
 {
-    public static class clsEncriptacion
+    public static class Encriptacion
     {
         #region Encriptar
         /// <summary>

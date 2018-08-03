@@ -27,9 +27,9 @@ namespace SysCliVet.Privado.FichaClinica
         {
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
                 Boolean resultado = false;
-                clsPropietario objPropietario = new clsPropietario
+                CapaEntidad.Propietario objPropietario = new CapaEntidad.Propietario
                 {
                     Id = Convert.ToInt32(hfIdPropietario.Value),
                     Nombre = txtNombrePro.Value,
@@ -38,11 +38,11 @@ namespace SysCliVet.Privado.FichaClinica
                     Direccion = txtDireccion.Value,
                     Celular = txtCelular.Value,
                     Telefono = txtTelefono.Value,
-                    FechaNacimiento = !String.IsNullOrEmpty(txtFechaNacPro.Value) ? DateTime.ParseExact(txtFechaNacPro.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now,
+                    FechaNacimiento = !string.IsNullOrEmpty(txtFechaNacPro.Value) ? DateTime.ParseExact(txtFechaNacPro.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now,
                     Dni = Convert.ToInt32(txtDni.Value),
                     Estado = 1
                 };
-                clsMascota objMascota = new clsMascota
+                CapaEntidad.Mascota objMascota = new CapaEntidad.Mascota
                 {
                     Id = 0,
                     Nombre = txtNombreMas.Value,
@@ -59,12 +59,12 @@ namespace SysCliVet.Privado.FichaClinica
                 };
 
                 JavaScriptSerializer srVacunas = new JavaScriptSerializer();
-                List<clsVacuna> lstVacunas = new List<clsVacuna>();
+                List<Vacuna> lstVacunas = new List<Vacuna>();
                 tListaVacunas ListaVacunas = new tListaVacunas();
-                lstVacunas = srVacunas.Deserialize<List<clsVacuna>>(hfVacunas.Value);
+                lstVacunas = srVacunas.Deserialize<List<Vacuna>>(hfVacunas.Value);
                 if (lstVacunas != null)
                 {
-                    foreach (clsVacuna item in lstVacunas)
+                    foreach (Vacuna item in lstVacunas)
                     {
                         ListaVacunas.Add(new tVacuna
                         {
@@ -78,12 +78,12 @@ namespace SysCliVet.Privado.FichaClinica
                 }
 
                 JavaScriptSerializer srDesp = new JavaScriptSerializer();
-                List<clsDesparasitacion> lstDesp = new List<clsDesparasitacion>();
+                List<Desparasitacion> lstDesp = new List<Desparasitacion>();
                 tListaDesparasitacion ListaDesp = new tListaDesparasitacion();
-                lstDesp = srDesp.Deserialize<List<clsDesparasitacion>>(hfDesparasitaciones.Value);
+                lstDesp = srDesp.Deserialize<List<Desparasitacion>>(hfDesparasitaciones.Value);
                 if (lstDesp != null)
                 {
-                    foreach (clsDesparasitacion item in lstDesp)
+                    foreach (Desparasitacion item in lstDesp)
                     {
                         ListaDesp.Add(new tDesparasitacion
                         {
@@ -96,7 +96,7 @@ namespace SysCliVet.Privado.FichaClinica
                     }
                 }
 
-                clsFichaClinica objFichaClinica = new clsFichaClinica
+                CapaEntidad.FichaClinica objFichaClinica = new CapaEntidad.FichaClinica
                 {
                     Propietario = objPropietario,
                     Fecha = DateTime.ParseExact(txtFechaFicha.Value, "dd/MM/yyyy h:mm tt", CultureInfo.InvariantCulture),
@@ -112,10 +112,10 @@ namespace SysCliVet.Privado.FichaClinica
                     Estado = 1
                 };
 
-                resultado = clsLogica.Instance.FichaClinica_Guardar(ref baseEntidad, objFichaClinica);
+                resultado = Logica.Instance.FichaClinica_Guardar(ref baseEntidad, objFichaClinica);
                 if (resultado)
                 {
-                    String id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(objFichaClinica.NumeroFicha.ToString()));
+                    String id = HttpUtility.UrlEncode(Encriptacion.Encriptar(objFichaClinica.NumeroFicha.ToString()));
                     Response.Redirect("~/Privado/HistorialClinico/Guardar.aspx?nf=" + id + "&s=si");
                 }
                 else ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"e\"" + ", " + "\"Ha ocurrido un error guardando la Ficha Clínica\"" + ");</script>", false);
@@ -128,7 +128,7 @@ namespace SysCliVet.Privado.FichaClinica
         [WebMethod]
         public static List<Object> ListaPropietariosPorDni(String dni)
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             List<Object> lista = new List<Object>();
             dni = dni == "undefined" ? "" : dni;
             try
@@ -140,7 +140,7 @@ namespace SysCliVet.Privado.FichaClinica
                 else
                     tipo = (Int16)EnumTipoBusqueda.Inexacta;
 
-                DataTable dtPropietarios = clsLogica.Instance.Propietario_ObtenerPorDni(ref baseEntidad, dni, tipo);
+                DataTable dtPropietarios = Logica.Instance.Propietario_ObtenerPorDni(ref baseEntidad, dni, tipo);
 
                 if (dtPropietarios != null && dtPropietarios.Rows.Count > 0)
                 {

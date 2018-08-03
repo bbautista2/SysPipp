@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-   public class ProductoMovimiento:clsBaseEntidad
+   public class ProductoMovimiento:BaseEntidad
     {
         public Int32 Cantidad { get; set; }
     }

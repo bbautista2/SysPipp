@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CapaEntidad
 {
-    public class Producto: clsBaseEntidad
+    public class Producto: BaseEntidad
     {
         public String Codigo { get; set; }
         ProductoCategoria categoria;

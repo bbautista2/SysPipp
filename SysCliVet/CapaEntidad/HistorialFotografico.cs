@@ -3,14 +3,14 @@ using System;
 
 namespace CapaEntidad
 {
-    public class clsHistorialFotografico:clsBaseEntidad
+    public class HistorialFotografico:BaseEntidad
     {
-        clsHistoriaClinica _HistoriaClinica;
-        public clsHistoriaClinica HistoriaClinica
+        HistoriaClinica _HistoriaClinica;
+        public HistoriaClinica HistoriaClinica
         {
             get
             {
-                _HistoriaClinica = _HistoriaClinica ?? new clsHistoriaClinica();
+                _HistoriaClinica = _HistoriaClinica ?? new HistoriaClinica();
                 return _HistoriaClinica;
             }
             set => _HistoriaClinica = value;

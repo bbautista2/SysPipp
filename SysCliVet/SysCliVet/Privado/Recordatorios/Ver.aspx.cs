@@ -21,12 +21,12 @@ namespace SysCliVet.Privado.Recordatorios
         [WebMethod]
         public static Object Recordatorio_Listar()
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             List<Recordatorio> lstRecordatorios = new List<Recordatorio>();
             List<Object> lstObject = new List<object>();
             try
             {
-                lstRecordatorios = clsLogica.Instance.Recordatorio_ObtenerTodo(ref baseEntidad);
+                lstRecordatorios = Logica.Instance.Recordatorio_ObtenerTodo(ref baseEntidad);
                 foreach (Recordatorio recordatorio in lstRecordatorios)
                 {
                     lstObject.Add(new

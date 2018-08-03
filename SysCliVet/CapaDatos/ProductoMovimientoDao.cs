@@ -1,14 +1,11 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
 using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CapaLibreria.Conexiones;
 
 namespace CapaDatos
 {
@@ -37,13 +34,13 @@ namespace CapaDatos
         }
         #endregion
 
-        public List<ProductoMovimiento> porProductoID(ref clsBaseEntidad baseEntidad, Int32 id)
+        public List<ProductoMovimiento> porProductoID(ref BaseEntidad baseEntidad, Int32 id)
         {
             List<ProductoMovimiento> lstProductoMovimiento = new List<ProductoMovimiento>();
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("ProductoMovimiento_PorProductoID", clsConexion.GetConexion())
+                cmd = new SqlCommand("ProductoMovimiento_PorProductoID", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -62,22 +59,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 lstProductoMovimiento = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return lstProductoMovimiento;
         }
 
-        public Int32 ActualizarStock(ref clsBaseEntidad baseEntidad, Int32 productoId, String descripcion, Int32 cantidad)
+        public Int32 ActualizarStock(ref BaseEntidad baseEntidad, Int32 productoId, String descripcion, Int32 cantidad)
         {
             Int32 stockActual = 0;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("ProductoMovimiento_ActualizarStock", clsConexion.GetConexion())
+                cmd = new SqlCommand("ProductoMovimiento_ActualizarStock", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -93,22 +90,22 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 stockActual = 0;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return stockActual;
         }
 
-        public List<ProductoMovimiento> ObtenerMasVendidos(ref clsBaseEntidad baseEntidad)
+        public List<ProductoMovimiento> ObtenerMasVendidos(ref BaseEntidad baseEntidad)
         {
             List<ProductoMovimiento> lstProductoMovimiento = new List<ProductoMovimiento>();
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("ProductoMovimiento_ObtenerMasVendidos", clsConexion.GetConexion())
+                cmd = new SqlCommand("ProductoMovimiento_ObtenerMasVendidos", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -126,11 +123,11 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 lstProductoMovimiento = null;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return lstProductoMovimiento;
         }

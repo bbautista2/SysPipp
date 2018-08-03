@@ -3,24 +3,24 @@ using System;
 
 namespace CapaEntidad
 {
-    public class Recordatorio:clsBaseEntidad
+    public class Recordatorio:BaseEntidad
     {
-        clsUsuario _Usuario;
-        public clsUsuario Usuario
+        Usuario _Usuario;
+        public Usuario Usuario
         {
             get
             {
-                _Usuario = _Usuario ?? new clsUsuario();
+                _Usuario = _Usuario ?? new Usuario();
                 return _Usuario;
             }
             set => _Usuario = value;
         }
-        clsMascota _Mascota;
-        public clsMascota Mascota
+        Mascota _Mascota;
+        public Mascota Mascota
         {
             get
             {
-                _Mascota = _Mascota ?? new clsMascota();
+                _Mascota = _Mascota ?? new Mascota();
                 return _Mascota;
             }
             set => _Mascota = value;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class TipoCita:clsBaseEntidad
+    public class TipoCita:BaseEntidad
     {
 
     }

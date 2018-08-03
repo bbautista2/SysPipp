@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-   public class clsFichaClinica : clsBaseEntidad
+   public class FichaClinica : BaseEntidad
     {
-        clsPropietario _Propietario;
-        public clsPropietario Propietario
+        Propietario _Propietario;
+        public Propietario Propietario
         {
             get
             {
-                _Propietario = _Propietario ?? new clsPropietario();
+                _Propietario = _Propietario ?? new Propietario();
                 return _Propietario;
             }
             set => _Propietario = value;
         }
 
-        clsMascota _Mascota;
-        public clsMascota Mascota
+        Mascota _Mascota;
+        public Mascota Mascota
         {
             get
             {
-                _Mascota = _Mascota ?? new clsMascota();
+                _Mascota = _Mascota ?? new Mascota();
                 return _Mascota;
             }
             set => _Mascota = value;
@@ -34,23 +34,23 @@ namespace CapaEntidad
         public tListaVacunas ListaVacunas { get; set; }
         public tListaDesparasitacion ListaDesparasitaciones { get; set; }
 
-        List<clsVacuna> lstVacunas;
-        public List<clsVacuna> LstVacunas
+        List<Vacuna> lstVacunas;
+        public List<Vacuna> LstVacunas
         {
             get
             {
-                lstVacunas = lstVacunas ?? new List<clsVacuna>();
+                lstVacunas = lstVacunas ?? new List<Vacuna>();
                 return lstVacunas;
             }
             set => lstVacunas = value;
         }
 
-        List<clsDesparasitacion> lstDesparasitaciones;
-        public List<clsDesparasitacion> LstDesparasitaciones
+        List<Desparasitacion> lstDesparasitaciones;
+        public List<Desparasitacion> LstDesparasitaciones
         {
             get
             {
-                lstDesparasitaciones = lstDesparasitaciones ?? new List<clsDesparasitacion>();
+                lstDesparasitaciones = lstDesparasitaciones ?? new List<Desparasitacion>();
                 return lstDesparasitaciones;
             }
             set => lstDesparasitaciones = value;

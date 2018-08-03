@@ -23,18 +23,18 @@ namespace SysCliVet.Privado.Propietario
 
         public void Propietario_Listar()
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             DataTable dt = null;
             List<Object> lst = new List<Object>();
             try
             {
-                dt = clsLogica.Instance.Propietario_Listar(ref baseEntidad);
+                dt = Logica.Instance.Propietario_Listar(ref baseEntidad);
 
                 foreach (DataRow item in dt.Rows)
                 {
                     lst.Add(new
                     {
-                        Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
+                        Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(item["ID"].ToString())),
                         Nombre = item["Nombre"] + " " + item["Apellidos"],
                         FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                         Direccion = item["Direccion"],
@@ -59,8 +59,8 @@ namespace SysCliVet.Privado.Propietario
             List<Object> lst = new List<Object>();
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
-                DataTable dt = clsLogica.Instance.Propietario_Listar(ref baseEntidad);
+                BaseEntidad baseEntidad = new BaseEntidad();
+                DataTable dt = Logica.Instance.Propietario_Listar(ref baseEntidad);
                 if (baseEntidad.Errores.Count == 0)
                 {
                     if (dt != null)
@@ -69,7 +69,7 @@ namespace SysCliVet.Privado.Propietario
                         {
                             lst.Add(new
                             {
-                                Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item["ID"].ToString())),
+                                Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(item["ID"].ToString())),
                                 Nombre = item["Nombre"] + " " + item["Apellidos"],
                                 FechaNacimiento = Convert.ToDateTime(item["FechaNacimiento"]).ToStringDate(),
                                 Direccion = item["Direccion"],
@@ -96,11 +96,11 @@ namespace SysCliVet.Privado.Propietario
 
             try
             {
-                Int32 idPropietario = Convert.ToInt32(clsEncriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
+                Int32 idPropietario = Convert.ToInt32(Encriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
 
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
 
-                resultado = clsLogica.Instance.Propietario_EliminarPorId(ref baseEntidad, idPropietario);
+                resultado = Logica.Instance.Propietario_EliminarPorId(ref baseEntidad, idPropietario);
                 
                 if (resultado)
                     return new { Lista = ObtenerPropietarios(), correcto = true, mensaje = "Propietario Eliminado correctamente" };

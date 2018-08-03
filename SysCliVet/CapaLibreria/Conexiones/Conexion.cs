@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CapaLibreria.Conexion
+namespace CapaLibreria.Conexiones
 {
-    public class clsConexion
+    public class Conexion
     {
         public static void DisposeCommand(SqlCommand cmd)
         {

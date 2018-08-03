@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace CapaEntidad
 {
-    public class clsVacuna : clsBaseEntidad
+    public class Vacuna : BaseEntidad
     {
         public DateTime Fecha { get; set; }
         public String SFecha { get; set; }
@@ -13,6 +13,17 @@ namespace CapaEntidad
         public String ObtenerFechaString()
         {
             return Fecha.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+        }
+
+        FichaClinica _FichaClinica;
+        public FichaClinica FichaClinica
+        {
+            get
+            {
+                _FichaClinica = _FichaClinica ?? new FichaClinica();
+                return _FichaClinica;
+            }
+            set => _FichaClinica = value;
         }
     }
 }

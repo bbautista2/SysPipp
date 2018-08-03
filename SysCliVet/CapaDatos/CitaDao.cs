@@ -1,14 +1,11 @@
 ﻿using CapaEntidad;
 using CapaLibreria.Base;
-using CapaLibreria.Conexion;
 using CapaLibreria.General;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CapaLibreria.Conexiones;
 
 namespace CapaDatos
 {
@@ -42,13 +39,13 @@ namespace CapaDatos
             return cita;
         }
         #endregion
-        public Boolean Guardar(ref clsBaseEntidad baseEntidad, Cita objCita)
+        public Boolean Guardar(ref BaseEntidad baseEntidad, Cita objCita)
         {
             Boolean Resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Cita_Guardar", clsConexion.GetConexion())
+                cmd = new SqlCommand("Cita_Guardar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };               
@@ -64,16 +61,16 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 Resultado = false;
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return Resultado;
         }
 
-        public List<Cita> ObtenerTodo(ref clsBaseEntidad baseEntidad)
+        public List<Cita> ObtenerTodo(ref BaseEntidad baseEntidad)
         {
             List<Cita> lstCitas = new List<Cita>();
             Cita objCita;
@@ -81,7 +78,7 @@ namespace CapaDatos
             SqlDataReader dr = null;
             try
             {
-                cmd = new SqlCommand("Cita_Listar", clsConexion.GetConexion())
+                cmd = new SqlCommand("Cita_Listar", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -99,16 +96,16 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return lstCitas;
         }
 
-        public List<Cita> ObtenerPorFechaActual(ref clsBaseEntidad baseEntidad)
+        public List<Cita> ObtenerPorFechaActual(ref BaseEntidad baseEntidad)
         {
             List<Cita> lstCitas = new List<Cita>();
             Cita objCita;
@@ -116,7 +113,7 @@ namespace CapaDatos
             SqlDataReader dr = null;
             try
             {
-                cmd = new SqlCommand("Cita_Listar_PorFechaActual", clsConexion.GetConexion())
+                cmd = new SqlCommand("Cita_Listar_PorFechaActual", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -134,22 +131,22 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return lstCitas;
         }
 
-        public Boolean EliminarPorId(ref clsBaseEntidad baseEntidad, Int32 id)
+        public Boolean EliminarPorId(ref BaseEntidad baseEntidad, Int32 id)
         {
             Boolean resultado = false;
             SqlCommand cmd = null;
             try
             {
-                cmd = new SqlCommand("Cita_EliminarPorId", clsConexion.GetConexion())
+                cmd = new SqlCommand("Cita_EliminarPorId", Conexion.GetConexion())
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -158,11 +155,11 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                baseEntidad.Errores.Add(new clsBaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
+                baseEntidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
-                clsConexion.DisposeCommand(cmd);
+                Conexion.DisposeCommand(cmd);
             }
             return resultado;
         }        

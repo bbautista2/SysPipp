@@ -46,12 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\clsBaseEntidad.cs" />
-    <Compile Include="Conexion\clsConexion.cs" />
-    <Compile Include="General\clsEncriptacion.cs" />
-    <Compile Include="General\clsEnum.cs" />
-    <Compile Include="General\clsExtension.cs" />
-    <Compile Include="General\clsUtilidades.cs" />
+    <Compile Include="Base\BaseEntidad.cs" />
+    <Compile Include="Conexiones\Conexion.cs" />
+    <Compile Include="General\Encriptacion.cs" />
+    <Compile Include="General\Enum.cs" />
+    <Compile Include="General\Extension.cs" />
+    <Compile Include="General\Utilidades.cs" />
     <Compile Include="General\Email.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

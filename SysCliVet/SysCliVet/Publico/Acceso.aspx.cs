@@ -21,8 +21,8 @@ namespace SysCliVet.Publico
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             String message = String.Empty;
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
-            clsUsuario objUsuario = clsLogica.Instance.Usuario_ValidarAcceso(ref baseEntidad, txtUsuario.Text, txtPassword.Text);
+            BaseEntidad baseEntidad = new BaseEntidad();
+            Usuario objUsuario = Logica.Instance.Usuario_ValidarAcceso(ref baseEntidad, txtUsuario.Text, txtPassword.Text);
 
             if (baseEntidad.Errores.Count == 0)
             {

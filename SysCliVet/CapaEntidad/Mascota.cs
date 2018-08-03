@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-   public class clsMascota : clsBaseEntidad
+   public class Mascota : BaseEntidad
     {
-        clsPropietario _Propietario;
-        public clsPropietario Propietario
+        Propietario _Propietario;
+        public Propietario Propietario
         {
             get
             {
-                _Propietario = _Propietario ?? new clsPropietario();
+                _Propietario = _Propietario ?? new Propietario();
                 return _Propietario;
             }
             set => _Propietario = value;

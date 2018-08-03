@@ -6,10 +6,10 @@ namespace SysCliVet.src.app_code
 {
     public class Sesion
     {        
-        public static clsUsuario SsUsuario
+        public static Usuario SsUsuario
         {
-            get { return clsExtension.ObtenerSesion<clsUsuario>("Usuario") ?? RedirectUsuario<clsUsuario>(); }
-            set { HttpContext.Current.Session["Usuario"] = value; }
+            get { return Extension.ObtenerSesion<Usuario>("NombreUsuario") ?? RedirectUsuario<Usuario>(); }
+            set { HttpContext.Current.Session["NombreUsuario"] = value; }
         }
         private static T RedirectUsuario<T>()
         {

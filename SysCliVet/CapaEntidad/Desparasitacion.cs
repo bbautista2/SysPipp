@@ -3,14 +3,14 @@ using System;
 
 namespace CapaEntidad
 {
-    public class clsDesparasitacion : clsBaseEntidad
+    public class Desparasitacion : BaseEntidad
     {
-        clsFichaClinica _FichaClinica;
-        public clsFichaClinica FichaClinica
+        FichaClinica _FichaClinica;
+        public FichaClinica FichaClinica
         {
             get
             {
-                _FichaClinica = _FichaClinica ?? new clsFichaClinica();
+                _FichaClinica = _FichaClinica ?? new FichaClinica();
                 return _FichaClinica;
             }
             set => _FichaClinica = value;

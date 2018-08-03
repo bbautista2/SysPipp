@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class ProductoCategoria:clsBaseEntidad
+    public class ProductoCategoria:BaseEntidad
     {   
        
     }

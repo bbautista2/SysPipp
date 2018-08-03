@@ -24,18 +24,18 @@ namespace SysCliVet.Privado.Productos
 
         public void Producto_Listar()
         {
-            clsBaseEntidad baseEntidad = new clsBaseEntidad();
+            BaseEntidad baseEntidad = new BaseEntidad();
             List<Producto> lstProductos = null;
             List<Object> lst = new List<Object>();
             try
             {
-                lstProductos = clsLogica.Instance.Producto_Listar(ref baseEntidad);
+                lstProductos = Logica.Instance.Producto_Listar(ref baseEntidad);
 
                 foreach (Producto item in lstProductos)
                 {
                     var Producto = new
                     {
-                        Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item.Id.ToString())),
+                        Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(item.Id.ToString())),
                         Categoria = item.Categoria.Descripcion,
                         item.Descripcion,
                         Stock = item.Stock().ToString(),
@@ -60,11 +60,11 @@ namespace SysCliVet.Privado.Productos
 
             try
             {
-                Int32 idProducto = Convert.ToInt32(clsEncriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
+                Int32 idProducto = Convert.ToInt32(Encriptacion.Desencriptar(HttpUtility.UrlDecode(id)));
 
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
 
-                resultado = clsLogica.Instance.Producto_EliminarPorId(ref baseEntidad, idProducto);
+                resultado = Logica.Instance.Producto_EliminarPorId(ref baseEntidad, idProducto);
 
                 if (resultado)
                     return new { Lista = ObtenerProductos(), correcto = true, mensaje = "Producto Eliminado Correctamente" };
@@ -84,9 +84,9 @@ namespace SysCliVet.Privado.Productos
             List<Object> lst = new List<Object>();
             try
             {
-                clsBaseEntidad baseEntidad = new clsBaseEntidad();
+                BaseEntidad baseEntidad = new BaseEntidad();
                 List<Producto> lstProductos = null;
-                lstProductos = clsLogica.Instance.Producto_Listar(ref baseEntidad);
+                lstProductos = Logica.Instance.Producto_Listar(ref baseEntidad);
                 if (baseEntidad.Errores.Count == 0)
                 {
                     if (lstProductos != null)
@@ -95,7 +95,7 @@ namespace SysCliVet.Privado.Productos
                         {
                             lst.Add(new
                             {
-                                Id = HttpUtility.UrlEncode(clsEncriptacion.Encriptar(item.Id.ToString())),
+                                Id = HttpUtility.UrlEncode(Encriptacion.Encriptar(item.Id.ToString())),
                                 Categoria = item.Categoria.Descripcion,
                                 item.Descripcion,
                                 Stock = item.Stock().ToString()

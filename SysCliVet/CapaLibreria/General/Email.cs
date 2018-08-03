@@ -1,5 +1,5 @@
 ﻿using CapaLibreria.Base;
-using CapaLibreria.Conexion;
+using CapaLibreria.Conexiones;
 using MessagingToolkit.QRCode.Codec;
 using System;
 using System.Collections.Generic;
@@ -164,7 +164,7 @@ namespace CapaLibreria.General
         {
             // Get the unique identifier for this asynchronous operation.
             MailView token = (MailView)e.UserState;
-            clsBaseEntidad ent = new clsBaseEntidad();
+            BaseEntidad ent = new BaseEntidad();
             Boolean isCancelled = false;
 
             if (e.Cancelled)
@@ -187,13 +187,13 @@ namespace CapaLibreria.General
             }
         }
 
-        public static bool Email_InsertLog(ref clsBaseEntidad Base, string mailTo, string subject, string message, string mailFrom, string error, Int16 status)
+        public static bool Email_InsertLog(ref BaseEntidad Base, string mailTo, string subject, string message, string mailFrom, string error, Int16 status)
         {
             Boolean isCorrect = false;
             SqlConnection objConnection = null;
             try
             {
-                objConnection = clsConexion.GetConexion();
+                objConnection = Conexiones.Conexion.GetConexion();
                 SqlCommand cmd = new SqlCommand("Email_InsertLog", objConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MAIL", message);
@@ -209,7 +209,7 @@ namespace CapaLibreria.General
             }
             catch (Exception ex)
             {
-                Base.Errores.Add(new clsBaseEntidad.ListaError(ex, "Error en la base de datos"));
+                Base.Errores.Add(new BaseEntidad.ListaError(ex, "Error en la base de datos"));
             }
             finally
             {

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CapaLibreria.General
 {
-    public static class clsExtension
+    public static class Extension
     {
         public static T ObtenerSesion<T>(string nombreSesion)
         {

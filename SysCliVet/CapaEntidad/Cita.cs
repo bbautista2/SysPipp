@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-   public class Cita:clsBaseEntidad
+   public class Cita:BaseEntidad
     {
-        clsMascota _Mascota;
-        public clsMascota Mascota
+        Mascota _Mascota;
+        public Mascota Mascota
         {
             get
             {
-                _Mascota = _Mascota ?? new clsMascota();
+                _Mascota = _Mascota ?? new Mascota();
                 return _Mascota;
             }
             set => _Mascota = value;

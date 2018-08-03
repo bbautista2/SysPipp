@@ -13,7 +13,7 @@ namespace SysCliVet
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            CapaLibreria.General.clsUtilidades.SessionStateServerSharedHelper.ChangeAppDomainAppId(Config.NombreCookie);
+            CapaLibreria.General.Utilidades.SessionStateServerSharedHelper.ChangeAppDomainAppId(Config.NombreCookie);
         }
 
         protected void Application_Error(Object sender, EventArgs e)

@@ -7,38 +7,38 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class clsHistoriaClinica:clsBaseEntidad
+    public class HistoriaClinica:BaseEntidad
     {
-        clsFichaClinica _FichaClinica;
-        public clsFichaClinica FichaClinica
+        FichaClinica _FichaClinica;
+        public FichaClinica FichaClinica
         {
             get
             {
-                _FichaClinica = _FichaClinica ?? new clsFichaClinica();
+                _FichaClinica = _FichaClinica ?? new FichaClinica();
                 return _FichaClinica;
             }
             set => _FichaClinica = value;
         }
 
         public tListaAnalisis ListaAnalisis { get; set; }
-        List<clsAnalisis> lstAnalisis;
-        public List<clsAnalisis> LstAnalisis
+        List<Analisis> lstAnalisis;
+        public List<Analisis> LstAnalisis
         {
             get
             {
-                lstAnalisis = lstAnalisis ?? new List<clsAnalisis>();
+                lstAnalisis = lstAnalisis ?? new List<Analisis>();
                 return lstAnalisis;
             }
             set => lstAnalisis = value;
         }
 
         public tListaTratamientos ListaTratamientos { get; set; }
-        List<clsTratamiento> lstTratamientos;
-        public List<clsTratamiento> LstTratamientos
+        List<Tratamiento> lstTratamientos;
+        public List<Tratamiento> LstTratamientos
         {
             get
             {
-                lstTratamientos = lstTratamientos ?? new List<clsTratamiento>();
+                lstTratamientos = lstTratamientos ?? new List<Tratamiento>();
                 return lstTratamientos;
             }
             set => lstTratamientos = value;
