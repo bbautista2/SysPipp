@@ -46,12 +46,11 @@
                     <div class="x_content">
                         <br>
                         <div id="idMensaje"></div>
-                        <div class="form-group">
+                        <div class="form-group hide">
                             <div class="col-md-12 left">
                                 <button id="send" type="submit" class="btn btn-success"><i class="fa fa-plus-square"></i>Añadir</button>
                             </div>
                         </div>
-                        <br />
                         <br />
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>

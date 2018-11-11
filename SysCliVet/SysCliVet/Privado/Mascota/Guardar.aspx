@@ -148,6 +148,32 @@
                                         Text="Generar" OnClick="btnGenerar_Click" CssClass="btn btn-success" />
                                 </div>
                             </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtMotivoCons">
+                                </label>
+                                <div class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    <h4 class="text-left">Información del Propietario</h4>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    DNI <span class="required">*</span>
+                                </label>
+                                <div class="input-group col-md-6 col-sm-6 col-xs-12" style="padding-right: 5px!important; padding-left: 10px!important; float: left!important">
+                                    <input id="txtDni" runat="server" class="form-control col-md-7 col-xs-12" required="required" type="text" maxlength="8">
+                                    <span class="input-group-btn">
+                                        <button id="btnBuscarPropietario" type="button" class="btn btn-primary" style="height: 34px;"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtNombrePro">
+                                    Nombre <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="txtNombrePro" disabled runat="server" class="form-control col-md-7 col-xs-12" name="txtNombrePro" required="required" type="text">
+                                </div>
+                            </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
@@ -165,12 +191,13 @@
     </div>
     <asp:HiddenField ID="hfImageSrc" runat="server" />
     <asp:HiddenField ID="hfMain" runat="server" />
-    <asp:HiddenField ID="hfPropietarioId" runat="server" />
+    <asp:HiddenField ID="hfIdPropietario" runat="server" />
     <asp:HiddenField ID="hfMascotaId" runat="server" />
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
+    <script src="<%=ResolveUrl("~/Privado/FichaClinica/js/autocomplete.js") %>"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -184,6 +211,10 @@
 
                 if (!submit) { x.preventDefault(); }
 
+            });
+
+            $("[id$=btnBuscarPropietario]").on('click', function (e) {
+                FN_BuscarPropietario();
             });
 
         });
@@ -230,6 +261,42 @@
             };
 
             FN_LlamarMetodo("Guardar.aspx/GenerarCodigoQr", '{mascotaId:"'+mascotaId+'", nombreMascota:"'+nombreMascota+'"}', success, error);
+        }
+
+        function FN_BuscarPropietario() {
+            $(".autocomplete-suggestions").remove();
+            FN_LimpiarDatosPropietario();
+            var Dni = $("[id$=txtDni]").val();
+
+            success = function (response) {
+                var lista = response.d;
+                if (lista != null && lista.length > 0) {
+                    var listaPropietarios = $.map(lista, function (value, key) {
+                        return {
+                            value: value,
+                            data: key
+                        };
+                    });
+
+                    // initialize autocomplete with custom appendTo
+                    $('[id$=txtDni]').autocomplete({
+                        lookup: listaPropietarios
+                    });
+                    setTimeout(function () { $("[id$=txtDni]").trigger('keyup'); }, 1000);
+                }
+            }
+
+            error = function (xhr, ajaxOptions, thrownError) {
+                console.log("colocar mensaje de error");
+            };
+
+            FN_LlamarMetodo("../FichaClinica/Guardar.aspx/ListaPropietariosPorDni", '{dni: "' + Dni + '" }', success, error);
+
+        }
+
+        function FN_LimpiarDatosPropietario() {
+            $("input[id$=hfIdPropietario]").val("0");
+            $("input[id$=txtNombrePro], input[id$=txtApellidos], input[id$=txtFechaNacPro], input[id$=txtDireccion], input[id$=txtCelular], input[id$=txtTelefono], input[id$=txtEmail]").val("");
         }
 
     </script>

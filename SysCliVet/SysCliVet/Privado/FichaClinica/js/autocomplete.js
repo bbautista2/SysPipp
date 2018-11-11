@@ -912,8 +912,8 @@
 
 			//if (that.currentValue !== that.el.val() && !that.options.preserveInput) {
 				$("input[id$=hfIdPropietario]").val(suggestion.value.Id);
-				$("input[id$=txtNombrePro]").val(suggestion.value.Nombre);
-				$("input[id$=txtApellidos]").val(suggestion.value.Apellidos);
+                $("input[id$=txtNombrePro]").val($("input[id$=txtApellidos]").length > 0 ? suggestion.value.Nombre : suggestion.value.Nombre + " " + suggestion.value.Apellidos);
+                $("input[id$=txtApellidos]").val(suggestion.value.Apellidos);
 				$("input[id$=txtFechaNacPro]").val(suggestion.value.FechaNacimiento);
 				$("input[id$=txtDireccion]").val(suggestion.value.Direccion);
 				$("input[id$=txtCelular]").val(suggestion.value.Celular);

@@ -146,7 +146,7 @@ namespace SysCliVet.Privado.Mascota {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage ImageMain;
-                
+        
         /// <summary>
         /// Control btnGenerarQR.
         /// </summary>
@@ -155,6 +155,24 @@ namespace SysCliVet.Privado.Mascota {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGenerarQR;
+        
+        /// <summary>
+        /// Control txtDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDni;
+        
+        /// <summary>
+        /// Control txtNombrePro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombrePro;
         
         /// <summary>
         /// Control btnGuardar.
@@ -184,13 +202,13 @@ namespace SysCliVet.Privado.Mascota {
         protected global::System.Web.UI.WebControls.HiddenField hfMain;
         
         /// <summary>
-        /// Control hfPropietarioId.
+        /// Control hfIdPropietario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfPropietarioId;
+        protected global::System.Web.UI.WebControls.HiddenField hfIdPropietario;
         
         /// <summary>
         /// Control hfMascotaId.

@@ -1,5 +1,4 @@
-﻿using CapaEntidad;
-using CapaLibreria.Base;
+﻿using CapaLibreria.Base;
 using CapaLibreria.General;
 using CapaNegocio;
 using SysCliVet.src.app_code;
@@ -76,8 +75,9 @@ namespace SysCliVet.Privado.Mascota
             rbCastNo.Checked = !objMascota.Cast;
             txtPeso.Value = objMascota.Peso;
             txtMarcaDist.Value = objMascota.MarcaDistintiva;
-            txtPropietario.Value = objMascota.Propietario.Nombre;
-            hfPropietarioId.Value = objMascota.Propietario.Id.ToString();
+            txtDni.Value = objMascota.Propietario.Dni;
+            txtNombrePro.Value = objMascota.Propietario.NombreCompleto;
+            hfIdPropietario.Value = objMascota.Propietario.Id.ToString();
             hfMascotaId.Value = objMascota.Id.ToString();
             ImageMain.Src = Config.MascotaRutaVirtual + "imagenes/" + objMascota.Foto;        
         }
@@ -87,6 +87,10 @@ namespace SysCliVet.Privado.Mascota
             {
                 BaseEntidad baseEntidad = new BaseEntidad();
                 Boolean resultado = false;
+                CapaEntidad.Propietario objPropietario = new CapaEntidad.Propietario
+                {
+                    Id = Convert.ToInt32(hfIdPropietario.Value),
+                };
                 CapaEntidad.Mascota objMascota = new CapaEntidad.Mascota
                 {
                     Id = vsId,
@@ -100,7 +104,8 @@ namespace SysCliVet.Privado.Mascota
                     Cast = rbCastSi.Checked,
                     Foto = hfMain.Value,
                     Sexo = rbMacho.Checked ? (Int16)EnumGeneroMascota.Macho : (Int16)EnumGeneroMascota.Hembra,
-                    FechaNacimiento = txtFechaNac.Value.ToStringDate()
+                    FechaNacimiento = txtFechaNac.Value.ToStringDate(),
+                    Propietario = objPropietario
                 };
                 resultado = Logica.Instance.Mascota_Guardar(ref baseEntidad, objMascota);
                 if (resultado)
