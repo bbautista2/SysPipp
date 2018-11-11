@@ -39,7 +39,7 @@ namespace SysCliVet.Privado.FichaClinica
                     Celular = txtCelular.Value,
                     Telefono = txtTelefono.Value,
                     FechaNacimiento = !string.IsNullOrEmpty(txtFechaNacPro.Value) ? DateTime.ParseExact(txtFechaNacPro.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now,
-                    Dni = Convert.ToInt32(txtDni.Value),
+                    Dni = txtDni.Value,
                     Estado = 1
                 };
                 CapaEntidad.Mascota objMascota = new CapaEntidad.Mascota

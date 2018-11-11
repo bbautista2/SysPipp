@@ -36,7 +36,7 @@ namespace CapaDatos
             Propietario.Email = dr.ObtenerValorColumna<String>("Email");
             Propietario.Celular = dr.ObtenerValorColumna<String>("Celular");
             Propietario.Estado = dr.ObtenerValorColumna<Int16>("Estado");
-            Propietario.Dni = dr.ObtenerValorColumna<Int32>("Dni");
+            Propietario.Dni = dr.ObtenerValorColumna<String>("Dni");
             return Propietario;
         }
         #endregion
@@ -84,8 +84,8 @@ namespace CapaDatos
 
                 cmd.Parameters.AddWithValue("@ID", objPropietario.Id);
                 cmd.Parameters.AddWithValue("@Nombre", objPropietario.Nombre);
-                cmd.Parameters.AddWithValue("@Dni", objPropietario.Dni);
                 cmd.Parameters.AddWithValue("@Apellidos", objPropietario.Apellidos);
+                cmd.Parameters.AddWithValue("@Dni", objPropietario.Dni);
                 cmd.Parameters.AddWithValue("@FechaNacimiento", objPropietario.FechaNacimiento);
                 cmd.Parameters.AddWithValue("@Direccion", objPropietario.Direccion);
                 cmd.Parameters.AddWithValue("@Telefono", objPropietario.Telefono);

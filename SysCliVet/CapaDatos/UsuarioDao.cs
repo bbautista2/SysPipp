@@ -30,7 +30,7 @@ namespace CapaDatos
             Usuario.Id = dr.ObtenerValorColumna<Int32>("ID");
             Usuario.Nombres = dr.ObtenerValorColumna<String>("Nombres");
             Usuario.Apellidos = dr.ObtenerValorColumna<String>("Apellidos");
-            Usuario.NombreUsuario = dr.ObtenerValorColumna<String>("NombreUsuario");
+            Usuario.NombreUsuario = dr.ObtenerValorColumna<String>("Usuario");
             Usuario.Email = dr.ObtenerValorColumna<String>("Email");
             Usuario.Estado = dr.ObtenerValorColumna<Int16>("Estado");
             return Usuario;
@@ -48,7 +48,7 @@ namespace CapaDatos
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@NombreUsuario", usuario);
+                cmd.Parameters.AddWithValue("@Usuario", usuario);
                 cmd.Parameters.AddWithValue("@Password", password);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())

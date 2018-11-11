@@ -57,15 +57,23 @@
                                     Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtNombre" runat="server" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="txtNombre" placeholder="Ambos nombres e.g Juan Perez" required="required" type="text">
+                                    <input id="txtNombre" runat="server" class="form-control col-md-7 col-xs-12" required="required" type="text">
                                 </div>
                             </div>
-                               <div class="item form-group">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Apellidos <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="txtApellidos" runat="server" class="form-control col-md-7 col-xs-12" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
                                     DNI <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="txtDni" runat="server" class="form-control col-md-7 col-xs-12"   name="txtDni"  required="required" type="text">
+                                    <input id="txtDni" runat="server" class="form-control col-md-7 col-xs-12" maxlength="8" name="txtDni"  required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">

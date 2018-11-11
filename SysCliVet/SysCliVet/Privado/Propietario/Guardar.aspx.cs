@@ -54,7 +54,8 @@ namespace SysCliVet.Privado.Propietario
         private void MostrarInformacion(CapaEntidad.Propietario objPropietario)
         {
             txtDni.Value = objPropietario.Dni.ToString();
-            txtNombre.Value = objPropietario.NombreCompleto;
+            txtNombre.Value = objPropietario.Nombre;
+            txtApellidos.Value = objPropietario.Apellidos;
             txtEmail.Value = objPropietario.Email;
             txtDireccion.Value = objPropietario.Direccion;
             txtCelular.Value = objPropietario.Celular;
@@ -66,8 +67,7 @@ namespace SysCliVet.Privado.Propietario
         {
             Response.Redirect("Listar.aspx");
         }
-
-
+        
         public void Message(String title,String text,String tipo)
         {
             ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>Fn_Mensaje('" + title + "', '"+text+"','"+tipo+"');</script>", false);
@@ -79,8 +79,9 @@ namespace SysCliVet.Privado.Propietario
             Boolean resultado = false;
             CapaEntidad.Propietario objPropietario = new CapaEntidad.Propietario();
             objPropietario.Id = vsId;
-            objPropietario.Dni = Convert.ToInt32(txtDni.Value);
+            objPropietario.Dni = txtDni.Value;
             objPropietario.Nombre = txtNombre.Value;
+            objPropietario.Apellidos = txtApellidos.Value;
             objPropietario.Email = txtEmail.Value;
             objPropietario.Direccion = txtDireccion.Value;
             objPropietario.Telefono = txtTelefono.Value;
