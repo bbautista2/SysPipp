@@ -72,9 +72,9 @@ namespace CapaDatos
             return lstPermisos;
         }
 
-        public Boolean Crear(ref BaseEntidad entidad,Permiso permiso)
+        public Int32 Crear(Permiso permiso,Int32 userId)
         {
-            Boolean exitoso = false; 
+            Int32 permisoId=0; 
             SqlCommand cmd = null;
             try
             {
@@ -82,16 +82,19 @@ namespace CapaDatos
                 {
                     CommandType = CommandType.StoredProcedure
                 };
+                SqlParameter outputParametro = cmd.Parameters.Add("@permisoId", SqlDbType.Int);
+                outputParametro.Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@nombre", permiso.Nombre);
                 cmd.Parameters.AddWithValue("@descripcion", permiso.Descripcion);
                 cmd.Parameters.AddWithValue("@estado", permiso.Estado);
-                cmd.Parameters.AddWithValue("@creadoPor", permiso.CreadoPor);
+                cmd.Parameters.AddWithValue("@creadoPor", userId);
                 cmd.ExecuteReader();
-                
+                permisoId = Convert.ToInt32(cmd.Parameters["@permisoId"].Value);
+
+
             }
             catch (Exception ex)
             {
-                entidad.Errores.Add(new BaseEntidad.ListaError(ex, "Ha ocurrido un error en la aplicación [3]"));
             }
             finally
             {
@@ -99,7 +102,38 @@ namespace CapaDatos
             }
 
 
-            return exitoso;
+            return permisoId;
+        }
+
+        public Int32 Actualizar(Permiso permiso,Int32 userId)
+        {
+            Int32 permisoId = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("[Permiso_Actualizar]", Conexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@permisoId",permiso.Id);
+                cmd.Parameters.AddWithValue("@nombre", permiso.Nombre);
+                cmd.Parameters.AddWithValue("@descripcion", permiso.Descripcion);
+                cmd.Parameters.AddWithValue("@estado", permiso.Estado);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.ExecuteReader();
+                permisoId = permiso.Id;
+            }
+            catch (Exception ex)
+            {
+              
+            }
+            finally
+            {
+                Conexion.DisposeCommand(cmd);
+            }
+
+
+            return permisoId;
         }
 
         #endregion

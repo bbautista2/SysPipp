@@ -164,7 +164,7 @@
 
     <script type="text/x-handlebars-template" id="tabla-permisos">
         {{# each items}}                   
-                         {{#if Acceso}}
+                         {{#if Accesso}}
                    <tr class="acceso">
                        {{else}}
                     <tr>

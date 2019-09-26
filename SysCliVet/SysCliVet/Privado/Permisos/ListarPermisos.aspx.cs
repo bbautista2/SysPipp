@@ -15,7 +15,10 @@ namespace SysCliVet.Privado.Permisos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Listar();
+            if (!IsPostBack)
+            {
+                Listar();
+            }
         }
 
         private void Listar() {

@@ -47,6 +47,7 @@
     <Compile Include="Permiso.cs" />
     <Compile Include="PermisoNavegacion.cs" />
     <Compile Include="TipoTabla.cs" />
+    <Compile Include="TipoTabla\TipoTablaPermiso.cs" />
     <Compile Include="Vacuna.cs" />
     <Compile Include="Cita.cs" />
     <Compile Include="FichaClinica.cs" />

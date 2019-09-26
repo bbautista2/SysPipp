@@ -1,4 +1,5 @@
 ﻿using CapaEntidad;
+using CapaEntidad.TipoTabla;
 using CapaLibreria.Base;
 using CapaLibreria.Conexiones;
 using CapaLibreria.General;
@@ -31,9 +32,9 @@ namespace CapaDatos
         public PermisoNavegacion SetEntidad(SqlDataReader dr)
         {
             PermisoNavegacion permisoNavegacion = new PermisoNavegacion();
-            permisoNavegacion.NavegacionId = dr.ObtenerValorColumna<Int32>("PermisoId");
-            permisoNavegacion.PermisoId = dr.ObtenerValorColumna<Int32>("NavegacionId");
-            permisoNavegacion.Estado = dr.ObtenerValorColumna<Int16>("Estado");          
+            permisoNavegacion.NavegacionId = dr.ObtenerValorColumna<Int32>("NavegacionId");
+            permisoNavegacion.PermisoId = dr.ObtenerValorColumna<Int32>("PermisoId"); 
+            permisoNavegacion.Estado = dr.ObtenerValorColumna<Byte>("Estado");          
             return permisoNavegacion;
         }
         #endregion
@@ -76,6 +77,34 @@ namespace CapaDatos
         }
 
         #endregion
+
+        public Boolean Guardar(Int32 permisoId,Int32 userId,TListaPermisoNavegacion lstPermisosNavegacion)
+        {
+            Boolean Resultado = false;
+            SqlCommand cmd = null;
+            try
+            {
+                cmd = new SqlCommand("Permiso_Navegacion_GuardarMasivo", Conexion.GetConexion())
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@permisoId", permisoId);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                if (lstPermisosNavegacion.Count > 0)
+                    cmd.Parameters.Add(new SqlParameter { ParameterName = "@typePermisosNavegacion", Value = lstPermisosNavegacion, SqlDbType = SqlDbType.Structured, TypeName = "[dbo].[Type_PermisosNavegacion]" });                
+                cmd.ExecuteReader();
+                Resultado = true;
+            }
+            catch (Exception ex)
+            {
+                Resultado = false;
+            }
+            finally
+            {
+                Conexion.DisposeCommand(cmd);
+            }
+            return Resultado;
+        }
 
 
     }
