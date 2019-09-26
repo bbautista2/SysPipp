@@ -43,6 +43,9 @@
     <Compile Include="Analisis.cs" />
     <Compile Include="Desparasitacion.cs" />
     <Compile Include="Mascota.cs" />
+    <Compile Include="Navegacion.cs" />
+    <Compile Include="Permiso.cs" />
+    <Compile Include="PermisoNavegacion.cs" />
     <Compile Include="TipoTabla.cs" />
     <Compile Include="Vacuna.cs" />
     <Compile Include="Cita.cs" />

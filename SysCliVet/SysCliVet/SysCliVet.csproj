@@ -86,6 +86,8 @@
     <Content Include="Privado\Mascota\Ver.aspx" />
     <Content Include="Privado\Mascota\Guardar.aspx" />
     <Content Include="Privado\PaginaMaestra\Inicio.Master" />
+    <Content Include="Privado\Permisos\Administrar.aspx" />
+    <Content Include="Privado\Permisos\ListarPermisos.aspx" />
     <Content Include="Privado\Productos\Guardar.aspx" />
     <Content Include="Privado\Productos\Listar.aspx" />
     <Content Include="Privado\Propietario\Guardar.aspx" />
@@ -4570,6 +4572,20 @@
     </Compile>
     <Compile Include="Privado\PaginaMaestra\Inicio.Master.designer.cs">
       <DependentUpon>Inicio.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Permisos\Administrar.aspx.cs">
+      <DependentUpon>Administrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Permisos\Administrar.aspx.designer.cs">
+      <DependentUpon>Administrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\Permisos\ListarPermisos.aspx.cs">
+      <DependentUpon>ListarPermisos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\Permisos\ListarPermisos.aspx.designer.cs">
+      <DependentUpon>ListarPermisos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\Productos\Guardar.aspx.cs">
       <DependentUpon>Guardar.aspx</DependentUpon>

@@ -44,6 +44,9 @@
     <Compile Include="FichaClinicaDao.cs" />
     <Compile Include="HistoriaClinicaDao.cs" />
     <Compile Include="MascotaDao.cs" />
+    <Compile Include="NavegacionDao.cs" />
+    <Compile Include="PermisoDao.cs" />
+    <Compile Include="PermisoNavegacionDao.cs" />
     <Compile Include="PropietarioDao.cs" />
     <Compile Include="UsuarioDao.cs" />
     <Compile Include="ProductoCategoriaDao.cs" />

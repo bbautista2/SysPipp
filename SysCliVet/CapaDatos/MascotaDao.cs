@@ -41,7 +41,7 @@ namespace CapaDatos
             Mascota.MarcaDistintiva = dr.ObtenerValorColumna<String>("MarcaDistintiva");
             Mascota.Estado = dr.ObtenerValorColumna<Int16>("Estado");
             Mascota.Foto = dr.ObtenerValorColumna<String>("Foto");
-            Mascota.Propietario.Id= dr.ObtenerValorColumna<Int32>("PropetarioID");
+            Mascota.Propietario.Id= dr.ObtenerValorColumna<Int32>("PropietarioID");
             Mascota.Propietario.Nombre = dr.ObtenerValorColumna<String>("Nombre_Propietario");
             Mascota.Propietario.Apellidos = dr.ObtenerValorColumna<String>("Apellido_Propietario");
             Mascota.Propietario.Dni = dr.ObtenerValorColumna<String>("Dni_Propietario");

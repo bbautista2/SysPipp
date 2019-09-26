@@ -5,6 +5,7 @@ using CapaNegocio;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 
@@ -35,6 +36,10 @@ namespace SysCliVet.Privado.HistorialClinico
                 if (!String.IsNullOrEmpty(Request.QueryString["s"]) && Request.QueryString["s"] == "si")
                 {
                     ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Ficha Clinica Guardada Correctamente\"" + ");</script>", false);
+                }
+                if (!String.IsNullOrEmpty(Request.QueryString["s2"]) && Request.QueryString["s2"] == "si")
+                {
+                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Historia Clínica Guardada Correctamente\"" + ");</script>", false);
                 }
             }
             if (!String.IsNullOrEmpty(Request.QueryString["i"]))
@@ -187,7 +192,7 @@ namespace SysCliVet.Privado.HistorialClinico
                 resultado = Logica.Instance.HistoriaClinica_Guardar(ref baseEntidad, objHistoriaClinica);
                 if(resultado)
                 {
-                    ClientScript.RegisterStartupScript(typeof(Page), "message", @"<script type='text/javascript'>FN_Mensaje(" + "\"s\"" + ", " + "\"Historia Clínica Guardada Correctamente\"" + ");</script>", false);
+                    Response.Redirect($"{HttpContext.Current.Request.Url.AbsolutePath}?i={HttpUtility.UrlEncode(Encriptacion.Encriptar(objHistoriaClinica.Id.ToString()))}&nf={HttpUtility.UrlEncode(Encriptacion.Encriptar(lblNroFicha.Text))}&s2=si");
                 }
                 else
                 {

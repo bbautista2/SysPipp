@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fachada\PermisoFacade.cs" />
     <Compile Include="Logica.cs" />
+    <Compile Include="NavegacionBl.cs" />
+    <Compile Include="PermisoBl.cs" />
+    <Compile Include="PermisoNavegacionBl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
